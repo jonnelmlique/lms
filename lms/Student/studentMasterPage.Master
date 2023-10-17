@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="studentMasterPage.master.cs" Inherits="lms.Student.studentMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Management System</title>
+     <link rel="stylesheet" href="../CSS/Student/studentMasterPage.css"/>
+     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+     <header>
+        <div class="header-content">
+            <img src="../Resources/Novaliches Senior High School.png" alt="LOGO" />
+            <h2> Novaliches High School</h2>
+        </div>
+        <div class="header-login">
+        
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="side-bar">
+            <div class="menu">
+                <div class="item-logo">
+                    <i class="fas fa-user"></i>
+                    <h2>@(Session["Email"])</h2>
+                </div>
+                <div class="item">
+                    <a href="#"><i class="fas fa-desktop"></i>Home</a>
+                </div>
+                <div class="item">
+                    <a class="sub-btn"><i class="fas fa-book"></i>Class Subjects</a>
+                </div>
+                <div class="item">
+                    <a href="#"><i class="fas fa-users"></i>Invitations</a>
+                </div>
+                <div class="item">
+                    <a href="#"><i class="fa fa-archive" aria-hidden="true"></i>Archived Classes</a>
+                </div>
+                <div class="item">
+                    <a href="#"><i class="fa fa-bell"></i>Notifications</a>
+                </div>
+                <div class="item">
+                    <a href="@Url.Action("Login","Account")"> <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                </div>
+
+            </div>
+        </div>
+
+        <main class="content">
+           <asp:ContentPlaceHolder ID="body" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </main>
+
+
+    </div>
+
+
+
+    <script>
+        // Function to toggle the sub-menu
+        $(".sub-btn").click(function() {
+            $(this).siblings(".sub-menu").slideToggle();
+            $(this).find(".dropdown").toggleClass("rotate");
+        });
+    </script>
+      
+</body>
+</html>

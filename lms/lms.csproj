@@ -67,13 +67,73 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\DashBoard.aspx" />
+    <Content Include="Admin\ProfessorAcc.aspx" />
+    <Content Include="Admin\StudentAcc.aspx" />
+    <Content Include="Admin\ProfessorNotif.aspx" />
+    <Content Include="Admin\StudentNotif.aspx" />
+    <Content Include="Admin\WriteNotif.aspx" />
+    <Content Include="CSS\AdminCSS\adminMasterPage.css" />
+    <Content Include="CSS\AdminCSS\DashBoard.css" />
+    <Content Include="CSS\AdminCSS\Notifications.css" />
+    <Content Include="CSS\AdminCSS\Prof_StudAcc.css" />
+    <Content Include="CSS\AdminCSS\Prof_StudNotif.css" />
     <Content Include="CSS\login.css" />
+    <Content Include="CSS\ProfessorCSS\Dashboard.css" />
+    <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
+    <Content Include="CSS\Student\DashBoard.css" />
+    <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="LOGIN\Login.aspx" />
+    <Content Include="Professor\professorMasterPage.Master" />
     <None Include="Resources\Novaliches High School Cover Picture.jpg" />
     <None Include="Resources\Novaliches Senior High School.png" />
+    <Content Include="Professor\DashBoard.aspx" />
+    <Content Include="Student\DashBoard.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\DashBoard.aspx.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DashBoard.aspx.designer.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProfessorAcc.aspx.cs">
+      <DependentUpon>ProfessorAcc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProfessorAcc.aspx.designer.cs">
+      <DependentUpon>ProfessorAcc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StudentAcc.aspx.cs">
+      <DependentUpon>StudentAcc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StudentAcc.aspx.designer.cs">
+      <DependentUpon>StudentAcc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProfessorNotif.aspx.cs">
+      <DependentUpon>ProfessorNotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProfessorNotif.aspx.designer.cs">
+      <DependentUpon>ProfessorNotif.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StudentNotif.aspx.cs">
+      <DependentUpon>StudentNotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StudentNotif.aspx.designer.cs">
+      <DependentUpon>StudentNotif.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\WriteNotif.aspx.cs">
+      <DependentUpon>WriteNotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\WriteNotif.aspx.designer.cs">
+      <DependentUpon>WriteNotif.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LOGIN\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -81,15 +141,52 @@
     <Compile Include="LOGIN\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Professor\professorMasterPage.Master.cs">
+      <DependentUpon>professorMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\professorMasterPage.Master.designer.cs">
+      <DependentUpon>professorMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\DashBoard.aspx.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\DashBoard.aspx.designer.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdminLayout.Master.cs">
+      <DependentUpon>AdminLayout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminLayout.Master.designer.cs">
+      <DependentUpon>AdminLayout.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Student\studentMasterPage.Master.cs">
+      <DependentUpon>studentMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\studentMasterPage.Master.designer.cs">
+      <DependentUpon>studentMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Student\DashBoard.aspx.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\DashBoard.aspx.designer.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Admin\AdminLayout.Master" />
+    <Content Include="Student\studentMasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -103,6 +200,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
