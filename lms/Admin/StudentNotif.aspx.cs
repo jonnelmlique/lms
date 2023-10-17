@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Runtime.Remoting.Messaging;
+using System.Data;
 
 namespace lms.Admin
 {
@@ -14,29 +15,25 @@ namespace lms.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            if (!IsPostBack)
             {
-                con.Open();
-                String query = "SELECT student_id, firstname, lastname, email FROM student";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    con.Open();
+                    string query = "SELECT student_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        while (reader.Read())
+                        using (MySqlCommand command = new MySqlCommand(query, con))
                         {
-                            string professor_id = reader["student_id"].ToString();
-                            string firstname = reader["firstname"].ToString();
-                            string lastname = reader["lastname"].ToString();
-                            string email = reader["email"].ToString();
+                            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                            {
+                                DataTable dataTable = new DataTable();
+                                adapter.Fill(dataTable);
 
-
-                            string sendMessageLink = $"/Admin/studentNotif.aspx?email={HttpUtility.UrlEncode(email)}";
-
-                            string fullName = $"{firstname} {lastname}";
-                            trstduehnt.Text += $"<tr><td>{professor_id}</td><td>{fullName}</td><td>{email}</td><td><a href='{sendMessageLink}'>Send Message</a></td></tr>";
+                               studentRepeater.DataSource = dataTable;
+                                studentRepeater.DataBind();
+                            }
                         }
                     }
                 }

@@ -10,19 +10,31 @@
             <button>Send To All</button>
         </div>
 
-        <table>
-            <thead>
+              <table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th style="width: 140px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <asp:Repeater ID="studentRepeater" runat="server">
+            <ItemTemplate>
                 <tr>
-                    <th>Student ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th style="width: 140px;"></th>
+                    <td><%# Eval("student_id") %></td>
+                    <td><%# Eval("Fullname") %></td>
+                    <td><%# Eval("Email") %></td>
+                    <td>
+                        <asp:HyperLink ID="studentLink" runat="server"
+                            NavigateUrl='<%# "WriteNotif.aspx?studentid=" + Eval("student_id") %>'
+                            Text="Send Message" />
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <asp:Literal ID="trstduehnt" runat="server"></asp:Literal>
-
-            </tbody>
-        </table>
+            </ItemTemplate>
+        </asp:Repeater>
+    </tbody>
+</table>
     </div>
 </asp:Content>

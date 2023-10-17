@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,26 +13,38 @@ namespace lms.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            if (!IsPostBack)
             {
-                con.Open();
-                String query = "SELECT professor_id, firstname, lastname, email FROM professor";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    con.Open();
+                    string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        while (reader.Read())
+                        using (MySqlCommand command = new MySqlCommand(query, con))
                         {
-                            string professor_id = reader["professor_id"].ToString();
-                            string firstname = reader["firstname"].ToString();
-                            string lastname = reader["lastname"].ToString();
-                            string email = reader["email"].ToString();
+                            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                            {
+                                DataTable dataTable = new DataTable();
+                                adapter.Fill(dataTable);
 
-                            string fullName = $"{firstname} {lastname}";
+                                professorRepeater.DataSource = dataTable;
+                                professorRepeater.DataBind();
+                            }
+                            //        while (reader.Read())
+                            //        {
+                            //            string professor_id = reader["professor_id"].ToString();
+                            //            string firstname = reader["firstname"].ToString();
+                            //            string lastname = reader["lastname"].ToString();
+                            //            string email = reader["email"].ToString();
 
-                            trprofessor.Text += $"<tr><td>{professor_id}</td><td>{fullName}</td><td>{email}</td><td><a class='send-message-link' data-email='{email}' href='#'>Send Message</a></td></tr>";
+                            //            string fullName = $"{firstname} {lastname}";
+
+                            //            trprofessor.Text += $"<tr><td>{professor_id}</td><td>{fullName}</td><td>{email}</td><td><a class='send-message-link' data-email='{email}' href='#'>Send Message</a></td></tr>";
+                            //        }
+                            //    }
+                            //}
                         }
                     }
                 }

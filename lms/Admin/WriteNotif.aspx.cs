@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using System.Xml;
 
 namespace lms.Admin
 {
@@ -13,52 +14,46 @@ namespace lms.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    if (!string.IsNullOrEmpty(Request.QueryString["professor_id"]))
-            //    {
-            //        string professorId = Request.QueryString["professor_id"];
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["ProfID"] != null)
+                {
+                    int professorID = Convert.ToInt32(Request.QueryString["ProfID"]);
 
-            //        string email = GetEmailForProfessor(professorId);
+                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    {
+                        con.Open();
 
-            //        txtTitle.Text = email;
-            //    }
-            //}
+                        string query = "SELECT professor_id, firstname, Email FROM professor WHERE professor_id = @ProfID";
+
+                        using (MySqlCommand command = new MySqlCommand(query, con))
+                        {
+                            command.Parameters.AddWithValue("@ProfID", professorID);
+
+                            using (MySqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    //string name = reader["Name"].ToString();
+                                    string email = reader["Email"].ToString();
+
+                                    emailtxt.Text = email;
+                                    //emailLabel.Text = email;
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }
-//        private string GetEmailForProfessor(string professorId)
-//        {
-
-//            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-//            try
-//            {
-//                using (MySqlConnection con = new MySqlConnection(connectionString))
-//                {
-//                    con.Open();
-
-//                    string query = "SELECT email FROM professor WHERE professor_id = @professorId";
-
-//                    using (MySqlCommand cmd = new MySqlCommand(query, con))
-//                    {
-//                        cmd.Parameters.AddWithValue("@professorId", professorId);
-
-//                        object result = cmd.ExecuteScalar();
-
-//                        if (result != null)
-//                        {
-//                            return result.ToString();
-//                        }
-//                    }
-//                }
-//            }
-//            catch (MySqlException ex)
-//            {
-              
-//            }
-
-          
-//            return "example@email.com";
-//        }
-//    }
-//}
