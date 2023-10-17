@@ -12,6 +12,19 @@ namespace lms.Student
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            string userEmail = Session["LoggedInUserEmail"] as string;
+            //string userRole = Session["LoggedInUserRole"] as string;
+
+            if (!string.IsNullOrEmpty(userEmail))
+            /*&& !string.IsNullOrEmpty(userRole)*/
+            {
+                lblUserEmail.Text = userEmail;
+                //lblUserRole.Text = "Role: " + userRole;
+            }
+            else
+            {
+                //Response.Redirect("Login.aspx");
+            }
         }
     }
 }

@@ -5,16 +5,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
      <div class="dashboard">
-    
-    <div class="dash-list">
-        <i class="fas fa-users"></i>
-        <h2>Total Students : <span>  </span></h2>
-    </div>
-    <div class="dash-list">
-        <i class="fas fa-users"></i>
-        <h2>Total Professor: <span> </span></h2>
+   <div class="dash-list">
+    <i class="fas fa-users"></i>
+    <h2>Total Students : <span><%= GetTotalStudentCount() %></span></h2>
+</div>
+<div class="dash-list">
+    <i class="fas fa-users"></i>
+    <h2>Total Professors: <span><%= GetTotalProfessorCount() %></span></h2>
+</div>
 
-    </div>
     <div class="dash-list">
 
     </div>

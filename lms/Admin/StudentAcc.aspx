@@ -13,25 +13,21 @@
             <button class="crud"> Edit Account </button>
             <button class="crud"> Block Account </button>
         </div>
+
         <table>
-            <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-               
-                    <tr>
-                        <td>@Model[i].ID</td>
-                        <td>@Model[i].FirstName @Model[i].LastName</td>
-                        <td>@Model[i].Email</td>
-                        <td width="140px"><a href="#"> View Details</a></td>
-                    </tr>
-            
-            </tbody>
-        </table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th style="width: 140px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <asp:Literal ID="trstduehnt" runat="server"></asp:Literal>
+
+    </tbody>
+</table>
+
     </div>
 </asp:Content>

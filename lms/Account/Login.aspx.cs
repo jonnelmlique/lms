@@ -14,7 +14,6 @@ namespace lms.LOGIN
         {
 
         }
-
         protected void btnlogin_Click(object sender, EventArgs e)
         {
             string email = txtemail.Text;
@@ -28,7 +27,7 @@ namespace lms.LOGIN
             {
                 con.Open();
 
-                emailValid = CheckEmail(con, "admin", email) || CheckEmail(con, "student", email) || CheckEmail(con, "Professors", email);
+                emailValid = CheckEmail(con, "admin", email) || CheckEmail(con, "student", email) || CheckEmail(con, "professor", email);
 
                 if (emailValid)
                 {
@@ -104,5 +103,7 @@ namespace lms.LOGIN
                 return (string)cmd.ExecuteScalar();
             }
         }
+
+
     }
 }

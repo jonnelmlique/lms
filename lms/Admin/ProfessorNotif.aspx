@@ -9,8 +9,21 @@
             <input type="text" class="search" placeholder="Search" /><i class="fas fa-search"></i>
             <button> Send To All </button>
         </div>
+           <table>
+     <thead>
+         <tr>
+             <th>Professor ID</th>
+             <th>Name</th>
+             <th>Email</th>
+             <th style="width: 140px;"></th>
+         </tr>
+     </thead>
+     <tbody>
+         <asp:Literal ID="trprofessor" runat="server"></asp:Literal>
 
-        <table>
+     </tbody>
+ </table>
+  <%--      <table>
             <thead>
                 <tr>
                     <th>Professor ID</th>
@@ -30,6 +43,11 @@
                 
             </tbody>
          
-        </table>
+        </table>--%>
+
+   
+
+
     </div>
+
 </asp:Content>

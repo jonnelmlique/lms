@@ -1,5 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true"  CodeBehind="AdminLayout.master.cs" Inherits="lms.Shared.AdminLayout" %>
 
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -19,6 +22,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+        <form id="mainForm" runat="server">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
 
     <header>
         <div class="header-content">
@@ -26,7 +31,7 @@
             <h2> Novaliches High School</h2>
         </div>
       <div class="sitemap">
-         <%--  @Html.MvcSiteMap().SiteMapPath()--%>
+          
      
        </div>
         <div class="header-login">
@@ -89,7 +94,8 @@
         });
     </script>
 
-  
+      </form>
+
 </body>
 </html>
 

@@ -31,7 +31,7 @@
             <div class="menu">
                 <div class="item-logo">
                     <i class="fas fa-user"></i>
-                    <h2>@(Session["Email"])</h2>
+                    <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="professor-label"></asp:Label>
                 </div>
                 <div class="item">
                     <a href="DashBoard.aspx" class="sub-btn"><i class='bx bxs-dashboard'></i>DashBoard</a>

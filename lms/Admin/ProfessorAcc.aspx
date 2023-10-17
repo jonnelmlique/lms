@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminLayout.Master" AutoEventWireup="true" CodeBehind="ProfessorAcc.aspx.cs" Inherits="lms.Admin.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -11,9 +12,9 @@
                 <option value="Activated">Activated Accounts</option>
                 <option value="Deactivated">Deactivated Accounts</option>
             </select>
-            <button class="crud"> Add Account </button>
-            <button class="crud"> Edit Account </button>
-            <button class="crud"> Block Account </button>
+            <button class="crud">Add Account </button>
+            <button class="crud">Edit Account </button>
+            <button class="crud">Block Account </button>
 
         </div>
 
@@ -23,18 +24,12 @@
                     <th>Professor ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th></th>
+                    <th style="width: 140px;"></th>
                 </tr>
             </thead>
             <tbody>
-              
-                    <tr>
-                        <td>@Model[i].ID</td>
-                        <td>@Model[i].FirstName @Model[i].LastName</td>
-                        <td>@Model[i].Email</td>
-                        <td width="140px"><a href="#"> View Details</a></td>
-                    </tr>
-                
+                <asp:Literal ID="trprofessor" runat="server"></asp:Literal>
+
             </tbody>
         </table>
 

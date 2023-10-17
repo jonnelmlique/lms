@@ -28,14 +28,19 @@
                     <h2>Learning Management System</h2>
                 </div>
                 <div class="container">
-                    <label for="uname"><b>Username</b></label>
-<%--                    <input type="text" placeholder="Enter Username" name="uname" required/>--%>
+                    
+                    <label for="uname"><b>Email</b></label>
                     <asp:TextBox ID="txtemail" required placeholder="Enter Email" runat="server"></asp:TextBox>
+               
                     <label for="psw"><b>Password</b></label>
                     <asp:TextBox ID="txtpassword" placeholder="Enter Password" runat="server" TextMode="Password"></asp:TextBox>
-<%--                    <input type="password" placeholder="Enter Password" name="psw" required/>--%>
+                    
+                      <input type="checkbox" onclick="myFunction()"> Show Password
+                
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
                     <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="Login" OnClick="btnlogin_Click"  />
+                         <%--<input type="text" placeholder="Enter Username" name="uname" required/>--%>
+<%--                    <input type="password" placeholder="Enter Password" name="psw" required/>--%>
 <%--                    <button type="submit">Login</button>--%>
 
                 </div>
@@ -46,16 +51,17 @@
     </div>
 
 
-      <script>
-    function myFunction() {
-        var x = document.getElementById("myInput");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
+    <script>
+        function myFunction() {
+            var x = document.getElementById("txtpassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
-    }
-      </script>
+    </script>
+
 
    
 </body>
