@@ -46,15 +46,15 @@ namespace lms.LOGIN
                     {
                         if (usertype == "admin")
                         {
-                            Response.Redirect("Admin/DashBoard.aspx");
+                            Response.Redirect("/Admin/DashBoard.aspx");
                         }
                         else if (usertype == "student")
                         {
-                            Response.Redirect("Student/DashBoard.aspx");
+                            Response.Redirect("/Student/DashBoard.aspx");
                         }
                         else if (usertype == "professor")
                         {
-                            Response.Redirect("Professor/DashBoard.aspx");
+                            Response.Redirect("/Professor/DashBoard.aspx");
                         }
                     }
                 }

@@ -32,10 +32,10 @@
 <%--                    <input type="text" placeholder="Enter Username" name="uname" required/>--%>
                     <asp:TextBox ID="txtemail" required placeholder="Enter Email" runat="server"></asp:TextBox>
                     <label for="psw"><b>Password</b></label>
-                    <asp:TextBox ID="txtpassword" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtpassword" placeholder="Enter Password" runat="server" TextMode="Password"></asp:TextBox>
 <%--                    <input type="password" placeholder="Enter Password" name="psw" required/>--%>
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
-                    <asp:Button ID="btnlogin" runat="server" Text="Login" OnClick="btnlogin_Click" />
+                    <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="Login" OnClick="btnlogin_Click"  />
 <%--                    <button type="submit">Login</button>--%>
 
                 </div>
