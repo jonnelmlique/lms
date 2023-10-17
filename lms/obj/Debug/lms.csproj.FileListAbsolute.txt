@@ -182,3 +182,46 @@ C:\Users\Gervic\Documents\Visual Studio 2022\lms\lms\bin\System.Memory.xml
 C:\Users\Gervic\Documents\Visual Studio 2022\lms\lms\bin\System.Numerics.Vectors.xml
 C:\Users\Gervic\Documents\Visual Studio 2022\lms\lms\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Gervic\Documents\Visual Studio 2022\lms\lms\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\lms.dll.config
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\lms.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\lms.pdb
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\BouncyCastle.Crypto.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Google.Protobuf.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\K4os.Compression.LZ4.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\K4os.Compression.LZ4.Streams.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\K4os.Hash.xxHash.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\MySql.Data.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Buffers.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Configuration.ConfigurationManager.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.IO.Pipelines.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Memory.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Numerics.Vectors.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\ZstdSharp.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\BouncyCastle.Crypto.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Google.Protobuf.pdb
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Google.Protobuf.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\K4os.Compression.LZ4.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\K4os.Compression.LZ4.Streams.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\K4os.Hash.xxHash.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\MySql.Data.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Buffers.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.IO.Pipelines.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Memory.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Numerics.Vectors.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.csproj.AssemblyReference.cache
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.Properties.Resources.resources
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.csproj.GenerateResource.cache
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.csproj.CoreCompileInputs.cache
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.csproj.CopyComplete
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.dll
+C:\Users\Gervic\Documents\Visual Studio 2022\LMS_PROJECT LEGIT\lms\lms\obj\Debug\lms.pdb
