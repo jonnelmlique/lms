@@ -94,6 +94,12 @@ button:hover{
  width: 100%;
 
 }
+
+.item-logo .admin-label{
+   
+      font-size:25px;
+      color:#fff;
+}
 .side-bar .menu .item-logo{
     height:150px;
     padding:10px;
