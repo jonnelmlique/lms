@@ -49,6 +49,39 @@ namespace lms.Admin
                         }
                     }
                 }
+                else if (Request.QueryString["studentid"] != null)
+                {
+                    int studentID = Convert.ToInt32(Request.QueryString["studentid"]);
+
+                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    {
+                        con.Open();
+
+                        string query = "SELECT student_id, firstname, Email FROM student WHERE student_id = @StudentID";
+
+                        using (MySqlCommand command = new MySqlCommand(query, con))
+                        {
+                            command.Parameters.AddWithValue("@StudentID", studentID);
+
+                            using (MySqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    string studentFirstName = reader["firstname"].ToString();
+                                    string studentEmail = reader["Email"].ToString();
+
+                                    emailtxt.Text = studentEmail;
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                        }
+                    }
+                }
                 else
                 {
 
