@@ -76,11 +76,12 @@
                     </div>
                 </div>
           
-                <div class="item">
-                  
-                   <a href="#"> <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+              <div class="item">
+    <a href="/Account/Logout.aspx">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</div>
 
-                </div>
 
             </div>
         </div>

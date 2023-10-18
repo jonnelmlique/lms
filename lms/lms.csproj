@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\Logout.aspx" />
     <Content Include="Admin\DashBoard.aspx" />
     <Content Include="Admin\ProfessorAcc.aspx" />
     <Content Include="Admin\StudentAcc.aspx" />
@@ -144,6 +145,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\DashBoard.aspx.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -48,9 +48,8 @@
                 <div class="item">
                     <a href="#"><i class="fa fa-bell"></i>Notifications</a>
                 </div>
-                <div class="item">
-                    <a href="@Url.Action("Login","Account")"> <i class="fas fa-sign-out-alt"></i> Sign Out</a>
-                </div>
+                         <div class="item"> <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i> Logout </a>
+
 
             </div>
         </div>
