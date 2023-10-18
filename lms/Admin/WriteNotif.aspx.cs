@@ -7,6 +7,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Xml;
+using System.Net;
+using System.Net.Mail;
+
 
 namespace lms.Admin
 {
@@ -86,6 +89,39 @@ namespace lms.Admin
                 {
 
                 }
+            }
+        }
+
+        protected void btnSendMessage_Click(object sender, EventArgs e)
+        {
+            string recipientEmail = emailtxt.Text;
+            string subject = txtsubject.Text;
+            string messageText = txtMessage.Text;
+
+            try
+            {
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential("novalichesseniorhighschool@gmail.com", "jpscuyqtbmgpkcqw"); 
+                smtpClient.EnableSsl = true;
+
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("novalichesseniorhighschool@gmail.com");
+                mailMessage.To.Add(recipientEmail);
+                mailMessage.Subject = subject;
+                mailMessage.Body = messageText;
+
+                smtpClient.Send(mailMessage);
+
+                lblMessage.Text = "Email sent successfully.";
+
+                txtsubject.Text = "";
+                txtMessage.Text = "";
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred while sending the email: " + ex.Message;
             }
         }
     }
