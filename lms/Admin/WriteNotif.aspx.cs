@@ -100,31 +100,44 @@ namespace lms.Admin
             string gmailSignature = "Novaliches Senior High School Learning Management System";
 
             messageText += "\n\n" + gmailSignature;
-
-            try
+            if (txtMessage.Text == "")
             {
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                smtpClient.Port = 587;
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("novalichesseniorhighschool@gmail.com", "jpscuyqtbmgpkcqw"); 
-                smtpClient.EnableSsl = true;
-
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("novalichesseniorhighschool@gmail.com");
-                mailMessage.To.Add(recipientEmail);
-                mailMessage.Subject = subject;
-                mailMessage.Body = messageText;
-
-                smtpClient.Send(mailMessage);
-
-                lblMessage.Text = "Email sent successfully.";
-
-                txtsubject.Text = "";
-                txtMessage.Text = "";
+                ErroSub2.Text = " * Please input a message";
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})",true);
+              
             }
-            catch (Exception ex)
+            else
             {
-                lblMessage.Text = "An error occurred while sending the email: " + ex.Message;
+                try
+                {
+                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                    smtpClient.Port = 587;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential("novalichesseniorhighschool@gmail.com", "jpscuyqtbmgpkcqw");
+                    smtpClient.EnableSsl = true;
+
+                    MailMessage mailMessage = new MailMessage();
+                    mailMessage.From = new MailAddress("novalichesseniorhighschool@gmail.com");
+                    mailMessage.To.Add(recipientEmail);
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = messageText;
+
+                    smtpClient.Send(mailMessage);
+
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                     "Swal.fire({icon: 'success',text: 'Email sent Successfully!'})", true);
+
+                    txtsubject.Text = "";
+                    txtMessage.Text = "";
+                    ErroSub2.Text = "";
+                }
+                catch (Exception ex)
+                {
+                  
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                   "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
+                }
             }
         }
     }

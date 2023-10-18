@@ -22,7 +22,13 @@
             <h2> Novaliches High School</h2>
         </div>
         <div class="header-login">
-         
+             <div class="dropdown">
+                    <button class="dropdown-toggle"><i class='bx bx-user-circle icon'></i><i class='bx bxs-down-arrow arrow'></i></button>
+                     <div class="dropdown-menu">
+                 <a href="#"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+   
+                 </div>
+            </div>
         </div>
         </header>
 
@@ -38,13 +44,13 @@
 
                 </div>
                 <div class="item">
-                    <a class="sub-btn"><i class="fas fa-book"></i>Classes<i class="fas fa-angle-right dropdown"></i></a>
-                    <div class="sub-menu">
+                    <a href="CreateRoom.aspx" class="sub-btn"><i class="fas fa-book"></i>Create Rooms</a>
+                   <%-- <div class="sub-menu">
                         <a href="#" class="sub-item">Subjects</a>
                         <a href="#" class="sub-item">Subjects</a>
                         <a href="#" class="sub-item">Subjects</a>
                        
-                      </div>
+                      </div>--%>
                 </div>
                 <div class="item">
                     <a class="sub-btn"><i class="fas fa-user-plus"></i>Invite Students<i class="fas fa-angle-right dropdown"></i></a>
@@ -72,23 +78,39 @@
 
 
             </div>
+         </div>
         </div>
-
         <main class="content">
+             <form id="form1" runat="server">
                 <asp:ContentPlaceHolder ID="body" runat="server">
 
                 </asp:ContentPlaceHolder>
+                 </form>
         </main>
     </div>
 
     <script>
-        // Function to toggle the sub-menu
+      
         $(".sub-btn").click(function() {
             $(this).siblings(".sub-menu").slideToggle();
             $(this).find(".dropdown").toggleClass("rotate");
         });
     </script>
-      
+        <script>
+            const dropdownToggle = document.querySelector(".dropdown-toggle");
+            const dropdownMenu = document.querySelector(".dropdown-menu");
+
+            dropdownToggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+            });
+
+            window.addEventListener("click", (e) => {
+                if (!dropdownToggle.contains(e.target)) {
+                    dropdownMenu.style.display = "none";
+                }
+            });
+        </script>
   
 </body>
 </html>

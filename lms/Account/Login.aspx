@@ -35,7 +35,7 @@
                     <label for="psw"><b>Password</b></label>
                     <asp:TextBox ID="txtpassword" placeholder="Enter Password" runat="server" TextMode="Password"></asp:TextBox>
                     
-                      <input type="checkbox" onclick="myFunction()"> Show Password
+                      <input type="checkbox" onclick="myFunction()"/> Show Password
                 
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
                     <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="Login" OnClick="btnlogin_Click"  />
@@ -46,6 +46,7 @@
                 </div>
 
             </form>
+           
         </div>
 
     </div>
