@@ -32,7 +32,6 @@
     <ItemTemplate>
         <div class="card">
             <div class="roomimage">
-                <!-- Specify the ImageHandler.ashx URL and include room_id as a query parameter -->
                 <img class="room-thumb" src='<%# "ImageHandler.ashx?room_id=" + Eval("room_id") %>' alt="" />
                 <a href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>'>
                     <span class="card-btn">VIEW</span>
