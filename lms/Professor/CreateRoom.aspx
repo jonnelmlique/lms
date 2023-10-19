@@ -19,10 +19,36 @@
              </div>
           
            <div class="btn-room">
-               <a hre="#" class="add-room"><i class="fas fa-plus"></i>Create Room </a>
+               <a href="room_details.aspx" class="add-room"><i class="fas fa-plus"></i>Create Room </a>
               
-          </div>
+          </div>       
       </div>
+        <div class="room-lists">
+            <div class="room-card">
+
+            </div>
+            <div class="room-card">
+
+</div>
+            <div class="room-card">
+
+</div>
+            <div class="room-card">
+
+</div>
+            <div class="room-card">
+
+</div>
+            <div class="room-card">
+
+</div>
+            <div class="room-card">
+
+</div>
+
+        </div>
+
+        
     </div>
 
    

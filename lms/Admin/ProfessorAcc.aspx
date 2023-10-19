@@ -8,10 +8,11 @@
     <div class="Management">
         <div class="search-nav">
             <input type="text" class="search" placeholder="Search" /><i class="fas fa-search"></i>
-            <select>
-                <option value="Activated">Activated Accounts</option>
-                <option value="Deactivated">Deactivated Accounts</option>
-            </select>
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
+                <asp:ListItem Text="Activated Accounts" Value="1" />
+                   <asp:ListItem Text="Deactivated Accounts" Value="2" />
+                   
+            </asp:DropDownList>
             <button class="crud">Add Account </button>
             <button class="crud">Edit Account </button>
             <button class="crud">Block Account </button>

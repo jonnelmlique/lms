@@ -134,6 +134,7 @@
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
+    <Content Include="CSS\ProfessorCSS\room_details.css" />
     <Content Include="CSS\Student\DashBoard.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="Account\Login.aspx" />
@@ -144,6 +145,8 @@
     <Content Include="Professor\DashBoard.aspx" />
     <Content Include="Professor\CreateRoom.aspx" />
     <None Include="Resources\add-icon.png" />
+    <None Include="Resources\left-arrow.png" />
+    <Content Include="Professor\room_details.aspx" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -227,6 +230,13 @@
     </Compile>
     <Compile Include="Professor\CreateRoom.aspx.designer.cs">
       <DependentUpon>CreateRoom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\room_details.aspx.cs">
+      <DependentUpon>room_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\room_details.aspx.designer.cs">
+      <DependentUpon>room_details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
