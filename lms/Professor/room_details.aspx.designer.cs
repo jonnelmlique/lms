@@ -51,31 +51,31 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.View View1;
 
         /// <summary>
-        /// TextBox1 control.
+        /// instructorname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox instructorname;
 
         /// <summary>
-        /// TextBox2 control.
+        /// roomname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox roomname;
 
         /// <summary>
-        /// TextBox3 control.
+        /// subjectname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox subjectname;
 
         /// <summary>
         /// Button2 control.
@@ -105,31 +105,40 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.View View2;
 
         /// <summary>
-        /// Button3 control.
+        /// ImagePreview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Image ImagePreview;
 
         /// <summary>
-        /// TextBox4 control.
+        /// roomimage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.FileUpload roomimage;
 
         /// <summary>
-        /// TextBox5 control.
+        /// schedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox schedule;
+
+        /// <summary>
+        /// txtdescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdescription;
 
         /// <summary>
         /// btnCancel control.

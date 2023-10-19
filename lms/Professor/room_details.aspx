@@ -22,7 +22,7 @@
        <div class="room-details">
              <div class="room-info">
                  <div class="room-head">
-                     <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server" />
+                     <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server" OnClick="ImageButton1_Click" />
                      <h2> Create Room</h2>
                  </div>
                  <div class="room-setup">
@@ -40,15 +40,15 @@
                               <div class="tab-details">
                                  <div class="tab-setup">
                                      <label for="instructor" class="label l1"><b>Instructor Name:</b></label>
-                                     <asp:TextBox ID="TextBox1" runat="server" CssClass="tab-text"></asp:TextBox>
+                                     <asp:TextBox ID="instructorname" runat="server" CssClass="tab-text"></asp:TextBox>
                                  </div>
                                    <div class="tab-setup">
-                                       <label for="instructor" class="label l2"><b>Room Name:</b></label>
-                                       <asp:TextBox ID="TextBox2" runat="server" CssClass="tab-text" placeholder="Enter Room Name (REQUIRED)"></asp:TextBox>
+                                       <label for="rname" class="label l2"><b>Room Name:</b></label>
+                                       <asp:TextBox ID="roomname" runat="server" CssClass="tab-text" placeholder="Enter Room Name (REQUIRED)"></asp:TextBox>
                                  </div>
                                    <div class="tab-setup">
-                                        <label for="instructor" class="label l3"><b>Subject Name:</b></label>
-                                          <asp:TextBox ID="TextBox3" runat="server" CssClass="tab-text" placeholder="Enter Subject Name"></asp:TextBox>
+                                        <label for="sname" class="label l3"><b>Subject Name:</b></label>
+                                          <asp:TextBox ID="subjectname" runat="server" CssClass="tab-text" placeholder="Enter Subject Name"></asp:TextBox>
                                      </div>                                  
                                </div>
                                   <div class="tab-btn">
@@ -58,28 +58,34 @@
                              </asp:View>
                               <asp:View ID="View2" runat="server" >
                                     <div class="details-view">
-                                          <div class="details-image">
-                                              <p></p>
-                                              <asp:Button ID="Button3" runat="server" Text="Upload Image Banner" CssClass="img-btn"/>
+                                          <div class="details-image"><p>
+                                              <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
+                                            </p><asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn" onchange="showImagePreview()" />
+
+<%--                                    <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="false" />--%>
+
+<%--                                              <p></p>--%>
+<%--                                              <asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn"/>--%>
+<%--                                              <asp:Button ID="Button3" runat="server" Text="Upload Image Banner" CssClass="img-btn"/>--%>
                                           </div>  
                                         <div class="details-info">
                                               <div class="info">
                                                   <label for="sched" class="info-details sched"> Schedule : </label>
-                                                  <asp:TextBox ID="TextBox4" runat="server" CssClass="info-txt"> </asp:TextBox>
+                                                  <asp:TextBox ID="schedule" runat="server" CssClass="info-txt"> </asp:TextBox>
                                               </div> 
                                             <div class="info">
                                                 <div class="info1">
                                                     <div class="info2 lbl">
-                                                         <label for="sched" class="info-details detail"> Description : </label>
+                                                         <label for="desc" class="info-details detail"> Description : </label>
                                                         </div>
                                                     <div class="info2 txt">
-                                                      <asp:TextBox ID="TextBox5" runat="server" TextMode="MultiLine" Rows="5" CssClass="info-txt desc"> </asp:TextBox>
+                                                      <asp:TextBox ID="txtdescription" runat="server" TextMode="MultiLine" Rows="5" CssClass="info-txt desc"> </asp:TextBox>
                                                   </div>
                                                </div>
                                            </div>
                                             <div class="info-button">
                                                   <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="info-btn" OnClick="btnCancel_Click"/>
-                                                  <asp:Button ID="btnCreate" runat="server" Text="Create Room" CssClass="info-btn"/>
+                                                  <asp:Button ID="btnCreate" runat="server" Text="Create Room" CssClass="info-btn" OnClick="btnCreate_Click"/>
                                             </div>
                                         </div>
                                     </div>
@@ -94,4 +100,23 @@
              </div>
          </div>
  </div>
+   
+    <script type="text/javascript">
+        function showImagePreview() {
+            var imgPreview = document.getElementById('<%= ImagePreview.ClientID %>');
+        var fileUpload = document.getElementById('<%= roomimage.ClientID %>');
+
+            if (fileUpload.files && fileUpload.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = 'block'; // Set the display style to "block"
+                };
+                reader.readAsDataURL(fileUpload.files[0]);
+            } else {
+                imgPreview.style.display = 'none';
+            }
+        }
+    </script>
+
 </asp:Content>
