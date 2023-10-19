@@ -38,6 +38,7 @@
                       <input type="checkbox" onclick="myFunction()"/> Show Password
                 
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+
                     <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="Login" OnClick="btnlogin_Click"  />
                          <%--<input type="text" placeholder="Enter Username" name="uname" required/>--%>
 <%--                    <input type="password" placeholder="Enter Password" name="psw" required/>--%>

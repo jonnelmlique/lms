@@ -49,8 +49,6 @@
                 </div>
                 <div class="item">
                     <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i>Logout </a>
-
-
                 </div>
             </div>
 
