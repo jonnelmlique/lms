@@ -58,20 +58,19 @@
                              </asp:View>
                               <asp:View ID="View2" runat="server" >
                                     <div class="details-view">
-                                          <div class="details-image"><p>
+                                          <div class="details-image">
                                               <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
-                                            </p><asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn" onchange="showImagePreview()" />
+                                           <asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn" onchange="showImagePreview()"  Font-Size="Larger" />
 
-<%--                                    <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="false" />--%>
-
-<%--                                              <p></p>--%>
-<%--                                              <asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn"/>--%>
-<%--                                              <asp:Button ID="Button3" runat="server" Text="Upload Image Banner" CssClass="img-btn"/>--%>
                                           </div>  
                                         <div class="details-info">
                                               <div class="info">
-                                                  <label for="sched" class="info-details sched"> Schedule : </label>
-                                                  <asp:TextBox ID="schedule" runat="server" CssClass="info-txt"> </asp:TextBox>
+                                                  <label for="sched" class="info-details section"> Section : </label>
+                                                  <asp:TextBox ID="section" runat="server" CssClass="info-txt" placeholder="BSIT - 3L"> </asp:TextBox>
+                                                </div>
+                                                  <div class="info">
+                                                    <label for="sched" class="info-details sched"> Schedule : </label>
+                                                    <asp:TextBox ID="schedule" runat="server" CssClass="info-txt" placeholder="MONDAY| 8:00am - 10:00am , 11:00am - 2:00pm"> </asp:TextBox>
                                               </div> 
                                             <div class="info">
                                                 <div class="info1">

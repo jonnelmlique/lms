@@ -24,13 +24,27 @@
           </div>       
       </div>
 
+    <div class="room-lists">
 
-              <asp:Repeater ID="roomRepeater" runat="server">
+          <asp:Repeater ID="roomRepeater" runat="server">
     <HeaderTemplate>
         <ul>
     </HeaderTemplate>
     <ItemTemplate>
-        <div class="card">
+          <div class="room-card">
+                 <div class="room-image">
+                        <img class="room-banner" src='<%# "ImageHandler.ashx?room_id=" + Eval("room_id") %>' alt="" />
+                  </div>
+             <div class="room-sched">
+                    <a  href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>' class="room-subj"> <%# Eval("roomname") %></a>
+                       <span class="room-section"><%# Eval("schedule") %></span>
+               <div class="room-buttons">
+                 <a href="#" class="room-btn"> Edit Details</a>
+                 <a href="#" class="room-btn"> Enter Room</a>
+              </div>
+             </div>
+         </div>
+        <%--<div class="room-card">
             <div class="roomimage">
                 <img class="room-thumb" src='<%# "ImageHandler.ashx?room_id=" + Eval("room_id") %>' alt="" />
                 <a href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>'>
@@ -42,35 +56,14 @@
                 <p class="room-description"><%# Eval("rooomdescription") %></p>
                 <span class="roomschedule"><%# Eval("schedule") %></span>
             </div>
-        </div>
+        </div>--%>
     </ItemTemplate>
     <FooterTemplate>
         </ul>
     </FooterTemplate>
-</asp:Repeater>
-
-
-
-<%--        <div class="room-lists">
-            <div class="room-card">
-            </div>
-            <div class="room-card">
-</div>
-            <div class="room-card">
-</div>
-            <div class="room-card">
-</div>
-            <div class="room-card">
-</div>
-            <div class="room-card">
+    </asp:Repeater>
 
 </div>
-            <div class="room-card">
-
-</div>
-
-        </div>--%>
-
         
     </div>
 

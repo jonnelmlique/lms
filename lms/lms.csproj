@@ -148,6 +148,7 @@
     <None Include="Resources\add-icon.png" />
     <None Include="Resources\left-arrow.png" />
     <Content Include="Professor\room_details.aspx" />
+    <None Include="Resources\search.png" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -10,6 +10,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    
 }
 
 .search {
@@ -23,18 +24,29 @@
     font-size: 15px;
 }
 
-.search-nav i {
+.search-nav .search-btn {
     position: absolute;
     right: 39%;
     font-size: 30px;
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
+    height:50px;
+    width:50px;
+    transition:0.3s all ease;
 }
 
-    .search-nav i:hover {
-        color: #eb4d4d;
-    }
+ .search-nav .search-btn:hover {
+       background-color: #eb4d4d;
+ }
+.search-nav .d-list {
+    padding: 10px;
+    width: 230px;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: #eb4d4d;
+    color: #fff;
+}
 
 select {
     width: 220px;
