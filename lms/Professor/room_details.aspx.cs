@@ -21,7 +21,41 @@ namespace lms.Professor
                 {
                     Response.Redirect("Login.aspx");
                 }
+                else
+                {
+                    string instructorFullName = GetInstructorFullNameFromDatabase(professorEmail);
+                    if (!string.IsNullOrEmpty(instructorFullName))
+                    {
+                        instructorname.Text = instructorFullName;
+                    }
+                }
             }
+        }
+        private string GetInstructorFullNameFromDatabase(string professorEmail)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            string fullName = "";
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT firstname, lastname FROM professor WHERE email = @email";
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@email", professorEmail);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string firstName = reader["firstname"].ToString();
+                            string lastName = reader["lastname"].ToString();
+                            fullName = $"{firstName} {lastName}";
+                        }
+                    }
+                }
+            }
+
+            return fullName;
         }
 
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
@@ -56,12 +90,12 @@ namespace lms.Professor
             {
                 con.Open();
 
-                string query = "INSERT INTO rooms (professoremail, professorname, roomname, subjectname, roomimage, schedule, rooomdescription) " +
-                               "VALUES (@professoremail, @professorname, @roomname, @subjectname, @roomimage, @schedule, @rooomdescription)";
+                string query = "INSERT INTO rooms (professorname, professoremail, roomname, subjectname, roomimage, schedule, section, rooomdescription) " +
+                               "VALUES (@professorname, @professoremail, @roomname, @subjectname, @roomimage, @schedule, @section, @rooomdescription)";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@professoremail", professorEmail);
                     cmd.Parameters.AddWithValue("@professorname", instructorname.Text);
+                    cmd.Parameters.AddWithValue("@professoremail", professorEmail);
                     cmd.Parameters.AddWithValue("@roomname", roomname.Text);
                     cmd.Parameters.AddWithValue("@subjectname", subjectname.Text);
 
@@ -79,6 +113,7 @@ namespace lms.Professor
                     }
 
                     cmd.Parameters.AddWithValue("@schedule", schedule.Text);
+                    cmd.Parameters.AddWithValue("@section", txtsection.Text);
                     cmd.Parameters.AddWithValue("@rooomdescription", txtdescription.Text);
 
                     cmd.ExecuteNonQuery();

@@ -66,7 +66,7 @@
                                         <div class="details-info">
                                               <div class="info">
                                                   <label for="sched" class="info-details section"> Section : </label>
-                                                  <asp:TextBox ID="section" runat="server" CssClass="info-txt" placeholder="BSIT - 3L"> </asp:TextBox>
+                                                  <asp:TextBox ID="txtsection" runat="server" CssClass="info-txt" placeholder="BSIT - 3L"> </asp:TextBox>
                                                 </div>
                                                   <div class="info">
                                                     <label for="sched" class="info-details sched"> Schedule : </label>

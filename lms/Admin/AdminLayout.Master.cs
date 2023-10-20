@@ -13,18 +13,34 @@ namespace lms.Shared
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            string userEmail = Session["LoggedInUserEmail"] as string;
-            //string userRole = Session["LoggedInUserRole"] as string;
+            if (!IsPostBack)
+            {
+                if (Session["LoggedInUserEmail"] == null)
+                {
+                    Response.Redirect("~/Account/Login.aspx");
+                }
+                else
+                {
+                    string userType = Session["LoggedInUserusertype"] as string;
 
-            if (!string.IsNullOrEmpty(userEmail)) 
-                /*&& !string.IsNullOrEmpty(userRole)*/
-            {
-                lblUserEmail.Text = userEmail;
-                //lblUserRole.Text = "Role: " + userRole;
-            }
-            else
-            {
-                //Response.Redirect("Login.aspx");
+                    if (userType == "student")
+                    {
+                        Response.Redirect("~/Student/DashBoard.aspx");
+                    }
+                    else if (userType == "professor")
+                    {
+                        Response.Redirect("~/Professor/DashBoard.aspx");
+                    }
+                    else
+                    {
+                        string userEmail = Session["LoggedInUserEmail"] as string;
+
+                        if (!string.IsNullOrEmpty(userEmail))
+                        {
+                            lblUserEmail.Text = userEmail;
+                        }
+                    }
+                }
             }
         }
     }

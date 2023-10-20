@@ -123,13 +123,13 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.FileUpload roomimage;
 
         /// <summary>
-        /// section control.
+        /// txtsection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox section;
+        protected global::System.Web.UI.WebControls.TextBox txtsection;
 
         /// <summary>
         /// schedule control.

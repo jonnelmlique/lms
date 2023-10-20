@@ -17,8 +17,11 @@ namespace lms.Professor
             if (!IsPostBack)
             {
                 BindRoomData();
+                PopulateSubjectsDropDown();
+
             }
         }
+
         protected void BindRoomData()
         {
             string professorEmail = Session["LoggedInUserEmail"] as string;
@@ -33,7 +36,7 @@ namespace lms.Professor
             {
                 con.Open();
 
-                string query = "SELECT room_id, roomname, rooomdescription, schedule FROM rooms WHERE professoremail = @professorEmail";
+                string query = "SELECT room_id, roomname, rooomdescription, schedule, section FROM rooms WHERE professoremail = @professorEmail";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
@@ -46,6 +49,27 @@ namespace lms.Professor
 
                         roomRepeater.DataSource = dt;
                         roomRepeater.DataBind();
+                    }
+                }
+            }
+        }
+        private void PopulateSubjectsDropDown()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT DISTINCT subjectname FROM rooms";
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string subjectName = reader["subjectname"].ToString();
+                            DropDownList1.Items.Add(new ListItem(subjectName, subjectName));
+                        }
                     }
                 }
             }

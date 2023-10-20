@@ -19,20 +19,20 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["ProfID"] != null)
+                if (Request.QueryString["professorid"] != null)
                 {
-                    int professorID = Convert.ToInt32(Request.QueryString["ProfID"]);
+                    int professorID = Convert.ToInt32(Request.QueryString["professorid"]);
 
                     string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
                     using (MySqlConnection con = new MySqlConnection(connectionString))
                     {
                         con.Open();
 
-                        string query = "SELECT professor_id, firstname, Email FROM professor WHERE professor_id = @ProfID";
+                        string query = "SELECT professor_id, firstname, Email FROM professor WHERE professor_id = @professorid";
 
                         using (MySqlCommand command = new MySqlCommand(query, con))
                         {
-                            command.Parameters.AddWithValue("@ProfID", professorID);
+                            command.Parameters.AddWithValue("@professorid", professorID);
 
                             using (MySqlDataReader reader = command.ExecuteReader())
                             {

@@ -10,12 +10,14 @@
         <div class="room-filter">
             <div class="filters">               
                     <p> Select Room</p>
-                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
+             <%--   <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
                        <asp:ListItem Text="All Rooms" Value="1" />
                         <asp:ListItem Text="Subject 1" Value="2" />
                           <asp:ListItem Text="Subject 2" Value="3" />
-                </asp:DropDownList>
-                      
+                </asp:DropDownList>--%>
+                           <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
+    <asp:ListItem Text="All Rooms" Value="1" />
+</asp:DropDownList>
              </div>
           
            <div class="btn-room">
@@ -37,7 +39,8 @@
                   </div>
              <div class="room-sched">
                     <a  href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>' class="room-subj"> <%# Eval("roomname") %></a>
-                       <span class="room-section"><%# Eval("schedule") %></span>
+                         <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
+
                <div class="room-buttons">
                  <a href="#" class="room-btn"> Edit Details</a>
                  <a href="#" class="room-btn"> Enter Room</a>

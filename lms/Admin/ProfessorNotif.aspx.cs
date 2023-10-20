@@ -15,40 +15,76 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                using (MySqlConnection con = new MySqlConnection(connectionString))
+                BindProfessorData();
+            }
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
-                    con.Open();
-                    string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
-                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    using (MySqlCommand command = new MySqlCommand(query, con))
                     {
-                        using (MySqlCommand command = new MySqlCommand(query, con))
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                         {
-                            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                            {
-                                DataTable dataTable = new DataTable();
-                                adapter.Fill(dataTable);
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
 
-                                professorRepeater.DataSource = dataTable;
-                                professorRepeater.DataBind();
-                            }
-                            //        while (reader.Read())
-                            //        {
-                            //            string professor_id = reader["professor_id"].ToString();
-                            //            string firstname = reader["firstname"].ToString();
-                            //            string lastname = reader["lastname"].ToString();
-                            //            string email = reader["email"].ToString();
-
-                            //            string fullName = $"{firstname} {lastname}";
-
-                            //            trprofessor.Text += $"<tr><td>{professor_id}</td><td>{fullName}</td><td>{email}</td><td><a class='send-message-link' data-email='{email}' href='#'>Send Message</a></td></tr>";
-                            //        }
-                            //    }
-                            //}
+                            professorGridView.DataSource = dataTable;
+                            professorGridView.DataBind();
                         }
                     }
                 }
             }
+        }
+
+        private void BindProfessorData(string searchTerm = "")
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+
+                string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor ";
+
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    query += " WHERE professor_id LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                    }
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        professorGridView.DataSource = dataTable;
+                        professorGridView.DataBind();
+                    }
+                }
+            }
+        }
+
+
+        protected void btnsearch_Click(object sender, ImageClickEventArgs e)
+        {
+            string searchTerm = txtsearch.Text;
+            BindProfessorData(searchTerm);
+
+        }
+
+        protected void btnrefresh_Click(object sender, EventArgs e)
+        {
+            BindProfessorData();
+            txtsearch.Text = "";
         }
     }
 }
