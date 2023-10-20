@@ -22,7 +22,7 @@
        <div class="room-details">
              <div class="room-info">
                  <div class="room-head">
-                     <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server" OnClick="ImageButton1_Click" />
+                     <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server" OnClick="ImageButton1_Click"  CausesValidation="false" />
                      <h2> Create Room</h2>
                  </div>
                  <div class="room-setup">
@@ -41,18 +41,24 @@
                                  <div class="tab-setup">
                                      <label for="instructor" class="label l1"><b>Instructor Name:</b></label>
                                      <asp:TextBox ID="instructorname" runat="server" CssClass="tab-text"></asp:TextBox>
-                                 </div>
+                                     <asp:RequiredFieldValidator ID="InstructorNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="instructorname" ForeColor="Red"></asp:RequiredFieldValidator>
+                               
+                                     </div>
+                                  <br />
                                    <div class="tab-setup">
                                        <label for="rname" class="label l2"><b>Room Name:</b></label>
                                        <asp:TextBox ID="roomname" runat="server" CssClass="tab-text" placeholder="Enter Room Name (REQUIRED)"></asp:TextBox>
-                                 </div>
+                                       <asp:RequiredFieldValidator ID="RoomNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="roomname" ForeColor="Red"></asp:RequiredFieldValidator>
+                                       </div>
                                    <div class="tab-setup">
                                         <label for="sname" class="label l3"><b>Subject Name:</b></label>
                                           <asp:TextBox ID="subjectname" runat="server" CssClass="tab-text" placeholder="Enter Subject Name"></asp:TextBox>
-                                     </div>                                  
+                                       <asp:RequiredFieldValidator ID="SubjectNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="subjectname" ForeColor="Red"></asp:RequiredFieldValidator>
+                                       
+                                   </div>                                  
                                </div>
                                   <div class="tab-btn">
-                                       <asp:Button ID="Button2" runat="server" Text="Cancel" CssClass="tab-nxt"/>
+                                       <asp:Button ID="Button2" runat="server" Text="Cancel" CssClass="tab-nxt" OnClick="Button2_Click"  CausesValidation="false"/>
                                       <asp:Button ID="Button1" runat="server" Text="Next" CssClass="tab-nxt" OnClick="Button1_Click"/>
                                     </div>
                              </asp:View>
@@ -61,17 +67,19 @@
                                           <div class="details-image">
                                               <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
                                            <asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn" onchange="showImagePreview()"  Font-Size="Larger" />
-
+                                              <asp:RequiredFieldValidator ID="ImageValidator" runat="server" ErrorMessage="* Required" ControlToValidate="roomimage" ForeColor="Red"></asp:RequiredFieldValidator>
                                           </div>  
                                         <div class="details-info">
                                               <div class="info">
                                                   <label for="sched" class="info-details section"> Section : </label>
                                                   <asp:TextBox ID="txtsection" runat="server" CssClass="info-txt" placeholder="BSIT - 3L"> </asp:TextBox>
-                                                </div>
+                                                  <asp:RequiredFieldValidator ID="SectionValidator" runat="server" ErrorMessage="* Required" ControlToValidate="txtsection" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </div>
                                                   <div class="info">
                                                     <label for="sched" class="info-details sched"> Schedule : </label>
                                                     <asp:TextBox ID="schedule" runat="server" CssClass="info-txt" placeholder="MONDAY| 8:00am - 10:00am , 11:00am - 2:00pm"> </asp:TextBox>
-                                              </div> 
+                                                      <asp:RequiredFieldValidator ID="ScheduleValidator" runat="server" ErrorMessage="* Required" ControlToValidate="schedule" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </div> 
                                             <div class="info">
                                                 <div class="info1">
                                                     <div class="info2 lbl">
@@ -83,7 +91,7 @@
                                                </div>
                                            </div>
                                             <div class="info-button">
-                                                  <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="info-btn" OnClick="btnCancel_Click"/>
+                                                  <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="info-btn" OnClick="btnCancel_Click"  CausesValidation="false"/>
                                                   <asp:Button ID="btnCreate" runat="server" Text="Create Room" CssClass="info-btn" OnClick="btnCreate_Click"/>
                                             </div>
                                         </div>

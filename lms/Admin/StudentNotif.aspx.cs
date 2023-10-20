@@ -78,7 +78,7 @@ namespace lms.Admin
 
         protected void btnsearch_Click(object sender, ImageClickEventArgs e)
         {
-            string searchTerm = txtsearch.Text;
+              string searchTerm = txtsearch.Text;
             BindStudentData(searchTerm);
         }
 

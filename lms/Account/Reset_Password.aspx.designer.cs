@@ -7,48 +7,48 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace lms.LOGIN
+namespace lms.Account
 {
 
 
-    public partial class Login
+    public partial class Reset_Password
     {
 
         /// <summary>
-        /// txtemail control.
+        /// txtnewpassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtemail;
+        protected global::System.Web.UI.WebControls.TextBox txtnewpassword;
 
         /// <summary>
-        /// emailValidator control.
+        /// newpasswordValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator emailValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator newpasswordValidator;
 
         /// <summary>
-        /// txtpassword control.
+        /// txtconfirmpassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtpassword;
+        protected global::System.Web.UI.WebControls.TextBox txtconfirmpassword;
 
         /// <summary>
-        /// passwordValidator control.
+        /// conmirmpasswordValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator conmirmpasswordValidator;
 
         /// <summary>
         /// lblMessage control.
@@ -60,12 +60,12 @@ namespace lms.LOGIN
         protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// btnlogin control.
+        /// btnreset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnlogin;
+        protected global::System.Web.UI.WebControls.Button btnreset;
     }
 }

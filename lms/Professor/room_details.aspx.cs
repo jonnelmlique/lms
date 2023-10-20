@@ -70,6 +70,10 @@ namespace lms.Professor
         {
             MultiView1.ActiveViewIndex = 1;
         }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateRoom.aspx");
+        }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {

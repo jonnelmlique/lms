@@ -118,7 +118,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\Forgot_Password.aspx" />
     <Content Include="Account\Logout.aspx" />
+    <Content Include="Account\Reset_Password.aspx" />
     <Content Include="Admin\DashBoard.aspx" />
     <Content Include="Admin\ProfessorAcc.aspx" />
     <Content Include="Admin\StudentAcc.aspx" />
@@ -153,12 +155,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Forgot_Password.aspx.cs">
+      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Forgot_Password.aspx.designer.cs">
+      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Reset_Password.aspx.cs">
+      <DependentUpon>Reset_Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Reset_Password.aspx.designer.cs">
+      <DependentUpon>Reset_Password.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\DashBoard.aspx.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>

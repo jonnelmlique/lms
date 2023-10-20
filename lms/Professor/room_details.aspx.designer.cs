@@ -60,6 +60,15 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.TextBox instructorname;
 
         /// <summary>
+        /// InstructorNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator InstructorNameValidator;
+
+        /// <summary>
         /// roomname control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.TextBox roomname;
 
         /// <summary>
+        /// RoomNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RoomNameValidator;
+
+        /// <summary>
         /// subjectname control.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,15 @@ namespace lms.Professor
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox subjectname;
+
+        /// <summary>
+        /// SubjectNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SubjectNameValidator;
 
         /// <summary>
         /// Button2 control.
@@ -123,6 +150,15 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.FileUpload roomimage;
 
         /// <summary>
+        /// ImageValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ImageValidator;
+
+        /// <summary>
         /// txtsection control.
         /// </summary>
         /// <remarks>
@@ -132,6 +168,15 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.TextBox txtsection;
 
         /// <summary>
+        /// SectionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SectionValidator;
+
+        /// <summary>
         /// schedule control.
         /// </summary>
         /// <remarks>
@@ -139,6 +184,15 @@ namespace lms.Professor
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox schedule;
+
+        /// <summary>
+        /// ScheduleValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ScheduleValidator;
 
         /// <summary>
         /// txtdescription control.

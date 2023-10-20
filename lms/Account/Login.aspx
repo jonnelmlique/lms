@@ -30,14 +30,18 @@
                 <div class="container">
                     
                     <label for="uname"><b>Email</b></label>
-                    <asp:TextBox ID="txtemail" required placeholder="Enter Email" runat="server"></asp:TextBox>
-               
+                    <asp:TextBox ID="txtemail" placeholder="Enter Email" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="emailValidator" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtemail"></asp:RequiredFieldValidator>
+                    <br />
                     <label for="psw"><b>Password</b></label>
                     <asp:TextBox ID="txtpassword" placeholder="Enter Password" runat="server" TextMode="Password"></asp:TextBox>
-                    
+                    <asp:RequiredFieldValidator ID="passwordValidator" runat="server" ErrorMessage="Password is Required" ControlToValidate="txtpassword"></asp:RequiredFieldValidator>
+                    <br />
                       <input type="checkbox" onclick="myFunction()"/> Show Password
                 
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+
+                            <p><a href="Forgot_Password.aspx">Forgot Password?</a></p>
 
                     <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="Login" OnClick="btnlogin_Click"  />
                          <%--<input type="text" placeholder="Enter Username" name="uname" required/>--%>
