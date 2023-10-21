@@ -59,7 +59,6 @@ namespace lms.Admin
 
                     }
                 }
-
                 else if (Request.QueryString["studentid"] != null)
                 {
                     int studentID = Convert.ToInt32(Request.QueryString["studentid"]);
