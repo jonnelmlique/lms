@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -31,19 +33,20 @@
                     
                     <label for="uname"><b>Email</b></label>
                     <asp:TextBox ID="txtemail" placeholder="Enter Email" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="emailValidator" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtemail"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="emailValidator" runat="server" ErrorMessage=" * Email is Required" ControlToValidate="txtemail" CssClass="required"></asp:RequiredFieldValidator>
                     <br />
                     <label for="psw"><b>Password</b></label>
                     <asp:TextBox ID="txtpassword" placeholder="Enter Password" runat="server" TextMode="Password"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="passwordValidator" runat="server" ErrorMessage="Password is Required" ControlToValidate="txtpassword"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="passwordValidator" runat="server" ErrorMessage="* Password is Required" ControlToValidate="txtpassword" CssClass="required"></asp:RequiredFieldValidator>
                     <br />
-                      <input type="checkbox" onclick="myFunction()"/> Show Password
+                    <div class="show-pass">
+                      <span><input type="checkbox" onclick="myFunction()" /> Show Password</span>
                 
-                    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+                  <%--  <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>--%>
 
-                            <p><a href="Forgot_Password.aspx">Forgot Password?</a></p>
-
-                    <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="Login" OnClick="btnlogin_Click"  />
+                           <a href="Forgot_Password.aspx">Forgot Password?</a>
+                        </div>
+                    <asp:Button ID="btnlogin" CssClass="btn" runat="server" Text="LOGIN" OnClick="btnlogin_Click"  />
                          <%--<input type="text" placeholder="Enter Username" name="uname" required/>--%>
 <%--                    <input type="password" placeholder="Enter Password" name="psw" required/>--%>
 <%--                    <button type="submit">Login</button>--%>

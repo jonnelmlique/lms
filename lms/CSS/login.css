@@ -91,10 +91,20 @@ input[type=text], input[type=password] {
     font-size: 15px;
 }
 
-.container span a {
-    margin-left: 200px;
+.container .show-pass {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-top: 5px;
 }
-
+.container  .show-pass a{
+    color:#fff;
+   
+}
+.container  .show-pass a:hover{
+    color:blueviolet;
+}
 .btn {
     background-color: #fff;
     color: #000;
@@ -103,15 +113,19 @@ input[type=text], input[type=password] {
     border: none;
     cursor: pointer;
     width: 100%;
-    border-radius: 5px;
-    color: #000;
-    font-weight: bold;
-    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 18px;
+    border:1px solid #fff;
+    transition: 0.3s all ease;
 }
 .btn:hover {
-   opacity: 0.8;
+   background-color: #f57f7f;
+   color:#fff;
 }
-
+.container .required{
+    padding:10px;
+}
 
 
 

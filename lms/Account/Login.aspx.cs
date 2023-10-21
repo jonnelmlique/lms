@@ -65,22 +65,27 @@ namespace lms.LOGIN
                     {
                         if (!emailValid && !passwordValid)
                         {
-                            lblMessage.Text = "Invalid email and password.";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                 "Swal.fire({icon: 'error',text: 'Invalid Email and Password!'})", true);
                         }
                         else if (!emailValid)
                         {
-                            lblMessage.Text = "Invalid email.";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                 "Swal.fire({icon: 'error',text: 'Invalid Email'})", true);
                         }
                         else
                         {
-                            lblMessage.Text = "Invalid password.";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                 "Swal.fire({icon: 'error',text: 'Invalid Password!'})", true);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                "Swal.fire({icon: 'error',text: 'An error occurred while processing your request. Please try again later.'})", true);
+              
 
             }
         }

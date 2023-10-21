@@ -31,6 +31,7 @@ namespace lms.Professor
                         if (!string.IsNullOrEmpty(instructorFullName))
                         {
                             instructorname.Text = instructorFullName;
+                            instructorname.Enabled = false;
                         }
                     }
                     catch (Exception ex)
