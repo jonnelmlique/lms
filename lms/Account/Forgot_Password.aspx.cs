@@ -19,6 +19,8 @@ namespace lms.Account
 
         protected void btnSent_Click(object sender, EventArgs e)
         {
+            try
+            { 
             string email = txtemail.Text;
             string token = Guid.NewGuid().ToString();
             DateTime timestamp = DateTime.Now.AddHours(24);
@@ -59,6 +61,11 @@ namespace lms.Account
             else
             {
                 lblMessage.Text = "Invalid Email Address";
+            }
+        }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
             }
         }
         private string DetermineUserType(string email)

@@ -17,19 +17,75 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                BindProfessorData();
-            }
+                try
+                {
+                    BindProfessorData();
+                }
+                catch (Exception ex)
+                {
 
+                }
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+
+
+                        con.Open();
+                        string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
+                        using (MySqlCommand cmd = new MySqlCommand(query, con))
+                        {
+                            using (MySqlCommand command = new MySqlCommand(query, con))
+                            {
+                                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                                {
+                                    DataTable dataTable = new DataTable();
+                                    adapter.Fill(dataTable);
+
+                                    professorGridView.DataSource = dataTable;
+                                    professorGridView.DataBind();
+                                }
+                            }
+                        }
+                    }
+
+
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+
+                    }
+                }
+            }
+        }
+        private void BindProfessorData(string searchTerm = "")
+        {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
-                con.Open();
-                string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                try
                 {
-                    using (MySqlCommand command = new MySqlCommand(query, con))
+
+
+                    con.Open();
+
+                    string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor ";
+
+                    if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        query += " WHERE professor_id LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        if (!string.IsNullOrEmpty(searchTerm))
+                        {
+                            cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                        }
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                         {
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
@@ -39,38 +95,10 @@ namespace lms.Admin
                         }
                     }
                 }
-            }
-        }
-
-        private void BindProfessorData(string searchTerm = "")
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
-            {
-                con.Open();
-
-                string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor ";
-
-                if (!string.IsNullOrEmpty(searchTerm))
+                catch (Exception ex)
                 {
-                    query += " WHERE professor_id LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
-                }
+                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
-                {
-                    if (!string.IsNullOrEmpty(searchTerm))
-                    {
-                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-                    }
-
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-
-                        professorGridView.DataSource = dataTable;
-                        professorGridView.DataBind();
-                    }
                 }
             }
         }

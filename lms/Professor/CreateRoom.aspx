@@ -26,7 +26,7 @@
 
             </div>
         </div>
-
+        <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         <div class="room-lists">
 
             <asp:Repeater ID="roomRepeater" runat="server">
@@ -38,6 +38,7 @@
                         <div class="room-image">
                             <img class="room-banner" src='<%# "ImageHandler.ashx?room_id=" + Eval("room_id") %>' alt="" />
                         </div>
+
                         <div class="room-sched">
                             <a href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>' class="room-subj"><%# Eval("roomname") %></a>
                             <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>

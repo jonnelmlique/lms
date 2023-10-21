@@ -20,6 +20,8 @@
             <button class="crud">Edit Account </button>
             <button class="crud">Block Account </button>
         </div>
+                <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+
         <asp:GridView ID="studentGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
             <Columns>
                 <asp:BoundField DataField="Student_id" HeaderText="Student ID" />

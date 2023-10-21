@@ -20,6 +20,7 @@
             <button class="crud">Block Account </button>
 
         </div>
+        <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 
         <asp:GridView ID="professorGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Professor Found">
             <Columns>

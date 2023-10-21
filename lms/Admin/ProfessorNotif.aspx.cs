@@ -15,13 +15,21 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                BindProfessorData();
+                try
+                {
+                    BindProfessorData();
             }
+                catch (Exception ex)
+                {
 
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                }
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
-                con.Open();
+                    try
+                    {
+                        con.Open();
                 string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
@@ -38,6 +46,13 @@ namespace lms.Admin
                     }
                 }
             }
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+
+                    }
+                }
+            }
         }
 
         private void BindProfessorData(string searchTerm = "")
@@ -45,7 +60,9 @@ namespace lms.Admin
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
-                con.Open();
+                try
+                {
+                    con.Open();
 
                 string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor ";
 
@@ -71,9 +88,13 @@ namespace lms.Admin
                     }
                 }
             }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+
+                }
+            }
         }
-
-
         protected void btnsearch_Click(object sender, ImageClickEventArgs e)
         {
             string searchTerm = txtsearch.Text;

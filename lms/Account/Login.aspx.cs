@@ -16,62 +16,72 @@ namespace lms.LOGIN
         }
         protected void btnlogin_Click(object sender, EventArgs e)
         {
-            string email = txtemail.Text;
-            string password = txtpassword.Text;
-
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            bool emailValid = false;
-            bool passwordValid = false;
-
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            try
             {
-                con.Open();
 
-                emailValid = CheckEmail(con, "admin", email) || CheckEmail(con, "student", email) || CheckEmail(con, "professor", email);
 
-                if (emailValid)
+                string email = txtemail.Text;
+                string password = txtpassword.Text;
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                bool emailValid = false;
+                bool passwordValid = false;
+
+                using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    passwordValid = CheckPassword(con, "admin", email, password) || CheckPassword(con, "student", email, password) || CheckPassword(con, "professor", email, password);
-                }
+                    con.Open();
 
-                if (emailValid && passwordValid)
-                {
-                    string usertype = DetermineUserUsertype(con, "admin", email) ?? DetermineUserUsertype(con, "student", email) ?? DetermineUserUsertype(con, "professor", email);
-                    if (usertype != null)
+                    emailValid = CheckEmail(con, "admin", email) || CheckEmail(con, "student", email) || CheckEmail(con, "professor", email);
 
-                        Session["LoggedInUserEmail"] = email;
-                    Session["LoggedInUserusertype"] = usertype;
-
+                    if (emailValid)
                     {
-                        if (usertype == "admin")
-                        {
-                            Response.Redirect("/Admin/DashBoard.aspx");
-                        }
-                        else if (usertype == "student")
-                        {
-                            Response.Redirect("/Student/DashBoard.aspx");
-                        }
-                        else if (usertype == "professor")
-                        {
-                            Response.Redirect("/Professor/DashBoard.aspx");
-                        }
+                        passwordValid = CheckPassword(con, "admin", email, password) || CheckPassword(con, "student", email, password) || CheckPassword(con, "professor", email, password);
                     }
-                }
-                else
-                {
-                    if (!emailValid && !passwordValid)
+
+                    if (emailValid && passwordValid)
                     {
-                        lblMessage.Text = "Invalid email and password.";
-                    }
-                    else if (!emailValid)
-                    {
-                        lblMessage.Text = "Invalid email.";
+                        string usertype = DetermineUserUsertype(con, "admin", email) ?? DetermineUserUsertype(con, "student", email) ?? DetermineUserUsertype(con, "professor", email);
+                        if (usertype != null)
+
+                            Session["LoggedInUserEmail"] = email;
+                        Session["LoggedInUserusertype"] = usertype;
+
+                        {
+                            if (usertype == "admin")
+                            {
+                                Response.Redirect("/Admin/DashBoard.aspx");
+                            }
+                            else if (usertype == "student")
+                            {
+                                Response.Redirect("/Student/DashBoard.aspx");
+                            }
+                            else if (usertype == "professor")
+                            {
+                                Response.Redirect("/Professor/DashBoard.aspx");
+                            }
+                        }
                     }
                     else
                     {
-                        lblMessage.Text = "Invalid password.";
+                        if (!emailValid && !passwordValid)
+                        {
+                            lblMessage.Text = "Invalid email and password.";
+                        }
+                        else if (!emailValid)
+                        {
+                            lblMessage.Text = "Invalid email.";
+                        }
+                        else
+                        {
+                            lblMessage.Text = "Invalid password.";
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+
             }
         }
         private bool CheckEmail(MySqlConnection con, string tableName, string email)

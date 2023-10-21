@@ -16,13 +16,22 @@ namespace lms.Professor
         {
             if (!IsPostBack)
             {
-                BindRoomData();
-                PopulateSubjectsDropDown();
+                try
+                {
 
+
+                    BindRoomData();
+                    PopulateSubjectsDropDown();
+
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                }
             }
         }
 
-        protected void BindRoomData()
+            protected void BindRoomData()
         {
             string professorEmail = Session["LoggedInUserEmail"] as string;
 

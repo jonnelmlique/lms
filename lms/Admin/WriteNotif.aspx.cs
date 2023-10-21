@@ -22,77 +22,83 @@ namespace lms.Admin
                 if (Request.QueryString["professorid"] != null)
                 {
                     int professorID = Convert.ToInt32(Request.QueryString["professorid"]);
-
-                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    try
                     {
-                        con.Open();
-
-                        string query = "SELECT professor_id, firstname, Email FROM professor WHERE professor_id = @professorid";
-
-                        using (MySqlCommand command = new MySqlCommand(query, con))
+                        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                        using (MySqlConnection con = new MySqlConnection(connectionString))
                         {
-                            command.Parameters.AddWithValue("@professorid", professorID);
+                            con.Open();
 
-                            using (MySqlDataReader reader = command.ExecuteReader())
+                            string query = "SELECT professor_id, firstname, Email FROM professor WHERE professor_id = @professorid";
+
+                            using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                if (reader.Read())
-                                {
-                                    //string name = reader["Name"].ToString();
-                                    string email = reader["Email"].ToString();
+                                command.Parameters.AddWithValue("@professorid", professorID);
 
-                                    emailtxt.Text = email;
-                                    //emailLabel.Text = email;
-                                }
-                                else
+                                using (MySqlDataReader reader = command.ExecuteReader())
                                 {
+                                    if (reader.Read())
+                                    {
+                                        //string name = reader["Name"].ToString();
+                                        string email = reader["Email"].ToString();
 
+                                        emailtxt.Text = email;
+                                        //emailLabel.Text = email;
+                                    }
+                                    else
+                                    {
+
+                                    }
                                 }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+
+                    }
                 }
+
                 else if (Request.QueryString["studentid"] != null)
                 {
                     int studentID = Convert.ToInt32(Request.QueryString["studentid"]);
-
-                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-
-                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    try
                     {
-                        con.Open();
+                        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-                        string query = "SELECT student_id, firstname, Email FROM student WHERE student_id = @StudentID";
-
-                        using (MySqlCommand command = new MySqlCommand(query, con))
+                        using (MySqlConnection con = new MySqlConnection(connectionString))
                         {
-                            command.Parameters.AddWithValue("@StudentID", studentID);
+                            con.Open();
 
-                            using (MySqlDataReader reader = command.ExecuteReader())
+                            string query = "SELECT student_id, firstname, Email FROM student WHERE student_id = @StudentID";
+
+                            using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                if (reader.Read())
-                                {
-                                    string studentFirstName = reader["firstname"].ToString();
-                                    string studentEmail = reader["Email"].ToString();
+                                command.Parameters.AddWithValue("@StudentID", studentID);
 
-                                    emailtxt.Text = studentEmail;
-                                }
-                                else
+                                using (MySqlDataReader reader = command.ExecuteReader())
                                 {
+                                    if (reader.Read())
+                                    {
+                                        string studentFirstName = reader["firstname"].ToString();
+                                        string studentEmail = reader["Email"].ToString();
 
+                                        emailtxt.Text = studentEmail;
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                else
-                {
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
 
+                    }
                 }
             }
         }
-
-        protected void btnSendMessage_Click(object sender, EventArgs e)
+     protected void btnSendMessage_Click(object sender, EventArgs e)
         {
             string recipientEmail = emailtxt.Text;
             string subject = txtsubject.Text;

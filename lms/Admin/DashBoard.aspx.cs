@@ -17,32 +17,47 @@ namespace lms.Admin
         }
         protected int GetTotalStudentCount()
         {
-            int studentCount = 0;                          
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            int studentCount = 0; try
             {
-                con.Open();
-                string query = "SELECT COUNT(*) FROM student";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
+
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    studentCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Open();
+                    string query = "SELECT COUNT(*) FROM student";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        studentCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                studentCount = 0;
             }
             return studentCount;
         }
         protected int GetTotalProfessorCount()
         {
-            int professorCount = 0; 
-
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            int professorCount = 0; try
             {
-                con.Open();
-                string query = "SELECT COUNT(*) FROM professor"; 
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
+
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    professorCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Open();
+                    string query = "SELECT COUNT(*) FROM professor";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        professorCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                professorCount = 0;
             }
             return professorCount;
         }

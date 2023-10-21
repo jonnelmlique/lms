@@ -13,6 +13,8 @@
 
             <button>Send To All </button>
         </div>
+                        <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+
         <asp:GridView ID="professorGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Professor Found">
             <Columns>
                 <asp:BoundField DataField="professor_id" HeaderText="Professor ID" />

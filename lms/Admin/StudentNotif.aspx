@@ -11,7 +11,7 @@
   <asp:Button ID="btnrefresh" runat="server" Text="Refresh" CssClass="crud" OnClick="btnrefresh_Click" />
             <button>Send To All</button>
         </div>
-
+          <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
            <asp:GridView ID="studentGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
      <Columns>
          <asp:BoundField DataField="student_id" HeaderText="Student ID" />

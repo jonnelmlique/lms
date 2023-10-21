@@ -23,14 +23,24 @@ namespace lms.Professor
                 }
                 else
                 {
-                    string instructorFullName = GetInstructorFullNameFromDatabase(professorEmail);
-                    if (!string.IsNullOrEmpty(instructorFullName))
+                    try
                     {
-                        instructorname.Text = instructorFullName;
+
+
+                        string instructorFullName = GetInstructorFullNameFromDatabase(professorEmail);
+                        if (!string.IsNullOrEmpty(instructorFullName))
+                        {
+                            instructorname.Text = instructorFullName;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
                     }
                 }
             }
         }
+
         private string GetInstructorFullNameFromDatabase(string professorEmail)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
@@ -62,10 +72,7 @@ namespace lms.Professor
         {
             int index = Int32.Parse(e.Item.Value);
             MultiView1.ActiveViewIndex = index;
-
-
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 1;
@@ -88,43 +95,51 @@ namespace lms.Professor
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             string professorEmail = Session["LoggedInUserEmail"] as string;
-
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            try
             {
-                con.Open();
 
-                string query = "INSERT INTO rooms (professorname, professoremail, roomname, subjectname, roomimage, schedule, section, rooomdescription) " +
-                               "VALUES (@professorname, @professoremail, @roomname, @subjectname, @roomimage, @schedule, @section, @rooomdescription)";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@professorname", instructorname.Text);
-                    cmd.Parameters.AddWithValue("@professoremail", professorEmail);
-                    cmd.Parameters.AddWithValue("@roomname", roomname.Text);
-                    cmd.Parameters.AddWithValue("@subjectname", subjectname.Text);
+                    con.Open();
 
-                    if (roomimage.HasFile)
+                    string query = "INSERT INTO rooms (professorname, professoremail, roomname, subjectname, roomimage, schedule, section, rooomdescription) " +
+                                   "VALUES (@professorname, @professoremail, @roomname, @subjectname, @roomimage, @schedule, @section, @rooomdescription)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        byte[] imageData = roomimage.FileBytes;
-                        cmd.Parameters.Add(new MySqlParameter("@roomimage", imageData));
+                        cmd.Parameters.AddWithValue("@professorname", instructorname.Text);
+                        cmd.Parameters.AddWithValue("@professoremail", professorEmail);
+                        cmd.Parameters.AddWithValue("@roomname", roomname.Text);
+                        cmd.Parameters.AddWithValue("@subjectname", subjectname.Text);
 
-                        ImagePreview.Visible = true;
-                        ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
+                        if (roomimage.HasFile)
+                        {
+                            byte[] imageData = roomimage.FileBytes;
+                            cmd.Parameters.Add(new MySqlParameter("@roomimage", imageData));
+
+                            ImagePreview.Visible = true;
+                            ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new MySqlParameter("@roomimage", DBNull.Value));
+                        }
+
+                        cmd.Parameters.AddWithValue("@schedule", schedule.Text);
+                        cmd.Parameters.AddWithValue("@section", txtsection.Text);
+                        cmd.Parameters.AddWithValue("@rooomdescription", txtdescription.Text);
+
+                        cmd.ExecuteNonQuery();
                     }
-                    else
-                    {
-                        cmd.Parameters.Add(new MySqlParameter("@roomimage", DBNull.Value));
-                    }
-
-                    cmd.Parameters.AddWithValue("@schedule", schedule.Text);
-                    cmd.Parameters.AddWithValue("@section", txtsection.Text);
-                    cmd.Parameters.AddWithValue("@rooomdescription", txtdescription.Text);
-
-                    cmd.ExecuteNonQuery();
                 }
-            }
 
-            Response.Redirect("CreateRoom.aspx");
+                Response.Redirect("CreateRoom.aspx");
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+            }
         }
     }
 }

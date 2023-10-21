@@ -7,6 +7,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+              <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+
     <div class="message">
         <div class="message-content">
             <h2>Write Message</h2>
