@@ -126,12 +126,20 @@
     <Content Include="Admin\StudentAcc.aspx" />
     <Content Include="Admin\ProfessorNotif.aspx" />
     <Content Include="Admin\StudentNotif.aspx" />
+    <Content Include="Admin\manageRooms.aspx" />
+    <Content Include="Admin\roomDetails.aspx" />
+    <Content Include="Admin\subDetails.aspx" />
+    <Content Include="Admin\userReports.aspx" />
     <Content Include="Admin\WriteNotif.aspx" />
     <Content Include="CSS\AdminCSS\adminMasterPage.css" />
     <Content Include="CSS\AdminCSS\DashBoard.css" />
+    <Content Include="CSS\AdminCSS\manageRoom.css" />
     <Content Include="CSS\AdminCSS\Notifications.css" />
     <Content Include="CSS\AdminCSS\Prof_StudAcc.css" />
     <Content Include="CSS\AdminCSS\Prof_StudNotif.css" />
+    <Content Include="CSS\AdminCSS\roomDetails.css" />
+    <Content Include="CSS\AdminCSS\subDetails.css" />
+    <Content Include="CSS\AdminCSS\userReports.css" />
     <Content Include="CSS\login.css" />
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
@@ -210,6 +218,34 @@
     </Compile>
     <Compile Include="Admin\StudentNotif.aspx.designer.cs">
       <DependentUpon>StudentNotif.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\manageRooms.aspx.cs">
+      <DependentUpon>manageRooms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\manageRooms.aspx.designer.cs">
+      <DependentUpon>manageRooms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\roomDetails.aspx.cs">
+      <DependentUpon>roomDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\roomDetails.aspx.designer.cs">
+      <DependentUpon>roomDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\subDetails.aspx.cs">
+      <DependentUpon>subDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\subDetails.aspx.designer.cs">
+      <DependentUpon>subDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\userReports.aspx.cs">
+      <DependentUpon>userReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\userReports.aspx.designer.cs">
+      <DependentUpon>userReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WriteNotif.aspx.cs">
       <DependentUpon>WriteNotif.aspx</DependentUpon>

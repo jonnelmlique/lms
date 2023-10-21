@@ -1,17 +1,15 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using System.Runtime.Remoting.Messaging;
-using System.Data;
 
 namespace lms.Admin
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm7 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,11 +52,12 @@ namespace lms.Admin
 
                     catch (Exception ex)
                     {
-                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                        //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
 
                     }
                 }
             }
+
         }
         private void BindProfessorData(string searchTerm = "")
         {
@@ -97,24 +96,10 @@ namespace lms.Admin
                 }
                 catch (Exception ex)
                 {
-                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                    //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
 
                 }
             }
         }
-
-        protected void btnsearch_Click(object sender, ImageClickEventArgs e)
-        {
-            string searchTerm = txtsearch.Text;
-            BindProfessorData(searchTerm);
-        }
-
-        protected void btnrefresh_Click(object sender, EventArgs e)
-        {
-            string searchTerm = txtsearch.Text;
-            BindProfessorData(searchTerm);
-        }
-
-        
     }
 }

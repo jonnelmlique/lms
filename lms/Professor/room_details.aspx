@@ -18,7 +18,7 @@
            
        </div>       
    </div>
-      <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+     <%-- <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>--%>
        <div class="room-details">
              <div class="room-info">
                  <div class="room-head">

@@ -6,6 +6,7 @@
     display: flex;
     justify-content: flex-start;
     padding: 30px;
+    flex-wrap:wrap;
 }
 
 .dash-list {

@@ -164,6 +164,7 @@ button:hover{
 .side-bar .menu .item{
  position: relative;
  cursor: pointer;
+
  
 }
 
@@ -215,10 +216,8 @@ color:#000;
 .content {
     flex: 1;
     margin: 30px 0 30px 30px;
-  
-     background-color:#eeeeee;
+   
      overflow-y:scroll;
-  
-  
+ 
    
 }

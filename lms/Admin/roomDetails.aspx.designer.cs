@@ -11,52 +11,43 @@ namespace lms.Admin
 {
 
 
-    public partial class WebForm1
+    public partial class WebForm8
     {
 
         /// <summary>
-        /// txtsearch control.
+        /// ImageButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsearch;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
 
         /// <summary>
-        /// btnrefresh control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnrefresh;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// lblMessage control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
-
-        /// <summary>
-        /// professorGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView professorGridView;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

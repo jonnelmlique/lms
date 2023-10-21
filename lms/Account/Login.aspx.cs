@@ -48,8 +48,9 @@ namespace lms.LOGIN
 
                         {
                             if (usertype == "admin")
-                            {
+                            {                               
                                 Response.Redirect("/Admin/DashBoard.aspx");
+
                             }
                             else if (usertype == "student")
                             {
@@ -61,7 +62,7 @@ namespace lms.LOGIN
                             }
                         }
                     }
-                    else
+                    else 
                     {
                         if (!emailValid && !passwordValid)
                         {
@@ -73,7 +74,7 @@ namespace lms.LOGIN
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                                  "Swal.fire({icon: 'error',text: 'Invalid Email'})", true);
                         }
-                        else
+                        else if(!passwordValid)
                         {
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                                  "Swal.fire({icon: 'error',text: 'Invalid Password!'})", true);

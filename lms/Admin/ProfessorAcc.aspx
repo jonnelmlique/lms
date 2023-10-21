@@ -7,9 +7,8 @@
 
     <div class="Management">
         <div class="search-nav">
-            <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Professor"></asp:TextBox>
-            <asp:ImageButton ID="btnsearch" runat="server" CssClass="search-btn" ImageUrl="~/Resources/search.png" OnClick="btnsearch_Click" />
-            <asp:Button ID="btnrefresh" runat="server" Text="Refresh" CssClass="crud" OnClick="btnrefresh_Click" />
+            <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Professor"></asp:TextBox>        
+            <asp:Button ID="btnrefresh" runat="server" Text="Search" CssClass="crud" OnClick="btnrefresh_Click" />
             <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
                 <asp:ListItem Text="Activated Accounts" Value="1" />
                 <asp:ListItem Text="Deactivated Accounts" Value="2" />

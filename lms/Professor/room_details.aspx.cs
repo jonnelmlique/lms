@@ -36,7 +36,7 @@ namespace lms.Professor
                     }
                     catch (Exception ex)
                     {
-                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                        //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
                     }
                 }
             }
@@ -139,7 +139,7 @@ namespace lms.Professor
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
             }
         }
     }
