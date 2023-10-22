@@ -14,16 +14,19 @@
         
         <div class="room-tbl">
 <%--             <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>--%>
-        <asp:GridView ID="professorGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Professor Found">
+        <asp:GridView ID="roomGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Rooms Found">
               <Columns>
-                  <asp:BoundField DataField="professor_id" HeaderText="Professor ID" />
-                  <asp:BoundField DataField="Fullname" HeaderText="Name" />
-                  <asp:BoundField DataField="email" HeaderText="Email" />
+<%--                <asp:BoundField DataField="room_id" HeaderText="Room ID" />--%>
+        <asp:BoundField DataField="professorname" HeaderText="Professor Name" />
+        <asp:BoundField DataField="professoremail" HeaderText="Professor Email" />
+
                   <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
                  <ItemTemplate>
-                      <asp:HyperLink ID="studentLink" runat="server"
-                       NavigateUrl='<%# "professor.aspx?professorid=" + Eval("professor_id") %>'
-                       Text="View Rooms" />
+                   <asp:LinkButton ID="roomLink" runat="server" 
+    PostBackUrl='<%# "roomDetails.aspx?room_id=" + Eval("room_id") %> '
+    Text="View Rooms" />
+
+
                   </ItemTemplate>
              </asp:TemplateField>
           </Columns>

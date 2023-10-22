@@ -71,6 +71,22 @@ namespace lms.Professor
 
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {
+
+            if (e.Item.Value == "1")
+            {
+                if (!AreTextboxesPopulated())
+                {
+                    ValidationMessage.Text = "Please fill out all required fields.";
+                    ValidationMessage.Visible = true;
+
+                    Menu1.Items[0].Selected = true;
+                    return;
+                }
+            }
+
+            ValidationMessage.Text = "";
+            ValidationMessage.Visible = false;
+
             int index = Int32.Parse(e.Item.Value);
             MultiView1.ActiveViewIndex = index;
         }
@@ -92,7 +108,14 @@ namespace lms.Professor
         {
             Response.Redirect("CreateRoom.aspx");
         }
-
+        private bool AreTextboxesPopulated()
+        {
+            if (string.IsNullOrEmpty(instructorname.Text) || string.IsNullOrEmpty(roomname.Text) || string.IsNullOrEmpty(subjectname.Text))
+            {
+                return false;
+            }
+            return true;
+        }
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             string professorEmail = Session["LoggedInUserEmail"] as string;

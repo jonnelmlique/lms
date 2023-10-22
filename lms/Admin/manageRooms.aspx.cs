@@ -17,64 +17,34 @@ namespace lms.Admin
             {
                 try
                 {
-                    BindProfessorData();
+                    BindRoomData();
                 }
                 catch (Exception ex)
                 {
-
-                }
-
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    try
-                    {
-
-
-                        con.Open();
-                        string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor";
-                        using (MySqlCommand cmd = new MySqlCommand(query, con))
-                        {
-                            using (MySqlCommand command = new MySqlCommand(query, con))
-                            {
-                                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                                {
-                                    DataTable dataTable = new DataTable();
-                                    adapter.Fill(dataTable);
-
-                                    professorGridView.DataSource = dataTable;
-                                    professorGridView.DataBind();
-                                }
-                            }
-                        }
-                    }
-
-
-                    catch (Exception ex)
-                    {
-                        //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
-
-                    }
+                    // Handle any exceptions
                 }
             }
 
         }
-        private void BindProfessorData(string searchTerm = "")
+
+        private void BindRoomData(string searchTerm = "")
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 try
                 {
-
-
                     con.Open();
 
-                    string query = "SELECT professor_id, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM professor ";
+                    // Update the query to select distinct professor names and their email addresses,
+                    // along with a room_id associated with each professor
+                    string query = "SELECT DISTINCT professorname, professoremail, " +
+                                   "(SELECT room_id FROM rooms r WHERE r.professorname = rooms.professorname LIMIT 1) AS room_id " +
+                                   "FROM rooms";
 
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        query += " WHERE professor_id LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
+                        query += " WHERE professorname LIKE @searchTerm OR professoremail LIKE @searchTerm";
                     }
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
@@ -89,15 +59,14 @@ namespace lms.Admin
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
 
-                            professorGridView.DataSource = dataTable;
-                            professorGridView.DataBind();
+                            roomGridView.DataSource = dataTable;
+                            roomGridView.DataBind();
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
-
+                    // Handle any exceptions
                 }
             }
         }

@@ -92,24 +92,25 @@ namespace lms.LOGIN
         }
         private bool CheckEmail(MySqlConnection con, string tableName, string email)
         {
-            string query = $"SELECT Email FROM {tableName} WHERE Email = @Email";
+            string query = $"SELECT Email FROM {tableName} WHERE BINARY Email = @Email";
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
                 return cmd.ExecuteScalar() != null;
             }
         }
+
         private bool CheckPassword(MySqlConnection con, string tableName, string email, string password)
         {
-            string query = $"SELECT Password FROM {tableName} WHERE Email = @Email AND Password = @Password";
+            string query = $"SELECT Password FROM {tableName} WHERE Email = @Email AND BINARY Password = @Password";
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Password", password);
                 return cmd.ExecuteScalar() != null;
             }
-
         }
+
         private string DetermineUserUsertype(MySqlConnection con, string tableName, string email)
         {
             string query = $"SELECT usertype FROM {tableName} WHERE Email = @Email";
