@@ -36,9 +36,10 @@
 
 .room-prof {
     width: 100%;
-    border: 1px solid red;
+  
     height: calc(100% - 50px);
-    overflow-y: scroll;
+    overflow:hidden;
+   
 }
 .room-prof .p-room{
     height:40px;
@@ -53,17 +54,77 @@
     margin-right:20px;
      color:#fff;
 }
-
+.room-prof .p-room .room-lbl{
+    color:#000;
+    font-weight:bold;
+    font-family:Arial;
+}
 .subjects{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height:60px;
-    border:1px solid red;
+    align-items:flex-start;
+    justify-content:center;
+    height:calc(100% - 40px);
+  
     width:100%;
+    overflow-y:scroll;
+    
+}
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-top: 1px;
+    width: 100%;
    
 }
-.subjects .sub-lbl{
+
+    table td, table th {
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    table tr:hover {
+        background-color: #ddd;
+    }
+
+    table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #eb4d4d;
+        color: white;
+        text-align: center;
+       
+    }
+
+    table .subj {
+        width: 10000px;
+      
+    }
+table .btn-list{
+    width:150px;
+   
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:5px 0;
+}
+
+tbody tr td a {
+    padding: 3px;
+    border: 1px solid black;
+    display: flex;
+    color: #fff;
+    background-color: #eb4d4d;
+    text-align: center;
+    border-color: transparent;
+    border-radius: 10px;
+}
+
+/*.subjects .sub-lbl{
     display:flex;   
     align-items:center;
     height:100%;
@@ -92,3 +153,5 @@
     padding:10px 15px;
    
 }
+
+*/
