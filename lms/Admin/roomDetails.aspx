@@ -12,7 +12,7 @@
     <div class="view-details">
         <div class="details-card">
             <div class="room-head">
-                <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left" runat="server" CausesValidation="false" />
+                <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left" runat="server" CausesValidation="false" OnClick="ImageButton1_Click" />
                 <h2>Rooms Created</h2>
                    </div>
             <div class="room-prof">
@@ -29,9 +29,11 @@
 
                    <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
               <ItemTemplate>
-                     <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
-                      PostBackUrl='<%# "subDetails.aspx?room_id=" + Request.QueryString["room_id"] %>'
-                        Text="View Subjects" />
+                   <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
+                           PostBackUrl='<%# "subDetails.aspx?room_id=" + Eval("room_id") %>'
+
+   Text="View Subjects" />
+
              </ItemTemplate>
              </asp:TemplateField>
            </Columns>

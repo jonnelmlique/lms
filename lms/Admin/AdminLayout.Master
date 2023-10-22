@@ -84,14 +84,14 @@
                        <a href="userReports.aspx"><i class='bx bxs-dashboard'></i>User Reports</a>
                         
                   </div>
-                   <div class="item">
+           <%--        <div class="item">
                       <a href="roomDetails.aspx"><i class='bx bxs-dashboard'></i>DETAILS</a>
 
                    </div>
                    <div class="item">
                       <a href="subDetails.aspx"><i class='bx bxs-dashboard'></i>DETAILS</a>
 
-                    </div>
+                    </div>--%>
           
   <%--            <div class="item"> <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i> Logout </a>
 </div>--%>

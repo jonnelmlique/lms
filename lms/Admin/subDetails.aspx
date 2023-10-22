@@ -7,8 +7,9 @@
          <div class="view-details">
        <div class="details-card">
          <div class="room-head">
-                <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server"   CausesValidation="false" />
-                <h2> Rooms Created</h2>
+                <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server"   CausesValidation="false" OnClientClick="javascript:history.back(1); return false;"  />
+              
+             <h2> Rooms Created</h2>
            </div>
            <div class="room-prof">
              
@@ -25,15 +26,17 @@
                 <div class="tabContents">
                     <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
                              <asp:View ID="View1" runat="server"> 
-                                 <p> NO DETAILS </p>
-                              
+<%--                                 <p> NO DETAILS </p>--%>
+                                 <asp:Label ID="lbldetails" runat="server" Text=""></asp:Label>
+                                                                                 <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+
                                  </asp:View>
                            <asp:View ID="View2" runat="server" >
                                     <div class="members">
                                         <div class="instructor">
                                             <div class="owner">
                                                  <h2>Room Owner :</h2>
-                                                <asp:Label ID="Label1" runat="server" Text="Label" CssClass="lbl-owner"></asp:Label>
+                                                <asp:Label ID="lblowner" runat="server" Text="Label" CssClass="lbl-owner"></asp:Label>
                                             </div>
                                            <div class="co-owner">
                                                <h2>Co-Room Owner :</h2>

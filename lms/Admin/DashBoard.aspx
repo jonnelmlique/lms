@@ -13,7 +13,10 @@
     <i class="fas fa-users"></i>
     <h2>Total Professors: <span><%= GetTotalProfessorCount() %></span></h2>
 </div>
-
+         <div class="dash-list">
+    <i class="fas fa-users"></i>
+    <h2>Total Rooms: <span><%= GetTotalRoomsCount() %></span></h2>
+</div>
     <div class="dash-list">
 
     </div>

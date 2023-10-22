@@ -19,7 +19,16 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["professorid"] != null)
+                if (!string.IsNullOrEmpty(Request.QueryString["emails"]))
+                {
+                    string[] professorEmails = Request.QueryString["emails"].Split(',');
+                    string displayEmails = string.Join(", ", professorEmails);
+
+                    string[] studentEmails = Request.QueryString["emails"].Split(',');
+                    string displayEmailss = string.Join(", ", studentEmails);
+                    emailtxt.Text = displayEmails;
+                }
+                else if (Request.QueryString["professorid"] != null)
                 {
                     int professorID = Convert.ToInt32(Request.QueryString["professorid"]);
                     try
@@ -39,15 +48,8 @@ namespace lms.Admin
                                 {
                                     if (reader.Read())
                                     {
-                                        //string name = reader["Name"].ToString();
                                         string email = reader["Email"].ToString();
-
                                         emailtxt.Text = email;
-                                        //emailLabel.Text = email;
-                                    }
-                                    else
-                                    {
-
                                     }
                                 }
                             }
@@ -56,7 +58,6 @@ namespace lms.Admin
                     catch (Exception ex)
                     {
                         lblMessage.Text = "An error occurred while processing your request. Please try again later.";
-
                     }
                 }
                 else if (Request.QueryString["studentid"] != null)
@@ -80,9 +81,7 @@ namespace lms.Admin
                                 {
                                     if (reader.Read())
                                     {
-                                        string studentFirstName = reader["firstname"].ToString();
                                         string studentEmail = reader["Email"].ToString();
-
                                         emailtxt.Text = studentEmail;
                                     }
                                 }
@@ -92,11 +91,11 @@ namespace lms.Admin
                     catch (Exception ex)
                     {
                         lblMessage.Text = "An error occurred while processing your request. Please try again later.";
-
                     }
                 }
             }
         }
+    
      protected void btnSendMessage_Click(object sender, EventArgs e)
         {
             string recipientEmail = emailtxt.Text;
