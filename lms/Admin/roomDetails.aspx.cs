@@ -15,9 +15,10 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["room_id"] != null)
+                if (Request.QueryString["professor_email"] != null)
                 {
-                    int roomID = Convert.ToInt32(Request.QueryString["room_id"]);
+                    string profemail = Request.QueryString["professor_email"];
+
                     try
                     {
                         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
@@ -25,19 +26,19 @@ namespace lms.Admin
                         {
                             con.Open();
 
-                            string query = "SELECT room_id, professoremail FROM rooms WHERE room_id = @room_id";
+                            string query = "SELECT room_id, professoremail FROM rooms WHERE professoremail = @professoremail";
 
                             using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                command.Parameters.AddWithValue("@room_id", roomID);
+                                command.Parameters.AddWithValue("@professoremail", profemail);
 
                                 using (MySqlDataReader reader = command.ExecuteReader())
                                 {
                                     if (reader.Read())
                                     {
-                                        string email = reader["professoremail"].ToString();
-                                        Label2.Text = email;
-                                        BindSubjectData(email); 
+                                        string professorEmail = Request.QueryString["professor_email"];
+                                        Label2.Text = professorEmail;
+                                        BindSubjectData(professorEmail);
                                     }
                                 }
                             }
@@ -57,11 +58,12 @@ namespace lms.Admin
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT subjectname FROM rooms WHERE professoremail = @professorEmail";
+                string query = "SELECT subjectname, room_id FROM rooms WHERE professoremail = @professorEmail";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@professorEmail", professorEmail);
+
                     connection.Open();
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
@@ -74,6 +76,11 @@ namespace lms.Admin
                     }
                 }
             }
+        }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("manageRooms.aspx");
         }
     }
 }

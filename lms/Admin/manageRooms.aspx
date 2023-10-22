@@ -23,7 +23,7 @@
                   <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
                  <ItemTemplate>
                    <asp:LinkButton ID="roomLink" runat="server" 
-    PostBackUrl='<%# "roomDetails.aspx?room_id=" + Eval("room_id") %> '
+PostBackUrl='<%# "roomDetails.aspx?professor_email=" + Eval("professoremail") %>'
     Text="View Rooms" />
 
 

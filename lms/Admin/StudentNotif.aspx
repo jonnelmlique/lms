@@ -9,7 +9,7 @@
              <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Student"></asp:TextBox>
   <asp:ImageButton ID="btnsearch" runat="server" CssClass="search-btn" ImageUrl="~/Resources/search.png" OnClick="btnsearch_Click" />
   <asp:Button ID="btnrefresh" runat="server" Text="Refresh" CssClass="crud" OnClick="btnrefresh_Click" />
-            <button>Send To All</button>
+            <asp:Button ID="btnSendToAll" runat="server" Text="Send To All" CssClass="crud" OnClick="btnSendToAll_Click" />
         </div>
           <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
            <asp:GridView ID="studentGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">

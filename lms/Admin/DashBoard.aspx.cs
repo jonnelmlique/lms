@@ -61,6 +61,28 @@ namespace lms.Admin
             }
             return professorCount;
         }
+        protected int GetTotalRoomsCount()
+        {
+            int RoomsCount = 0; try
+            {
 
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+                    string query = "SELECT COUNT(*) FROM rooms";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        RoomsCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RoomsCount = 0;
+            }
+            return RoomsCount;
+        }
     }
 }

@@ -111,5 +111,53 @@ namespace lms.Admin
             BindStudentData();
 
         }
+
+        protected void btnSendToAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string>  studentEmails = GetStudentEmails();
+
+                string emailList = string.Join(",", studentEmails);
+                Response.Redirect($"WriteNotif.aspx?emails={emailList}");
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+            }
+        }
+
+        private List<string> GetStudentEmails()
+        {
+            List<string> emails = new List<string>();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "SELECT email FROM student";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string email = reader["email"].ToString();
+                                emails.Add(email);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                }
+            }
+
+            return emails;
+        }
     }
 }

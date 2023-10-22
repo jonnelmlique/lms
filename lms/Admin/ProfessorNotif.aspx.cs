@@ -107,5 +107,53 @@ namespace lms.Admin
             BindProfessorData();
             txtsearch.Text = "";
         }
+
+        protected void btnSendToAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> professorEmails = GetProfessorEmails();
+
+                string emailList = string.Join(",", professorEmails);
+                Response.Redirect($"WriteNotif.aspx?emails={emailList}");
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+            }
+        }
+
+        private List<string> GetProfessorEmails()
+        {
+            List<string> emails = new List<string>();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "SELECT email FROM professor";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string email = reader["email"].ToString();
+                                emails.Add(email);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                }
+            }
+
+            return emails;
+        }
     }
 }
