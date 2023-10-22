@@ -1,0 +1,64 @@
+﻿
+.notifications{
+    border:1px solid red;
+    width:100%;
+  height:100vh;
+    padding:20px;
+}
+.notif-data{
+    border:1px solid blue;
+    height:100%;
+    
+}
+.notif-head {
+  
+    width: 100%;
+    background-color: #eb4d4d;
+    height:50px;
+    display:flex;   
+    align-items:center;
+    justify-content:flex-start;
+    padding:10px;
+    font-size:30px;
+    color:#fff;
+}
+.notif-head i{
+    margin: 0 10px;
+}
+
+.notif-list {
+    height: calc(100% - 50px);
+    width: 100%;
+    
+    
+}
+.tabs {
+    position: relative;
+  
+    width: 100%;
+    background-color: #f57f7f;
+}
+.tab { 
+    padding: 10px 15px;
+    width: 100%;
+    color: #fff;
+    height:20%;
+    transition:0.3s all ease;
+    font-weight:bold;
+}
+.tab:hover{
+        background-color: #eb4d4d;
+      color:black;
+}
+.selected-tab{
+    border-bottom:1px solid white;
+    background-color:white;
+
+}
+.tabContents {
+    padding: 10px;
+    background-color: white;
+
+    width: 100%;
+    height: 89%;
+}

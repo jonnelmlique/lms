@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/ProfessorCSS/room_details.css" />
+       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
 
 
@@ -45,18 +47,18 @@
                                     </div>
                                     <br />
                                     <div class="tab-setup">
-                                        <label for="rname" class="label l2"><b>Room Name:</b></label>
-                                        <asp:TextBox ID="roomname" runat="server" CssClass="tab-text" placeholder="Enter Room Name (REQUIRED)"></asp:TextBox>
+                                        <label for="rname" class="label l2"><b>Subject Name:</b></label>
+                                        <asp:TextBox ID="roomname" runat="server" CssClass="tab-text" placeholder="Enter Subject Name (REQUIRED)"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RoomNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="roomname" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                     <div class="tab-setup">
-                                        <label for="sname" class="label l3"><b>Subject Name:</b></label>
-                                        <asp:TextBox ID="subjectname" runat="server" CssClass="tab-text" placeholder="Enter Subject Name"></asp:TextBox>
+                                        <label for="sname" class="label l3"><b>Subject Code:</b></label>
+                                        <asp:TextBox ID="subjectname" runat="server" CssClass="tab-text" placeholder="Enter Subject Code"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="SubjectNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="subjectname" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                     </div>
                                 </div>
-                                <asp:Label ID="ValidationMessage" runat="server" CssClass="error-message" Visible="false"></asp:Label>
+                              <%--  <asp:Label ID="ValidationMessage" runat="server" CssClass="error-message" Visible="false"></asp:Label>--%>
 
                                 <div class="tab-btn">
                                     <asp:Button ID="Button2" runat="server" Text="Cancel" CssClass="tab-nxt" OnClick="Button2_Click" CausesValidation="false" />
@@ -74,11 +76,13 @@
                                         <div class="info">
                                             <label for="sched" class="info-details section">Section : </label>
                                             <asp:TextBox ID="txtsection" runat="server" CssClass="info-txt" placeholder="BSIT - 3L"> </asp:TextBox>
+                                            <br />
                                             <asp:RequiredFieldValidator ID="SectionValidator" runat="server" ErrorMessage="* Required" ControlToValidate="txtsection" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                         <div class="info">
                                             <label for="sched" class="info-details sched">Schedule : </label>
                                             <asp:TextBox ID="schedule" runat="server" CssClass="info-txt" placeholder="MONDAY| 8:00am - 10:00am , 11:00am - 2:00pm"> </asp:TextBox>
+                                             <br />
                                             <asp:RequiredFieldValidator ID="ScheduleValidator" runat="server" ErrorMessage="* Required" ControlToValidate="schedule" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                         <div class="info">

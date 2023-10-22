@@ -76,17 +76,16 @@ namespace lms.Professor
             {
                 if (!AreTextboxesPopulated())
                 {
-                    ValidationMessage.Text = "Please fill out all required fields.";
-                    ValidationMessage.Visible = true;
+                   
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                "Swal.fire({icon: 'error',text: 'Please fill out all required fields.'})", true);
 
                     Menu1.Items[0].Selected = true;
                     return;
                 }
             }
 
-            ValidationMessage.Text = "";
-            ValidationMessage.Visible = false;
-
+           
             int index = Int32.Parse(e.Item.Value);
             MultiView1.ActiveViewIndex = index;
         }

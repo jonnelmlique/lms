@@ -4,8 +4,8 @@
 
 <html>
 <head runat="server">
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Professor DashBoard</title>
     <link rel="stylesheet" href="../CSS/ProfessorCSS/professorMasterPage.css"/>
    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
@@ -46,32 +46,24 @@
                 </div>
                 <div class="item">
                     <a href="CreateRoom.aspx" class="sub-btn"><i class="fas fa-book"></i>Create Rooms</a>
-                   <%-- <div class="sub-menu">
-                        <a href="#" class="sub-item">Subjects</a>
-                        <a href="#" class="sub-item">Subjects</a>
-                        <a href="#" class="sub-item">Subjects</a>
-                       
-                      </div>--%>
+                 
                 </div>
                 <div class="item">
                     <a class="sub-btn"><i class="fas fa-user-plus"></i>Invite Students<i class="fas fa-angle-right dropdown"></i></a>
                     <div class="sub-menu">
-                        <a href="#" class="sub-item">Invited Students</a>
-                        <a href="#" class="sub-item">Pending Invitations</a>
+                        <a href="inviteStudents.aspx" class="sub-item">Invited Students</a>
+                        <a href="pendingInvite.aspx" class="sub-item">Pending Invitations</a>
 
                     </div>
                 </div>
               
                 <div class="item">
                     <a class="sub-btn"><i class="fa fa-archive" aria-hidden="true"></i>Archived Classes</a>
-                    <div class="sub-menu">
-                    <a href="#" class="sub-item">Invited Students</a>
-                    <a href="#" class="sub-item">Pending Invitations</a>
-
-                </div>
+                    
+                
                 </div>
                 <div class="item">
-                    <a href="#"><i class="fas fa-bell"></i>  Notifications </a>
+                    <a href="notifications.aspx"><i class="fas fa-bell"></i>  Notifications </a>
                 </div>
 
 <%--                            <div class="item"> <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i> Logout </a></div>--%>
