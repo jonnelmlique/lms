@@ -21,7 +21,6 @@ namespace lms.Admin
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions
                 }
             }
 
@@ -36,8 +35,7 @@ namespace lms.Admin
                 {
                     con.Open();
 
-                    // Update the query to select distinct professor names and their email addresses,
-                    // along with a room_id associated with each professor
+                 
                     string query = "SELECT DISTINCT professorname, professoremail, " +
                                    "(SELECT room_id FROM rooms r WHERE r.professorname = rooms.professorname LIMIT 1) AS room_id " +
                                    "FROM rooms";
@@ -66,7 +64,6 @@ namespace lms.Admin
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions
                 }
             }
         }

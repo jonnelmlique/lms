@@ -37,7 +37,7 @@ namespace lms.Admin
                                     {
                                         string email = reader["professoremail"].ToString();
                                         Label2.Text = email;
-                                        BindSubjectData(email); // Bind subject data based on the professor's email
+                                        BindSubjectData(email); 
                                     }
                                 }
                             }
@@ -45,7 +45,7 @@ namespace lms.Admin
                     }
                     catch (Exception ex)
                     {
-                        // Handle any exceptions
+                        
                     }
                 }
             }
