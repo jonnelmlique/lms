@@ -14,7 +14,7 @@
      <header>
         <div class="header-content">
             <div class="icon-img-h2">
-                  <i class="fa fa-bars" aria-hidden="true"></i>
+                  <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
                   <img src="../Resources/Novaliches Senior High School.png" alt="LOGO" />
                    <h2> Novaliches High School</h2>
                 </div>
@@ -39,13 +39,16 @@
             <div class="menu">
                
                 <div class="item">
-                    <a href="DashBoard.aspx" class="sub-btn"><i class='bx bxs-dashboard'></i>Home</a>
+                  
+                    <a href="DashBoard.aspx" class="sub-btn-active"><i class='bx bxs-dashboard'></i>Home</a>
                 </div>
                 <div class="item">
-                    <a href="CreateRoom.aspx" class="sub-btn"><i class="fas fa-book"></i>Reviews</a>               
+                 
+                    <a href="CreateRoom.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Reviews</a>               
                 </div>
                  <div class="item">
-                      <a href="CreateRoom.aspx" class="sub-btn"><i class="fas fa-book"></i>Exit</a>               
+                     
+                      <a href="CreateRoom.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Exit</a>               
                     </div>
          </div>
         </div>
@@ -54,7 +57,7 @@
                  <div class="invite-room-list">
                         <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
                             StaticSelectedStyle-CssClass="selected-tab" StaticMenuItemStyle-HorizontalPadding="50px" StaticMenuItemStyle-VerticalPadding="15px"
-                            StaticSelectedStyle-BackColo="White" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick1" >
+                            StaticSelectedStyle-BackColor="#eb4d4d" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick1" >
                        <Items>
                            <asp:MenuItem Text="Stream" Value="0" Selected="true"></asp:MenuItem>
                            <asp:MenuItem Text="Classwork" Value="1"></asp:MenuItem>
@@ -110,6 +113,15 @@
                 dropdownMenu.style.display = "none";
             }
         });
+    </script>
+    <script>
+        //const btn = document.querySelector("#btn");
+        //const sidebar = document.querySelector(".side-bar");
+
+        //btn.onclick = function () {
+        //    sidebar.classList.toggle("active");
+        //}
+
     </script>
 </body>
 </html>

@@ -1,0 +1,164 @@
+﻿
+.add-account {
+    background-color: #fbfdff;
+    height: 100%;
+    width: 100%;
+    padding: 25px 30px 10px 10px;
+   
+   
+}
+
+.acc-card{
+    width:100%;
+    height:70vh;
+    border:1px solid red;
+    
+}
+.acc-card .acc-head {
+    display: flex;
+    height: 60px;
+    align-items:center;
+    background-color: #eb4d4d;
+}
+.acc-head .arrow-left {
+    width: 75px;
+    height: 80%;
+    padding: 10px;
+    transition: 0.3s all ease;
+    margin-right:5px;
+}
+
+.arrow-left:hover {
+    background-color: #f57f7f;
+}
+.acc-head h2{
+    color:#fff;
+    font-family:Arial;
+    font-size:30px;
+}
+.acc-body{
+  
+    padding:10px;
+    width:100%;
+    height:calc(100% - 60px);
+    display:flex;
+    
+}
+
+.acc-info1 {
+    flex: 1;
+   
+    height:100%;
+}
+.acc-info1 .lbl-txt{
+    display:flex;   
+    align-items:center;
+    height:70px;
+  
+    padding:10px;
+}
+.acc-info1 .lbl-txt .lbl{
+   flex:1;
+   
+     height: 100%;
+}
+.acc-info1 .lbl-txt .lbl .acc-lbl{
+    display:flex;   
+    align-items:center;
+    justify-content:flex-start;
+    height:100%;
+   
+    font-size:25px;
+}
+.acc-info1 .lbl-txt .txt{
+    flex:3;
+   
+      height: 100%;
+}
+.acc-info1 .lbl-txt .txt .acc-txt{
+    width:100%;
+    height:100%;
+    border-radius:15px;
+    padding:15px;
+    font-size:18px;
+    border:1px solid black;
+}
+.acc-info1 .lbl-txt .rdb {
+    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+       
+}
+.acc-info1 .lbl-txt .rdb .radio-btn{
+   
+    flex:1;
+    padding:12px;
+    font-size:20px;
+   
+    display:flex;
+    align-items:center;
+  
+}
+.radio-btn input[type="radio"]{
+    margin-right:10px; 
+    height:20px;
+    width:20px;
+    
+}
+.acc-info2 {
+    flex: 1;
+    height: 100%;
+  
+}
+
+.acc-info2 .acc-img{
+  
+    height:280px;
+    width:100%;
+    padding:10px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+}
+.acc-info2 .acc-img .img-preview{
+    border:1px solid red;
+    height:200px;
+    width:250px;
+    
+}
+.acc-info2 .lbl-txt{
+    display:flex;   
+    align-items:center;
+    height:70px;
+  
+    padding:10px;
+}
+.acc-info2 .lbl-txt .lbl{
+   flex:1;
+   
+     height: 100%;
+     
+}
+.acc-info2 .lbl-txt .lbl .acc-lbl{
+    display:flex;   
+    align-items:center;
+    justify-content:flex-start;
+    height:100%;
+   
+    font-size:25px;
+}
+.acc-info2 .lbl-txt .txt{
+    flex:3;
+   
+      height: 100%;
+}
+.acc-info2 .lbl-txt .txt .acc-txt{
+    width:100%;
+    height:100%;
+    border-radius:15px;
+    padding:15px;
+    font-size:18px;
+    border:1px solid black;
+}

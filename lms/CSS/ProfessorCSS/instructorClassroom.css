@@ -167,8 +167,21 @@ button:hover {
     color: #000000;
   width:280px;
     padding: 30px 0 ;
-  
+    transition:0.3s all ease;
 }
+/*.side-bar.active{
+    width:280px;
+}
+.side-bar .menu .item .sub-btn-active{
+    display:none;
+}
+.side-bar.active .menu .item .sub-btn-active{
+    display:block;
+}
+.side-bar.active .menu .item .sub-btn{
+    display:none;
+}*/
+
 .side-bar .menu{
  width: 100%;
 
@@ -213,6 +226,7 @@ button:hover {
  display: block;
  padding: 5px 30px;
  line-height: 60px;
+
 }
 
 .side-bar .menu .item a:hover{

@@ -4,6 +4,8 @@
     height: 100%;
     width: 100%;
     padding: 30px;
+   
+    overflow-y: scroll;
 }
 
 .search-nav {
@@ -14,16 +16,16 @@
 }
 
 .search {
-    width: 700px;
+    width: 600px;
     height: 50px;
     border: 1px solid black;
     border-radius: 20px;
     position: relative;
-    margin-right: 30px;
+    margin-right: 20px;
     padding: 10px 20px;
     font-size: 15px;
 }
-
+/*
 .search-nav .search-btn {
     position: absolute;
     right: 42.5%;
@@ -35,7 +37,7 @@
     width:50px;
     transition:0.3s all ease;
   
-}
+}*/
 
  .search-nav .search-btn:hover {
        background-color: #eb4d4d;
@@ -71,6 +73,7 @@ select {
     border-color: transparent;
     background-color: #eb4d4d;
     color: #fff;
+    text-align:center;
 }
 
     .crud:hover {

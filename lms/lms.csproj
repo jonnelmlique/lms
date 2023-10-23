@@ -130,7 +130,9 @@
     <Content Include="Admin\roomDetails.aspx" />
     <Content Include="Admin\subDetails.aspx" />
     <Content Include="Admin\userReports.aspx" />
+    <Content Include="Admin\addAccount.aspx" />
     <Content Include="Admin\WriteNotif.aspx" />
+    <Content Include="CSS\AdminCSS\addAccount.css" />
     <Content Include="CSS\AdminCSS\adminMasterPage.css" />
     <Content Include="CSS\AdminCSS\DashBoard.css" />
     <Content Include="CSS\AdminCSS\manageRoom.css" />
@@ -254,6 +256,13 @@
     </Compile>
     <Compile Include="Admin\userReports.aspx.designer.cs">
       <DependentUpon>userReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\addAccount.aspx.cs">
+      <DependentUpon>addAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\addAccount.aspx.designer.cs">
+      <DependentUpon>addAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WriteNotif.aspx.cs">
       <DependentUpon>WriteNotif.aspx</DependentUpon>
