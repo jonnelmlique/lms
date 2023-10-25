@@ -172,8 +172,23 @@
 }
 
 .tab-setup{
-  
+   
     line-height:60px;
+}
+.rdb{
+    display:flex;   
+    align-items:center;
+}
+.radio-btn{
+  font-size:20px;
+  margin: 0 20px;
+ 
+}
+.radio-btn input[type="radio"] {
+    margin-right: 10px;
+    height: 15px;
+    width: 20px;
+     cursor:pointer;
 }
 .tab-setup .label{
     font-size:20px;
@@ -184,7 +199,7 @@
     margin-right:30px;
 }
 .tab-setup .l3{
-    margin-right:35px;
+    margin-right:25px;
 }
 .tab-setup .tab-text{
     font-size:15px;

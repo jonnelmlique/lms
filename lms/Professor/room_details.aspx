@@ -42,20 +42,30 @@
                                     <div class="tab-setup">
                                         <label for="instructor" class="label l1"><b>Instructor Name:</b></label>
                                         <asp:TextBox ID="instructorname" runat="server" CssClass="tab-text"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="InstructorNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="instructorname" ForeColor="Red"></asp:RequiredFieldValidator>
-
+                               
                                     </div>
-                                    <br />
+                              
+                                      <div class="tab-setup rdb">
+                                             <label for="rname" class="label l2"><b>Choose Grade Level :</b></label>
+                                            <div class="txt rdb">
+                                                    <asp:RadioButton ID="RadioButton1" runat="server"  Text="Grade 11" CssClass="radio-btn"/>
+                                                 <asp:RadioButton ID="RadioButton2" runat="server"  Text="Grade 12" CssClass="radio-btn"/>
+                                            </div>
+                                       </div>
                                     <div class="tab-setup">
-                                        <label for="rname" class="label l2"><b>Subject Name:</b></label>
-                                        <asp:TextBox ID="roomname" runat="server" CssClass="tab-text" placeholder="Enter Subject Name (REQUIRED)"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RoomNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="roomname" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <label for="rname" class="label l2"><b>Choose Strand :</b></label>
+                                             <asp:DropDownList ID="DropDownList1" runat="server" CssClass="tab-text">
+                                                 <asp:ListItem Text="STEM" Value="1" />
+                                                   <asp:ListItem Text="ABM" Value="2" />
+                                                  <asp:ListItem Text="IA-EIM" Value="3" />
+                                                   <asp:ListItem Text="HE" Value="4" />
+                                                   <asp:ListItem Text="HUMSS" Value="5" />
+                                             </asp:DropDownList>
                                     </div>
                                     <div class="tab-setup">
-                                        <label for="sname" class="label l3"><b>Subject Code:</b></label>
-                                        <asp:TextBox ID="subjectname" runat="server" CssClass="tab-text" placeholder="Enter Subject Code"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="SubjectNameValidator" runat="server" ErrorMessage="* Required" ControlToValidate="subjectname" ForeColor="Red"></asp:RequiredFieldValidator>
-
+                                        <label for="sname" class="label l3"><b>Choose Subject :</b></label>
+                                           <asp:DropDownList ID="DropDownList2" runat="server" CssClass="tab-text">
+                                           </asp:DropDownList>
                                     </div>
                                 </div>
                               <%--  <asp:Label ID="ValidationMessage" runat="server" CssClass="error-message" Visible="false"></asp:Label>--%>

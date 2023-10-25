@@ -72,18 +72,18 @@ namespace lms.Professor
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {
 
-            if (e.Item.Value == "1")
-            {
-                if (!AreTextboxesPopulated())
-                {
+            //if (e.Item.Value == "1")
+            //{
+            //    if (!AreTextboxesPopulated())
+            //    {
                    
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                                "Swal.fire({icon: 'error',text: 'Please fill out all required fields.'})", true);
+            //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+            //                    "Swal.fire({icon: 'error',text: 'Please fill out all required fields.'})", true);
 
-                    Menu1.Items[0].Selected = true;
-                    return;
-                }
-            }
+            //        Menu1.Items[0].Selected = true;
+            //        return;
+            //    }
+            //}
 
            
             int index = Int32.Parse(e.Item.Value);
@@ -107,62 +107,62 @@ namespace lms.Professor
         {
             Response.Redirect("CreateRoom.aspx");
         }
-        private bool AreTextboxesPopulated()
-        {
-            if (string.IsNullOrEmpty(instructorname.Text) || string.IsNullOrEmpty(roomname.Text) || string.IsNullOrEmpty(subjectname.Text))
-            {
-                return false;
-            }
-            return true;
-        }
+        //private bool AreTextboxesPopulated()
+        //{
+        //    //if (string.IsNullOrEmpty(instructorname.Text) || string.IsNullOrEmpty(roomname.Text) || string.IsNullOrEmpty(subjectname.Text))
+        //    //{
+        //    //    return false;
+        //    //}
+        //    //return true;
+        //}
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            string professorEmail = Session["LoggedInUserEmail"] as string;
-            try
-            {
+            //string professorEmail = Session["LoggedInUserEmail"] as string;
+            //try
+            //{
 
 
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    con.Open();
+            //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            //    using (MySqlConnection con = new MySqlConnection(connectionString))
+            //    {
+            //        con.Open();
 
-                    string query = "INSERT INTO rooms (professorname, professoremail, roomname, subjectname, roomimage, schedule, section, rooomdescription) " +
-                                   "VALUES (@professorname, @professoremail, @roomname, @subjectname, @roomimage, @schedule, @section, @rooomdescription)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@professorname", instructorname.Text);
-                        cmd.Parameters.AddWithValue("@professoremail", professorEmail);
-                        cmd.Parameters.AddWithValue("@roomname", roomname.Text);
-                        cmd.Parameters.AddWithValue("@subjectname", subjectname.Text);
+            //        string query = "INSERT INTO rooms (professorname, professoremail, roomname, subjectname, roomimage, schedule, section, rooomdescription) " +
+            //                       "VALUES (@professorname, @professoremail, @roomname, @subjectname, @roomimage, @schedule, @section, @rooomdescription)";
+            //        using (MySqlCommand cmd = new MySqlCommand(query, con))
+            //        {
+            //            cmd.Parameters.AddWithValue("@professorname", instructorname.Text);
+            //            cmd.Parameters.AddWithValue("@professoremail", professorEmail);
+            //            cmd.Parameters.AddWithValue("@roomname", roomname.Text);
+            //            cmd.Parameters.AddWithValue("@subjectname", subjectname.Text);
 
-                        if (roomimage.HasFile)
-                        {
-                            byte[] imageData = roomimage.FileBytes;
-                            cmd.Parameters.Add(new MySqlParameter("@roomimage", imageData));
+            //            if (roomimage.HasFile)
+            //            {
+            //                byte[] imageData = roomimage.FileBytes;
+            //                cmd.Parameters.Add(new MySqlParameter("@roomimage", imageData));
 
-                            ImagePreview.Visible = true;
-                            ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
-                        }
-                        else
-                        {
-                            cmd.Parameters.Add(new MySqlParameter("@roomimage", DBNull.Value));
-                        }
+            //                ImagePreview.Visible = true;
+            //                ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
+            //            }
+            //            else
+            //            {
+            //                cmd.Parameters.Add(new MySqlParameter("@roomimage", DBNull.Value));
+            //            }
 
-                        cmd.Parameters.AddWithValue("@schedule", schedule.Text);
-                        cmd.Parameters.AddWithValue("@section", txtsection.Text);
-                        cmd.Parameters.AddWithValue("@rooomdescription", txtdescription.Text);
+            //            cmd.Parameters.AddWithValue("@schedule", schedule.Text);
+            //            cmd.Parameters.AddWithValue("@section", txtsection.Text);
+            //            cmd.Parameters.AddWithValue("@rooomdescription", txtdescription.Text);
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+            //            cmd.ExecuteNonQuery();
+            //        }
+            //    }
 
-                Response.Redirect("CreateRoom.aspx");
-            }
-            catch (Exception ex)
-            {
-                //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
-            }
+            //    Response.Redirect("CreateRoom.aspx");
+            //}
+            //catch (Exception ex)
+            //{
+            //    //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+            //}
         }
     }
 }
