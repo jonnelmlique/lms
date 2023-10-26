@@ -12,19 +12,36 @@
     background-color: #f57f7f;
 }
 
-h2, h3 {
+.message-head {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #eb4d4d;
+    
+}
+.message-head h2{
+    color:#fff;
+    font-family:'Times New Roman';
+}
+.arrow-left {
+    width: 55px;
+    height: 40px;
+    padding: 10px;
+    transition: 0.3s all ease;
+    margin-right: 5px;
+}
+.arrow-left:hover{
+    background-color: #f57f7f;
+}
+h3 {
     width: 100%;
     background-color: #eb4d4d;
     color: #fff;
     padding: 10px;
-    position:relative;
-}
-
-h3 {
-    background-color: #f57f7f;
-    color: #000;
-    margin-top: 10px;
-    font-size: 15px;
+    position: relative;
+    margin-top:10px;
+   
 }
 
 .area1 {
@@ -34,21 +51,26 @@ h3 {
     height: 50px;
     padding: 15px;
     font-size: 15px;
+    border-color: transparent;
+    border-radius: 15px;
+    background-color:#fff;
 }
 
 .area2 {
     width: 95%;
     margin: 15px 0 15px 30px;
     resize: none;
-    height: 220px;
+    height: 200px;
     padding: 15px;
     font-size: 15px;
     font-family: Arial;
+    border-color: transparent;
+    border-radius:15px;
 }
 
 .button {
     margin: 0 20px 10px 20px;
-    padding: 10px 15px;
+    padding: 15px 30px;
     background-color: #eb4d4d;
     color: #fff;
     font-weight: bold;
@@ -61,6 +83,7 @@ h3 {
 .button:hover {
     background-color: #f57f7f;
     color:#000;
+    outline:1px solid black;
  }
 
 .error{

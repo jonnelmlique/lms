@@ -51,9 +51,9 @@
         <div class="side-bar">
             <div class="menu">
                 <div class="item-logo">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user img-profile"></i>
                     <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
-                   <h2></h2>
+                 
                 </div>
                 <div class="item active">
                     <a href="DashBoard.aspx"><i class='bx bxs-dashboard'></i>DashBoard</a>
