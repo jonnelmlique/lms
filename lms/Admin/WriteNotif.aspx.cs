@@ -57,7 +57,7 @@ namespace lms.Admin
                     }
                     catch (Exception ex)
                     {
-                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                        ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                     }
                 }
                 else if (Request.QueryString["studentid"] != null)
@@ -71,11 +71,11 @@ namespace lms.Admin
                         {
                             con.Open();
 
-                            string query = "SELECT student_id, firstname, Email FROM student WHERE student_id = @StudentID";
+                            string query = "SELECT studentid, firstname, Email FROM student_info WHERE studentid = @studentid";
 
                             using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                command.Parameters.AddWithValue("@StudentID", studentID);
+                                command.Parameters.AddWithValue("@studentid", studentID);
 
                                 using (MySqlDataReader reader = command.ExecuteReader())
                                 {
