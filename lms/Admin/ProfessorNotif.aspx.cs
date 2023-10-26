@@ -116,9 +116,9 @@ namespace lms.Admin
         {
             try
             {
-                List<string> professorEmails = GetTeacherEmails();
+                List<string> teacherEmails = GetTeacherEmails();
 
-                string emailList = string.Join(",", professorEmails);
+                string emailList = string.Join(",", teacherEmails);
                 Response.Redirect($"WriteNotif.aspx?emails={emailList}");
             }
             catch (Exception ex)
@@ -139,7 +139,7 @@ namespace lms.Admin
                 try
                 {
                     con.Open();
-                    string query = "SELECT email FROM teacher_ingo";
+                    string query = "SELECT email FROM teacher_info";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
