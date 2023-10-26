@@ -63,14 +63,12 @@ namespace lms.Account
             else
             {
                     ShowErrorMessage("Invalid Email Address");
-
                     //lblMessage.Text = "Invalid Email Address";
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage("An error occurred while processing your request. Please try again later.");
-
                 //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
             }
         }

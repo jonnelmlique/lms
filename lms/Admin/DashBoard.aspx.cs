@@ -25,7 +25,7 @@ namespace lms.Admin
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "SELECT COUNT(*) FROM student";
+                    string query = "SELECT COUNT(*) FROM users WHERE usertype = 'student'";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         studentCount = Convert.ToInt32(cmd.ExecuteScalar());
@@ -38,7 +38,7 @@ namespace lms.Admin
             }
             return studentCount;
         }
-        protected int GetTotalProfessorCount()
+        protected int GetTotalTeacheCount()
         {
             int professorCount = 0; try
             {
@@ -48,7 +48,7 @@ namespace lms.Admin
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "SELECT COUNT(*) FROM professor";
+                    string query = "SELECT COUNT(*) FROM users WHERE usertype = 'teacher'";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         professorCount = Convert.ToInt32(cmd.ExecuteScalar());
