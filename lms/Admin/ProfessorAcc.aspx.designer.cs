@@ -24,15 +24,6 @@ namespace lms.Admin
         protected global::System.Web.UI.WebControls.TextBox txtsearch;
 
         /// <summary>
-        /// btnrefresh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnrefresh;
-
-        /// <summary>
         /// DropDownList1 control.
         /// </summary>
         /// <remarks>
@@ -51,12 +42,12 @@ namespace lms.Admin
         protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// professorGridView control.
+        /// TeacherGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView professorGridView;
+        protected global::System.Web.UI.WebControls.GridView TeacherGridView;
     }
 }

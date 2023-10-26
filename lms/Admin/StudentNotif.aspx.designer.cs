@@ -24,24 +24,6 @@ namespace lms.Admin
         protected global::System.Web.UI.WebControls.TextBox txtsearch;
 
         /// <summary>
-        /// btnsearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnsearch;
-
-        /// <summary>
-        /// btnrefresh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnrefresh;
-
-        /// <summary>
         /// btnSendToAll control.
         /// </summary>
         /// <remarks>

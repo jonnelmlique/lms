@@ -21,16 +21,16 @@ namespace lms.Admin
             {
                 if (!string.IsNullOrEmpty(Request.QueryString["emails"]))
                 {
-                    string[] professorEmails = Request.QueryString["emails"].Split(',');
-                    string displayEmails = string.Join(", ", professorEmails);
+                    string[] teacherEmails = Request.QueryString["emails"].Split(',');
+                    string displayEmails = string.Join(", ", teacherEmails);
 
                     string[] studentEmails = Request.QueryString["emails"].Split(',');
                     string displayEmailss = string.Join(", ", studentEmails);
                     emailtxt.Text = displayEmails;
                 }
-                else if (Request.QueryString["professorid"] != null)
+                else if (Request.QueryString["teacherid"] != null)
                 {
-                    int professorID = Convert.ToInt32(Request.QueryString["professorid"]);
+                    int teacherID = Convert.ToInt32(Request.QueryString["teacherid"]);
                     try
                     {
                         string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
@@ -38,11 +38,11 @@ namespace lms.Admin
                         {
                             con.Open();
 
-                            string query = "SELECT professor_id, firstname, Email FROM professor WHERE professor_id = @professorid";
+                            string query = "SELECT teacherid, firstname, Email FROM teacher_info WHERE teacherid = @teacherid";
 
                             using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                command.Parameters.AddWithValue("@professorid", professorID);
+                                command.Parameters.AddWithValue("@teacherid", teacherID);
 
                                 using (MySqlDataReader reader = command.ExecuteReader())
                                 {
@@ -57,7 +57,7 @@ namespace lms.Admin
                     }
                     catch (Exception ex)
                     {
-                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                        ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                     }
                 }
                 else if (Request.QueryString["studentid"] != null)
@@ -71,11 +71,11 @@ namespace lms.Admin
                         {
                             con.Open();
 
-                            string query = "SELECT student_id, firstname, Email FROM student WHERE student_id = @StudentID";
+                            string query = "SELECT studentid, firstname, Email FROM student_info WHERE studentid = @studentid";
 
                             using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                command.Parameters.AddWithValue("@StudentID", studentID);
+                                command.Parameters.AddWithValue("@studentid", studentID);
 
                                 using (MySqlDataReader reader = command.ExecuteReader())
                                 {
@@ -90,13 +90,23 @@ namespace lms.Admin
                     }
                     catch (Exception ex)
                     {
-                        lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                        ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                     }
                 }
             }
         }
-    
-     protected void btnSendMessage_Click(object sender, EventArgs e)
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+
+        protected void btnSendMessage_Click(object sender, EventArgs e)
         {
             string recipientEmail = emailtxt.Text;
             string subject = txtsubject.Text;
