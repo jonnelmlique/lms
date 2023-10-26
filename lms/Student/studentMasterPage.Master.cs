@@ -20,7 +20,7 @@ namespace lms.Student
                 }
                 else
                 {
-                    string userType = Session["LoggedInUserusertype"] as string;
+                    string userType = Session["LoggedInUserType"] as string;
 
                     if (userType == "professor")
                     {

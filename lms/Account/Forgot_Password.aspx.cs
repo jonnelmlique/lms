@@ -34,7 +34,7 @@ namespace lms.Account
                 {
                     con.Open();
 
-                    string updateQuery = $"UPDATE {tableName} SET ResetToken = @Token, TokenExpiration = @Timestamp WHERE email = @email";
+                    string updateQuery = $"UPDATE users SET ResetToken = @Token, TokenExpiration = @Timestamp WHERE email = @email";
 
                     using (MySqlCommand cmd = new MySqlCommand(updateQuery, con))
                     {
@@ -48,24 +48,30 @@ namespace lms.Account
                         {
                             string resetLink = $"https://localhost:44304/Account/Reset_Password.aspx?table={tableName}&token={token}";
                             SendPasswordResetEmail(email, resetLink);
-                            lblMessage.Text = "Password reset link sent to your email.";
+                                ShowSuccessMessage("Password reset link sent to your email.");
+                            //lblMessage.Text = "Password reset link sent to your email.";
                             txtemail.Text = "";
                         }
                         else
                         {
-                            lblMessage.Text = "Email Not found";
+                                ShowErrorMessage("Email Not found");
+                                //lblMessage.Text = "Email Not found";
+                            }
                         }
-                    }
                 }
             }
             else
             {
-                lblMessage.Text = "Invalid Email Address";
+                    ShowErrorMessage("Invalid Email Address");
+
+                    //lblMessage.Text = "Invalid Email Address";
+                }
             }
-        }
             catch (Exception ex)
             {
-                lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                ShowErrorMessage("An error occurred while processing your request. Please try again later.");
+
+                //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
             }
         }
         private string DetermineUserType(string email)
@@ -76,32 +82,16 @@ namespace lms.Account
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string adminQuery = "SELECT email FROM admin WHERE Email = @email";
-                string studentQuery = "SELECT email FROM student WHERE Email = @email";
-                string professorQuery = "SELECT email FROM professor WHERE Email = @email";
+                string query = "SELECT usertype FROM users WHERE email = @email";
 
-                using (MySqlCommand cmd = new MySqlCommand(adminQuery, con))
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@email", email);
-                    if (cmd.ExecuteScalar() != null)
-                        return "admin";
-                }
+                    var userType = cmd.ExecuteScalar();
+                    return userType != null ? userType.ToString() : null;
 
-                using (MySqlCommand cmd = new MySqlCommand(studentQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@email", email);
-                    if (cmd.ExecuteScalar() != null)
-                        return "student";
                 }
-
-                using (MySqlCommand cmd = new MySqlCommand(professorQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@email", email);
-                    if (cmd.ExecuteScalar() != null)
-                        return "professor";
-                }
-
-                return null;
             }
         }
         private void SendPasswordResetEmail(string toEmail, string resetLink)
@@ -121,6 +111,16 @@ namespace lms.Account
                     client.Send(message);
                 }
             }
+        }
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
     }
 }

@@ -15,10 +15,9 @@ namespace lms.Account
         {
             if (!IsPostBack)
             {
-                string tableName = Request.QueryString["table"];
                 string token = Request.QueryString["token"];
 
-                if (!string.IsNullOrEmpty(tableName) && IsValidToken(token, tableName))
+                if (!string.IsNullOrEmpty(token) && IsValidToken(token))
                 {
                     txtnewpassword.Enabled = true;
                     txtconfirmpassword.Enabled = true;
@@ -26,7 +25,8 @@ namespace lms.Account
                 }
                 else
                 {
-                    lblMessage.Text = "Invalid or expired reset token. Please request a new one.";
+                    ShowErrorMessage("Invalid or expired reset token. Please request a new one.");
+                    //lblMessage.Text = "Invalid or expired reset token. Please request a new one.";
                     txtnewpassword.Enabled = false;
                     txtconfirmpassword.Enabled = false;
 
@@ -41,12 +41,13 @@ namespace lms.Account
             string newPassword = txtnewpassword.Text;
             string confirmPassword = txtconfirmpassword.Text;
 
-            if (!string.IsNullOrEmpty(tableName) && IsValidToken(token, tableName))
+            if (!string.IsNullOrEmpty(token) && IsValidToken(token))
             {
                 if (newPassword == confirmPassword)
                 {
-                    ResetPassword(token, newPassword, tableName);
-                    lblMessage.Text = "Password reset successful. You can now log in with your new password.";
+                    ResetPassword(token, newPassword);
+                    ShowSuccessMessage("Password reset successful. You can now log in with your new password.");
+                    //lblMessage.Text = "Password reset successful. You can now log in with your new password.";
                     txtnewpassword.Text = "";
                     txtconfirmpassword.Text = "";
                     txtnewpassword.Enabled = false;
@@ -54,23 +55,25 @@ namespace lms.Account
                 }
                 else
                 {
-                    lblMessage.Text = "New Password and Confirm Password must match.";
+                    ShowErrorMessage("New Password and Confirm Password must match.");
+                    //lblMessage.Text = "New Password and Confirm Password must match.";
                 }
             }
             else
             {
-                lblMessage.Text = "Invalid or expired reset token. Please request a new one.";
+                ShowErrorMessage("Invalid or expired reset token. Please request a new one.");
+                //lblMessage.Text = "Invalid or expired reset token. Please request a new one.";
             }
         }
     
-        private bool IsValidToken(string token, string tableName)
+        private bool IsValidToken(string token)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = $"SELECT TokenExpiration FROM {tableName} WHERE ResetToken = @Token";
+                string query = $"SELECT TokenExpiration FROM users WHERE ResetToken = @Token";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@Token", token);
@@ -84,14 +87,14 @@ namespace lms.Account
             }
             return false;
         }
-        private void ResetPassword(string token, string newPassword, string tableName)
+        private void ResetPassword(string token, string newPassword)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string updateQuery = $"UPDATE {tableName} SET Password = @NewPassword, ResetToken = NULL, TokenExpiration = NULL WHERE ResetToken = @Token";
+                string updateQuery = $"UPDATE users SET Password = @NewPassword, ResetToken = NULL, TokenExpiration = NULL WHERE ResetToken = @Token";
 
                 using (MySqlCommand cmd = new MySqlCommand(updateQuery, con))
                 {
@@ -100,6 +103,16 @@ namespace lms.Account
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
     }
 }

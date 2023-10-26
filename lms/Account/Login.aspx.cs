@@ -18,10 +18,8 @@ namespace lms.LOGIN
         {
             try
             {
-
-
-                string email = txtemail.Text;
-                string password = txtpassword.Text;
+                string email = txtemail.Text.Trim();
+                string password = txtpassword.Text.Trim();
 
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
                 bool emailValid = false;
@@ -31,89 +29,88 @@ namespace lms.LOGIN
                 {
                     con.Open();
 
-                    emailValid = CheckEmail(con, "admin", email) || CheckEmail(con, "student", email) || CheckEmail(con, "professor", email);
+                    emailValid = CheckEmail(con, email);
 
                     if (emailValid)
                     {
-                        passwordValid = CheckPassword(con, "admin", email, password) || CheckPassword(con, "student", email, password) || CheckPassword(con, "professor", email, password);
+                        passwordValid = CheckPassword(con, email, password);
                     }
 
-                    if (emailValid && passwordValid)
+                    if (emailValid)
                     {
-                        string usertype = DetermineUserUsertype(con, "admin", email) ?? DetermineUserUsertype(con, "student", email) ?? DetermineUserUsertype(con, "professor", email);
-                        if (usertype != null)
-
-                            Session["LoggedInUserEmail"] = email;
-                        Session["LoggedInUserusertype"] = usertype;
-
+                        if (passwordValid)
                         {
-                            if (usertype == "admin")
-                            {                               
-                                Response.Redirect("/Admin/DashBoard.aspx");
+                            string usertype = DetermineUserUsertype(con, email);
+                            if (!string.IsNullOrEmpty(usertype))
+                            {
+                                Session["LoggedInUserEmail"] = email;
+                                Session["LoggedInUserType"] = usertype;
 
+                                if (usertype == "admin")
+                                {
+                                    Response.Redirect("/Admin/DashBoard.aspx");
+                                }
+                                else if (usertype == "student")
+                                {
+                                    Response.Redirect("/Student/DashBoard.aspx");
+                                }
+                                else if (usertype == "teacher")
+                                {
+                                    Response.Redirect("/Professor/DashBoard.aspx");
+                                }
                             }
-                            else if (usertype == "student")
+                            else
                             {
-                                Response.Redirect("/Student/DashBoard.aspx");
+                                ShowErrorMessage("Invalid User Type");
                             }
-                            else if (usertype == "professor")
-                            {
-                                Response.Redirect("/Professor/DashBoard.aspx");
-                            }
+                        }
+                        else
+                        {
+                            ShowErrorMessage("Invalid Password");
                         }
                     }
-                    else 
+                    else
                     {
-                        if (!emailValid && !passwordValid)
-                        {
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                                 "Swal.fire({icon: 'error',text: 'Invalid Email and Password!'})", true);
-                        }
-                        else if (!emailValid)
-                        {
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                                 "Swal.fire({icon: 'error',text: 'Invalid Email'})", true);
-                        }
-                        else if(!passwordValid)
-                        {
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                                 "Swal.fire({icon: 'error',text: 'Invalid Password!'})", true);
-                        }
+                        ShowErrorMessage("Invalid Email");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                                "Swal.fire({icon: 'error',text: 'An error occurred while processing your request. Please try again later.'})", true);
-              
-
+                ShowErrorMessage("An error occurred while processing your request. Please try again later.");
             }
         }
-        private bool CheckEmail(MySqlConnection con, string tableName, string email)
+        private bool CheckEmail(MySqlConnection con, string email)
         {
-            string query = $"SELECT Email FROM {tableName} WHERE BINARY Email = @Email";
+            string query = "SELECT Email FROM users WHERE BINARY Email = @Email";
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
                 return cmd.ExecuteScalar() != null;
             }
         }
-
-        private bool CheckPassword(MySqlConnection con, string tableName, string email, string password)
+        private bool CheckPassword(MySqlConnection con, string email, string password)
         {
-            string query = $"SELECT Password FROM {tableName} WHERE Email = @Email AND BINARY Password = @Password";
+            string query = "SELECT Password FROM users WHERE Email = @Email";
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Password", password);
-                return cmd.ExecuteScalar() != null;
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string storedPassword = reader["Password"].ToString();
+                        return VerifyPassword(password, storedPassword);
+                    }
+                }
+                return false;
             }
         }
 
-        private string DetermineUserUsertype(MySqlConnection con, string tableName, string email)
+        private string DetermineUserUsertype(MySqlConnection con, string email)
         {
-            string query = $"SELECT usertype FROM {tableName} WHERE Email = @Email";
+            string query = "SELECT usertype FROM users WHERE Email = @Email";
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -121,6 +118,16 @@ namespace lms.LOGIN
             }
         }
 
+        private bool VerifyPassword(string inputPassword, string hashedPassword)
+        {
+            return inputPassword.Equals(hashedPassword);
+        }
 
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
     }
 }
+    
