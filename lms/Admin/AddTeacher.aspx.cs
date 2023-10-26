@@ -144,6 +144,7 @@ namespace lms.Admin
                                         if (teacherRowsAffected > 0)
                                         {
                                             ShowSuccessMessage("Teacher added successfully");
+<<<<<<< HEAD
                                             TextBox1.Text = "";
                                             TextBox2.Text = "";
                                             TextBox3.Text = "";
@@ -151,6 +152,8 @@ namespace lms.Admin
                                             TextBox5.Text = "";
                                             TextBox6.Text = "";
                                             TextBox7.Text = "";
+=======
+>>>>>>> 0c78afbc23e37b36bfbc2f7e9fb42e3eb779a1c2
                                         }
                                         else
                                         {

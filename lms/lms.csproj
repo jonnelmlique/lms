@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -121,6 +125,7 @@
     <Content Include="Account\Forgot_Password.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\Reset_Password.aspx" />
+    <Content Include="Admin\AddTeacher.aspx" />
     <Content Include="Admin\DashBoard.aspx" />
     <Content Include="Admin\ProfessorAcc.aspx" />
     <Content Include="Admin\StudentAcc.aspx" />
@@ -130,7 +135,6 @@
     <Content Include="Admin\roomDetails.aspx" />
     <Content Include="Admin\subDetails.aspx" />
     <Content Include="Admin\userReports.aspx" />
-    <Content Include="Admin\addAccount.aspx" />
     <Content Include="Admin\WriteNotif.aspx" />
     <Content Include="CSS\AdminCSS\addAccount.css" />
     <Content Include="CSS\AdminCSS\adminMasterPage.css" />
@@ -196,6 +200,13 @@
     <Compile Include="Account\Reset_Password.aspx.designer.cs">
       <DependentUpon>Reset_Password.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AddTeacher.aspx.cs">
+      <DependentUpon>AddTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddTeacher.aspx.designer.cs">
+      <DependentUpon>AddTeacher.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\DashBoard.aspx.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,13 +269,6 @@
     </Compile>
     <Compile Include="Admin\userReports.aspx.designer.cs">
       <DependentUpon>userReports.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\addAccount.aspx.cs">
-      <DependentUpon>addAccount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\addAccount.aspx.designer.cs">
-      <DependentUpon>addAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WriteNotif.aspx.cs">
       <DependentUpon>WriteNotif.aspx</DependentUpon>

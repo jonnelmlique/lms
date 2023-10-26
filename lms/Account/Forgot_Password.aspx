@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -36,7 +38,7 @@
                     <br />
                     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
                     <asp:Button ID="btnSent" CssClass="btn" runat="server" Text="Sent" OnClick="btnSent_Click" />
-                                       <p><a href="Login.aspx">Already Have an Account?</a></p>
+                    <p><a href="Login.aspx">Already Have an Account?</a></p>
 
 
                 </div>
