@@ -60,40 +60,40 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.TextBox instructorname;
 
         /// <summary>
-        /// RadioButton1 control.
+        /// g11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+        protected global::System.Web.UI.WebControls.RadioButton g11;
 
         /// <summary>
-        /// RadioButton2 control.
+        /// g12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+        protected global::System.Web.UI.WebControls.RadioButton g12;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlStrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStrand;
 
         /// <summary>
-        /// DropDownList2 control.
+        /// ddlSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubject;
 
         /// <summary>
         /// Button2 control.

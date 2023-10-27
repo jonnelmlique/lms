@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,8 +17,8 @@ namespace lms.Professor
         {
             if (!IsPostBack)
             {
-                string professorEmail = Session["LoggedInUserEmail"] as string;
-                if (string.IsNullOrEmpty(professorEmail))
+                string teacherEmail = Session["LoggedInUserEmail"] as string;
+                if (string.IsNullOrEmpty(teacherEmail))
                 {
                     Response.Redirect("Login.aspx");
                 }
@@ -27,10 +28,10 @@ namespace lms.Professor
                     {
 
 
-                        string instructorFullName = GetInstructorFullNameFromDatabase(professorEmail);
-                        if (!string.IsNullOrEmpty(instructorFullName))
+                        string teacherFullName = GetTeacherFullNameFromDatabase(teacherEmail);
+                        if (!string.IsNullOrEmpty(teacherFullName))
                         {
-                            instructorname.Text = instructorFullName;
+                            instructorname.Text = teacherFullName;
                             instructorname.Enabled = false;
                         }
                     }
@@ -42,7 +43,7 @@ namespace lms.Professor
             }
         }
 
-        private string GetInstructorFullNameFromDatabase(string professorEmail)
+        private string GetTeacherFullNameFromDatabase(string professorEmail)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             string fullName = "";
@@ -50,7 +51,7 @@ namespace lms.Professor
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT firstname, lastname FROM professor WHERE email = @email";
+                string query = "SELECT firstname, lastname FROM teacher_info WHERE email = @email";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@email", professorEmail);
@@ -76,7 +77,7 @@ namespace lms.Professor
             //{
             //    if (!AreTextboxesPopulated())
             //    {
-                   
+
             //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
             //                    "Swal.fire({icon: 'error',text: 'Please fill out all required fields.'})", true);
 
@@ -85,7 +86,7 @@ namespace lms.Professor
             //    }
             //}
 
-           
+
             int index = Int32.Parse(e.Item.Value);
             MultiView1.ActiveViewIndex = index;
         }
@@ -163,6 +164,68 @@ namespace lms.Professor
             //{
             //    //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
             //}
+        }
+
+        protected void GradeRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateStrandDropdown();
+
+        }
+
+        protected void StrandDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateSubjectDropdown();
+
+
+        }
+        private void UpdateStrandDropdown()
+        {
+            string selectedGrade = g11.Checked ? "11" : g12.Checked ? "12" : "";
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT DISTINCT strand FROM subjects WHERE gradeyear = @Grade", con);
+                cmd.Parameters.AddWithValue("@Grade", selectedGrade);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                ddlStrand.Items.Clear();
+                ddlStrand.Items.Add(new ListItem("Select Strand", "")); // Optional, for initial selection
+
+                while (reader.Read())
+                {
+                    ddlStrand.Items.Add(new ListItem(reader["strand"].ToString(), reader["strand"].ToString()));
+                }
+                reader.Close();
+            }
+
+            UpdateSubjectDropdown();
+        }
+
+        private void UpdateSubjectDropdown()
+        {
+            string selectedGrade = g11.Checked ? "11" : g12.Checked ? "12" : "";
+            string selectedStrand = ddlStrand.SelectedValue;
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT subjectname FROM subjects WHERE strand = @Strand AND gradeyear = @GradeYear", con);
+                cmd.Parameters.AddWithValue("@Strand", selectedStrand);
+                cmd.Parameters.AddWithValue("@GradeYear", selectedGrade); // Corrected the parameter name
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                ddlSubject.Items.Clear();
+                ddlSubject.Items.Add(new ListItem("Select Subject", "")); // Optional, for initial selection
+
+                while (reader.Read())
+                {
+                    ddlSubject.Items.Add(new ListItem(reader["subjectname"].ToString(), reader["subjectname"].ToString()));
+                }
+                reader.Close();
+            }
         }
     }
 }
