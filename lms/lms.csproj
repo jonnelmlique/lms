@@ -125,6 +125,7 @@
     <Content Include="Account\Forgot_Password.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\Reset_Password.aspx" />
+    <Content Include="Admin\AddStudent.aspx" />
     <Content Include="Admin\AddTeacher.aspx" />
     <Content Include="Admin\DashBoard.aspx" />
     <Content Include="Admin\ProfessorAcc.aspx" />
@@ -135,7 +136,6 @@
     <Content Include="Admin\roomDetails.aspx" />
     <Content Include="Admin\subDetails.aspx" />
     <Content Include="Admin\userReports.aspx" />
-    <Content Include="Admin\addStudent.aspx" />
     <Content Include="Admin\WriteNotif.aspx" />
     <Content Include="CSS\AdminCSS\addAccount.css" />
     <Content Include="CSS\AdminCSS\adminMasterPage.css" />
@@ -200,6 +200,13 @@
     </Compile>
     <Compile Include="Account\Reset_Password.aspx.designer.cs">
       <DependentUpon>Reset_Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddStudent.aspx.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddStudent.aspx.designer.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AddTeacher.aspx.cs">
       <DependentUpon>AddTeacher.aspx</DependentUpon>
@@ -270,13 +277,6 @@
     </Compile>
     <Compile Include="Admin\userReports.aspx.designer.cs">
       <DependentUpon>userReports.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\addStudent.aspx.cs">
-      <DependentUpon>addStudent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\addStudent.aspx.designer.cs">
-      <DependentUpon>addStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WriteNotif.aspx.cs">
       <DependentUpon>WriteNotif.aspx</DependentUpon>
