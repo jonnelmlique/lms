@@ -190,7 +190,7 @@ namespace lms.Professor
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 ddlStrand.Items.Clear();
-                ddlStrand.Items.Add(new ListItem("Select Strand", "")); // Optional, for initial selection
+                ddlStrand.Items.Add(new ListItem("Select Strand", "")); 
 
                 while (reader.Read())
                 {
@@ -213,12 +213,12 @@ namespace lms.Professor
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT subjectname FROM subjects WHERE strand = @Strand AND gradeyear = @GradeYear", con);
                 cmd.Parameters.AddWithValue("@Strand", selectedStrand);
-                cmd.Parameters.AddWithValue("@GradeYear", selectedGrade); // Corrected the parameter name
+                cmd.Parameters.AddWithValue("@GradeYear", selectedGrade); 
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 ddlSubject.Items.Clear();
-                ddlSubject.Items.Add(new ListItem("Select Subject", "")); // Optional, for initial selection
+                ddlSubject.Items.Add(new ListItem("Select Subject", "")); 
 
                 while (reader.Read())
                 {
