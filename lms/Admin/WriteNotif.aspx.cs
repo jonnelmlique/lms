@@ -140,6 +140,8 @@ namespace lms.Admin
                     mailMessage.Body = messageText;
 
                     smtpClient.Send(mailMessage);
+                    InsertNotification(recipientEmail, subject, messageText);
+
 
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                      "Swal.fire({icon: 'success',text: 'Email sent Successfully!'})", true);
@@ -153,6 +155,20 @@ namespace lms.Admin
                   
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
+                }
+            }
+        }
+        private void InsertNotification(string recipient, string subject, string message)
+        {
+            using (SqlConnection connection = new SqlConnection("Your_Connection_String"))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("INSERT INTO Notification (receiver, subject, message, date) VALUES (@recipient, @subject, @message, GETDATE())", connection))
+                {
+                    command.Parameters.AddWithValue("@recipient", recipient);
+                    command.Parameters.AddWithValue("@subject", subject);
+                    command.Parameters.AddWithValue("@message", message);
+                    command.ExecuteNonQuery();
                 }
             }
         }
