@@ -50,6 +50,7 @@ namespace lms.Admin
                                     {
                                         string email = reader["Email"].ToString();
                                         emailtxt.Text = email;
+                                        emailtxt.Enabled = false;
                                     }
                                 }
                             }
@@ -83,6 +84,7 @@ namespace lms.Admin
                                     {
                                         string studentEmail = reader["Email"].ToString();
                                         emailtxt.Text = studentEmail;
+                                      
                                     }
                                 }
                             }

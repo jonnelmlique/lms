@@ -19,7 +19,7 @@
     <div class="login">
         <div class="login-img">
             <img src="../Resources/Novaliches High School Cover Picture.jpg" />
-            <h2>Novaliches High School</h2>
+            <h2>Novaliches Senior High School</h2>
         </div>
         <div class="login-page">
             <form method="post" runat="server">

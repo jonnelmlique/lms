@@ -135,6 +135,7 @@
     <Content Include="Admin\roomDetails.aspx" />
     <Content Include="Admin\subDetails.aspx" />
     <Content Include="Admin\userReports.aspx" />
+    <Content Include="Admin\addStudent.aspx" />
     <Content Include="Admin\WriteNotif.aspx" />
     <Content Include="CSS\AdminCSS\addAccount.css" />
     <Content Include="CSS\AdminCSS\adminMasterPage.css" />
@@ -269,6 +270,13 @@
     </Compile>
     <Compile Include="Admin\userReports.aspx.designer.cs">
       <DependentUpon>userReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\addStudent.aspx.cs">
+      <DependentUpon>addStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\addStudent.aspx.designer.cs">
+      <DependentUpon>addStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WriteNotif.aspx.cs">
       <DependentUpon>WriteNotif.aspx</DependentUpon>
