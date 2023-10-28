@@ -33,9 +33,9 @@ namespace lms.Professor
 
             protected void BindRoomData()
         {
-            string professorEmail = Session["LoggedInUserEmail"] as string;
+            string teacheremail = Session["LoggedInUserEmail"] as string;
 
-            if (string.IsNullOrEmpty(professorEmail))
+            if (string.IsNullOrEmpty(teacheremail))
             {
                 return;
             }
@@ -45,11 +45,11 @@ namespace lms.Professor
             {
                 con.Open();
 
-                string query = "SELECT room_id, roomname, rooomdescription, schedule, section FROM rooms WHERE professoremail = @professorEmail";
+                string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@professorEmail", professorEmail);
+                    cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
 
                     using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                     {

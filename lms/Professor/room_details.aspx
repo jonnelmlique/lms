@@ -40,9 +40,9 @@
                             <asp:View ID="View1" runat="server">
                                 <div class="tab-details">
                                     <div class="tab-setup">
-                                        <label for="instructor" class="label l1"><b>Instructor Name:</b></label>
-                                        <asp:TextBox ID="instructorname" runat="server" CssClass="tab-text"></asp:TextBox>
-                               
+                                        <label for="instructor" class="label l1"><b>Teacher Name:</b></label>
+                                        <asp:TextBox ID="teachername" runat="server" CssClass="tab-text"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* Required" ForeColor="Red" ControlToValidate="teachername"></asp:RequiredFieldValidator>
                                     </div>
                               
                                       <div class="tab-setup rdb">
@@ -58,12 +58,12 @@
 <%--                                             <asp:DropDownList ID="ddlstrand" runat="server" CssClass="tab-text">--%>
                                                       <asp:DropDownList ID="ddlStrand" runat="server" AutoPostBack="true"  CssClass="tab-text" OnSelectedIndexChanged="StrandDropdown_SelectedIndexChanged">
 
-                                             </asp:DropDownList>
+                                             </asp:DropDownList><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* Required" ControlToValidate="ddlStrand" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                     <div class="tab-setup">
                                         <label for="sname" class="label l3"><b>Choose Subject :</b></label>
                                            <asp:DropDownList ID="ddlSubject" runat="server" CssClass="tab-text">
-                                           </asp:DropDownList>
+                                           </asp:DropDownList><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="* Required" ControlToValidate="ddlSubject" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -77,7 +77,6 @@
                                     <div class="details-image">
                                         <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
                                         <asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn" onchange="showImagePreview()" Font-Size="Larger" />
-                                        <asp:RequiredFieldValidator ID="ImageValidator" runat="server" ErrorMessage="* Required" ControlToValidate="roomimage" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                     <div class="details-info">
                                         <div class="info">
@@ -129,7 +128,7 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     imgPreview.src = e.target.result;
-                    imgPreview.style.display = 'block'; // Set the display style to "block"
+                    imgPreview.style.display = 'block'; 
                 };
                 reader.readAsDataURL(fileUpload.files[0]);
             } else {
@@ -137,6 +136,24 @@
             }
         }
 
+    </script>
+    <script>
+        function showSuccessMessage() {
+            Swal.fire({
+                icon: 'success',
+                text: 'Room successfully created!',
+                showCancelButton: true,
+                cancelButtonText: 'Continue to Create Room',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'CreateRoom.aspx'; 
+                } else {
+                    window.location.href = 'room_details.aspx'; 
+                }
+            });
+        }
     </script>
 
 </asp:Content>

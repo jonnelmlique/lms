@@ -176,6 +176,10 @@
     <Content Include="Professor\inviteStudents.aspx" />
     <Content Include="Professor\pendingInvite.aspx" />
     <Content Include="Professor\classAssignment.aspx" />
+    <None Include="Resources\subject cover.jpg" />
+    <None Include="Resources\nhs subject cover.jpg" />
+    <None Include="Resources\subject cover nhs.jpg" />
+    <None Include="Resources\subjectcovernhs.jpg" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

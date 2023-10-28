@@ -15,9 +15,9 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["professor_email"] != null)
+                if (Request.QueryString["teacheremail"] != null)
                 {
-                    string profemail = Request.QueryString["professor_email"];
+                    string Teacheremail = Request.QueryString["teacheremail"];
 
                     try
                     {
@@ -26,19 +26,19 @@ namespace lms.Admin
                         {
                             con.Open();
 
-                            string query = "SELECT room_id, professoremail FROM rooms WHERE professoremail = @professoremail";
+                            string query = "SELECT roomid, teacheremail FROM rooms WHERE teacheremail = @teacheremail";
 
                             using (MySqlCommand command = new MySqlCommand(query, con))
                             {
-                                command.Parameters.AddWithValue("@professoremail", profemail);
+                                command.Parameters.AddWithValue("@teacheremail", Teacheremail);
 
                                 using (MySqlDataReader reader = command.ExecuteReader())
                                 {
                                     if (reader.Read())
                                     {
-                                        string professorEmail = Request.QueryString["professor_email"];
-                                        Label2.Text = professorEmail;
-                                        BindSubjectData(professorEmail);
+                                        string teacherEmail = Request.QueryString["teacheremail"];
+                                        Label2.Text = teacherEmail;
+                                        BindSubjectData(teacherEmail);
                                     }
                                 }
                             }
@@ -52,17 +52,17 @@ namespace lms.Admin
             }
         }
 
-        private void BindSubjectData(string professorEmail)
+        private void BindSubjectData(string teacherEmail)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT subjectname, room_id FROM rooms WHERE professoremail = @professorEmail";
+                string query = "SELECT subjectname, roomid FROM rooms WHERE teacheremail = @teacheremail";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@professorEmail", professorEmail);
+                    command.Parameters.AddWithValue("@teacheremail", teacherEmail);
 
                     connection.Open();
 

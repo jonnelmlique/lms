@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,8 +32,8 @@ namespace lms.Professor
                         string teacherFullName = GetTeacherFullNameFromDatabase(teacherEmail);
                         if (!string.IsNullOrEmpty(teacherFullName))
                         {
-                            instructorname.Text = teacherFullName;
-                            instructorname.Enabled = false;
+                            teachername.Text = teacherFullName;
+                            teachername.Enabled = false;
                         }
                     }
                     catch (Exception ex)
@@ -47,7 +48,6 @@ namespace lms.Professor
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             string fullName = "";
-
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
@@ -69,22 +69,49 @@ namespace lms.Professor
 
             return fullName;
         }
+        private int GetTeacherIdFromDatabase(string professorEmail)
+        {
+            int teacherId = -1;
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+
+                string query = "SELECT teacherid FROM teacher_info WHERE email = @email";
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@email", professorEmail);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            teacherId = Convert.ToInt32(reader["teacherid"]);
+                        }
+                    }
+                }
+            }
+
+            return teacherId;
+        }
 
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {
 
-            //if (e.Item.Value == "1")
-            //{
-            //    if (!AreTextboxesPopulated())
-            //    {
+            if (e.Item.Value == "1")
+            {
+                if (!AreTextboxesPopulated())
+                {
 
-            //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-            //                    "Swal.fire({icon: 'error',text: 'Please fill out all required fields.'})", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                                "Swal.fire({icon: 'error',text: 'Please fill out all required fields.'})", true);
 
-            //        Menu1.Items[0].Selected = true;
-            //        return;
-            //    }
-            //}
+                    Menu1.Items[0].Selected = true;
+                    return;
+                }
+            }
 
 
             int index = Int32.Parse(e.Item.Value);
@@ -108,62 +135,95 @@ namespace lms.Professor
         {
             Response.Redirect("CreateRoom.aspx");
         }
-        //private bool AreTextboxesPopulated()
-        //{
-        //    //if (string.IsNullOrEmpty(instructorname.Text) || string.IsNullOrEmpty(roomname.Text) || string.IsNullOrEmpty(subjectname.Text))
-        //    //{
-        //    //    return false;
-        //    //}
-        //    //return true;
-        //}
+        private bool AreTextboxesPopulated()
+        {
+            if (string.IsNullOrEmpty(teachername.Text) || ddlStrand.SelectedIndex == 0 || ddlSubject.SelectedIndex == 0 || (!g11.Checked && !g12.Checked))
+            {
+                return false;
+            }
+            return true;
+        }
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            //string professorEmail = Session["LoggedInUserEmail"] as string;
-            //try
-            //{
+            string roombanner = "";
+            string professorEmail = Session["LoggedInUserEmail"] as string;
+            int teacherId = GetTeacherIdFromDatabase(professorEmail);
+
+            if (teacherId == -1)
+            {
+                return;
+            }
+            try
+            {
 
 
-            //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            //    using (MySqlConnection con = new MySqlConnection(connectionString))
-            //    {
-            //        con.Open();
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+                    string query = "INSERT INTO rooms (teacherid, teachername, teacheremail, gradeyear, subjectname, strand, section, schedule, description, roombanner) " +
+                                              "VALUES (@teacherid, @teachername, @teacheremail, @gradeyear, @subjectname, @strand, @section, @schedule, @description, @roombanner)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@teacherid", teacherId);
+                        cmd.Parameters.AddWithValue("@teachername", teachername.Text);
+                        cmd.Parameters.AddWithValue("@teacheremail", professorEmail);
+                        cmd.Parameters.AddWithValue("@gradeyear", GetSelectedGradeYear());
+                        cmd.Parameters.AddWithValue("@subjectname", ddlSubject.SelectedItem.Text);
+                        cmd.Parameters.AddWithValue("@strand", ddlStrand.SelectedItem.Text);
+                        cmd.Parameters.AddWithValue("@section", txtsection.Text);
+                        cmd.Parameters.AddWithValue("@schedule", schedule.Text);
+                        cmd.Parameters.AddWithValue("@description", txtdescription.Text);
 
-            //        string query = "INSERT INTO rooms (professorname, professoremail, roomname, subjectname, roomimage, schedule, section, rooomdescription) " +
-            //                       "VALUES (@professorname, @professoremail, @roomname, @subjectname, @roomimage, @schedule, @section, @rooomdescription)";
-            //        using (MySqlCommand cmd = new MySqlCommand(query, con))
-            //        {
-            //            cmd.Parameters.AddWithValue("@professorname", instructorname.Text);
-            //            cmd.Parameters.AddWithValue("@professoremail", professorEmail);
-            //            cmd.Parameters.AddWithValue("@roomname", roomname.Text);
-            //            cmd.Parameters.AddWithValue("@subjectname", subjectname.Text);
+                        if (roomimage.HasFile)
+                        {
+                            byte[] imageData = roomimage.FileBytes;
+                            cmd.Parameters.Add(new MySqlParameter("@roombanner", imageData));
 
-            //            if (roomimage.HasFile)
-            //            {
-            //                byte[] imageData = roomimage.FileBytes;
-            //                cmd.Parameters.Add(new MySqlParameter("@roomimage", imageData));
+                            ImagePreview.Visible = true;
+                            ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
+                        }
+                        else
+                        {
+                            string defaultImagePath = Server.MapPath("~/Resources/subjectcovernhs.jpg");
+                            byte[] defaultImageData = File.ReadAllBytes(defaultImagePath);
+                            cmd.Parameters.AddWithValue("@roombanner", defaultImageData);
+                        }
 
-            //                ImagePreview.Visible = true;
-            //                ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
-            //            }
-            //            else
-            //            {
-            //                cmd.Parameters.Add(new MySqlParameter("@roomimage", DBNull.Value));
-            //            }
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-            //            cmd.Parameters.AddWithValue("@schedule", schedule.Text);
-            //            cmd.Parameters.AddWithValue("@section", txtsection.Text);
-            //            cmd.Parameters.AddWithValue("@rooomdescription", txtdescription.Text);
+                ShowSuccessMessage("Room successfully created!");
 
-            //            cmd.ExecuteNonQuery();
-            //        }
-            //    }
+                teachername.Text = "";
+                txtsection.Text = "";
+                schedule.Text = "";
+                txtdescription.Text = "";
+                ddlStrand.SelectedIndex = 0; 
+                ddlSubject.SelectedIndex = 0;
 
-            //    Response.Redirect("CreateRoom.aspx");
-            //}
-            //catch (Exception ex)
-            //{
-            //    //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
-            //}
+                ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("An error occurred while processing your request. Please try again later.");
+            }
+        }
+
+        private string GetSelectedGradeYear()
+        {
+            if (g11.Checked)
+            {
+                return "Grade 11";
+            }
+            else if (g12.Checked)
+            {
+                return "Grade 12";
+            }
+
+            return ""; 
         }
 
         protected void GradeRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -226,6 +286,16 @@ namespace lms.Professor
                 }
                 reader.Close();
             }
+        }
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
     }
 }

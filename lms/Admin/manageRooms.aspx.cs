@@ -36,13 +36,13 @@ namespace lms.Admin
                     con.Open();
 
                  
-                    string query = "SELECT DISTINCT professorname, professoremail, " +
-                                   "(SELECT room_id FROM rooms r WHERE r.professorname = rooms.professorname LIMIT 1) AS room_id " +
+                    string query = "SELECT DISTINCT teachername, teacheremail, " +
+                                   "(SELECT roomid  FROM rooms r WHERE r.teachername = rooms.teachername LIMIT 1) AS roomid " +
                                    "FROM rooms";
 
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        query += " WHERE professorname LIKE @searchTerm OR professoremail LIKE @searchTerm";
+                        query += " WHERE teachername LIKE @searchTerm OR teacheremail LIKE @searchTerm";
                     }
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
@@ -64,6 +64,46 @@ namespace lms.Admin
                 }
                 catch (Exception ex)
                 {
+                }
+            }
+        }
+
+        protected void txtsearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = txtsearch.Text;
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+
+                string query;
+
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    query = "SELECT teachername, teacheremail FROM rooms";
+                }
+                else
+                {
+                    query = "SELECT teachername, teacheremail FROM rooms WHERE teachername LIKE @searchTerm OR teacheremail LIKE @searchTerm";
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                    }
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        roomGridView.DataSource = dataTable;
+                        roomGridView.DataBind();
+                    }
                 }
             }
         }

@@ -15,10 +15,10 @@ namespace lms.Admin
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["room_id"] != null)
+                if (Request.QueryString["roomid"] != null)
                 {
                     int roomID;
-                    if (int.TryParse(Request.QueryString["room_id"], out roomID))
+                    if (int.TryParse(Request.QueryString["roomid"], out roomID))
                     {
                         try
                         {
@@ -27,20 +27,20 @@ namespace lms.Admin
                             {
                                 con.Open();
 
-                                string query = "SELECT room_id, rooomdescription, professorname FROM rooms WHERE room_id = @room_id";
+                                string query = "SELECT roomid, description, teachername FROM rooms WHERE roomid = @roomid";
 
                                 using (MySqlCommand command = new MySqlCommand(query, con))
                                 {
-                                    command.Parameters.AddWithValue("@room_id", roomID);
+                                    command.Parameters.AddWithValue("@roomid", roomID);
 
                                     using (MySqlDataReader reader = command.ExecuteReader())
                                     {
                                         if (reader.Read())
                                         {
-                                            string description = reader["rooomdescription"].ToString();
+                                            string description = reader["description"].ToString();
                                             lbldetails.Text = description;
 
-                                            string name = reader["professorname"].ToString();
+                                            string name = reader["teachername"].ToString();
                                             lblowner.Text = name;
                                         }
                                     }
@@ -55,7 +55,7 @@ namespace lms.Admin
                     else
                     {
                  
-                        lbldetails.Text = "Invalid room_id provided.";
+                        lbldetails.Text = "Invalid roomid provided.";
                     }
                 }
             }

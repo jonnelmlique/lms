@@ -14,27 +14,27 @@ namespace lms.Professor
 
         public void ProcessRequest(HttpContext context)
         {
-            if (context.Request.QueryString["room_id"] != null)
+            if (context.Request.QueryString["roomid"] != null)
             {
-                int room_id = Convert.ToInt32(context.Request.QueryString["room_id"]);
+                int roomid = Convert.ToInt32(context.Request.QueryString["roomid"]);
 
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "SELECT roomimage FROM rooms WHERE room_id = @room_id";
+                    string query = "SELECT roombanner FROM rooms WHERE roomid = @roomid";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@room_id", room_id);
+                        cmd.Parameters.AddWithValue("@roomid", roomid);
 
                         using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
                                 context.Response.ContentType = "image/jpeg";
-                                context.Response.BinaryWrite((byte[])dr["roomimage"]);
+                                context.Response.BinaryWrite((byte[])dr["roombanner"]);
                             }
                         }
                     }

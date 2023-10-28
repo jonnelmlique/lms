@@ -7,9 +7,11 @@
             
     <div class="classroom">
         <div class="search-room">
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="search-txt" placeholder="Search Room"></asp:TextBox>
+          <asp:TextBox ID="txtsearch" runat="server" CssClass="search-txt" placeholder="Search Rooms" AutoPostBack="True" OnTextChanged="txtsearch_TextChanged"></asp:TextBox>        
+
+<%--            <asp:TextBox ID="TextBox1" runat="server" CssClass="search-txt" placeholder="Search Room"></asp:TextBox>--%>
          <%--  <asp:ImageButton ID="btnsearch" runat="server" CssClass="room-btn" ImageUrl="~/Resources/search.png" />--%>
-            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="button-room"/>
+<%--            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="button-room"/>--%>
         </div>
         
         <div class="room-tbl">
@@ -17,13 +19,13 @@
         <asp:GridView ID="roomGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Rooms Found">
               <Columns>
 <%--                <asp:BoundField DataField="room_id" HeaderText="Room ID" />--%>
-        <asp:BoundField DataField="professorname" HeaderText="Professor Name" />
-        <asp:BoundField DataField="professoremail" HeaderText="Professor Email" />
+        <asp:BoundField DataField="teachername" HeaderText="Teacher Name" />
+        <asp:BoundField DataField="teacheremail" HeaderText="Teacher Email" />
 
                   <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
                  <ItemTemplate>
                    <asp:LinkButton ID="roomLink" runat="server" 
-PostBackUrl='<%# "roomDetails.aspx?professor_email=" + Eval("professoremail") %>'
+PostBackUrl='<%# "roomDetails.aspx?teacheremail=" + Eval("teacheremail") %>'
     Text="View Rooms" />
 
 

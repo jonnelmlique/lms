@@ -30,7 +30,7 @@
                    <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
               <ItemTemplate>
                    <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
-                           PostBackUrl='<%# "subDetails.aspx?room_id=" + Eval("room_id") %>'
+                           PostBackUrl='<%# "subDetails.aspx?roomid=" + Eval("roomid") %>'
 
    Text="View Subjects" />
 

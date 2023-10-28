@@ -51,7 +51,8 @@
         <div class="side-bar">
             <div class="menu">
                 <div class="item-logo">
-                    <i class="fas fa-user img-profile"></i>
+                    <asp:Image ID="Image1" runat="server" Height="100" Width="100"  />
+<%--                    <i class="fas fa-user img-profile"></i>--%>
                     <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
                  
                 </div>

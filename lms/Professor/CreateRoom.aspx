@@ -36,11 +36,11 @@
                 <ItemTemplate>
                     <div class="room-card">
                         <div class="room-image">
-                            <img class="room-banner" src='<%# "ImageHandler.ashx?room_id=" + Eval("room_id") %>' alt="" />
+                            <img class="room-banner" src='<%# "ImageHandler.ashx?roomid=" + Eval("roomid") %>' alt="" />
                         </div>
 
                         <div class="room-sched">
-                            <a href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>' class="room-subj"><%# Eval("roomname") %></a>
+                            <a href='<%# "RoomDetails.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("subjectname") %></a>
                             <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
                             <div class="room-buttons">
