@@ -21,6 +21,7 @@
                                           <asp:MenuItem Text="Notification Details" Value="1"></asp:MenuItem>
                                     </Items>
                             </asp:Menu>
+                       </div>
                      <div class="class-list">
                             <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
                                  <asp:View ID="View1" runat="server">
@@ -32,7 +33,7 @@
                           </asp:MultiView>
 
                        </div>
-                  </div>
+                 
                  
              </div>
          </div>

@@ -23,7 +23,7 @@
              <ItemTemplate>
                  <asp:HyperLink ID="studentLink" runat="server"
                      NavigateUrl='<%# "WriteNotif.aspx?studentid=" + Eval("studentid") %>'
-                     Text="Send Message" />
+                     Text="Send Message" CssClass="view" />
              </ItemTemplate>
          </asp:TemplateField>
      </Columns>

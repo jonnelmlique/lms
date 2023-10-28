@@ -119,7 +119,7 @@ namespace lms.Admin
                 List<string> teacherEmails = GetTeacherEmails();
 
                 string emailList = string.Join(",", teacherEmails);
-                Response.Redirect($"WriteNotif.aspx?emails={emailList}");
+                Response.Redirect($"WriteNotifProf.aspx?emails={emailList}");
             }
             catch (Exception ex)
             {

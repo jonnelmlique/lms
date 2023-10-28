@@ -19,7 +19,7 @@
 }
 .room-head .arrow-left {
     width: 65px;
-    height: 40px;
+    height: 100%;
     padding: 10px;
     transition: 0.3s all ease;
 }
@@ -33,6 +33,7 @@
     margin-left: 5px;
     color: #fff;
 }
+
 
 .room-prof {
     width: 100%;
@@ -55,7 +56,7 @@
      color:#fff;
 }
 .room-prof .p-room .room-lbl{
-    color:#000;
+    color:#fff;
     font-weight:bold;
     font-family:Arial;
 }

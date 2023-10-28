@@ -1,14 +1,14 @@
 ﻿
-.notifications{
-    border:1px solid red;
-    width:100%;
-  height:100vh;
-    padding:20px;
+.notifications {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    padding: 10px 30px 10px 5px;
+   
 }
-.notif-data{
-    border:1px solid blue;
-    height:100%;
-    
+.notif-data {
+    height: 100%;
+    border: 1px solid red;
 }
 .notif-head {
   
@@ -29,9 +29,20 @@
 .notif-list {
     height: calc(100% - 50px);
     width: 100%;
-    
-    
+ 
 }
+.notif-p {
+   
+    height: 49px;
+}
+.notif-list .class-list{
+    overflow-y:scroll;
+    height:calc(100% - 49px);
+    width:100%;
+   
+}
+
+
 .tabs {
     position: relative;
   
@@ -48,7 +59,7 @@
 }
 .tab:hover{
         background-color: #eb4d4d;
-      color:black;
+      
 }
 .selected-tab{
     border-bottom:1px solid white;

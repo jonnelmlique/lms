@@ -12,8 +12,8 @@
     <div class="message">
         <div class="message-content">
             <div class="message-head">
-                  <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left" runat="server" CausesValidation="false" />
-                 <h2>Write Message</h2>
+                   <a href="StudentNotif.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
+                <h2>Write Message</h2>
 
             </div>
         

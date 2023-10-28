@@ -60,7 +60,7 @@
 
     .tab:hover {
         background-color: #eb4d4d;
-        color: black;
+       
     }
 
 .selected-tab {
@@ -95,7 +95,8 @@
 }
 .instructor .owner{
  
-
+   
+    
     height:50%;
 }
 .instructor .owner h2{
@@ -103,16 +104,18 @@
      color:#000;
      height:30px;
    padding:0 10px;
-   
+  
    margin-bottom:20px;
 }
 .instructor .owner .lbl-owner{
-    border:1px solid red;
-    margin:20px 20px;
- 
-    padding:10px;
    
-    font-size:18px;
+    margin:20px 20px;
+  display:flex;
+    color: #eb4d4d;
+    padding:10px;
+    font-weight:bold;
+   font-family:'Times New Roman';
+    font-size:25px;
 }
 .instructor .co-owner h2{
     width:100%;

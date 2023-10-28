@@ -195,7 +195,9 @@
      color:#fff;
      font-family:Arial;
      cursor:pointer;
+     
 }
 .acc-info2 .button-add .btn-add:hover{
        background-color: #f57f7f;
+       outline:1px solid black;
 }

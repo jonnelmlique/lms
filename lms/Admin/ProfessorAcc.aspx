@@ -31,7 +31,7 @@
                     <ItemTemplate>
                         <asp:HyperLink ID="studentLink" runat="server"
                             NavigateUrl='<%# "professor.aspx?teacherid=" + Eval("teacherid") %>'
-                            Text="View Details" />
+                            Text="View Details" CssClass="view"  />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

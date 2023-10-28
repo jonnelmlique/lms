@@ -49,9 +49,10 @@
     width: 230px;
     font-size: 18px;
     border-radius: 10px;
-    background-color: #eb4d4d;
-    color: #fff;
-    margin-left:10px;
+    background-color: #fff;
+    color: #000;
+    margin-left: 10px;
+    border:1px solid black;
 }
 
 select {
@@ -78,6 +79,13 @@ select {
 }
 .crud:hover{
      background-color: #f57f7f;
+}
+.view{
+    text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5px 0;
 }
 
 table {

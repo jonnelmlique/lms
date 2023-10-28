@@ -7,18 +7,7 @@
         <div class="dash-list">
 
         </div>
-        <div class="dash-list">
-
-        </div>
-        <div class="dash-list">
-
-        </div>
-        <div class="dash-list">
-
-        </div>
-        <div class="dash-list">
-
-        </div>
+        
 
     </div>
 </asp:Content>

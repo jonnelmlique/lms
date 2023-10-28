@@ -24,13 +24,13 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-        <form id="mainForm" runat="server">
+     <form id="mainForm" runat="server">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
 
     <header>
         <div class="header-content">
-            <img src="../Resources/Novaliches Senior High School.png" />
-            <h2> Novaliches High School</h2>
+            <a href="DashBoard.aspx"><img src="../Resources/Novaliches Senior High School.png" alt="LOGO" /></a>
+            <a href="DashBoard.aspx"> <h2> Novaliches High School</h2></a>
         </div>
       <div class="sitemap">
           
@@ -53,8 +53,7 @@
 
             <div class="menu">
                 <div class="item-logo">
-                    <asp:Image ID="Image1" runat="server" CssClass="img-profile" />
-<%--                    <i class="fas fa-user img-profile"></i>--%>
+                    <asp:Image ID="Image1" runat="server" CssClass="img-profile" />                 
                     <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
                  
                 </div>
@@ -126,26 +125,26 @@
       });
   </script>
            <script>
-               // Function to handle link clicks
+              
                function handleLinkClick(link) {
-                   // Remove the "active" class from all menu items
+             
                    var menuItems = document.querySelectorAll('.menu .item');
                    menuItems.forEach(function (item) {
                        item.classList.remove('active');
                    });
 
-                   // Add the "active" class to the clicked link's parent item
+                 
                    link.parentNode.classList.add('active');
 
-                   // Store the active link in local storage
+               
                    localStorage.setItem('activeLink', link.getAttribute('href'));
                }
 
-               // Get the currently active link from local storage
+             
                var activeLink = localStorage.getItem('activeLink');
 
                if (activeLink) {
-                   // Find the link that matches the stored active link and add the "active" class
+                 
                    var links = document.querySelectorAll('.menu a');
                    links.forEach(function (link) {
                        if (link.getAttribute('href') === activeLink) {
@@ -154,13 +153,12 @@
                    });
                }
 
-               // Get all links in the menu and sub-menu
                var links = document.querySelectorAll('.menu a');
 
-               // Add a click event listener to each link
+             
                links.forEach(function (link) {
                    link.addEventListener('click', function () {
-                       handleLinkClick(this); // Pass the clicked link as an argument
+                       handleLinkClick(this); 
                    });
                });
            </script>

@@ -11,7 +11,7 @@ namespace lms.Admin
 {
 
 
-    public partial class WebForm6
+    public partial class WebForm13
     {
 
         /// <summary>

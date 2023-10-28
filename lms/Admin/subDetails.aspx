@@ -9,7 +9,7 @@
          <div class="room-head">
                 <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server"   CausesValidation="false" OnClientClick="javascript:history.back(1); return false;"  />
               
-             <h2> Rooms Created</h2>
+             <h2> Room Created</h2>
            </div>
            <div class="room-prof">
              
@@ -28,7 +28,7 @@
                              <asp:View ID="View1" runat="server"> 
 <%--                                 <p> NO DETAILS </p>--%>
                                  <asp:Label ID="lbldetails" runat="server" Text=""></asp:Label>
-                                                                                 <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                                  <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
 
                                  </asp:View>
                            <asp:View ID="View2" runat="server" >

@@ -12,7 +12,7 @@
        <div class="add-account">
      <div class="acc-card">
           <div class="acc-head">
-               <a href="ProfessorAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
+               <a href="StudentAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
               <h2>Add Student</h2>
            </div>
          <div class="acc-body">
@@ -91,8 +91,12 @@
                    <div class="txt">
                      <asp:TextBox ID="TextBox7" runat="server" CssClass="acc-txt"  placeholder="Temporary Password"></asp:TextBox>
                   </div>
-                       <asp:Button ID="btnadd" runat="server" Text="Add" OnClientClick="return validateGender();" OnClick="btnadd_Click" />
+                    
                </div>           
+                    <div class="lbl-txt button-add">
+                         <asp:Button ID="btnadd" runat="server" Text="Add" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
+                           <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" />
+                     </div>
             </div>
      </div>
 

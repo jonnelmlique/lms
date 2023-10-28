@@ -25,11 +25,14 @@
     font-family:'Times New Roman';
 }
 .arrow-left {
-    width: 55px;
-    height: 40px;
-    padding: 10px;
-    transition: 0.3s all ease;
-    margin-right: 5px;
+    padding: 5px 20px;
+    font-size:35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fff;
+    height:100%;
 }
 .arrow-left:hover{
     background-color: #f57f7f;

@@ -49,19 +49,7 @@
                             </div>
                         </div>
                     </div>
-                    <%--<div class="room-card">
-            <div class="roomimage">
-                <img class="room-thumb" src='<%# "ImageHandler.ashx?room_id=" + Eval("room_id") %>' alt="" />
-                <a href='<%# "RoomDetails.aspx?room_id=" + Eval("room_id") %>'>
-                    <span class="card-btn">VIEW</span>
-                </a>
-            </div>
-            <div class="room-info">
-                <h3 class="room-name"><%# Eval("roomname") %></h3>
-                <p class="room-description"><%# Eval("rooomdescription") %></p>
-                <span class="roomschedule"><%# Eval("schedule") %></span>
-            </div>
-        </div>--%>
+                
                 </ItemTemplate>
                 <FooterTemplate>
                     </ul>

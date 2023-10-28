@@ -82,11 +82,13 @@ namespace lms.Admin
 
                 if (string.IsNullOrEmpty(searchTerm))
                 {
-                    query = "SELECT teachername, teacheremail FROM rooms";
+                    query = "SELECT DISTINCT teachername, teacheremail, " +
+                                   "(SELECT roomid  FROM rooms r WHERE r.teachername = rooms.teachername LIMIT 1) AS roomid " +
+                                   "FROM rooms";
                 }
                 else
                 {
-                    query = "SELECT teachername, teacheremail FROM rooms WHERE teachername LIKE @searchTerm OR teacheremail LIKE @searchTerm";
+                    query = "SELECT teachername, teacheremail FROM rooms WHERE teachername LIKE @searchTerm OR teacheremail LIKE @searchTerm LIMIT 1;";
                 }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))

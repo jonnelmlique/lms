@@ -17,10 +17,11 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+   <form id="form1" runat="server">
       <header>
         <div class="header-content">
-            <img src="../Resources/Novaliches Senior High School.png" alt="LOGO" />
-            <h2> Novaliches High School</h2>
+            <a href="DashBoard.aspx"><img src="../Resources/Novaliches Senior High School.png" alt="LOGO" /></a>
+           <a href="DashBoard.aspx"> <h2> Novaliches High School</h2></a>
         </div>
         <div class="header-login">
              <div class="dropdown">
@@ -34,49 +35,53 @@
         </header>
 
     <div class="container">
-        <div class="side-bar">
-            <div class="menu">
-                <div class="item-logo">
-                    <asp:Image ID="Image1" runat="server" Height="100" Width="100"  />
-                    <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="professor-label"></asp:Label>
-                </div>
-                <div class="item">
-                    <a href="DashBoard.aspx" class="sub-btn"><i class='bx bxs-dashboard'></i>DashBoard</a>
+      <div class="side-bar">
 
-                </div>
-                <div class="item">
-                    <a href="CreateRoom.aspx" class="sub-btn"><i class="fas fa-book"></i>Create Rooms</a>
-                 
-                </div>
-                <div class="item">
-                    <a class="sub-btn"><i class="fas fa-user-plus"></i>Invite Students<i class="fas fa-angle-right dropdown"></i></a>
-                    <div class="sub-menu">
-                        <a href="inviteStudents.aspx" class="sub-item">Invited Students</a>
-                        <a href="pendingInvite.aspx" class="sub-item">Pending Invitations</a>
+        <div class="menu">
+            <div class="item-logo">
+                <asp:Image ID="Image1" runat="server" CssClass="img-profile" />                 
+                <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
+             
+            </div>
+            <div class="item active">
+                <a href="DashBoard.aspx"><i class='bx bxs-dashboard'></i>DashBoard</a>
 
-                    </div>
-                </div>
-              
-                <div class="item">
-                    <a class="sub-btn"><i class="fa fa-archive" aria-hidden="true"></i>Archived Classes</a>
-                    
+            </div>
+     
+            <div class="item">
+                <a href="CreateRoom.aspx" class="sub-btn" ><i class="fas fa-book"></i>Create Room</a>
                 
-                </div>
-                <div class="item">
-                    <a href="notifications.aspx"><i class="fas fa-bell"></i>  Notifications </a>
+            </div>
+              <div class="item">
+                   <a class="sub-btn" ><i class="fas fa-user-plus"></i>Invite Students<i class="fas fa-angle-right dropdown"></i></a>
+                   <div class="sub-menu">
+                      <a href="inviteStudents.aspx" class="sub-item">Invitations</a>
+                     <a href="pendingInvite.aspx">Pending Invitations</a>
                 </div>
 
-<%--                            <div class="item"> <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i> Logout </a></div>--%>
-         </div>
+             </div>
+            <div class="item">
+                <a href="archiveClass.aspx" class="sub-btn"><i class="fa fa-archive" aria-hidden="true"></i> Archive Classes</a>
+              
+            </div>
+               <div class="item">
+                   <a href="notifications.aspx"><i class="fas fa-bell"></i>Notifications</a>
+                    
+              </div>
+    
+
         </div>
-        <main class="content">
-             <form id="form1" runat="server">
-                <asp:ContentPlaceHolder ID="body" runat="server">
 
-                </asp:ContentPlaceHolder>
-                 </form>
-        </main>
+        
     </div>
+
+    <main class="content">
+           <asp:ContentPlaceHolder ID="body" runat="server" >
+
+
+            </asp:ContentPlaceHolder>        
+    </main>
+</div>
 
     <script>
       
@@ -100,6 +105,45 @@
                 }
             });
         </script>
+       <script>
+      
+       function handleLinkClick(link) {
+     
+           var menuItems = document.querySelectorAll('.menu .item');
+           menuItems.forEach(function (item) {
+               item.classList.remove('active');
+           });
+
+         
+           link.parentNode.classList.add('active');
+
+       
+           localStorage.setItem('activeLink', link.getAttribute('href'));
+       }
+
+     
+       var activeLink = localStorage.getItem('activeLink');
+
+       if (activeLink) {
+         
+           var links = document.querySelectorAll('.menu a');
+           links.forEach(function (link) {
+               if (link.getAttribute('href') === activeLink) {
+                   handleLinkClick(link);
+               }
+           });
+       }
+
+       var links = document.querySelectorAll('.menu a');
+
+     
+       links.forEach(function (link) {
+           link.addEventListener('click', function () {
+               handleLinkClick(this); 
+           });
+       });
+       </script>
+     </form>
   
 </body>
 </html>

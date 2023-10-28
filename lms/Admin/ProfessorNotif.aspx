@@ -8,11 +8,8 @@
     <div class="notif">
         <div class="search-nav">
             <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Professor" AutoPostBack="True" OnTextChanged="txtsearch_TextChanged"></asp:TextBox>
-<%--            <asp:ImageButton ID="btnsearch" runat="server" CssClass="search-btn" ImageUrl="~/Resources/search.png" OnClick="btnsearch_Click" />--%>
-<%--            <asp:Button ID="btnrefresh" runat="server" Text="Refresh" CssClass="crud" OnClick="btnrefresh_Click" />--%>
-            <asp:Button ID="btnSendToAll" runat="server" Text="Send To All" CssClass="crud" OnClick="btnSendToAll_Click" />
 
-<%--            <button>Send To All </button>--%>
+            <asp:Button ID="btnSendToAll" runat="server" Text="Send To All" CssClass="crud" OnClick="btnSendToAll_Click" />
         </div>
                         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 
@@ -24,8 +21,8 @@
                 <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
                     <ItemTemplate>
                         <asp:HyperLink ID="studentLink" runat="server"
-                            NavigateUrl='<%# "WriteNotif.aspx?teacherid=" + Eval("teacherid") %>'
-                            Text="Send Message" />
+                            NavigateUrl='<%# "WriteNotifProf.aspx?teacherid=" + Eval("teacherid") %>'
+                            Text="Send Message" CssClass="view" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
