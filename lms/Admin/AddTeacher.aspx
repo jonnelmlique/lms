@@ -19,7 +19,7 @@
      <div class="acc-card">
           <div class="acc-head">
                <a href="ProfessorAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
-              <h2>Add Accounts</h2>
+              <h2>Add Professor</h2>
            </div>
          <div class="acc-body">
              <div class="acc-info1">

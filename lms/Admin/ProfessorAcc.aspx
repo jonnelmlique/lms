@@ -16,7 +16,7 @@
                 <asp:ListItem Text="Deactivated Accounts" Value="2" />
 
             </asp:DropDownList>
-            <a href="editProf.aspx" class="crud">Add Account </a>
+            <a href="AddTeacher.aspx" class="crud">Add Account </a>
        
 
         </div>

@@ -50,10 +50,10 @@
 
     <div class="container">
         <div class="side-bar">
-<<<<<<< HEAD
+
             <div class="menu">
                 <div class="item-logo">
-                    <asp:Image ID="Image1" runat="server" Height="100" Width="100"  />
+                    <asp:Image ID="Image1" runat="server" CssClass="img-profile" />
 <%--                    <i class="fas fa-user img-profile"></i>--%>
                     <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
                  
@@ -87,51 +87,11 @@
                        <a href="userReports.aspx"><i class='bx bxs-dashboard'></i>User Reports</a>
                         
                   </div>
-           <%--        <div class="item">
-                      <a href="roomDetails.aspx"><i class='bx bxs-dashboard'></i>DETAILS</a>
-
-                   </div>
-                   <div class="item">
-                      <a href="subDetails.aspx"><i class='bx bxs-dashboard'></i>DETAILS</a>
-
-                    </div>--%>
-          
-  <%--            <div class="item"> <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i> Logout </a>
-</div>--%>
-
+        
 
             </div>
-=======
-            <ul class="menu">
-                 <li class="item-logo">
-                      <i class="fas fa-user img-profile"></i>
-                      <asp:Label ID="lblUserEmail" runat="server" Text="" class="admin-label"></asp:Label>
-                 </li>
-                 <li class="item active">
-                       <a href="DashBoard.aspx"><i class='bx bxs-dashboard'></i>DashBoard</a>
-                </li>
-             <li class="item">
-                    <a class="sub-btn"><i class="fas fa-user-plus"></i>Manage Account<i class="fas fa-angle-right dropdown"></i></a>
-               <ul class="sub-menu">
-                  <li><a href="ProfessorAcc.aspx" class="sub-item">Professors</a></li>
-                   <li><a href="StudentAcc.aspx">Students</a></li>
-              </ul>
-         </li>
-             <li class="item">
-                <a href="manageRooms.aspx"><i class='bx bxs-dashboard'></i>Manage Rooms</a>
-           </li>
-              <li class="item">
-                   <a class="sub-btn"><i class="fas fa-bell"></i>Notify Users<i class="fas fa-angle-right dropdown"></i></a>
-                 <ul class="sub-menu">
-                     <li><a href="ProfessorNotif.aspx" class="sub-item">Professors</a></li>
-                      <li><a href="StudentNotif.aspx">Students</a></li>
-                 </ul>
-             </li>
-         <li class="item">
-               <a href="userReports.aspx"><i class='bx bxs-dashboard'></i>User Reports</a>
-          </li>
-      </ul>
->>>>>>> df8bdba6acd7f0ff92e34413e683b500a15bf13c
+
+            
         </div>
 
         <main class="content">

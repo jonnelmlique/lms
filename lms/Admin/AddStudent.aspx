@@ -12,8 +12,8 @@
        <div class="add-account">
      <div class="acc-card">
           <div class="acc-head">
-              <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left" runat="server" CausesValidation="false" OnClick="ImageButton1_Click" />
-               <h2>Add Accounts</h2>
+               <a href="ProfessorAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
+              <h2>Add Student</h2>
            </div>
          <div class="acc-body">
              <div class="acc-info1">
