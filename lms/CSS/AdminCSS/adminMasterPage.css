@@ -113,6 +113,20 @@ button:hover{
     align-items:center;
     justify-content:flex-end;
 }
+.menu .item.active {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+.menu .item.active a {
+    color: #000 !important;
+}
+
+.menu .item.active i {
+    color: #000 !important;
+}
 
 .container {
     display: flex;
@@ -180,6 +194,8 @@ button:hover{
  background: #fff;
  transition: 0.3s ease;
 color:#000;
+border-bottom-left-radius:50px;
+border-top-left-radius:50px;
  }
 .side-bar .menu .item a:hover i {
 color:#000;

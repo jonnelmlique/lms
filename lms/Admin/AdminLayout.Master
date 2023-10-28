@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="../CSS/AdminCSS/DashBoard.css" />
      <link rel="stylesheet" href="../CSS/AdminCSS/Prof_StudAcc.css" /> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+   <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -39,7 +40,7 @@
           <div class="dropdown">
                <button class="dropdown-toggle"><i class='bx bx-user-circle icon'></i><i class='bx bxs-down-arrow arrow'></i></button>
              <div class="dropdown-menu">
-            <a href="/Account/Logout.aspx"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a href="/Account/Logout.aspx" > <i class="fas fa-sign-out-alt"></i> Logout</a>
             
             </div>
           </div>
@@ -49,6 +50,7 @@
 
     <div class="container">
         <div class="side-bar">
+<<<<<<< HEAD
             <div class="menu">
                 <div class="item-logo">
                     <asp:Image ID="Image1" runat="server" Height="100" Width="100"  />
@@ -99,6 +101,37 @@
 
 
             </div>
+=======
+            <ul class="menu">
+                 <li class="item-logo">
+                      <i class="fas fa-user img-profile"></i>
+                      <asp:Label ID="lblUserEmail" runat="server" Text="" class="admin-label"></asp:Label>
+                 </li>
+                 <li class="item active">
+                       <a href="DashBoard.aspx"><i class='bx bxs-dashboard'></i>DashBoard</a>
+                </li>
+             <li class="item">
+                    <a class="sub-btn"><i class="fas fa-user-plus"></i>Manage Account<i class="fas fa-angle-right dropdown"></i></a>
+               <ul class="sub-menu">
+                  <li><a href="ProfessorAcc.aspx" class="sub-item">Professors</a></li>
+                   <li><a href="StudentAcc.aspx">Students</a></li>
+              </ul>
+         </li>
+             <li class="item">
+                <a href="manageRooms.aspx"><i class='bx bxs-dashboard'></i>Manage Rooms</a>
+           </li>
+              <li class="item">
+                   <a class="sub-btn"><i class="fas fa-bell"></i>Notify Users<i class="fas fa-angle-right dropdown"></i></a>
+                 <ul class="sub-menu">
+                     <li><a href="ProfessorNotif.aspx" class="sub-item">Professors</a></li>
+                      <li><a href="StudentNotif.aspx">Students</a></li>
+                 </ul>
+             </li>
+         <li class="item">
+               <a href="userReports.aspx"><i class='bx bxs-dashboard'></i>User Reports</a>
+          </li>
+      </ul>
+>>>>>>> df8bdba6acd7f0ff92e34413e683b500a15bf13c
         </div>
 
         <main class="content">
@@ -132,7 +165,46 @@
           }
       });
   </script>
+           <script>
+               // Function to handle link clicks
+               function handleLinkClick(link) {
+                   // Remove the "active" class from all menu items
+                   var menuItems = document.querySelectorAll('.menu .item');
+                   menuItems.forEach(function (item) {
+                       item.classList.remove('active');
+                   });
 
+                   // Add the "active" class to the clicked link's parent item
+                   link.parentNode.classList.add('active');
+
+                   // Store the active link in local storage
+                   localStorage.setItem('activeLink', link.getAttribute('href'));
+               }
+
+               // Get the currently active link from local storage
+               var activeLink = localStorage.getItem('activeLink');
+
+               if (activeLink) {
+                   // Find the link that matches the stored active link and add the "active" class
+                   var links = document.querySelectorAll('.menu a');
+                   links.forEach(function (link) {
+                       if (link.getAttribute('href') === activeLink) {
+                           handleLinkClick(link);
+                       }
+                   });
+               }
+
+               // Get all links in the menu and sub-menu
+               var links = document.querySelectorAll('.menu a');
+
+               // Add a click event listener to each link
+               links.forEach(function (link) {
+                   link.addEventListener('click', function () {
+                       handleLinkClick(this); // Pass the clicked link as an argument
+                   });
+               });
+           </script>
+    
       </form>
 
 </body>

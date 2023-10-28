@@ -12,7 +12,7 @@ namespace lms.LOGIN
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtemail.Focus();
         }
         protected void btnlogin_Click(object sender, EventArgs e)
         {
