@@ -136,10 +136,13 @@
     <Content Include="Admin\roomDetails.aspx" />
     <Content Include="Admin\subDetails.aspx" />
     <Content Include="Admin\userReports.aspx" />
+    <Content Include="Admin\editProf.aspx" />
+    <Content Include="Admin\editStudent.aspx" />
     <Content Include="Admin\WriteNotif.aspx" />
     <Content Include="CSS\AdminCSS\addAccount.css" />
     <Content Include="CSS\AdminCSS\adminMasterPage.css" />
     <Content Include="CSS\AdminCSS\DashBoard.css" />
+    <Content Include="CSS\AdminCSS\editProf.css" />
     <Content Include="CSS\AdminCSS\manageRoom.css" />
     <Content Include="CSS\AdminCSS\Notifications.css" />
     <Content Include="CSS\AdminCSS\Prof_StudAcc.css" />
@@ -277,6 +280,20 @@
     </Compile>
     <Compile Include="Admin\userReports.aspx.designer.cs">
       <DependentUpon>userReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\editProf.aspx.cs">
+      <DependentUpon>editProf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\editProf.aspx.designer.cs">
+      <DependentUpon>editProf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\editStudent.aspx.cs">
+      <DependentUpon>editStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\editStudent.aspx.designer.cs">
+      <DependentUpon>editStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WriteNotif.aspx.cs">
       <DependentUpon>WriteNotif.aspx</DependentUpon>

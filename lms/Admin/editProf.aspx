@@ -1,25 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminLayout.Master" AutoEventWireup="true" CodeBehind="AddTeacher.aspx.cs" Inherits="lms.Admin.AddTeacher" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminLayout.Master" AutoEventWireup="true" CodeBehind="editProf.aspx.cs" Inherits="lms.Admin.WebForm11" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" href="../CSS/AdminCSS/addAccount.css" />
-
+    <link rel="stylesheet" href="../CSS/AdminCSS/editProf.css" />
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-         <div class="add-account">
+             <div class="add-account">
      <div class="acc-card">
           <div class="acc-head">
-               <a href="ProfessorAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
-              <h2>Add Accounts</h2>
+              <a href="ProfessorAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
+               <h2>Professor Details</h2>
            </div>
          <div class="acc-body">
              <div class="acc-info1">
@@ -100,8 +94,10 @@
                       
                </div>           
                  <div class="lbl-txt button-add">
-                      <asp:Button ID="btnadd" runat="server" Text="Add" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
-                       <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" />
+                      <asp:Button ID="btnadd" runat="server" Text="Edit Details" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
+                     <asp:Button ID="Button3" runat="server" Text="Activate Account" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
+                     <asp:Button ID="Button2" runat="server" Text="Deactivate Account" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
+                     <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" />
                  </div>
             </div>
      </div>
@@ -110,22 +106,21 @@
      
 
 </div>
-        <script type="text/javascript">
-        function showImagePreview() {
-            var imgPreview = document.getElementById('<%= ImagePreview.ClientID %>');
-            var fileUpload = document.getElementById('<%= FileUpload1.ClientID %>');
+      <script type="text/javascript">
+  function showImagePreview() {
+      var imgPreview = document.getElementById('<%= ImagePreview.ClientID %>');
+      var fileUpload = document.getElementById('<%= FileUpload1.ClientID %>');
 
-            if (fileUpload.files && fileUpload.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = 'block'; 
-                };
-                reader.readAsDataURL(fileUpload.files[0]);
-            } else {
-                imgPreview.style.display = 'none';
-            }
-        }
-        </script>
-
+      if (fileUpload.files && fileUpload.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              imgPreview.src = e.target.result;
+              imgPreview.style.display = 'block'; 
+          };
+          reader.readAsDataURL(fileUpload.files[0]);
+      } else {
+          imgPreview.style.display = 'none';
+      }
+  }
+      </script>
 </asp:Content>

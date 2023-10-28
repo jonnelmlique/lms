@@ -19,8 +19,7 @@
             </asp:DropDownList>
 
             <a href="addStudent.aspx" class="crud">Add Account </a>
-            <a class="crud">Edit Account </a>
-            <a class="crud">Block Account </a>
+          
         </div>
                 <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 

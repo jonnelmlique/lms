@@ -4,58 +4,28 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
-     <div class="dashboard">
-   <div class="dash-list">
-    <i class="fas fa-users"></i>
-    <h2>Total Students : <span><%= GetTotalStudentCount() %></span></h2>
-</div>
-<div class="dash-list">
-    <i class="fas fa-users"></i>
-    <h2>Total Professors: <span><%= GetTotalTeacheCount() %></span></h2>
-</div>
+
+  <div class="dashboard">
          <div class="dash-list">
-    <i class="fas fa-users"></i>
-    <h2>Total Rooms: <span><%= GetTotalRoomsCount() %></span></h2>
-</div>
-    <div class="dash-list">
-
-    </div>
-    <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-             <div class="dash-list">
-
-    </div>
-
-</div>
+            <div class="text">
+              <p>TOTAL STUDENTS </p>
+             
+            </div>
+             <div class="icon-num">                  
+                    <span><%= GetTotalStudentCount() %></span>
+                   <i class="fas fa-users"></i>  
+             </div>
+         </div>
+         <div class="dash-list">
+            <div class="text">
+             <p>TOTAL INSTRUCTORS </p>
+       
+           </div>
+       <div class="icon-num">                  
+              <span><%= GetTotalTeacheCount() %></span>
+             <i class="fas fa-users"></i>  
+       </div>
+   </div>
+            
+  </div>
 </asp:Content>
