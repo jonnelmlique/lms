@@ -8,14 +8,20 @@
 
     <div class="reports">
          <div class="search-room">
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="search-txt" placeholder="Search Room"></asp:TextBox>
- 
-              <asp:Button ID="Button1" runat="server" Text="Search" CssClass="button-room"/>
+           
+                <div class="search-bar">          
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="search" placeholder="Search Room"></asp:TextBox>
+                    <i class="fas fa-search"></i>
+               </div>
+            <div class="search-buttons">
                  <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
                       <asp:ListItem Text="Filter Reports" Value="1" />
                       <asp:ListItem Text="Professor Reports" Value="2" />
                         <asp:ListItem Text="Student Reports" Value="23" />
                  </asp:DropDownList>
+                              <asp:Button ID="Button1" runat="server" Text="Search" CssClass="crud"/>
+                  </div>
+          
          </div>
 
         <div class="report-tbl">

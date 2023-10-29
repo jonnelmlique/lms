@@ -21,46 +21,12 @@ namespace lms.Admin
             {
                 if (!string.IsNullOrEmpty(Request.QueryString["emails"]))
                 {
-                    string[] teacherEmails = Request.QueryString["emails"].Split(',');
-                    string displayEmails = string.Join(", ", teacherEmails);
+                    
 
                     string[] studentEmails = Request.QueryString["emails"].Split(',');
                     string displayEmailss = string.Join(", ", studentEmails);
-                    emailtxt.Text = displayEmails;
-                }
-                else if (Request.QueryString["teacherid"] != null)
-                {
-                    int teacherID = Convert.ToInt32(Request.QueryString["teacherid"]);
-                    try
-                    {
-                        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                        using (MySqlConnection con = new MySqlConnection(connectionString))
-                        {
-                            con.Open();
-
-                            string query = "SELECT teacherid, firstname, Email FROM teacher_info WHERE teacherid = @teacherid";
-
-                            using (MySqlCommand command = new MySqlCommand(query, con))
-                            {
-                                command.Parameters.AddWithValue("@teacherid", teacherID);
-
-                                using (MySqlDataReader reader = command.ExecuteReader())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        string email = reader["Email"].ToString();
-                                        emailtxt.Text = email;
-                                        emailtxt.Enabled = false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage("An error occurred while processing your request. Please try again later.");
-                    }
-                }
+                    emailtxt.Text = displayEmailss;
+                }               
                 else if (Request.QueryString["studentid"] != null)
                 {
                     int studentID = Convert.ToInt32(Request.QueryString["studentid"]);
@@ -155,6 +121,9 @@ namespace lms.Admin
                   
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
+                    txtsubject.Text = "";
+                    txtMessage.Text = "";
+                    ErroSub2.Text = "";
                 }
             }
         }

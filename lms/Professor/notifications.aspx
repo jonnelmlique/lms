@@ -15,7 +15,7 @@
                   <div class="notif-p">
                              <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
                                       StaticSelectedStyle-CssClass="selected-tab" StaticMenuItemStyle-HorizontalPadding="50px" StaticMenuItemStyle-VerticalPadding="15px"
-                                      StaticSelectedStyle-BackColo="White" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick"  >
+                                      StaticSelectedStyle-BackColor="#eb4d4d" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick"  >
                                     <Items>
                                          <asp:MenuItem Text="Notifications List" Value="0" Selected="true"></asp:MenuItem>
                                           <asp:MenuItem Text="Notification Details" Value="1"></asp:MenuItem>

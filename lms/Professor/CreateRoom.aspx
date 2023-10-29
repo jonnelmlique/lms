@@ -44,8 +44,9 @@
                             <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
                             <div class="room-buttons">
-                                <a href="#" class="room-btn">Edit Details</a>
-                                <a href="#" class="room-btn">Enter Room</a>
+                                 <a href="#" class="room-btn">Enter Room</a>
+                                 <a href="#" class="room-btn">Edit Details</a>                               
+                                  <a href="#" class="room-btn">Archive Room</a>
                             </div>
                         </div>
                     </div>

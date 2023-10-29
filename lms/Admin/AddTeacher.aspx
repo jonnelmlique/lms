@@ -86,7 +86,7 @@
                         <div class="lbl">
                            <asp:Label ID="Label7" runat="server" Text="Email Account"  CssClass="acc-lbl age"></asp:Label>
                       </div>
-                   <div class="txt">
+                      <div class="txt">
                        <asp:TextBox ID="TextBox6" runat="server" CssClass="acc-txt"  placeholder="Enter Email Account"></asp:TextBox>
                  </div>
                  </div>

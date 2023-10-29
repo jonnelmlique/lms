@@ -22,9 +22,7 @@ namespace lms.Admin
                 {
                     string[] teacherEmails = Request.QueryString["emails"].Split(',');
                     string displayEmails = string.Join(", ", teacherEmails);
-
-                    string[] studentEmails = Request.QueryString["emails"].Split(',');
-                    string displayEmailss = string.Join(", ", studentEmails);
+                 
                     emailtxt.Text = displayEmails;
                 }
                 else if (Request.QueryString["teacherid"] != null)
@@ -60,40 +58,7 @@ namespace lms.Admin
                         ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                     }
                 }
-                else if (Request.QueryString["studentid"] != null)
-                {
-                    int studentID = Convert.ToInt32(Request.QueryString["studentid"]);
-                    try
-                    {
-                        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-
-                        using (MySqlConnection con = new MySqlConnection(connectionString))
-                        {
-                            con.Open();
-
-                            string query = "SELECT studentid, firstname, Email FROM student_info WHERE studentid = @studentid";
-
-                            using (MySqlCommand command = new MySqlCommand(query, con))
-                            {
-                                command.Parameters.AddWithValue("@studentid", studentID);
-
-                                using (MySqlDataReader reader = command.ExecuteReader())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        string studentEmail = reader["Email"].ToString();
-                                        emailtxt.Text = studentEmail;
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage("An error occurred while processing your request. Please try again later.");
-                    }
-                }
+              
             }
         }
         private void ShowErrorMessage(string message)
@@ -154,6 +119,9 @@ namespace lms.Admin
 
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
+                    txtsubject.Text = "";
+                    txtMessage.Text = "";
+                    ErroSub2.Text = "";
                 }
             }
         }

@@ -6,10 +6,10 @@
 <head runat="server">
      <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Professor DashBoard</title>
+    <title>Learning Management System</title>
+     <link rel="icon" href="../Resources/Novaliches Senior High School.png" type="image/x-icon" />
     <link rel="stylesheet" href="../CSS/ProfessorCSS/professorMasterPage.css"/>
-   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-    
+   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"/>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -27,8 +27,8 @@
              <div class="dropdown">
                     <button class="dropdown-toggle"><i class='bx bx-user-circle icon'></i><i class='bx bxs-down-arrow arrow'></i></button>
                      <div class="dropdown-menu">
-                   <a href="/Account/Logout.aspx"> <i class="fas fa-sign-out-alt"></i> Logout</a>
-   
+                          <a href="../Account/MyAccountProf.aspx"> <i class='bx bxs-user-circle'></i>My Account</a>
+                         <a href="/Account/Logout.aspx"> <i class="fas fa-sign-out-alt"></i> Logout</a>   
                  </div>
             </div>
         </div>

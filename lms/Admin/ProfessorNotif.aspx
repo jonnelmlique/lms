@@ -7,12 +7,17 @@
 
     <div class="notif">
         <div class="search-nav">
+            <div class="search-bar">        
             <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Professor" AutoPostBack="True" OnTextChanged="txtsearch_TextChanged"></asp:TextBox>
-
+                    <i class="fas fa-search"></i>
+                </div>
+            <div class="search-buttons">
             <asp:Button ID="btnSendToAll" runat="server" Text="Send To All" CssClass="crud" OnClick="btnSendToAll_Click" />
+                 </div>
         </div>
                         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 
+        <div class="notif-body">
         <asp:GridView ID="TeacherGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Professor Found">
             <Columns>
                 <asp:BoundField DataField="teacherid" HeaderText="Teacher ID" />
@@ -27,5 +32,6 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        </div>
+              </div>
+   </div>
 </asp:Content>

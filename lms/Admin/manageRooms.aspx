@@ -7,8 +7,13 @@
             
     <div class="classroom">
         <div class="search-room">
-          <asp:TextBox ID="txtsearch" runat="server" CssClass="search-txt" placeholder="Search Rooms" AutoPostBack="True" OnTextChanged="txtsearch_TextChanged"></asp:TextBox>        
+            <div class="search-bar">         
+                    <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Rooms" AutoPostBack="True" OnTextChanged="txtsearch_TextChanged"></asp:TextBox>        
+                    <i class="fas fa-search"></i>
+                </div>
+            <div class="search-buttons">
 
+            </div>
         </div>
         
         <div class="room-tbl">
@@ -22,8 +27,8 @@
                   <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
                  <ItemTemplate>
                    <asp:LinkButton ID="roomLink" runat="server" 
-PostBackUrl='<%# "roomDetails.aspx?teacheremail=" + Eval("teacheremail") %>'
-    Text="View Rooms" CssClass="view" />
+                    PostBackUrl='<%# "roomDetails.aspx?teacheremail=" + Eval("teacheremail") %>'
+                  Text="View Rooms" CssClass="view" />
 
 
                   </ItemTemplate>

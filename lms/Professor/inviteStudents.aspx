@@ -7,13 +7,7 @@
 
     
     <div class="reports">
-         <div class="search-room">
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="search-txt" placeholder="Search Room"></asp:TextBox>
- 
-              <asp:Button ID="Button1" runat="server" Text="Search" CssClass="button-room"/>
-                
-         </div>
-
+      
         <div class="report-tbl">
             <div class="invite-room">
                 <div class="invite-p">
@@ -22,7 +16,7 @@
                 <div class="invite-room-list">
                      <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
                           StaticSelectedStyle-CssClass="selected-tab" StaticMenuItemStyle-HorizontalPadding="50px" StaticMenuItemStyle-VerticalPadding="15px"
-                           StaticSelectedStyle-BackColo="White" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick" >
+                           StaticSelectedStyle-BackColor="#eb4d4d" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick" >
                      <Items>
                           <asp:MenuItem Text="Created Room List" Value="0" Selected="true"></asp:MenuItem>
                            <asp:MenuItem Text="List of Student" Value="1"></asp:MenuItem>
@@ -34,7 +28,13 @@
                                     ROOM LIST
                                     </asp:View>
                                <asp:View ID="View2" runat="server">
-                                        STUDENT LIST
+                                        <div class="search-student">
+                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="text-search" placeholder="Search student"></asp:TextBox>
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                   <div class="student-tbl">
+
+                                   </div>
                                      </asp:View>
                          </asp:MultiView>
 

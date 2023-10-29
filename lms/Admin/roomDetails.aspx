@@ -12,7 +12,7 @@
     <div class="view-details">
         <div class="details-card">
             <div class="room-head">
-                <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left" runat="server" CausesValidation="false" OnClick="ImageButton1_Click" />
+                  <a href="manageRooms.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
                 <h2>Rooms Created</h2>
                    </div>
             <div class="room-prof">

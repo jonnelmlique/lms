@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Management System</title>
+    <link rel="icon" href="../Resources/Novaliches Senior High School.png" type="image/x-icon" />
     <link rel="stylesheet" href="../CSS/Student/studentMasterPage.css" />
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
@@ -17,23 +18,30 @@
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <img src="../Resources/Novaliches Senior High School.png" alt="LOGO" />
-            <h2>Novaliches High School</h2>
-        </div>
+          <div class="header-content">
+               <a href="DashBoard.aspx"><img src="../Resources/Novaliches Senior High School.png" alt="LOGO" /></a>
+              <a href="DashBoard.aspx"> <h2> Novaliches High School</h2></a>
+         </div>
         <div class="header-login">
-        </div>
+             <div class="dropdown">
+                     <button class="dropdown-toggle"><i class='bx bx-user-circle icon'></i><i class='bx bxs-down-arrow arrow'></i></button>
+                          <div class="dropdown-menu">
+                              <a href="/Account/Logout.aspx" > <i class="fas fa-sign-out-alt"></i> Logout</a>      
+                         </div>
+             </div>
+
+             </div>
     </header>
 
     <div class="container">
         <div class="side-bar">
             <div class="menu">
-                <div class="item-logo">
-                    <asp:Image ID="Image1" runat="server" Height="100" Width="100"  />
-                    <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="student-label"></asp:Label>
-                </div>
+                 <div class="item-logo">
+                     <asp:Image ID="Image1" runat="server" CssClass="img-profile" />                 
+                     <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label> 
+                 </div>
                 <div class="item">
-                    <a href="#"><i class="fas fa-desktop"></i>Home</a>
+                    <a href="DashBoard.aspx"><i class="fas fa-desktop"></i>Home</a>
                 </div>
                 <div class="item">
                     <a class="sub-btn"><i class="fas fa-book"></i>Class Subjects</a>
@@ -47,11 +55,9 @@
                 <div class="item">
                     <a href="#"><i class="fa fa-bell"></i>Notifications</a>
                 </div>
-                <div class="item">
-                    <a href="/Account/Logout.aspx"><i class="fas fa-sign-out-alt"></i>Logout </a>
-                </div>
+              
             </div>
-
+            </div>
         <main class="content">
             <asp:ContentPlaceHolder ID="body" runat="server">
             </asp:ContentPlaceHolder>

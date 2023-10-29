@@ -124,6 +124,7 @@
   <ItemGroup>
     <Content Include="Account\Forgot_Password.aspx" />
     <Content Include="Account\Logout.aspx" />
+    <Content Include="Account\MyAccountProf.aspx" />
     <Content Include="Account\Reset_Password.aspx" />
     <Content Include="Admin\AddStudent.aspx" />
     <Content Include="Admin\AddTeacher.aspx" />
@@ -152,6 +153,7 @@
     <Content Include="CSS\AdminCSS\subDetails.css" />
     <Content Include="CSS\AdminCSS\userReports.css" />
     <Content Include="CSS\login.css" />
+    <Content Include="CSS\myAccountProf.css" />
     <Content Include="CSS\ProfessorCSS\archivedClass.css" />
     <Content Include="CSS\ProfessorCSS\classAssignment.css" />
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
@@ -203,6 +205,13 @@
     </Compile>
     <Compile Include="Account\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\MyAccountProf.aspx.cs">
+      <DependentUpon>MyAccountProf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\MyAccountProf.aspx.designer.cs">
+      <DependentUpon>MyAccountProf.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Reset_Password.aspx.cs">
       <DependentUpon>Reset_Password.aspx</DependentUpon>

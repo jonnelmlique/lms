@@ -6,10 +6,13 @@
 
    <div class="reports">
        <div class="search-room">
-          <asp:TextBox ID="TextBox1" runat="server" CssClass="search-txt" placeholder="Search Room"></asp:TextBox>
- 
-            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="button-room"/>
-              
+              <div class="search-bar">         
+                 <asp:TextBox ID="txtsearch" runat="server" CssClass="search" placeholder="Search Rooms" AutoPostBack="True" ></asp:TextBox>        
+                  <i class="fas fa-search"></i>
+                </div>
+          <div class="search-buttons">
+
+          </div>
        </div>
 
        <div class="invitation-tbl">

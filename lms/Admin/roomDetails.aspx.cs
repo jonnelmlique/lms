@@ -78,9 +78,6 @@ namespace lms.Admin
             }
         }
 
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("manageRooms.aspx");
-        }
+      
     }
 }

@@ -6,6 +6,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Learning Management System</title>
+    <link rel="icon" href="../Resources/Novaliches Senior High School.png" type="image/x-icon" />
         <link rel="stylesheet" href="../CSS/ProfessorCSS/instructorClassroom.css" />
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"/>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
@@ -15,7 +16,7 @@
      <header>
         <div class="header-content">
             <div class="icon-img-h2">
-                  <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
+           <%--       <i class="fa fa-bars" aria-hidden="true" id="btn"></i>--%>
                   <img src="../Resources/Novaliches Senior High School.png" alt="LOGO" />
                    <h2> Novaliches High School</h2>
                 </div>
@@ -41,15 +42,12 @@
                
                 <div class="item">
                   
-                    <a href="DashBoard.aspx" class="sub-btn-active"><i class='bx bxs-dashboard'></i>Home</a>
+                    <a href="instructorClassroom.aspx" class="sub-btn-active"><i class='bx bxs-dashboard'></i>Home</a>
                 </div>
-                <div class="item">
-                 
-                    <a href="CreateRoom.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Reviews</a>               
-                </div>
+               
                  <div class="item">
                      
-                      <a href="CreateRoom.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Exit</a>               
+                      <a href="#" class="sub-btn-active"><i class="fas fa-book"></i>Exit</a>               
                     </div>
          </div>
         </div>
@@ -127,7 +125,7 @@
                                      <div class="instructors">
                                          <div class="people-view">
                                             <h2> ROOM INSTRUCTORS </h2>
-                                             <h3> Room Owner</h3>
+                                            
                                                 <div class="instruc-creator">
                                                       
                                                     <div class="icon">                                                   
@@ -137,7 +135,7 @@
                                                       <asp:Label ID="Label9" runat="server" Text="Label" CssClass="instructor-name"></asp:Label>
                                                       </div>     
                                                  </div>
-                                               <h3> Co-Instructor</h3>
+                                             
                                                 <div class="instruc-creator">
                                                      
                                                       <div class="icon">                                                   
