@@ -76,18 +76,19 @@ namespace lms.Admin
 
         protected void btnSendMessage_Click(object sender, EventArgs e)
         {
+
             string recipientEmail = emailtxt.Text;
             string subject = txtsubject.Text;
             string messageText = txtMessage.Text;
             string gmailSignature = "Novaliches Senior High School Learning Management System";
 
             messageText += "\n\n" + gmailSignature;
+
             if (txtMessage.Text == "")
             {
                 ErroSub2.Text = " * Please input a message";
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})",true);
-              
+                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
             }
             else
             {
@@ -106,11 +107,28 @@ namespace lms.Admin
                     mailMessage.Body = messageText;
 
                     smtpClient.Send(mailMessage);
-                    InsertNotification(recipientEmail, subject, messageText);
 
+                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    {
+                        con.Open();
+
+                        string insertQuery = "INSERT INTO notification (receiver, subject, message, date) VALUES (@Receiver, @Subject, @Message, @Date)";
+
+                        using (MySqlCommand cmd = new MySqlCommand(insertQuery, con))
+                        {
+                            cmd.Parameters.AddWithValue("@Receiver", recipientEmail);
+                            cmd.Parameters.AddWithValue("@Subject", subject);
+                            cmd.Parameters.AddWithValue("@Message", messageText);
+                            cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
 
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                     "Swal.fire({icon: 'success',text: 'Email sent Successfully!'})", true);
+                        "Swal.fire({icon: 'success',text: 'Email sent Successfully!'})", true);
 
                     txtsubject.Text = "";
                     txtMessage.Text = "";
@@ -118,26 +136,11 @@ namespace lms.Admin
                 }
                 catch (Exception ex)
                 {
-                  
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                   "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
+                        "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
                     txtsubject.Text = "";
                     txtMessage.Text = "";
                     ErroSub2.Text = "";
-                }
-            }
-        }
-        private void InsertNotification(string recipient, string subject, string message)
-        {
-            using (SqlConnection connection = new SqlConnection("Your_Connection_String"))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Notification (receiver, subject, message, date) VALUES (@recipient, @subject, @message, GETDATE())", connection))
-                {
-                    command.Parameters.AddWithValue("@recipient", recipient);
-                    command.Parameters.AddWithValue("@subject", subject);
-                    command.Parameters.AddWithValue("@message", message);
-                    command.ExecuteNonQuery();
                 }
             }
         }

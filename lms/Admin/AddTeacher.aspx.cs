@@ -263,5 +263,23 @@ namespace lms.Admin
             }
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            txtfirstname.Text = string.Empty;
+            txtlastname.Text = string.Empty;
+            TextBox3.Text = string.Empty;
+            TextBox4.Text = string.Empty;
+            TextBox5.Text = string.Empty;
+            txtusername.Text = string.Empty;
+            TextBox6.Text = string.Empty;
+            TextBox7.Text = string.Empty;
+            RadioButton1.Checked = false;
+            RadioButton2.Checked = false;
+        }
     }
 }

@@ -109,7 +109,7 @@
                     </div>
                     <div class="lbl-txt button-add">
                         <asp:Button ID="btnadd" runat="server" Text="Add" OnClientClick="return validateGender();" OnClick="btnadd_Click" CssClass="btn-add" />
-                        <asp:Button ID="Button1" runat="server" Text="Clear" CssClass="btn-add" />
+                        <asp:Button ID="Button1" runat="server" Text="Clear" CssClass="btn-add" OnClick="Button1_Click" />
                     </div>
                 </div>
             </div>
