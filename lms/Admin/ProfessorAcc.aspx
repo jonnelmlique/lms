@@ -14,9 +14,9 @@
                       <i class="fas fa-search"></i>
                 </div>
             <div class="search-buttons">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
-                <asp:ListItem Text="Activated Accounts" Value="1" />
-                <asp:ListItem Text="Deactivated Accounts" Value="2" />
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:ListItem Text="Activated" Value="1" />
+                <asp:ListItem Text="Deactivated" Value="2" />
 
             </asp:DropDownList>
             <a href="AddTeacher.aspx" class="crud">Add Account </a>

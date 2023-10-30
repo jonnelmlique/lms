@@ -56,6 +56,178 @@ namespace lms.Admin
 
             return age;
         }
+      
+
+        protected void btnedit_Click(object sender, EventArgs e)
+        {
+            string username = txtusername.Text;
+            string firstName = TextBox1.Text;
+            string lastName = TextBox2.Text;
+            int age;
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) ||
+                string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text))
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "Swal.fire({icon: 'error', text: 'Please fill out all the textboxes and select a file'})", true);
+                return;
+            }
+
+            if (int.TryParse(TextBox4.Text, out age))
+            {
+                string gender = RadioButton1.Checked ? "Male" : "Female";
+                string birthday = TextBox3.Text;
+                string contact = TextBox5.Text;
+                string email = TextBox6.Text;
+
+
+                if (!IsEmailUnique(email, username))
+                {
+                    ShowErrorMessage("Email address is already in use. Please choose a different email.");
+                    return;
+                }
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        con.Open();
+
+                        byte[] fileBytes = null;
+
+                        if (FileUpload1.HasFile)
+                        {
+                            fileBytes = new byte[FileUpload1.PostedFile.InputStream.Length];
+                            FileUpload1.PostedFile.InputStream.Read(fileBytes, 0, fileBytes.Length);
+                        }
+
+                        string existingPassword = GetExistingPassword(username, con);
+
+                        string userUpdateQuery = "UPDATE users SET password = @Password, email = @Email, profileimage = @ProfileImage WHERE username = @Username";
+                        using (MySqlCommand userUpdateCmd = new MySqlCommand(userUpdateQuery, con))
+                        {
+                            userUpdateCmd.Parameters.AddWithValue("@Password", string.IsNullOrWhiteSpace(TextBox7.Text) ? existingPassword : TextBox7.Text);
+                            userUpdateCmd.Parameters.AddWithValue("@Email", email);
+                            userUpdateCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
+                            userUpdateCmd.Parameters.AddWithValue("@Username", username);
+
+                            int userUpdateRowsAffected = userUpdateCmd.ExecuteNonQuery();
+
+                            if (userUpdateRowsAffected > 0)
+                            {
+                                string studentInfoUpdateQuery = "UPDATE teacher_info SET firstname = @FirstName, lastname = @LastName, email = @Email, age = @Age, gender = @Gender, birthday = @Birthday, contact = @Contact, profileimage = @ProfileImage WHERE username = @Username";
+                                using (MySqlCommand studentInfoUpdateCmd = new MySqlCommand(studentInfoUpdateQuery, con))
+                                {
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@FirstName", firstName);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@LastName", lastName);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Email", email);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Username", username);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Age", age);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Gender", gender);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Birthday", birthday);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Contact", contact);
+                                    studentInfoUpdateCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
+
+                                    int studentInfoUpdateRowsAffected = studentInfoUpdateCmd.ExecuteNonQuery();
+
+                                    if (studentInfoUpdateRowsAffected > 0)
+                                    {
+                                        ShowSuccessMessage("Student updated successfully");
+                                        TextBox1.Text = "";
+                                        TextBox2.Text = "";
+                                        TextBox3.Text = "";
+                                        TextBox4.Text = "";
+                                        TextBox5.Text = "";
+                                        TextBox6.Text = "";
+                                        TextBox7.Text = "";
+                                    }
+                                    else
+                                    {
+                                        ShowErrorMessage("Error updating student information");
+
+                                    }
+                                }
+                            }
+
+                            else
+                            {
+                                ShowErrorMessage("Error updating user information");
+                            }
+                        }
+                    }
+
+
+                    catch (Exception ex)
+                    {
+                        ShowErrorMessage("Error Processing");
+                    }
+                }
+            }
+            else
+            {
+                ShowErrorMessage("Invalid Age");
+            }
+        }
+        private string GetExistingPassword(string username, MySqlConnection connection)
+        {
+            string existingPassword = null;
+            string query = "SELECT password FROM users WHERE username = @Username";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        existingPassword = reader["password"].ToString();
+                    }
+                }
+            }
+            return existingPassword;
+        }
+        private byte[] GetExistingProfileImage(string username, MySqlConnection con)
+        {
+            string query = "SELECT profileimage FROM users WHERE username = @Username";
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                var result = cmd.ExecuteScalar();
+                return result as byte[];
+            }
+        }
+
+        private bool IsEmailUnique(string email, string username)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+
+                string query = "SELECT COUNT(*) FROM users WHERE email = @Email AND username != @Username " +
+                               "UNION ALL " +
+                               "SELECT COUNT(*) FROM student_info WHERE email = @Email AND username != @Username " +
+                               "UNION ALL " +
+                               "SELECT COUNT(*) FROM teacher_info WHERE email = @Email AND username != @Username";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        int totalCount = 0;
+
+                        while (reader.Read())
+                        {
+                            totalCount += reader.GetInt32(0);
+                        }
+
+                        return totalCount == 0;
+                    }
+                }
+            }
+        }
         private void ShowErrorMessage(string message)
         {
             string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
@@ -66,137 +238,15 @@ namespace lms.Admin
             string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
-
-        protected void btnadd_Click(object sender, EventArgs e)
+        protected void btnactivate_Click(object sender, EventArgs e)
         {
-            string firstName = TextBox1.Text;
-            string lastName = TextBox2.Text;
-            string email = TextBox6.Text;
-            int age;
 
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text) || string.IsNullOrWhiteSpace(TextBox7.Text) || !FileUpload1.HasFile)
-            {
-                // Not all required fields are filled, or a file is not selected, show an alert.
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "Swal.fire({icon: 'error', text: 'Please fill out all the textboxes and select a file'})", true);
-                return; // Exit the method without further processing.
-            }
-
-            if (int.TryParse(TextBox4.Text, out age))
-            {
-                string gender = RadioButton1.Checked ? "Male" : "Female";
-                string birthday = TextBox3.Text;
-                string contact = TextBox5.Text;
-                string password = TextBox7.Text;
-
-                if (IsEmailUnique(email))
-                {
-                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                    using (MySqlConnection con = new MySqlConnection(connectionString))
-                    {
-                        try
-                        {
-                            con.Open();
-
-                            string userQuery = "INSERT INTO users (password, email, usertype, profileimage) VALUES (@Password, @Email, 'teacher', @ProfileImage)";
-                            using (MySqlCommand userCmd = new MySqlCommand(userQuery, con))
-                            {
-                                userCmd.Parameters.AddWithValue("@Password", password);
-                                userCmd.Parameters.AddWithValue("@Email", email);
-
-                                if (FileUpload1.HasFile)
-                                {
-                                    byte[] imageData = FileUpload1.FileBytes;
-                                    userCmd.Parameters.Add(new MySqlParameter("@ProfileImage", imageData));
-                                }
-                                else
-                                {
-                                    userCmd.Parameters.Add(new MySqlParameter("@ProfileImage", DBNull.Value));
-                                }
-
-                                int userRowsAffected = userCmd.ExecuteNonQuery();
-
-                                if (userRowsAffected > 0)
-                                {
-                                    string teacherQuery = "INSERT INTO teacher_info (firstname, lastname, email, age, gender, birthday, contact, profileimage) VALUES (@FirstName, @LastName, @Email, @Age, @Gender, @Birthday, @Contact, @ProfileImage)";
-                                    using (MySqlCommand teacherCmd = new MySqlCommand(teacherQuery, con))
-                                    {
-                                        teacherCmd.Parameters.AddWithValue("@FirstName", firstName);
-                                        teacherCmd.Parameters.AddWithValue("@LastName", lastName);
-                                        teacherCmd.Parameters.AddWithValue("@Email", email);
-                                        teacherCmd.Parameters.AddWithValue("@Age", age);
-                                        teacherCmd.Parameters.AddWithValue("@Gender", gender);
-                                        teacherCmd.Parameters.AddWithValue("@Birthday", birthday);
-                                        teacherCmd.Parameters.AddWithValue("@Contact", contact);
-
-                                        if (FileUpload1.HasFile)
-                                        {
-                                            byte[] imageData = FileUpload1.FileBytes;
-                                            teacherCmd.Parameters.Add(new MySqlParameter("@ProfileImage", imageData));
-                                        }
-                                        else
-                                        {
-                                            teacherCmd.Parameters.Add(new MySqlParameter("@ProfileImage", DBNull.Value));
-                                        }
-
-                                        int teacherRowsAffected = teacherCmd.ExecuteNonQuery();
-
-                                        if (teacherRowsAffected > 0)
-                                        {
-                                            ShowSuccessMessage("Teacher added successfully");
-                                            TextBox1.Text = "";
-                                            TextBox2.Text = "";
-                                            TextBox3.Text = "";
-                                            TextBox4.Text = "";
-                                            TextBox5.Text = "";
-                                            TextBox6.Text = "";
-                                            TextBox7.Text = "";
-
-                                        }
-                                        else
-                                        {
-                                            ShowErrorMessage("Error adding teacher to table");
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    ShowErrorMessage("Error adding teacher to table");
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            ShowErrorMessage("Error Processing");
-                        }
-                    }
-                }
-                else
-                {
-                    ShowErrorMessage("Email already Exists");
-                }
-            }
-            else
-            {
-                ShowErrorMessage("Invalid Age");
-            }
         }
-        private bool IsEmailUnique(string email)
+
+        protected void btndeactivate_Click(object sender, EventArgs e)
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
-            {
-                con.Open();
 
-                string query = "SELECT COUNT(*) FROM teacher_info WHERE email = @Email";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Email", email);
 
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count == 0;
-                }
-            }
         }
     }
-}
+    }

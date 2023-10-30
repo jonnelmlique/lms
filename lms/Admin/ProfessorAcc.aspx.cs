@@ -170,5 +170,9 @@ namespace lms.Admin
             }
         }
 
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
