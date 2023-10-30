@@ -22,7 +22,7 @@
                            <asp:Label ID="Label1" runat="server" Text="First Name:"  CssClass="acc-lbl fname"></asp:Label>
                          </div>
                      <div class="txt">
-                       <asp:TextBox ID="TextBox1" runat="server" CssClass="acc-txt" placeholder="Enter First Name"></asp:TextBox>
+                 <asp:TextBox ID="txtfirstname" runat="server" CssClass="acc-txt" placeholder="Firstname" onkeyup="generateUsername()"></asp:TextBox>
                          </div>
                   </div>
                  <div class="lbl-txt">
@@ -30,7 +30,7 @@
                       <asp:Label ID="Label2" runat="server" Text="Last Name"  CssClass="acc-lbl lname"></asp:Label>
                          </div>
                        <div class="txt">
-                     <asp:TextBox ID="TextBox2" runat="server" CssClass="acc-txt" placeholder="Enter Last Name"></asp:TextBox>
+                           <asp:TextBox ID="txtlastname" runat="server" CssClass="acc-txt" placeholder="Lastname" onkeyup="generateUsername()"></asp:TextBox>
                                 </div>
                   </div>
                  <div class="lbl-txt">
@@ -76,6 +76,17 @@
                         <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
                        <asp:FileUpload ID="FileUpload1" runat="server"  onchange="showImagePreview()" CssClass="upload"  />
                    </div>  
+
+                       <div class="lbl-txt" >
+
+                        <div class="lbl">
+                            <asp:Label ID="Label9" runat="server" Text="Username" CssClass="acc-lbl age"></asp:Label>
+                        </div>
+                        <div class="txt">
+                            <asp:TextBox ID="txtusername" runat="server" CssClass="acc-txt" placeholder="Username"></asp:TextBox>
+                        </div>
+                    </div>
+
                 <div class="lbl-txt">
                         <div class="lbl">
                            <asp:Label ID="Label7" runat="server" Text="Email Account"  CssClass="acc-lbl age"></asp:Label>
@@ -95,7 +106,7 @@
                </div>           
                     <div class="lbl-txt button-add">
                          <asp:Button ID="btnadd" runat="server" Text="Add" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
-                           <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" />
+                           <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" OnClick="Button1_Click" />
                      </div>
             </div>
      </div>
@@ -120,4 +131,13 @@
             }
         }
         </script>
+     <script type="text/javascript">
+         function generateUsername() {
+             var firstname = document.getElementById('<%= txtfirstname.ClientID %>').value;
+            var lastname = document.getElementById('<%= txtlastname.ClientID %>').value;
+        var username = (firstname + "" + lastname).toLowerCase(); 
+        document.getElementById('<%= txtusername.ClientID %>').value = username;
+         }
+     </script>
+
 </asp:Content>

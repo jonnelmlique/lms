@@ -24,13 +24,13 @@ namespace lms.Admin
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtfirstname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtfirstname;
 
         /// <summary>
         /// Label2 control.
@@ -42,13 +42,13 @@ namespace lms.Admin
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtlastname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtlastname;
 
         /// <summary>
         /// Label3 control.
@@ -166,6 +166,24 @@ namespace lms.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+
+        /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+
+        /// <summary>
+        /// txtusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtusername;
 
         /// <summary>
         /// Label7 control.
