@@ -34,7 +34,7 @@
                 <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
                     <ItemTemplate>
                         <asp:HyperLink ID="studentLink" runat="server"
-                            NavigateUrl='<%# "professor.aspx?teacherid=" + Eval("teacherid") %>'
+                            NavigateUrl='<%# "editProf.aspx?teacherid=" + Eval("teacherid") %>'
                             Text="View Details" CssClass="view"  />
                     </ItemTemplate>
                 </asp:TemplateField>

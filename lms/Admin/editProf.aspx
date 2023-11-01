@@ -12,7 +12,7 @@
            <div class="add-account">
     <div class="acc-card">
         <div class="acc-head">
-            <a href="StudentAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
+            <a href="ProfessorAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
             <h2>Professor Details</h2>
         </div>
         <div class="acc-body">
@@ -76,7 +76,7 @@
                     <asp:FileUpload ID="FileUpload1" runat="server" text="" onchange="showImagePreview()" CssClass="upload" />
                 </div>
 
-                <div class="lbl-txt ">
+               
                     <div class="lbl hide">
                       <asp:Label ID="Label9" runat="server" Text="Username" CssClass="acc-lbl age"></asp:Label>
 
@@ -84,7 +84,7 @@
                     <div class="txt hide">
                         <asp:TextBox ID="txtusername" runat="server" CssClass="acc-txt" placeholder="Username"></asp:TextBox>
                     </div>
-                </div>
+       
                 <div class="lbl-txt">
                     <div class="lbl">
                         <asp:Label ID="Label7" runat="server" Text="Email Account" CssClass="acc-lbl age"></asp:Label>

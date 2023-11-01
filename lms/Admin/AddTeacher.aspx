@@ -80,15 +80,14 @@
                         <asp:FileUpload ID="FileUpload1" runat="server" text="" onchange="showImagePreview()" CssClass="upload" />
                     </div>
 
-                    <div class="lbl-txt">
-                        <div class="lbl">
+
+                        <div class="lbl hide">
                             <asp:Label ID="Label9" runat="server" Text="Username" CssClass="acc-lbl age"></asp:Label>
                         </div>
-                        <div class="txt">
+                        <div class="txt hide">
                             <asp:TextBox ID="txtusername" runat="server" CssClass="acc-txt" placeholder="Username"></asp:TextBox>
                         </div>
-                    </div>
-
+              
 
                     <div class="lbl-txt">
                         <div class="lbl">

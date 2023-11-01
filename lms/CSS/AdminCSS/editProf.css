@@ -25,6 +25,9 @@
     transition: 0.3s all ease;
     margin-right:10px;
 }
+.hide{
+    display:none;
+}
 .arrow-left{
    padding:0 20px;
     height:100%;
@@ -125,24 +128,26 @@
   
     width:100%;
     padding:20px;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
    
+  
 }
-.upload{
-    
-     display:flex;  
-     align-items:center;
-     justify-items:center;
-     cursor:pointer;
-     padding:15px 30px;
+.upload {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+   padding:10px;
+    margin: auto;
+  
 }
 .acc-info2 .acc-img .img-preview{
-
+    display:flex;   
+    align-items:center;
+    justify-content:center;
+    margin:auto;
     height:180px;
     width:250px;
-    margin:0 20px;
+   
     background-color:#fff;
     
 }
