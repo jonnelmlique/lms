@@ -15,74 +15,82 @@ namespace lms.Admin
         {
             TextBox3.TextChanged += new EventHandler(TextBox3_TextChanged);
             TextBox4.Enabled = false;
-
-
-            if (Request.QueryString["studentid"] != null)
+            if (!IsPostBack)
             {
-                int studentId;
-                if (int.TryParse(Request.QueryString["studentid"], out studentId))
+
+                if (Request.QueryString["studentid"] != null)
                 {
-                    try
+                    int studentId;
+                    if (int.TryParse(Request.QueryString["studentid"], out studentId))
                     {
-                        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                        using (MySqlConnection con = new MySqlConnection(connectionString))
+                        try
                         {
-                            con.Open();
-
-                            string queryStudent = "SELECT * FROM student_info WHERE studentid = @studentid";
-
-                            using (MySqlCommand commandStudent = new MySqlCommand(queryStudent, con))
+                            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                            using (MySqlConnection con = new MySqlConnection(connectionString))
                             {
-                                commandStudent.Parameters.AddWithValue("@studentid", studentId);
+                                con.Open();
 
-                                using (MySqlDataReader readerStudent = commandStudent.ExecuteReader())
+                                string queryStudent = "SELECT * FROM student_info WHERE studentid = @studentid";
+
+                                using (MySqlCommand commandStudent = new MySqlCommand(queryStudent, con))
                                 {
-                                    if (readerStudent.Read())
+                                    commandStudent.Parameters.AddWithValue("@studentid", studentId);
+
+                                    using (MySqlDataReader readerStudent = commandStudent.ExecuteReader())
                                     {
-                                        TextBox1.Text = readerStudent["firstname"].ToString();
-                                        TextBox2.Text = readerStudent["lastname"].ToString();
-                                        txtusername.Text = readerStudent["username"].ToString();
-                                        TextBox3.Text = readerStudent["birthday"].ToString();
-                                        TextBox4.Text = readerStudent["age"].ToString();
-
-                                        string gender = readerStudent["gender"].ToString();
-                                        if (gender == "Male")
+                                        if (readerStudent.Read())
                                         {
-                                            RadioButton1.Checked = true;
-                                        }
-                                        else if (gender == "Female")
-                                        {
-                                            RadioButton2.Checked = true;
-                                        }
+                                            TextBox1.Text = readerStudent["firstname"].ToString();
+                                            TextBox2.Text = readerStudent["lastname"].ToString();
+                                            txtusername.Text = readerStudent["username"].ToString();
+                                            TextBox3.Text = readerStudent["birthday"].ToString();
+                                            TextBox4.Text = readerStudent["age"].ToString();
 
-                                        TextBox5.Text = readerStudent["contact"].ToString();
-                                        TextBox6.Text = readerStudent["email"].ToString();
+                                            string gender = readerStudent["gender"].ToString();
+                                            if (gender == "Male")
+                                            {
+                                                RadioButton1.Checked = true;
+                                            }
+                                            else if (gender == "Female")
+                                            {
+                                                RadioButton2.Checked = true;
+                                            }
 
-                                        byte[] imageBytes = (byte[])readerStudent["profileimage"];
-                                        if (imageBytes != null && imageBytes.Length > 0)
-                                        {
-                                            string base64String = Convert.ToBase64String(imageBytes);
-                                            ImagePreview.ImageUrl = "data:image/jpeg;base64," + base64String;
+                                            TextBox5.Text = readerStudent["contact"].ToString();
+                                            TextBox6.Text = readerStudent["email"].ToString();
+
+                                            byte[] imageBytes = (byte[])readerStudent["profileimage"];
+                                            if (imageBytes != null && imageBytes.Length > 0)
+                                            {
+                                                string base64String = Convert.ToBase64String(imageBytes);
+                                                ImagePreview.ImageUrl = "data:image/jpeg;base64," + base64String;
+                                            }
+                                            string status = readerStudent["status"].ToString();
+                                            if (status == "Activated")
+                                            {
+                                                RadioButton3.Checked = true;
+                                            }
+                                            else if (status == "Deactivated")
+                                            {
+                                                RadioButton4.Checked = true;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+
+
+                        catch (Exception ex)
+                        {
+                        }
                     }
-
-
-                    catch (Exception ex)
+                    else
                     {
-                        // Handle exceptions, e.g., log the error
                     }
-                }
-                else
-                {
-                    // Handle the case when teacherid is not a valid integer
                 }
             }
         }
-
 
 protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
@@ -137,36 +145,29 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
      
         protected void btnedit_Click(object sender, EventArgs e)
         {
-            string username = txtusername.Text;
             string firstName = TextBox1.Text;
             string lastName = TextBox2.Text;
-            int age;
+            string email = TextBox6.Text;
+            string username = txtusername.Text;
+            string gender = RadioButton1.Checked ? "Male" : "Female";
+            string status = RadioButton3.Checked ? "Activated" : "Deactivated";
+            string birthday = TextBox3.Text;
+            string contact = TextBox5.Text;
+            int teacherage = int.Parse(TextBox4.Text);
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) ||
+            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text))
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "Swal.fire({icon: 'error', text: 'Please fill out all the textboxes and select a file'})", true);
                 return;
             }
-
-            if (int.TryParse(TextBox4.Text, out age))
+            else
             {
-                string gender = RadioButton1.Checked ? "Male" : "Female";
-                string birthday = TextBox3.Text;
-                string contact = TextBox5.Text;
-                string email = TextBox6.Text;
-
-
-                if (!IsEmailUnique(email, username))
+                try
                 {
-                    ShowErrorMessage("Email address is already in use. Please choose a different email.");
-                    return;
-                }
+                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    try
+                    using (MySqlConnection con = new MySqlConnection(connectionString))
                     {
                         con.Open();
 
@@ -178,93 +179,68 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
                             FileUpload1.PostedFile.InputStream.Read(fileBytes, 0, fileBytes.Length);
                         }
 
-                        string existingPassword = GetExistingPassword(username, con);
 
-                        string userUpdateQuery = "UPDATE users SET password = @Password, email = @Email, profileimage = @ProfileImage WHERE username = @Username";
-                        using (MySqlCommand userUpdateCmd = new MySqlCommand(userUpdateQuery, con))
+                        string userQuery = "UPDATE users SET email = @Email, profileimage = @ProfileImage, status = @Status WHERE username = @Username";
+                        using (MySqlCommand userCmd = new MySqlCommand(userQuery, con))
                         {
-                            userUpdateCmd.Parameters.AddWithValue("@Password", string.IsNullOrWhiteSpace(TextBox7.Text) ? existingPassword : TextBox7.Text);
-                            userUpdateCmd.Parameters.AddWithValue("@Email", email);
-                            userUpdateCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
-                            userUpdateCmd.Parameters.AddWithValue("@Username", username);
+                            userCmd.Parameters.AddWithValue("@Username", username);
+                            userCmd.Parameters.AddWithValue("@Email", email);
+                            userCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
+                            userCmd.Parameters.AddWithValue("@Status", status);
 
-                            int userUpdateRowsAffected = userUpdateCmd.ExecuteNonQuery();
+                            int userRowsAffected = userCmd.ExecuteNonQuery();
 
-                            if (userUpdateRowsAffected > 0)
+                            string studentQuery = "UPDATE student_info SET firstname = @FirstName, lastname = @LastName, email = @Email, age = @Age, gender = @Gender, birthday = @Birthday, contact = @Contact, profileimage = @ProfileImage, status = @Status WHERE username = @Username";
+                            using (MySqlCommand studentCmd = new MySqlCommand(studentQuery, con))
                             {
-                                string studentInfoUpdateQuery = "UPDATE student_Info SET firstname = @FirstName, lastname = @LastName, email = @Email, age = @Age, gender = @Gender, birthday = @Birthday, contact = @Contact, profileimage = @ProfileImage WHERE username = @Username";
-                                using (MySqlCommand studentInfoUpdateCmd = new MySqlCommand(studentInfoUpdateQuery, con))
+                                studentCmd.Parameters.AddWithValue("@Username", username);
+                                studentCmd.Parameters.AddWithValue("@FirstName", firstName);
+                                studentCmd.Parameters.AddWithValue("@LastName", lastName);
+                                studentCmd.Parameters.AddWithValue("@Email", email);
+                                studentCmd.Parameters.AddWithValue("@Age", teacherage);
+                                studentCmd.Parameters.AddWithValue("@Gender", gender);
+                                studentCmd.Parameters.AddWithValue("@Birthday", birthday);
+                                studentCmd.Parameters.AddWithValue("@Contact", contact);
+                                studentCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
+                                studentCmd.Parameters.AddWithValue("@Status", status); 
+
+                                int studentRowsAffected = studentCmd.ExecuteNonQuery();
+
+                                if (userRowsAffected > 0 && studentRowsAffected > 0)
                                 {
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@FirstName", firstName);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@LastName", lastName);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Email", email);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Username", username);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Age", age);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Gender", gender);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Birthday", birthday);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@Contact", contact);
-                                    studentInfoUpdateCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
-
-                                    int studentInfoUpdateRowsAffected = studentInfoUpdateCmd.ExecuteNonQuery();
-
-                                    if (studentInfoUpdateRowsAffected > 0)
-                                    {
-                                        ShowSuccessMessage("Student updated successfully");
-                                        TextBox1.Text = "";
-                                        TextBox2.Text = "";
-                                        TextBox3.Text = "";
-                                        TextBox4.Text = "";
-                                        TextBox5.Text = "";
-                                        TextBox6.Text = "";
-                                        TextBox7.Text = "";
-                                    }
-                                    else
-                                    {
-                                        ShowErrorMessage("Error updating student information");
-
-                                    }
+                                    ShowSuccessMessage("The Student account has been updated successfully.");
+                                    ClearInputFields();
                                 }
-                            }
-
-                            else
-                            {
-                                ShowErrorMessage("Error updating user information");
+                                else
+                                {
+                                    ShowErrorMessage("Error updating Student information or user information");
+                                }
                             }
                         }
                     }
-
-
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage("Error Processing");
-                    }
                 }
-            }
-            else
-            {
-                ShowErrorMessage("Invalid Age");
-            }
-        }
-
-
-
-        private string GetExistingPassword(string username, MySqlConnection connection)
-        {
-            string existingPassword = null;
-            string query = "SELECT password FROM users WHERE username = @Username";
-            using (MySqlCommand cmd = new MySqlCommand(query, connection))
-            {
-                cmd.Parameters.AddWithValue("@Username", username);
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                catch (Exception ex)
                 {
-                    if (reader.Read())
-                    {
-                        existingPassword = reader["password"].ToString();
-                    }
+                    ShowErrorMessage("Error processing: " + ex.Message);
+                    // Log the exception for debugging
                 }
             }
-            return existingPassword;
         }
+
+        private void ClearInputFields()
+        {
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            TextBox3.Text = "";
+            TextBox4.Text = "";
+            TextBox5.Text = "";
+            txtusername.Text = "";
+            TextBox6.Text = "";
+            RadioButton1.Checked = false;
+            RadioButton2.Checked = false;
+            ImagePreview.ImageUrl = "";
+        }
+       
         private byte[] GetExistingProfileImage(string username, MySqlConnection con)
         {
             string query = "SELECT profileimage FROM users WHERE username = @Username";
@@ -276,23 +252,22 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
             }
         }
 
-        private bool IsEmailUnique(string email, string username)
+        private bool IsEmailUnique(string email)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
 
-                string query = "SELECT COUNT(*) FROM users WHERE email = @Email AND username != @Username " +
+                string query = "SELECT COUNT(*) FROM users WHERE email = @Email " +
                                "UNION ALL " +
-                               "SELECT COUNT(*) FROM student_info WHERE email = @Email AND username != @Username " +
+                               "SELECT COUNT(*) FROM student_info WHERE email = @Email " +
                                "UNION ALL " +
-                               "SELECT COUNT(*) FROM teacher_info WHERE email = @Email AND username != @Username";
+                               "SELECT COUNT(*) FROM teacher_info WHERE email = @Email";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Username", username);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {

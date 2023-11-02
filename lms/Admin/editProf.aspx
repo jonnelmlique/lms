@@ -107,19 +107,18 @@
                         </div>
                     </div>
 
-                    <div class="lbl-txt">
-                        <div class="lbl">
-                            <asp:Label ID="Label8" runat="server" Text="Password" CssClass="acc-lbl age"></asp:Label>
-                        </div>
-                        <div class="txt">
-                            <asp:TextBox ID="TextBox7" runat="server" CssClass="acc-txt" placeholder="Temporary Password"></asp:TextBox>
-                        </div>
-
-                    </div>
+                
 
 
                     <div class="lbl-txt button-add">
-                        <asp:Button ID="btnedit" runat="server" Text="Edit Details" OnClientClick="return validateGender();" CssClass="btn-add" OnClick="btnedit_Click"  />
+                        <div class="box">
+                                <asp:CheckBox ID="CheckBox1" runat="server" CssClass="check-bx" />
+                            <span>Enable Editing?</span>
+                        </div>
+                    <div class="box-btn">
+                          <asp:Button ID="btnedit" runat="server" Text="Edit Details" OnClientClick="return validateGender();" CssClass="btn-add" OnClick="btnedit_Click"  />
+                    </div>
+                      
                     </div>
                 </div>
             </div>

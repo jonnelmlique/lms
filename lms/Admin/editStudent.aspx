@@ -1,15 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminLayout.Master" AutoEventWireup="true" CodeBehind="editStudent.aspx.cs" Inherits="lms.Admin.WebForm12" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <link rel="stylesheet" href="../CSS/AdminCSS/editProf.css" />
+    <link rel="stylesheet" href="../CSS/AdminCSS/editProf.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-       <div class="add-account">
+    <div class="add-account">
         <div class="acc-card">
             <div class="acc-head">
                 <a href="StudentAcc.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
@@ -76,15 +77,15 @@
                         <asp:FileUpload ID="FileUpload1" runat="server" text="" onchange="showImagePreview()" CssClass="upload" />
                     </div>
 
-                    <div class="lbl-txt ">
+                 
                         <div class="lbl hide">
-                          <asp:Label ID="Label9" runat="server" Text="Username" CssClass="acc-lbl age"></asp:Label>
+                            <asp:Label ID="Label9" runat="server" Text="Username" CssClass="acc-lbl age"></asp:Label>
 
                         </div>
                         <div class="txt hide">
                             <asp:TextBox ID="txtusername" runat="server" CssClass="acc-txt" placeholder="Username"></asp:TextBox>
                         </div>
-                    </div>
+                 
                     <div class="lbl-txt">
                         <div class="lbl">
                             <asp:Label ID="Label7" runat="server" Text="Email Account" CssClass="acc-lbl age"></asp:Label>
@@ -99,19 +100,25 @@
 
                     <div class="lbl-txt">
                         <div class="lbl">
-                            <asp:Label ID="Label8" runat="server" Text="Password" CssClass="acc-lbl age"></asp:Label>
+                            <asp:Label ID="Label10" runat="server" Text="Status:" CssClass="acc-lbl gender"></asp:Label>
                         </div>
-                        <div class="txt">
-                            <asp:TextBox ID="TextBox7" runat="server" CssClass="acc-txt" placeholder="Temporary Password"></asp:TextBox>
+                        <div class="txt rdb">
+                            <asp:RadioButton ID="RadioButton3" runat="server" Text="Activated" CssClass="radio-btn" GroupName="StatusGroup" />
+                            <asp:RadioButton ID="RadioButton4" runat="server" Text="Deactivated" CssClass="radio-btn" GroupName="StatusGroup" />
                         </div>
-
                     </div>
+
+
+                    
                     <div class="lbl-txt button-add">
-                        <asp:Button ID="btnedit" runat="server" Text="Edit Details" OnClientClick="return validateGender();" CssClass="btn-add" OnClick="btnedit_Click" />
-                     
-                        <%-- <asp:Button ID="Button3" runat="server" Text="Activate Account" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
-                     <asp:Button ID="Button2" runat="server" Text="Deactivate Account" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
-                     <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" />--%>
+                           <div class="box">
+                                   <asp:CheckBox ID="CheckBox1" runat="server" CssClass="check-bx" />
+                                   <span>Enable Editing?</span>
+                             </div>
+                             <div class="box-btn">
+                                       <asp:Button ID="btnedit" runat="server" Text="Edit Details" OnClientClick="return validateGender();" CssClass="btn-add" OnClick="btnedit_Click"  />
+                                     </div>
+                      
                     </div>
                 </div>
             </div>
@@ -123,7 +130,7 @@
     <script type="text/javascript">
         function showImagePreview() {
             var imgPreview = document.getElementById('<%= ImagePreview.ClientID %>');
-      var fileUpload = document.getElementById('<%= FileUpload1.ClientID %>');
+            var fileUpload = document.getElementById('<%= FileUpload1.ClientID %>');
 
             if (fileUpload.files && fileUpload.files[0]) {
                 var reader = new FileReader();
