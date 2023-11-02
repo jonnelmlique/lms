@@ -24,6 +24,7 @@ namespace lms.LOGIN
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
                 bool emailValid = false;
                 bool passwordValid = false;
+                string userStatus = "";
 
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
@@ -34,44 +35,49 @@ namespace lms.LOGIN
                     if (emailValid)
                     {
                         passwordValid = CheckPassword(con, email, password);
+                        userStatus = GetUserStatus(con, email);
                     }
 
-                    if (emailValid)
+                    if (emailValid && passwordValid && userStatus == "Activated")
                     {
-                        if (passwordValid)
+                        string usertype = DetermineUserUsertype(con, email);
+                        if (!string.IsNullOrEmpty(usertype))
                         {
-                            string usertype = DetermineUserUsertype(con, email);
-                            if (!string.IsNullOrEmpty(usertype))
-                            {
-                                Session["LoggedInUserEmail"] = email;
-                                Session["LoggedInUserType"] = usertype;
+                            Session["LoggedInUserEmail"] = email;
+                            Session["LoggedInUserType"] = usertype;
 
-                                if (usertype == "admin")
-                                {
-                                    Response.Redirect("/Admin/DashBoard.aspx");
-                                }
-                                else if (usertype == "student")
-                                {
-                                    Response.Redirect("/Student/DashBoard.aspx");
-                                }
-                                else if (usertype == "teacher")
-                                {
-                                    Response.Redirect("/Professor/DashBoard.aspx");
-                                }
-                            }
-                            else
+                            if (usertype == "admin")
                             {
-                                ShowErrorMessage("Invalid User Type");
+                                Response.Redirect("/Admin/DashBoard.aspx");
                             }
+                            else if (usertype == "student")
+                            {
+                                Response.Redirect("/Student/DashBoard.aspx");
+                            }
+                            else if (usertype == "teacher")
+                            {
+                                Response.Redirect("/Professor/DashBoard.aspx");
+                            }
+                        }
+                        else
+                        {
+                            ShowErrorMessage("Invalid User Type");
+                        }
+                    }
+                    else
+                    {
+                        if (userStatus == "Deactivated")
+                        {
+                            ShowErrorMessage("Your account is deactivated. Email the admin for more info.");
+                        }
+                        else if (!emailValid)
+                        {
+                            ShowErrorMessage("Invalid Email");
                         }
                         else
                         {
                             ShowErrorMessage("Invalid Password");
                         }
-                    }
-                    else
-                    {
-                        ShowErrorMessage("Invalid Email");
                     }
                 }
             }
@@ -79,7 +85,23 @@ namespace lms.LOGIN
             {
                 ShowErrorMessage("An error occurred while processing your request. Please try again later.");
             }
+        
+    }
+        private string GetUserStatus(MySqlConnection con, string email)
+        {
+            string query = "SELECT Status FROM users WHERE Email = @Email";
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Email", email);
+                object status = cmd.ExecuteScalar();
+                if (status != null)
+                {
+                    return status.ToString();
+                }
+                return null;
+            }
         }
+
         private bool CheckEmail(MySqlConnection con, string email)
         {
             string query = "SELECT Email FROM users WHERE BINARY Email = @Email";

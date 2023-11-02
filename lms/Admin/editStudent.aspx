@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminLayout.Master" AutoEventWireup="true" CodeBehind="editStudent.aspx.cs" Inherits="lms.Admin.WebForm12" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
        <link rel="stylesheet" href="../CSS/AdminCSS/editProf.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -106,9 +108,7 @@
                     </div>
                     <div class="lbl-txt button-add">
                         <asp:Button ID="btnedit" runat="server" Text="Edit Details" OnClientClick="return validateGender();" CssClass="btn-add" OnClick="btnedit_Click" />
-                         <asp:Button ID="btnactivate" runat="server" Text="Activate Account" CssClass="btn-add" OnClick="btnactivate_Click"/>
-                            <asp:Button ID="btndeactivate" runat="server" Text="Deactivate Account" CssClass="btn-add" OnClick="btndeactivate_Click" />
-
+                     
                         <%-- <asp:Button ID="Button3" runat="server" Text="Activate Account" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
                      <asp:Button ID="Button2" runat="server" Text="Deactivate Account" OnClientClick="return validateGender();" OnClick="btnadd_Click"  CssClass="btn-add"/>
                      <asp:Button ID="Button1" runat="server" Text="Clear"  CssClass="btn-add" />--%>

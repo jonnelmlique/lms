@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -25,14 +28,18 @@ namespace lms.Admin
 
         protected void btnadd_Click(object sender, EventArgs e)
         {
+            string profileimage = "";
+
             string firstName = txtfirstname.Text;
             string lastName = txtlastname.Text;
             string email = TextBox6.Text;
             string username = txtusername.Text;
+            string toEmail = TextBox6.Text;
+
             int age;
 
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username) ||
-                string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text) || string.IsNullOrWhiteSpace(TextBox7.Text) || !FileUpload1.HasFile)
+                string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text) || string.IsNullOrWhiteSpace(TextBox7.Text) )
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "Swal.fire({icon: 'error', text: 'Please fill out all the textboxes and select a file'})", true);
                 return;
@@ -59,7 +66,7 @@ namespace lms.Admin
                             {
                                 con.Open();
 
-                                string userQuery = "INSERT INTO users (username, password, email, usertype, status, profileimage) VALUES (@Username, @Password, @Email, 'student', 'activated', @ProfileImage)";
+                                string userQuery = "INSERT INTO users (username, password, email, usertype, status, profileimage) VALUES (@Username, @Password, @Email, 'student', 'Activated', @ProfileImage)";
                                 using (MySqlCommand userCmd = new MySqlCommand(userQuery, con))
                                 {
                                     userCmd.Parameters.AddWithValue("Username", username);
@@ -70,50 +77,70 @@ namespace lms.Admin
                                     {
                                         byte[] imageData = FileUpload1.FileBytes;
                                         userCmd.Parameters.Add(new MySqlParameter("@ProfileImage", imageData));
+
+                                        ImagePreview.Visible = true;
+                                        ImagePreview.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageData);
                                     }
                                     else
                                     {
-                                        userCmd.Parameters.Add(new MySqlParameter("@ProfileImage", DBNull.Value));
+                                        string defaultImagePath = Server.MapPath("~/Resources/users.png");
+                                        byte[] defaultImageData = File.ReadAllBytes(defaultImagePath);
+                                        userCmd.Parameters.AddWithValue("@ProfileImage", defaultImageData);
                                     }
+
 
                                     int userRowsAffected = userCmd.ExecuteNonQuery();
 
                                     if (userRowsAffected > 0)
+
                                     {
-                                        string teacherQuery = "INSERT INTO student_info (username, firstname, lastname, email, age, gender, birthday, contact, status, profileimage) VALUES (@Username, @FirstName, @LastName, @Email, @Age, @Gender, @Birthday, @Contact, 'activated', @ProfileImage)";
-                                        using (MySqlCommand teacherCmd = new MySqlCommand(teacherQuery, con))
+                                        SendEmail(email, toEmail, password);
+
+                                        string studentQuery = "INSERT INTO student_info (username, firstname, lastname, email, age, gender, birthday, contact, status, profileimage) VALUES (@Username, @FirstName, @LastName, @Email, @Age, @Gender, @Birthday, @Contact, 'Activated', @ProfileImage)";
+                                        using (MySqlCommand studentCmd = new MySqlCommand(studentQuery, con))
                                         {
-                                            teacherCmd.Parameters.AddWithValue("@Username", username);
-                                            teacherCmd.Parameters.AddWithValue("@FirstName", firstName);
-                                            teacherCmd.Parameters.AddWithValue("@LastName", lastName);
-                                            teacherCmd.Parameters.AddWithValue("@Email", email);
-                                            teacherCmd.Parameters.AddWithValue("@Age", age);
-                                            teacherCmd.Parameters.AddWithValue("@Gender", gender);
-                                            teacherCmd.Parameters.AddWithValue("@Birthday", birthday);
-                                            teacherCmd.Parameters.AddWithValue("@Contact", contact);
+                                            studentCmd.Parameters.AddWithValue("@Username", username);
+                                            studentCmd.Parameters.AddWithValue("@FirstName", firstName);
+                                            studentCmd.Parameters.AddWithValue("@LastName", lastName);
+                                            studentCmd.Parameters.AddWithValue("@Email", email);
+                                            studentCmd.Parameters.AddWithValue("@Age", age);
+                                            studentCmd.Parameters.AddWithValue("@Gender", gender);
+                                            studentCmd.Parameters.AddWithValue("@Birthday", birthday);
+                                            studentCmd.Parameters.AddWithValue("@Contact", contact);
 
                                             if (FileUpload1.HasFile)
                                             {
                                                 byte[] imageData = FileUpload1.FileBytes;
-                                                teacherCmd.Parameters.Add(new MySqlParameter("@ProfileImage", imageData));
+                                                studentCmd.Parameters.Add(new MySqlParameter("@ProfileImage", imageData)); // Use a different parameter name
                                             }
                                             else
                                             {
-                                                teacherCmd.Parameters.Add(new MySqlParameter("@ProfileImage", DBNull.Value));
+                                                string defaultImagePath = Server.MapPath("~/Resources/users.png");
+                                                byte[] defaultImageData = File.ReadAllBytes(defaultImagePath);
+                                                studentCmd.Parameters.AddWithValue("@ProfileImage", defaultImageData);
                                             }
 
-                                            int teacherRowsAffected = teacherCmd.ExecuteNonQuery();
 
-                                            if (teacherRowsAffected > 0)
+
+                                            int studentRowsAffected = studentCmd.ExecuteNonQuery();
+
+                                            if (studentRowsAffected > 0)
                                             {
-                                                ShowSuccessMessage("Student added successfully");
+                                                ShowSuccessMessage("The student has been added successfully, and the account details have been sent to the email");
                                                 txtfirstname.Text = "";
                                                 txtlastname.Text = "";
                                                 TextBox3.Text = "";
                                                 TextBox4.Text = "";
                                                 TextBox5.Text = "";
+                                                txtusername.Text = "";
                                                 TextBox6.Text = "";
                                                 TextBox7.Text = "";
+                                                RadioButton1.Checked = false;
+                                                RadioButton2.Checked = false;
+                                                ImagePreview.ImageUrl = "";
+
+                                                ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+
 
                                             }
                                             else
@@ -149,6 +176,25 @@ namespace lms.Admin
                 ShowErrorMessage("Invalid Age");
             }
         }
+        private void SendEmail(string toEmail, string fromEmail, string password)
+        {
+            string subject = "Your Account Details";
+            string body = $"Your account has been created.\n\nEmail: {fromEmail}\nPassword: {password}";
+            string gmailSignature = "Novaliches Senior High School Learning Management System";
+
+
+            body += "\n\n" + gmailSignature;
+
+            MailMessage mail = new MailMessage("novalichesseniorhighschool@gmail.com", toEmail, subject, body);
+
+            mail.IsBodyHtml = false;
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+            smtpClient.Port = 587;
+            smtpClient.Credentials = new NetworkCredential("novalichesseniorhighschool@gmail.com", "jpscuyqtbmgpkcqw");
+            smtpClient.EnableSsl = true;
+
+        }
 
         protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
@@ -166,15 +212,11 @@ namespace lms.Admin
                 else
                 {
                     ShowErrorMessage("Invalid date format. Please enter a valid date in the format M/d/yyyy (e.g., 7/21/2005).");
-
-                    //Label1.Text = "Invalid date format. Please enter a valid date in the format M/d/yyyy (e.g., 7/21/2005).";
                 }
             }
             catch (FormatException)
             {
                 ShowErrorMessage("Invalid date format. Please enter a valid date in the format M/d/yyyy (e.g., 7/21/2005).");
-
-                //Label1.Text = "Invalid date format. Please enter a valid date in the format M/d/yyyy (e.g., 7/21/2005).";
             }
         }
         private int CalculateAge(DateTime dob)
@@ -284,6 +326,7 @@ namespace lms.Admin
             TextBox7.Text = string.Empty;
             RadioButton1.Checked = false;
             RadioButton2.Checked = false;
+            ImagePreview.ImageUrl = "";
         }
     }
 }

@@ -69,6 +69,15 @@ namespace lms.Admin
         protected global::System.Web.UI.WebControls.TextBox TextBox3;
 
         /// <summary>
+        /// TextBox3_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender TextBox3_CalendarExtender;
+
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
@@ -220,23 +229,5 @@ namespace lms.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnedit;
-
-        /// <summary>
-        /// btnactivate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnactivate;
-
-        /// <summary>
-        /// btndeactivate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btndeactivate;
     }
 }

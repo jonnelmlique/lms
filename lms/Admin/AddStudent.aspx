@@ -77,15 +77,13 @@
                        <asp:FileUpload ID="FileUpload1" runat="server"  onchange="showImagePreview()" CssClass="upload"  />
                    </div>  
 
-                       <div class="lbl-txt" >
 
-                        <div class="lbl">
+                        <div class="lbl hide">
                             <asp:Label ID="Label9" runat="server" Text="Username" CssClass="acc-lbl age"></asp:Label>
                         </div>
-                        <div class="txt">
+                        <div class="txt hide" >
                             <asp:TextBox ID="txtusername" runat="server" CssClass="acc-txt" placeholder="Username"></asp:TextBox>
                         </div>
-                    </div>
 
                 <div class="lbl-txt">
                         <div class="lbl">
@@ -139,5 +137,23 @@
         document.getElementById('<%= txtusername.ClientID %>').value = username;
          }
      </script>
+      <script>
+          function showSuccessMessage() {
+              Swal.fire({
+                  icon: 'success',
+                  text: 'The student has been added successfully, and the account details have been sent to the email   ',
+                  showCancelButton: true,
+                  cancelButtonText: 'Continue to Add Student',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'StudentAcc.aspx';
+                  } else {
+                      window.location.href = 'AddStudent.aspx';
+                  }
+              });
+          }
+      </script>
 
 </asp:Content>

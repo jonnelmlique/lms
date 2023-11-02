@@ -38,7 +38,7 @@ namespace lms.Admin
             }
             return studentCount;
         }
-        protected int GetTotalTeacheCount()
+        protected int GetTotalTeacherCount()
         {
             int professorCount = 0; try
             {

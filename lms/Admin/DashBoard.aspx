@@ -22,17 +22,17 @@
        
            </div>
        <div class="icon-num">                  
-              <span><%= GetTotalTeacheCount() %></span>
+              <span><%= GetTotalTeacherCount() %></span>
              <i class="fas fa-users"></i>  
        </div>
    </div>
             <div class="dash-list">
          <div class="text">
-          <p>TOTAL INSTRUCTORS </p>
+          <p>TOTAL ROOMS </p>
     
         </div>
     <div class="icon-num">                  
-           <span><%= GetTotalTeacheCount() %></span>
+           <span><%= GetTotalRoomsCount() %></span>
           <i class="fas fa-users"></i>  
     </div>
 </div>

@@ -15,9 +15,76 @@ namespace lms.Admin
         {
             TextBox3.TextChanged += new EventHandler(TextBox3_TextChanged);
             TextBox4.Enabled = false;
+
+
+            if (Request.QueryString["studentid"] != null)
+            {
+                int studentId;
+                if (int.TryParse(Request.QueryString["studentid"], out studentId))
+                {
+                    try
+                    {
+                        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                        using (MySqlConnection con = new MySqlConnection(connectionString))
+                        {
+                            con.Open();
+
+                            string queryStudent = "SELECT * FROM student_info WHERE studentid = @studentid";
+
+                            using (MySqlCommand commandStudent = new MySqlCommand(queryStudent, con))
+                            {
+                                commandStudent.Parameters.AddWithValue("@studentid", studentId);
+
+                                using (MySqlDataReader readerStudent = commandStudent.ExecuteReader())
+                                {
+                                    if (readerStudent.Read())
+                                    {
+                                        TextBox1.Text = readerStudent["firstname"].ToString();
+                                        TextBox2.Text = readerStudent["lastname"].ToString();
+                                        txtusername.Text = readerStudent["username"].ToString();
+                                        TextBox3.Text = readerStudent["birthday"].ToString();
+                                        TextBox4.Text = readerStudent["age"].ToString();
+
+                                        string gender = readerStudent["gender"].ToString();
+                                        if (gender == "Male")
+                                        {
+                                            RadioButton1.Checked = true;
+                                        }
+                                        else if (gender == "Female")
+                                        {
+                                            RadioButton2.Checked = true;
+                                        }
+
+                                        TextBox5.Text = readerStudent["contact"].ToString();
+                                        TextBox6.Text = readerStudent["email"].ToString();
+
+                                        byte[] imageBytes = (byte[])readerStudent["profileimage"];
+                                        if (imageBytes != null && imageBytes.Length > 0)
+                                        {
+                                            string base64String = Convert.ToBase64String(imageBytes);
+                                            ImagePreview.ImageUrl = "data:image/jpeg;base64," + base64String;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions, e.g., log the error
+                    }
+                }
+                else
+                {
+                    // Handle the case when teacherid is not a valid integer
+                }
+            }
         }
 
-        protected void TextBox3_TextChanged(object sender, EventArgs e)
+
+protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
             try
             {

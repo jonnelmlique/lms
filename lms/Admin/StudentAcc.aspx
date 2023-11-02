@@ -13,13 +13,12 @@
                        <i class="fas fa-search"></i>
                   </div>
               <div class="search-buttons">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
-                <asp:ListItem Text="Activated Accounts" Value="1" />
-                <asp:ListItem Text="Deactivated Accounts" Value="2" />
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+
 
             </asp:DropDownList>
 
-            <a href="addStudent.aspx" class="crud">Add Account </a>
+            <a href="AddStudent.aspx" class="crud">Add Account </a>
              </div>
         </div>
                 <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
@@ -40,4 +39,6 @@
         </asp:GridView>
               </div>
     </div>
+   
+
 </asp:Content>

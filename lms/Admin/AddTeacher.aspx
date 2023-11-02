@@ -143,4 +143,24 @@
 
         }
     </script>
+      <script>
+          function showSuccessMessage() {
+              Swal.fire({
+                  icon: 'success',
+                  text: 'The Teacher has been added successfully, and the account details have been sent to the email   ',
+                  showCancelButton: true,
+                  cancelButtonText: 'Continue to Add Teacher',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'ProfessorAcc.aspx';
+                  } else {
+                      window.location.href = 'AddTeacher.aspx';
+                      window.location.href = 'AddTeacher.aspx';
+                      window.location.href = 'AddTeacher.aspx';
+                  }
+              });
+          }
+      </script>
 </asp:Content>

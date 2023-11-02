@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -23,24 +23,41 @@ namespace lms.Admin
 
                 
                 BindStudentData();
+                    PopulateStatusDropDown();
+
                 }
                 catch (Exception ex)
                 {
 
                 }
 
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                LoadGridViewWithStatus(DropDownList1.SelectedValue);
+
+            }
+        }
+        private void LoadGridViewWithStatus(string statusFilter)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                try
                 {
-                    try
+                    con.Open();
+                    string query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info";
+
+                    if (!string.IsNullOrEmpty(statusFilter))
                     {
-                        con.Open();
-                string query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
-                {
-                    using (MySqlCommand command = new MySqlCommand(query, con))
+                        query += " WHERE status = @statusFilter";
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        if (!string.IsNullOrEmpty(statusFilter))
+                        {
+                            cmd.Parameters.AddWithValue("@statusFilter", statusFilter);
+                        }
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                         {
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
@@ -50,12 +67,9 @@ namespace lms.Admin
                         }
                     }
                 }
-            }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage("An error occurred while processing your request. Please try again later.");
-
-                    }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                 }
             }
         }
@@ -69,7 +83,7 @@ namespace lms.Admin
             string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
-        private void BindStudentData(string searchTerm = "")
+        private void BindStudentData(string statusFilter = "")
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(connectionString))
@@ -80,21 +94,21 @@ namespace lms.Admin
                 
                 con.Open();
 
-                string query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info ";
+                    string query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info";
 
-                if (!string.IsNullOrEmpty(searchTerm))
-                {
-                    query += " WHERE studentid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
-                }
-
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
-                {
-                    if (!string.IsNullOrEmpty(searchTerm))
+                    if (!string.IsNullOrEmpty(statusFilter))
                     {
-                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                        query += " WHERE status = @statusFilter";
                     }
 
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        if (!string.IsNullOrEmpty(statusFilter))
+                        {
+                            cmd.Parameters.AddWithValue("@statusFilter", statusFilter);
+                        }
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -114,7 +128,9 @@ namespace lms.Admin
 
         protected void txtsearch_TextChanged(object sender, EventArgs e)
         {
+
             string searchTerm = txtsearch.Text;
+            string statusFilter = DropDownList1.SelectedValue;
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
@@ -122,17 +138,23 @@ namespace lms.Admin
             {
                 con.Open();
 
-                string query;
+                string query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info";
 
-                if (string.IsNullOrEmpty(searchTerm))
+                if (!string.IsNullOrEmpty(statusFilter))
                 {
-                    // If the search term is empty, fetch all data.
-                    query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info";
+                    query += " WHERE status = @statusFilter";
                 }
-                else
+
+                if (!string.IsNullOrEmpty(searchTerm))
                 {
-                    // If there is a search term, filter the results.
-                    query = "SELECT studentid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM student_info WHERE studentid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
+                    if (!string.IsNullOrEmpty(statusFilter))
+                    {
+                        query += " AND (studentid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm)";
+                    }
+                    else
+                    {
+                        query += " WHERE studentid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
+                    }
                 }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
@@ -140,6 +162,10 @@ namespace lms.Admin
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
                         cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                    }
+                    if (!string.IsNullOrEmpty(statusFilter))
+                    {
+                        cmd.Parameters.AddWithValue("@statusFilter", statusFilter);
                     }
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -153,17 +179,31 @@ namespace lms.Admin
                 }
             }
         }
+        private void PopulateStatusDropDown()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-        //protected void btnsearch_Click(object sender, ImageClickEventArgs e)
-        //    {
-        //        string searchTerm = txtsearch.Text;
-        //        BindStudentData(searchTerm);
-        //    }
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT DISTINCT status FROM student_info";
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string Status = reader["status"].ToString();
+                            DropDownList1.Items.Add(new ListItem(Status, Status));
+                        }
+                    }
+                }
+            }
+        }
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindStudentData(DropDownList1.SelectedValue);
 
-        //    protected void btnrefresh_Click(object sender, EventArgs e)
-        //    {
-        //        BindStudentData();
-        //        txtsearch.Text = "";
-        //    }
+        }
     }
 }

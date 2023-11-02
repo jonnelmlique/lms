@@ -14,18 +14,19 @@
                       <i class="fas fa-search"></i>
                 </div>
             <div class="search-buttons">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                <asp:ListItem Text="Activated" Value="1" />
-                <asp:ListItem Text="Deactivated" Value="2" />
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True">
+
 
             </asp:DropDownList>
             <a href="AddTeacher.aspx" class="crud">Add Account </a>
         </div>
 
         </div>
+
         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         <div class="search-tbl">
-      
+
+
         <asp:GridView ID="TeacherGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Professor Found">
             <Columns>
                 <asp:BoundField DataField="teacherid" HeaderText="Teacher ID" />
@@ -40,6 +41,9 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+
+                
+
               </div>
 
 
