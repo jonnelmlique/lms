@@ -46,14 +46,28 @@ namespace lms.Admin
                                             TextBox3.Text = readerStudent["birthday"].ToString();
                                             TextBox4.Text = readerStudent["age"].ToString();
 
+                                            TextBox1.Enabled = false;
+                                            TextBox2.Enabled = false;
+                                            TextBox3.Enabled = false;
+                                            TextBox4.Enabled = false;
+                                            TextBox5.Enabled = false;
+                                            TextBox6.Enabled = false;
+
+                                            ImagePreview.Enabled = false;
+                                            FileUpload1.Enabled = false;
+
                                             string gender = readerStudent["gender"].ToString();
                                             if (gender == "Male")
                                             {
                                                 RadioButton1.Checked = true;
+                                                RadioButton1.Enabled = false;
+                                                RadioButton2.Enabled = false;
                                             }
                                             else if (gender == "Female")
                                             {
                                                 RadioButton2.Checked = true;
+                                                RadioButton1.Enabled = false;
+                                                RadioButton2.Enabled = false;
                                             }
 
                                             TextBox5.Text = readerStudent["contact"].ToString();
@@ -283,7 +297,39 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
                 }
             }
         }
+      
+        protected void CheckBox1_CheckedChanged1(object sender, EventArgs e)
+        {
+            if (CheckBox1.Checked)
+            {
+                TextBox1.Enabled = true;
+                TextBox2.Enabled = true;
+                TextBox3.Enabled = true;
+                TextBox4.Enabled = true;
+                TextBox5.Enabled = true;
+                TextBox6.Enabled = true;
+                RadioButton1.Enabled = true;
+                RadioButton2.Enabled = true;
+                RadioButton3.Enabled = true;
+                RadioButton4.Enabled = true;
+                FileUpload1.Enabled = true;
 
+            }
+            else
+            {
+                TextBox1.Enabled = false;
+                TextBox2.Enabled = false;
+                TextBox3.Enabled = false;
+                TextBox4.Enabled = false;
+                TextBox5.Enabled = false;
+                TextBox6.Enabled = false;
+                RadioButton1.Enabled = false;
+                RadioButton2.Enabled = false;
+                RadioButton3.Enabled = false;
+                RadioButton4.Enabled = false;
+                FileUpload1.Enabled = false;
+            }
 
+        }
     }
 }

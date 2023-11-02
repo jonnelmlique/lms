@@ -18,6 +18,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -61,7 +62,7 @@
                 </div>
          
                 <div class="item">
-                    <a class="sub-btn" ><i class="fas fa-user-plus"></i>Manage Account<i class="fas fa-angle-right dropdown"></i></a>
+                    <a class="sub-btn" ><i class="fa-solid fa-users-gear"></i>Manage Account<i class="fas fa-angle-right dropdown"></i></a>
                     <div class="sub-menu">
                             <a href="ProfessorAcc.aspx" class="sub-item">Professors</a>
                             <a href="StudentAcc.aspx"> Students</a>
@@ -69,7 +70,7 @@
                         </div>
                 </div>
                   <div class="item">
-                       <a href="manageRooms.aspx"><i class='bx bxs-dashboard'></i>Manage Rooms</a>
+                       <a href="manageRooms.aspx"><i class="fa-solid fa-users-rectangle"></i>Manage Rooms</a>
 
                  </div>
                 <div class="item">
@@ -81,7 +82,7 @@
                     </div>
                 </div>
                    <div class="item">
-                       <a href="userReports.aspx"><i class='bx bxs-dashboard'></i>User Reports</a>
+                       <a href="userReports.aspx"><i class="fa-solid fa-flag"></i>User Reports</a>
                         
                   </div>
         

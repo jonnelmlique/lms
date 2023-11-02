@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -49,7 +50,7 @@
             </div>
      
             <div class="item">
-                <a href="CreateRoom.aspx" class="sub-btn" ><i class="fas fa-book"></i>Create Room</a>
+                <a href="CreateRoom.aspx" class="sub-btn" ><i class="fa-solid fa-users-rectangle"></i>Create Room</a>
                 
             </div>
               <div class="item">

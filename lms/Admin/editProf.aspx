@@ -112,7 +112,7 @@
 
                     <div class="lbl-txt button-add">
                         <div class="box">
-                                <asp:CheckBox ID="CheckBox1" runat="server" CssClass="check-bx" />
+                                <asp:CheckBox ID="CheckBox1" runat="server" CssClass="check-bx" OnCheckedChanged="CheckBox1_CheckedChanged"  AutoPostBack="true" />
                             <span>Enable Editing?</span>
                         </div>
                     <div class="box-btn">

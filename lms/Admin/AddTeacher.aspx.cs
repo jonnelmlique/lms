@@ -113,7 +113,7 @@ namespace lms.Admin
                             {
                                 con.Open();
 
-                                string userQuery = "INSERT INTO users (username, password, email, usertype, status, profileimage) VALUES (@Username, @Password, @Email, 'teacher', 'activated', @ProfileImage)";
+                                string userQuery = "INSERT INTO users (username, password, email, usertype, status, profileimage) VALUES (@Username, @Password, @Email, 'teacher', 'Activated', @ProfileImage)";
                                 using (MySqlCommand userCmd = new MySqlCommand(userQuery, con))
                                 {
                                     userCmd.Parameters.AddWithValue("Username", username);
