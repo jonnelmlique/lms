@@ -73,7 +73,7 @@
                 </div>
                 <div class="acc-info2">
                     <div class="acc-img">
-                        <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
+                        <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="true" Visible="true" />
                         <asp:FileUpload ID="FileUpload1" runat="server" text="" onchange="showImagePreview()" CssClass="upload" />
                     </div>
 

@@ -122,7 +122,7 @@ namespace lms.Professor
                     {
 
                         string query = "INSERT INTO invitation (studentid, teacherid, teacheremail, studentemail, subjectname, status) " +
-                                            "VALUES (@studentid, @teacherid, @teacheremail, @studentemail, @subjectname, 'Invited') ";
+                                            "VALUES (@studentid, @teacherid, @teacheremail, @studentemail, @subjectname, 'Pending') ";
                         using (MySqlCommand cmd = new MySqlCommand(query, con))
                         {
                             cmd.Parameters.AddWithValue("@studentid", studentid);
@@ -156,44 +156,44 @@ private void ShowSuccessMessage(string message)
     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
 }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            string searchTerm = TextBox1.Text.Trim();
+        //protected void TextBox1_TextChanged(object sender, EventArgs e)
+        //{
+        //    string searchTerm = TextBox1.Text.Trim();
 
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+        //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-            using (MySqlConnection con = new MySqlConnection(connectionString))
-            {
-                con.Open();
+        //    using (MySqlConnection con = new MySqlConnection(connectionString))
+        //    {
+        //        con.Open();
 
-                string query;
+        //        string query;
 
-                if (string.IsNullOrEmpty(searchTerm))
-                {
-                    // If the search term is empty, fetch all student data.
-                }
-                else
-                {
-                    // If there is a search term, filter the results.
-                    query = "SELECT studentid, email FROM student_info " +
-                            "WHERE studentid LIKE @searchTerm OR email LIKE @searchTerm";
+        //        if (string.IsNullOrEmpty(searchTerm))
+        //        {
+        //            // If the search term is empty, fetch all student data.
+        //        }
+        //        else
+        //        {
+        //            // If there is a search term, filter the results.
+        //            query = "SELECT studentid, email FROM student_info " +
+        //                    "WHERE studentid LIKE @searchTerm OR email LIKE @searchTerm";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+        //            using (MySqlCommand cmd = new MySqlCommand(query, con))
+        //            {
+        //                cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
 
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                        {
-                            DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
+        //                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+        //                {
+        //                    DataTable dataTable = new DataTable();
+        //                    adapter.Fill(dataTable);
 
-                            roomlist.DataSource = dataTable; // Update the GridView name to the one for students
-                            roomlist.DataBind();
-                        }
-                    }
-                }
-            }
-        }
+        //                    roomlist.DataSource = dataTable; // Update the GridView name to the one for students
+        //                    roomlist.DataBind();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
    
