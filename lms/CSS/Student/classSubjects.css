@@ -1,0 +1,53 @@
+﻿
+
+.subjects {
+    border: 1px solid red;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid red;
+}
+
+.search-subject{
+ 
+    height:60px;
+    width:100%;
+    display:flex;   
+}
+.search-subj {
+    flex: 1;
+  
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:5px 10px;
+    position:relative;
+}
+.search-subj .subj-txt{
+    width:100%;
+    border-radius:15px;
+    padding:10px 50px 10px 20px;
+    height:100%;
+    font-size:18px;
+   
+}
+.search-subj i{
+    position:absolute;
+    top:18px;
+    right:20px;
+    font-size:25px;
+   
+    
+}
+.search-subj2 {
+    flex: 1;
+  
+    height: 100%;
+}
+
+.subject-list{
+    border:1px solid red;
+    height:calc(100% - 60px);
+}
