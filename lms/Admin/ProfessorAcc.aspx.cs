@@ -127,9 +127,7 @@ namespace lms.Admin
 
         protected void txtsearch_TextChanged(object sender, EventArgs e)
         {
-
             string searchTerm = txtsearch.Text;
-            string statusFilter = DropDownList1.SelectedValue;
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
@@ -137,23 +135,17 @@ namespace lms.Admin
             {
                 con.Open();
 
-                string query = "SELECT teacherid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM teacher_info";
+                string query;
 
-                if (!string.IsNullOrEmpty(statusFilter))
+                if (string.IsNullOrEmpty(searchTerm))
                 {
-                    query += " WHERE status = @statusFilter";
+                    // If the search term is empty, fetch all data.
+                    query = "SELECT teacherid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM teacher_info";
                 }
-
-                if (!string.IsNullOrEmpty(searchTerm))
+                else
                 {
-                    if (!string.IsNullOrEmpty(statusFilter))
-                    {
-                        query += " AND (teacherid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm)";
-                    }
-                    else
-                    {
-                        query += " WHERE teacherid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
-                    }
+                    // If there is a search term, filter the results.
+                    query = "SELECT teacherid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM teacher_info WHERE teacherid LIKE @searchTerm OR CONCAT(firstName, ' ', lastName) LIKE @searchTerm OR email LIKE @searchTerm";
                 }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
@@ -161,10 +153,6 @@ namespace lms.Admin
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
                         cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-                    }
-                    if (!string.IsNullOrEmpty(statusFilter))
-                    {
-                        cmd.Parameters.AddWithValue("@statusFilter", statusFilter);
                     }
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
