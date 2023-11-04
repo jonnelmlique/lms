@@ -14,7 +14,27 @@
                     <p>List of Created Rooms</p>
                 </div>
                 <div class="invite-room-list">
-                     <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
+
+                             <div class="subjects">
+     <asp:GridView ID="roomdetailsGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Subject Found">
+        <Columns>
+                <asp:BoundField DataField="subjectname" HeaderText="Subject Name" HeaderStyle-CssClass="subj"/>
+                            <asp:BoundField DataField="section" HeaderText="Subject Name" HeaderStyle-CssClass="subj"/>
+
+                <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
+           <ItemTemplate>
+                <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
+                        PostBackUrl='<%# "StudentInvite.aspx?roomid=" + Eval("roomid") %>'
+
+Text="View Subjects" />
+
+          </ItemTemplate>
+          </asp:TemplateField>
+        </Columns>
+     </asp:GridView>
+
+
+                    <%-- <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
                           StaticSelectedStyle-CssClass="selected-tab" StaticMenuItemStyle-HorizontalPadding="50px" StaticMenuItemStyle-VerticalPadding="15px"
                            StaticSelectedStyle-BackColor="#eb4d4d" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick" >
                      <Items>
@@ -38,7 +58,7 @@
                                      </asp:View>
                          </asp:MultiView>
 
-                    </div>
+                    </div>--%>
               
                 </div>
             </div>

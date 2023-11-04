@@ -11,16 +11,25 @@ namespace lms.Professor
 {
 
 
-    public partial class WebForm5
+    public partial class StudentInvite
     {
 
         /// <summary>
-        /// roomdetailsGridView control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView roomdetailsGridView;
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// roomlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView roomlist;
     }
 }
