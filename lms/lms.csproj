@@ -164,6 +164,7 @@
     <Content Include="CSS\ProfessorCSS\pedingInvite.css" />
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
     <Content Include="CSS\ProfessorCSS\room_details.css" />
+    <Content Include="CSS\Student\classSubjects.css" />
     <Content Include="CSS\Student\DashBoard.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="Account\Login.aspx" />
@@ -192,6 +193,8 @@
     <None Include="Resources\users.png" />
     <Content Include="Professor\StudentInvite.aspx" />
     <Content Include="Student\DashBoard.aspx" />
+    <Content Include="Student\classSubjects.aspx" />
+    <Content Include="Student\Invitations.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +448,20 @@
     </Compile>
     <Compile Include="Student\DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\classSubjects.aspx.cs">
+      <DependentUpon>classSubjects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\classSubjects.aspx.designer.cs">
+      <DependentUpon>classSubjects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Invitations.aspx.cs">
+      <DependentUpon>Invitations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Invitations.aspx.designer.cs">
+      <DependentUpon>Invitations.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
