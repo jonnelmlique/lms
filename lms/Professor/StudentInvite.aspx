@@ -35,6 +35,7 @@
 
                         <asp:GridView ID="roomlist" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
                             <columns>
+                                <asp:BoundField DataField="roomid" HeaderText="Room ID" HeaderStyle-CssClass="subj" />
 
                                 <asp:BoundField DataField="studentid" HeaderText="Student ID" HeaderStyle-CssClass="subj id" />
                                 <asp:BoundField DataField="StudentEmail" HeaderText="Email" HeaderStyle-CssClass="subj" />

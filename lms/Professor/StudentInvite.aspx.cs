@@ -60,7 +60,7 @@ namespace lms.Professor
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT s.studentid, s.email AS StudentEmail, t.teacherid, t.email AS TeacherEmail, r.subjectname " +
+                string query = "SELECT s.studentid, s.email AS StudentEmail, t.teacherid, t.email AS TeacherEmail, r.subjectname, r.roomid " +
                                "FROM student_Info s " +
                                "INNER JOIN teacher_info t " +
                                "INNER JOIN rooms r " +
@@ -100,19 +100,23 @@ namespace lms.Professor
 
             GridViewRow selectedRow = (GridViewRow)((Button)sender).NamingContainer;
 
-            string studentid = selectedRow.Cells[0].Text;
-            string studentemail = selectedRow.Cells[1].Text;
-            string teacherid = selectedRow.Cells[2].Text;
-            string teacheremail = selectedRow.Cells[3].Text;
-            string subjectname = selectedRow.Cells[4].Text;
+            string roomid = selectedRow.Cells[0].Text;
+            string studentid = selectedRow.Cells[1].Text;
+            string studentemail = selectedRow.Cells[2].Text;
+            string teacherid = selectedRow.Cells[3].Text;
+            string teacheremail = selectedRow.Cells[4].Text;
+            string subjectname = selectedRow.Cells[5].Text;
 
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
 
-                string checkQuery = "SELECT COUNT(*) FROM invitation WHERE studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname AND status = 'Pending' ";
+                string checkQuery = "SELECT COUNT(*) FROM invitation WHERE roomid = @roomid AND studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname AND status = 'Pending' ";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
+
                 {
+                    checkCmd.Parameters.AddWithValue("@roomid", roomid);
+
                     checkCmd.Parameters.AddWithValue("@studentid", studentid);
                     checkCmd.Parameters.AddWithValue("@teacherid", teacherid);
                     checkCmd.Parameters.AddWithValue("@subjectname", subjectname);
@@ -120,10 +124,12 @@ namespace lms.Professor
 
                     if (count == 0)
                     {
-                        string query = "INSERT INTO invitation (studentid, teacherid, teacheremail, studentemail, subjectname, status) " +
-                                            "VALUES (@studentid, @teacherid, @teacheremail, @studentemail, @subjectname, 'Pending') ";
+                        string query = "INSERT INTO invitation (roomid, studentid, teacherid, teacheremail, studentemail, subjectname, status) " +
+                                            "VALUES (@roomid, @studentid, @teacherid, @teacheremail, @studentemail, @subjectname, 'Pending') ";
                         using (MySqlCommand cmd = new MySqlCommand(query, con))
                         {
+                            cmd.Parameters.AddWithValue("@roomid", roomid);
+
                             cmd.Parameters.AddWithValue("@studentid", studentid);
                             cmd.Parameters.AddWithValue("@teacherid", teacherid);
                             cmd.Parameters.AddWithValue("@teacheremail", teacheremail);

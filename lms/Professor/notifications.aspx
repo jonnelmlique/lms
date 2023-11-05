@@ -16,9 +16,11 @@
             <div class="notif-list">
                 <div class="notif-p">
                  
-                    <asp:GridView ID="roomdetailsGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Subject Found">
+                    <asp:GridView ID="roomdetailsGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Notification Found">
                         <Columns>
                             <asp:BoundField DataField="subject" HeaderText="Subject Name" HeaderStyle-CssClass="subj" />
+                              <asp:BoundField DataField="Date" HeaderText="Date" HeaderStyle-CssClass="subj" />
+
                             <asp:TemplateField HeaderText="" ItemStyle-Width="180px">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"

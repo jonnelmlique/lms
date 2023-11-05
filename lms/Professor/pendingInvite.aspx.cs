@@ -30,11 +30,11 @@ namespace lms.Professor
                 {
                     con.Open();
 
-                    string query = "SELECT invitationid, studentid, teacherid, teacheremail, studentemail, subjectname, status FROM invitation WHERE teacheremail = @loggedInProfessorEmail AND status = 'Pending' ";
+                    string query = "SELECT invitationid, roomid, studentid, teacherid, teacheremail, studentemail, subjectname, status FROM invitation WHERE teacheremail = @loggedInProfessorEmail AND status = 'Pending' ";
 
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        query += " AND (studentid LIKE @searchTerm OR teacheremail LIKE @searchTerm OR studentemail LIKE @searchTerm OR subjectname LIKE @searchTerm)";
+                        query += " AND (roomid LIKE @searchTerm OR studentid LIKE @searchTerm OR teacheremail LIKE @searchTerm OR studentemail LIKE @searchTerm OR subjectname LIKE @searchTerm)";
                     }
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))

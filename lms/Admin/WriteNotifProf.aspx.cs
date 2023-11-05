@@ -77,9 +77,7 @@ namespace lms.Admin
             string recipientEmail = emailtxt.Text;
             string subject = txtsubject.Text;
             string messageText = txtMessage.Text;
-            string gmailSignature = "Novaliches Senior High School Learning Management System";
 
-            messageText += "\n\n" + gmailSignature;
 
             if (txtMessage.Text == "")
             {
