@@ -87,6 +87,7 @@ namespace lms.Professor
 
         protected void btnUpdateStatus_Click(object sender, EventArgs e)
         {
+
             Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             DropDownList ddl = (DropDownList)gvr.FindControl("ddlProcess");
@@ -110,7 +111,7 @@ namespace lms.Professor
                 con.Open();
 
 
-                string checkQuery = "SELECT COUNT(*) FROM invitation WHERE studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname";
+                string checkQuery = "SELECT COUNT(*) FROM invitation WHERE studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname AND status = 'Pending' ";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
                 {
                     checkCmd.Parameters.AddWithValue("@studentid", studentid);
@@ -118,7 +119,7 @@ namespace lms.Professor
                     checkCmd.Parameters.AddWithValue("@subjectname", subjectname);
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
-                    if (count == 0) 
+                    if (count == 0)
                     {
 
                         string query = "INSERT INTO invitation (studentid, teacherid, teacheremail, studentemail, subjectname, status) " +
@@ -140,60 +141,21 @@ namespace lms.Professor
                     else
 
                     {
-                        ShowErrorMessage("This invitation already sent");
+                        ShowErrorMessage("The Student has already Invited");
                     }
                 }
             }
         }
             private void ShowErrorMessage(string message)
-{
-    string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
-    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
-}
-private void ShowSuccessMessage(string message)
-{
-    string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
-    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
-}
-
-        //protected void TextBox1_TextChanged(object sender, EventArgs e)
-        //{
-        //    string searchTerm = TextBox1.Text.Trim();
-
-        //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-
-        //    using (MySqlConnection con = new MySqlConnection(connectionString))
-        //    {
-        //        con.Open();
-
-        //        string query;
-
-        //        if (string.IsNullOrEmpty(searchTerm))
-        //        {
-        //            // If the search term is empty, fetch all student data.
-        //        }
-        //        else
-        //        {
-        //            // If there is a search term, filter the results.
-        //            query = "SELECT studentid, email FROM student_info " +
-        //                    "WHERE studentid LIKE @searchTerm OR email LIKE @searchTerm";
-
-        //            using (MySqlCommand cmd = new MySqlCommand(query, con))
-        //            {
-        //                cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-
-        //                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-        //                {
-        //                    DataTable dataTable = new DataTable();
-        //                    adapter.Fill(dataTable);
-
-        //                    roomlist.DataSource = dataTable; // Update the GridView name to the one for students
-        //                    roomlist.DataBind();
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
     }
 }
    

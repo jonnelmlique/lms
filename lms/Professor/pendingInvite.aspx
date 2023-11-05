@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/professorMasterPage.Master" AutoEventWireup="true" CodeBehind="pendingInvite.aspx.cs" Inherits="lms.Professor.WebForm6" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <link rel="stylesheet" href="../CSS/ProfessorCSS/pedingInvite.css" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
@@ -15,6 +17,7 @@
           </div>
 
 
+                    
 
 
 
@@ -28,9 +31,19 @@
             <asp:BoundField DataField="teacherid" HeaderText="Teacher ID" />
             <asp:BoundField DataField="teacheremail" HeaderText="Teacher Email" />
             <asp:BoundField DataField="studentemail" HeaderText="Student Email" />
+            <asp:BoundField DataField="subjectname" HeaderText="Subject Name" />
+
             <asp:BoundField DataField="status" HeaderText="Status" />
 
-          
+           <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
+     <itemtemplate>
+         <asp:DropDownList ID="ddlProcess" runat="server" style="display: none" CssClass="action-btn">
+             <asp:ListItem Text="Invite" Value="Invite" ></asp:ListItem>
+         </asp:DropDownList>
+         <asp:HiddenField ID="hfTnIdPkId" runat="server" Value='<%# Eval("invitationid") %>' />
+         <asp:Button ID="btnUpdateStatus" runat="server" Text="Cancel" CssClass="action-btn" OnClick="btnUpdateStatus_Click"   />
+     </itemtemplate>
+ </asp:TemplateField>
         </Columns>
     </asp:GridView>
 

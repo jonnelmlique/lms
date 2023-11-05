@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -13,9 +14,10 @@ namespace lms.Professor
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            InvitationData();
-
-
+            if (!IsPostBack)
+            {
+                InvitationData();
+            }
         }
         private void InvitationData(string searchTerm = "")
         {
@@ -56,11 +58,10 @@ namespace lms.Professor
                 }
                 catch (Exception ex)
                 {
-                    // Handle exceptions here
+
                 }
             }
         }
-
         protected void txtsearch_TextChanged(object sender, EventArgs e)
         {
             string searchTerm = txtsearch.Text;
@@ -100,6 +101,83 @@ namespace lms.Professor
                     }
                 }
             }
+        }
+        protected void btnUpdateStatus_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+            HiddenField hf = (HiddenField)gvr.FindControl("hfTnIdPkId");
+            int invitationid = int.Parse(hf.Value);
+
+            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+
+                string updateQuery = "UPDATE invitation SET status = 'Cancelled' WHERE invitationid = @invitationid";
+
+                using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, con))
+                {
+                    updateCmd.Parameters.AddWithValue("@invitationid", invitationid);
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        ShowSuccessMessage("Invitation Status Updated to 'Cancelled'");
+                        InvitationData();
+                    }
+                    else
+                    {
+                        ShowErrorMessage("Failed to update invitation status");
+                        InvitationData();
+                    }
+                }
+            }
+            //Button btn = (Button)sender;
+            //GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+            //HiddenField hf = (HiddenField)gvr.FindControl("hfTnIdPkId");
+            //int invitationid = int.Parse(hf.Value);
+
+            //string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            //using (MySqlConnection con = new MySqlConnection(connectionString))
+            //{
+            //    con.Open();
+
+            //    string deleteQuery = "DELETE FROM invitation WHERE invitationid = @invitationid";
+
+            //    using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, con))
+            //    {
+            //        deleteCmd.Parameters.AddWithValue("@invitationid", invitationid);
+            //        int rowsAffected = deleteCmd.ExecuteNonQuery();
+
+            //        if (rowsAffected > 0)
+            //        {
+            //            ShowSuccessMessage("Row Deleted Successfully");
+            //            InvitationData();
+
+            //        }
+            //        else
+            //        {
+            //            ShowErrorMessage("Row Deletion Failed");
+            //            InvitationData();
+
+            //        }
+            //    }
+            //}
+        }
+   
+        
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
     }
 }
