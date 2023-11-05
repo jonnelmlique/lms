@@ -51,7 +51,7 @@ namespace lms.Professor
                 }
             }
         }
-        protected void BindStudentData(string roomid)
+        protected void BindStudentData(string roomid, string searchTerm = "")
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
@@ -67,11 +67,20 @@ namespace lms.Professor
                                "WHERE t.email = @TeacherEmail AND r.roomid = @roomidParam";
 
 
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    query += " AND (s.email LIKE @searchTerm)";
+                }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@TeacherEmail", loggedinTeacherEmail);
                     cmd.Parameters.AddWithValue("@roomidParam", roomid);
+
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                    }
 
                     using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                     {
@@ -84,7 +93,11 @@ namespace lms.Professor
                 }
             }
         }
-
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = TextBox1.Text;
+            BindStudentData(searchTerm);
+        }
         protected void btnUpdateStatus_Click(object sender, EventArgs e)
         {
 
@@ -148,7 +161,9 @@ namespace lms.Professor
                 }
             }
         }
-            private void ShowErrorMessage(string message)
+            
+       
+        private void ShowErrorMessage(string message)
         {
             string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
@@ -158,6 +173,7 @@ namespace lms.Professor
             string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
+
     }
 }
    

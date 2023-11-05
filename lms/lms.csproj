@@ -196,6 +196,7 @@
     <None Include="Resources\users.png" />
     <Content Include="Professor\StudentInvite.aspx" />
     <Content Include="Professor\editDetails.aspx" />
+    <None Include="Resources\default.png" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
     <Content Include="Student\Invitations.aspx" />

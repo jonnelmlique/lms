@@ -11,7 +11,7 @@
         <div class="room-filter">
             <div class="filters">
                 <p>Select Room</p>
-            
+
                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
                     <asp:ListItem Text="All Rooms" Value="1" />
                 </asp:DropDownList>
@@ -40,13 +40,17 @@
                             <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
                             <div class="room-buttons">
-                                 <a href="#" class="room-btn">Enter Room</a>
-                                 <a href="editDetails.aspx" class="room-btn">Edit Details</a>                               
-                                  <a href="#" class="room-btn">Archive Room</a>
+                                <a href="#" class="room-btn">Enter Room</a>
+                                <%--                                 <a href="editDetails.aspx" class="room-btn">Edit Details</a>                               --%>
+                                <asp:LinkButton ID="roomLink" runat="server" CssClass="room-btn"
+                                    PostBackUrl='<%# "editDetails.aspx?roomid=" + Eval("roomid") %>'
+                                    Text="Edit Details" />
+
+                                <a href="#" class="room-btn">Archive Room</a>
                             </div>
                         </div>
                     </div>
-                
+
                 </ItemTemplate>
                 <FooterTemplate>
                     </ul>

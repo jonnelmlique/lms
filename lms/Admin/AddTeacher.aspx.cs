@@ -130,7 +130,7 @@ namespace lms.Admin
                                     }
                                     else
                                     {
-                                        string defaultImagePath = Server.MapPath("~/Resources/users.png");
+                                        string defaultImagePath = Server.MapPath("~/Resources/default.png");
                                         byte[] defaultImageData = File.ReadAllBytes(defaultImagePath);
                                         userCmd.Parameters.AddWithValue("@ProfileImage", defaultImageData);
                                     }
@@ -164,7 +164,7 @@ namespace lms.Admin
                                             }
                                             else
                                             {
-                                                string defaultImagePath = Server.MapPath("~/Resources/users.png");
+                                                string defaultImagePath = Server.MapPath("~/Resources/default.png");
                                                 byte[] defaultImageData = File.ReadAllBytes(defaultImagePath);
                                                 teacherCmd.Parameters.AddWithValue("@ProfileImage", defaultImageData);
                                             }

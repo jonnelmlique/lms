@@ -13,13 +13,15 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
               <header>
         <div class="header-content">
-            <a href="DashBoard.aspx"><img src="../Resources/Novaliches Senior High School.png" alt="LOGO" /></a>
-           <a href="DashBoard.aspx"> <h2> Novaliches High School</h2></a>
+            <a href="/Professor/DashBoard.aspx"><img src="../Resources/Novaliches Senior High School.png" alt="LOGO" /></a>
+           <a href="/Professor/DashBoard.aspx"> <h2> Novaliches High School</h2></a>
         </div>
         <div class="header-login">
              <div class="dropdown">
@@ -78,7 +80,7 @@
                             <asp:TextBox ID="TextBox7" runat="server" CssClass="info-text" placeholder="Re-type New Password"></asp:TextBox>
                           </div>
                           <div class="info-pass pass-btn">
-                              <asp:Button ID="Button1" runat="server" Text="Change Password" CssClass="pass-button" />
+                              <asp:Button ID="Button1" runat="server" Text="Change Password" CssClass="pass-button" OnClick="Button1_Click" />
                                  <asp:Button ID="Button2" runat="server" Text="Cancel" CssClass="pass-button" />
                           </div>
                      </div>                   

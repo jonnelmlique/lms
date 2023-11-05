@@ -21,7 +21,7 @@
                 <div class="invite-room-list">
                     <div class="search-list">
                         <div class="search-student">
-                               <asp:TextBox ID="TextBox1" runat="server" CssClass="text-search" placeholder="Search student" AutoPostBack="True" ></asp:TextBox>
+                               <asp:TextBox ID="TextBox1" runat="server" CssClass="text-search" placeholder="Search student" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" ></asp:TextBox>
                                <i class="fas fa-search"></i>
                           </div>
                          <div class="subj-name">
@@ -35,7 +35,7 @@
 
                         <asp:GridView ID="roomlist" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
                             <columns>
-                                <asp:BoundField DataField="roomid" HeaderText="Room ID" HeaderStyle-CssClass="subj" />
+                                <asp:BoundField DataField="roomid" HeaderText="Room ID" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column" />
 
                                 <asp:BoundField DataField="studentid" HeaderText="Student ID" HeaderStyle-CssClass="subj id" />
                                 <asp:BoundField DataField="StudentEmail" HeaderText="Email" HeaderStyle-CssClass="subj" />

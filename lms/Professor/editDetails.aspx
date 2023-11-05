@@ -71,7 +71,7 @@
                             <asp:View ID="View2" runat="server">
                                 <div class="details-view">
                                     <div class="details-image">
-                                        <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true" />
+                                        <asp:Image ID="ImagePreview" runat="server" CssClass="img-preview" EnableViewState="true" Visible="true" />
                                         <asp:FileUpload ID="roomimage" runat="server" CssClass="img-btn" onchange="showImagePreview()" Font-Size="Larger" />
                                     </div>
                                     <div class="details-info">
@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="info-button">
                                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="info-btn" OnClick="btnCancel_Click" CausesValidation="false" />
-                                            <asp:Button ID="btnCreate" runat="server" Text="Create Room" CssClass="info-btn" OnClick="btnCreate_Click" />
+                                            <asp:Button ID="btnupdate" runat="server" Text="Update Room" CssClass="info-btn" OnClick="btnupdate_Click"  />
                                         </div>
                                     </div>
                                 </div>
@@ -138,17 +138,12 @@
             Swal.fire({
                 icon: 'success',
                 text: 'Room successfully created!',
-                showCancelButton: true,
-                confirmButtonText: 'Continue to Create Room',
-                cancelButtonText: 'Go Back',
+                confirmButtonText: 'Confirm',
                 confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'room_details.aspx';
-                } else {
                     window.location.href = 'CreateRoom.aspx';
-                }
+                } 
             });
         }
     </script>
