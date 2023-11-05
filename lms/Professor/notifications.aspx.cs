@@ -25,11 +25,11 @@ namespace lms.Professor
             }
         }
 
-        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
-        {
-            int index = Int32.Parse(e.Item.Value);
-            MultiView1.ActiveViewIndex = index;
-        }
+        //protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+        //{
+        //    int index = Int32.Parse(e.Item.Value);
+        //    MultiView1.ActiveViewIndex = index;
+        //}
         private void BindRoomData(string searchTerm = "")
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
@@ -62,10 +62,10 @@ namespace lms.Professor
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 0;
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    MultiView1.ActiveViewIndex = 0;
 
-        }
+        //}
     }
 }

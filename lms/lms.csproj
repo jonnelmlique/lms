@@ -170,6 +170,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Professor\instructorClassroom.aspx" />
+    <Content Include="Professor\NotificationDetails.aspx" />
     <Content Include="Professor\professorMasterPage.Master" />
     <Content Include="Professor\ImageHandler.ashx" />
     <None Include="Resources\Novaliches High School Cover Picture.jpg" />
@@ -350,6 +351,13 @@
     </Compile>
     <Compile Include="Professor\instructorClassroom.aspx.designer.cs">
       <DependentUpon>instructorClassroom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\NotificationDetails.aspx.cs">
+      <DependentUpon>NotificationDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\NotificationDetails.aspx.designer.cs">
+      <DependentUpon>NotificationDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Professor\professorMasterPage.Master.cs">
       <DependentUpon>professorMasterPage.Master</DependentUpon>
