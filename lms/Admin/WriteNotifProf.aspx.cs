@@ -111,10 +111,12 @@ namespace lms.Admin
                     {
                         con.Open();
 
-                        string insertQuery = "INSERT INTO notification (receiver, subject, message, date) VALUES (@Receiver, @Subject, @Message, @Date)";
+                        string insertQuery = "INSERT INTO notification (sender, receiver, subject, message, date) VALUES (@sender, @Receiver, @Subject, @Message, @Date)";
 
                         using (MySqlCommand cmd = new MySqlCommand(insertQuery, con))
                         {
+                            cmd.Parameters.AddWithValue("@sender", "novalichesseniorhighschool@gmail.com");
+
                             cmd.Parameters.AddWithValue("@Receiver", recipientEmail);
                             cmd.Parameters.AddWithValue("@Subject", subject);
                             cmd.Parameters.AddWithValue("@Message", messageText);

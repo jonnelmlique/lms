@@ -110,7 +110,6 @@ namespace lms.Professor
             {
                 con.Open();
 
-
                 string checkQuery = "SELECT COUNT(*) FROM invitation WHERE studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname AND status = 'Pending' ";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
                 {
@@ -121,7 +120,6 @@ namespace lms.Professor
 
                     if (count == 0)
                     {
-
                         string query = "INSERT INTO invitation (studentid, teacherid, teacheremail, studentemail, subjectname, status) " +
                                             "VALUES (@studentid, @teacherid, @teacheremail, @studentemail, @subjectname, 'Pending') ";
                         using (MySqlCommand cmd = new MySqlCommand(query, con))
@@ -134,8 +132,6 @@ namespace lms.Professor
 
                             cmd.ExecuteNonQuery();
                         }
-
-
                         ShowSuccessMessage("Student Invited Successfully");
                     }
                     else

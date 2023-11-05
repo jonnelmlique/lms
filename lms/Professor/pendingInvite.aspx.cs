@@ -104,36 +104,36 @@ namespace lms.Professor
         }
         protected void btnUpdateStatus_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+        Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             HiddenField hf = (HiddenField)gvr.FindControl("hfTnIdPkId");
             int invitationid = int.Parse(hf.Value);
 
-            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+     string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+    using (MySqlConnection con = new MySqlConnection(connectionString))
+    {
+        con.Open();
+
+        string updateQuery = "UPDATE invitation SET status = 'Cancelled' WHERE invitationid = @invitationid";
+
+        using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, con))
+        {
+            updateCmd.Parameters.AddWithValue("@invitationid", invitationid);
+            int rowsAffected = updateCmd.ExecuteNonQuery();
+
+            if (rowsAffected > 0)
             {
-                con.Open();
-
-                string updateQuery = "UPDATE invitation SET status = 'Cancelled' WHERE invitationid = @invitationid";
-
-                using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, con))
-                {
-                    updateCmd.Parameters.AddWithValue("@invitationid", invitationid);
-                    int rowsAffected = updateCmd.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        ShowSuccessMessage("Invitation Status Updated to 'Cancelled'");
-                        InvitationData();
-                    }
-                    else
-                    {
-                        ShowErrorMessage("Failed to update invitation status");
-                        InvitationData();
-                    }
-                }
+                ShowSuccessMessage("Invitation Status Updated to 'Cancelled'");
+                InvitationData();
             }
+            else
+            {
+                ShowErrorMessage("Failed to update invitation status");
+                InvitationData();
+            }
+        }
+    }
             //Button btn = (Button)sender;
             //GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             //HiddenField hf = (HiddenField)gvr.FindControl("hfTnIdPkId");
