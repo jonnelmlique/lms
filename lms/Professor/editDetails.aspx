@@ -1,15 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/professorMasterPage.Master" AutoEventWireup="true" CodeBehind="room_details.aspx.cs" Inherits="lms.Professor.WebForm3" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/professorMasterPage.Master" AutoEventWireup="true" CodeBehind="editDetails.aspx.cs" Inherits="lms.Professor.WebForm9" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="../CSS/ProfessorCSS/room_details.css" />
+        <link rel="stylesheet" href="../CSS/ProfessorCSS/room_details.css" />
        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
-
-
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-
-    <div class="room-page">
+            <div class="room-page">
         <div class="room-filter">
             <div class="filters">
             </div>
@@ -24,7 +20,7 @@
             <div class="room-info">
                 <div class="room-head">
                       <a href="CreateRoom.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
-                    <h2>Create Room</h2>
+                    <h2>Edit Room Details</h2>
                 </div>
                 <div class="room-setup">
                     <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
@@ -149,9 +145,9 @@
                 cancelButtonColor: '#d33',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'room_details.aspx'; 
+                    window.location.href = 'room_details.aspx';
                 } else {
-                    window.location.href = 'CreateRoom.aspx'; 
+                    window.location.href = 'CreateRoom.aspx';
                 }
             });
         }

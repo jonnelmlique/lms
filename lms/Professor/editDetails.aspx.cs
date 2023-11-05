@@ -10,9 +10,10 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
 
+
 namespace lms.Professor
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class WebForm9 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -131,7 +132,7 @@ namespace lms.Professor
             MultiView1.ActiveViewIndex = 0;
         }
 
-       
+
         private bool AreTextboxesPopulated()
         {
             if (string.IsNullOrEmpty(teachername.Text) || ddlStrand.SelectedIndex == 0 || ddlSubject.SelectedIndex == 0 || (!g11.Checked && !g12.Checked))
@@ -197,7 +198,7 @@ namespace lms.Professor
                 txtsection.Text = "";
                 schedule.Text = "";
                 txtdescription.Text = "";
-                ddlStrand.SelectedIndex = 0; 
+                ddlStrand.SelectedIndex = 0;
                 ddlSubject.SelectedIndex = 0;
 
                 ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
@@ -220,7 +221,7 @@ namespace lms.Professor
                 return "Grade 12";
             }
 
-            return ""; 
+            return "";
         }
 
         protected void GradeRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -247,7 +248,7 @@ namespace lms.Professor
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 ddlStrand.Items.Clear();
-                ddlStrand.Items.Add(new ListItem("Select Strand", "")); 
+                ddlStrand.Items.Add(new ListItem("Select Strand", ""));
 
                 while (reader.Read())
                 {
@@ -270,12 +271,12 @@ namespace lms.Professor
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT subjectname FROM subjects WHERE strand = @Strand AND gradeyear = @GradeYear", con);
                 cmd.Parameters.AddWithValue("@Strand", selectedStrand);
-                cmd.Parameters.AddWithValue("@GradeYear", selectedGrade); 
+                cmd.Parameters.AddWithValue("@GradeYear", selectedGrade);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 ddlSubject.Items.Clear();
-                ddlSubject.Items.Add(new ListItem("Select Subject", "")); 
+                ddlSubject.Items.Add(new ListItem("Select Subject", ""));
 
                 while (reader.Read())
                 {

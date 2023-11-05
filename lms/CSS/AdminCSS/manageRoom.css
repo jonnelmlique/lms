@@ -61,11 +61,11 @@
   
 }
 .room-tbl::-webkit-scrollbar {
-    width: 1px;
+    width: 5px;
 }
 
 .room-tbl::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    background-color: #eb4d4d;
     border-radius: 6px;
 }
 

@@ -134,7 +134,17 @@
                                   <asp:TextBox ID="TextBox9" runat="server" CssClass="info-text" Enabled="False"></asp:TextBox>
                           </div>
                      </div>
+                       <div class="app-pass">
+                           <h2> SMTP Password </h2>
+                            <div class="info-txt">
+                               <asp:TextBox ID="TextBox10" runat="server" CssClass="info-text" Placeholder="Enter your SMTP pass from Email"></asp:TextBox>
+                            </div>
+                            <div class="info-btn">
+                                <asp:Button ID="Button3" runat="server" Text="Submit" CssClass="smtp-btn" />
+                            </div>
+                      </div>
                  </div>
+               
              </div>
 
         </main>

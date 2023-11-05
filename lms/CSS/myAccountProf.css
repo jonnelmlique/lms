@@ -234,7 +234,7 @@ color:#000;
     flex: 1;
     margin: 30px 0 30px 30px;
 
-   padding:10px 20px 0 0;
+   padding:0px 30px 0 0;
 }
 
 .account{
@@ -261,6 +261,7 @@ color:#000;
      background-color:#eb4d4d;
     padding:5px 10px;
     color:#fff;
+      height:40px;
 }
 .profile .img-preview {
     height: 220px;
@@ -285,11 +286,12 @@ color:#000;
  padding:10px;
 }
 
-.password h2{
-     background-color:#eb4d4d;
-    padding:5px 10px;
-    color:#fff;
-    margin-bottom:5px;
+.password h2 {
+    background-color: #eb4d4d;
+    padding: 5px 10px;
+    color: #fff;
+    margin-bottom: 5px;
+    height: 40px;
 }
 .password .info-pass{
     height:70px;
@@ -331,7 +333,7 @@ color:#000;
 }
 .account-info {
     flex: 1;
-   
+  
     height: 100%;
     width: 100%;
    
@@ -339,6 +341,7 @@ color:#000;
 .account-info h2{
     color:#fff;
     padding:5px 10px;
+    height:40px;
       background-color:#eb4d4d;
    
 }
@@ -346,8 +349,8 @@ color:#000;
     display:flex;
     width:100%;
     height:70px;
+ 
    
-    margin-top:1rem;
 }
 
 .information .info-lbl{
@@ -360,7 +363,7 @@ color:#000;
 }
 .information .info-lbl .info-label{
     color:#fff;
-    font-size:25px;
+    font-size:23px;
     font-family:'Times New Roman';
     font-weight:bold;
   
@@ -382,4 +385,48 @@ color:#000;
     border-color:transparent;
       background-color:#fff;
      cursor: not-allowed;
+}
+.app-pass{
+  
+    width:100%;
+    height:calc(100% -  460px);
+    margin-top:10px;
+}
+.app-pass .info-txt{
+    height:70px;
+  
+    padding:5px 10px;
+  margin-top:10px;
+}
+.app-pass .info-txt .info-text{
+    width:100%;
+    height:100%;
+      border-radius:15px;
+    border-color:transparent;
+    background-color:#fff;
+    padding:10px 20px;
+}
+.app-pass .info-btn{
+    height:calc(100% - 130px);
+  
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:0 20px;
+}
+.app-pass .info-btn .smtp-btn{
+      padding:15px 30px;
+ 
+    border-radius:15px;
+    border-color:transparent;  
+    cursor:pointer;
+    transition:0.3s all ease;
+     
+    background-color:#eb4d4d;
+      color:#fff;
+}
+.app-pass .info-btn .smtp-btn:hover{
+     background-color: #f57f7f;
+     outline:1px solid black;
+}
 }

@@ -160,10 +160,12 @@
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
     <Content Include="CSS\ProfessorCSS\instructorClassroom.css" />
     <Content Include="CSS\ProfessorCSS\inviteStudents.css" />
+    <Content Include="CSS\ProfessorCSS\notificationDetails.css" />
     <Content Include="CSS\ProfessorCSS\notifications.css" />
     <Content Include="CSS\ProfessorCSS\pedingInvite.css" />
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
     <Content Include="CSS\ProfessorCSS\room_details.css" />
+    <Content Include="CSS\ProfessorCSS\studentInvite.css" />
     <Content Include="CSS\Student\classSubjects.css" />
     <Content Include="CSS\Student\DashBoard.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
@@ -193,6 +195,7 @@
     <None Include="Resources\user.png" />
     <None Include="Resources\users.png" />
     <Content Include="Professor\StudentInvite.aspx" />
+    <Content Include="Professor\editDetails.aspx" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
     <Content Include="Student\Invitations.aspx" />
@@ -428,6 +431,13 @@
     </Compile>
     <Compile Include="Professor\StudentInvite.aspx.designer.cs">
       <DependentUpon>StudentInvite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\editDetails.aspx.cs">
+      <DependentUpon>editDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\editDetails.aspx.designer.cs">
+      <DependentUpon>editDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

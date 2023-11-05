@@ -11,7 +11,7 @@ namespace lms.Professor
 {
 
 
-    public partial class WebForm3
+    public partial class WebForm9
     {
 
         /// <summary>

@@ -38,7 +38,19 @@
     color:#fff;
     
 }
-
+.arrow-left {
+    padding: 5px 20px;
+    font-size:35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fff;
+    height:100%;
+}
+.arrow-left:hover{
+    background-color: #f57f7f;
+}
 .btn-room{
     flex:1;
     display:flex;
@@ -55,10 +67,10 @@
       border-radius:10px;
      transition:0.3s all ease;
      color:#fff;
+     cursor:not-allowed;
+
 }
-.btn-room .add-room:hover{
-     background-color: #f57f7f;
-}
+
 .btn-room .add-room i{
     margin-right:15px;
     padding:5px 10px;
@@ -79,7 +91,7 @@
 .room-details .room-info{
     height:500px;
     width:1000px;
-    border:1px solid black;
+    border:1px solid red;
   
     
 }
@@ -124,7 +136,7 @@
 }
 .tab:hover{
         background-color: #eb4d4d;
-      color:black;
+  
 }
 .selected-tab{
     border-bottom:1px solid white;

@@ -24,14 +24,14 @@
        </div>
 
        <div class="invitation-tbl">
-             <asp:GridView ID="pendinggrv" runat="server" AutoGenerateColumns="false" EmptyDataText="No Professor Found">
+             <asp:GridView ID="pendinggrv" runat="server" AutoGenerateColumns="false" EmptyDataText="No Pending Invitations">
         <Columns>
-            <asp:BoundField DataField="invitationid" HeaderText="Invitation ID" />
-            <asp:BoundField DataField="studentid" HeaderText="Student ID" />
-            <asp:BoundField DataField="teacherid" HeaderText="Teacher ID" />
-            <asp:BoundField DataField="teacheremail" HeaderText="Teacher Email" />
-            <asp:BoundField DataField="studentemail" HeaderText="Student Email" />
-            <asp:BoundField DataField="subjectname" HeaderText="Subject Name" />
+            <asp:BoundField DataField="invitationid" HeaderText="Invitation ID" ItemStyle-CssClass="hide-column" HeaderStyle-CssClass="hide-column"/>
+            <asp:BoundField DataField="studentid" HeaderText="Student ID"  ItemStyle-CssClass="hide-column" HeaderStyle-CssClass="hide-column"/>
+            <asp:BoundField DataField="teacherid" HeaderText="Teacher ID"   ItemStyle-CssClass="hide-column" HeaderStyle-CssClass="hide-column"/>
+            <asp:BoundField DataField="teacheremail" HeaderText="Teacher Email" ItemStyle-CssClass="hide-column" HeaderStyle-CssClass="hide-column"/>
+            <asp:BoundField DataField="studentemail" HeaderText="Student Email" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" />
+            <asp:BoundField DataField="subjectname" HeaderText="Subject Name" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide"/>
 
             <asp:BoundField DataField="status" HeaderText="Status" />
 

@@ -21,13 +21,12 @@
      <asp:GridView ID="roomdetailsGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Subject Found">
         <Columns>
                 <asp:BoundField DataField="subjectname" HeaderText="Subject Name" HeaderStyle-CssClass="subj"/>
-                            <asp:BoundField DataField="section" HeaderText="Section" HeaderStyle-CssClass="subj"/>
+                 <asp:BoundField DataField="section" HeaderText="Section" HeaderStyle-CssClass="subj"/>
 
-                <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
+                <asp:TemplateField HeaderText="" ItemStyle-Width="180px">
            <ItemTemplate>
                 <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
                         PostBackUrl='<%# "StudentInvite.aspx?roomid=" + Eval("roomid") %>'
-
 Text="Invite Students" />
 
           </ItemTemplate>
