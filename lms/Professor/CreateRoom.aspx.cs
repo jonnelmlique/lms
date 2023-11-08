@@ -26,12 +26,92 @@ namespace lms.Professor
                 }
                 catch (Exception ex)
                 {
-                    lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                    ShowErrorMessage("An error occurred while processing your request. Please try again later.");
+                }
+
+                LoadRepeateWithFilter(DropDownList1.SelectedValue);
+            }
+        }
+        protected void BindRoomData(string subjectFilter = "")
+        {
+            string teacheremail = Session["LoggedInUserEmail"] as string;
+            
+            if (string.IsNullOrEmpty(teacheremail))
+    {
+        return;
+    }
+
+    string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+    using (MySqlConnection con = new MySqlConnection(connectionString))
+    {
+        con.Open();
+
+        string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
+
+        if (!string.IsNullOrEmpty(subjectFilter))
+        {
+            query += " AND subjectname = @subjectFilter";
+        }
+
+        using (MySqlCommand cmd = new MySqlCommand(query, con))
+        {
+            cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
+
+            if (!string.IsNullOrEmpty(subjectFilter))
+            {
+                cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
+            }
+
+            using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+            {
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                roomRepeater.DataSource = dt;
+                roomRepeater.DataBind();
+            }
+        }
+    }
+}
+        private void LoadRepeateWithFilter(string subjectFilter)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
+
+                    if (!string.IsNullOrEmpty(subjectFilter))
+                    {
+                        query += " WHERE subjectname = @subjectFilter";
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        if (!string.IsNullOrEmpty(subjectFilter))
+                        {
+                            cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
+                        }
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            roomRepeater.DataSource = dataTable;
+                            roomRepeater.DataBind();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                 }
             }
         }
-
-            protected void BindRoomData()
+        private void PopulateSubjectsDropDown()
         {
             string teacheremail = Session["LoggedInUserEmail"] as string;
 
@@ -41,47 +121,52 @@ namespace lms.Professor
             }
 
             string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-
-                string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
-
+                string query = "SELECT DISTINCT subjectname FROM rooms WHERE teacheremail = @teacheremail";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
 
-                    using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-
-                        roomRepeater.DataSource = dt;
-                        roomRepeater.DataBind();
-                    }
-                }
-            }
-        }
-        private void PopulateSubjectsDropDown()
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-
-            using (MySqlConnection con = new MySqlConnection(connectionString))
-            {
-                con.Open();
-                string query = "SELECT DISTINCT subjectname FROM rooms";
-                using (MySqlCommand cmd = new MySqlCommand(query, con))
-                {
                     using (var reader = cmd.ExecuteReader())
                     {
+                        HashSet<string> uniqueSubjectNames = new HashSet<string>();
+
                         while (reader.Read())
                         {
                             string subjectName = reader["subjectname"].ToString();
+                            uniqueSubjectNames.Add(subjectName);
+                        }
+                        foreach (string subjectName in uniqueSubjectNames)
+                        {
                             DropDownList1.Items.Add(new ListItem(subjectName, subjectName));
                         }
                     }
                 }
             }
+        }
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValue = DropDownList1.SelectedValue;
+
+            if (selectedValue == "1")
+            {
+                Response.Redirect("CreateRoom.aspx");
+            }
+                BindRoomData(DropDownList1.SelectedValue);
         }
     }
 }

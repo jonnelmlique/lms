@@ -79,8 +79,6 @@ namespace lms.Admin
             {
                 try
                 {
-
-
                     con.Open();
 
                     string query = "SELECT teacherid, CONCAT(firstName, ' ', lastName) AS Fullname, email FROM teacher_info";

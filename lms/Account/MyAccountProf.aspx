@@ -7,7 +7,7 @@
       <meta charset="UTF-8"/>
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  <title>My Account</title>
-  <link rel="icon" href="../Resources/Novaliches Senior High School.png" type="image/x-icon" />
+  <link rel="icon" href="../Resources/Novaliches Senior High School.png" type="i    mage/x-icon" />
  <link rel="stylesheet" href="../CSS/myAccountProf.css" />
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"/>   
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
