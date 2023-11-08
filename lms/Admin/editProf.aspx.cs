@@ -225,7 +225,6 @@ namespace lms.Admin
                 catch (Exception ex)
                 {
                     ShowErrorMessage("Error processing: " + ex.Message);
-                    // Log the exception for debugging
                 }
             }
         }
