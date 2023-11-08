@@ -29,7 +29,6 @@ namespace lms.Professor
                     ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                 }
 
-                LoadRepeateWithFilter(DropDownList1.SelectedValue);
             }
         }
         protected void BindRoomData(string subjectFilter = "")
@@ -73,44 +72,7 @@ namespace lms.Professor
         }
     }
 }
-        private void LoadRepeateWithFilter(string subjectFilter)
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    con.Open();
-                    string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
-
-                    if (!string.IsNullOrEmpty(subjectFilter))
-                    {
-                        query += " WHERE subjectname = @subjectFilter";
-                    }
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, con))
-                    {
-                        if (!string.IsNullOrEmpty(subjectFilter))
-                        {
-                            cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
-                        }
-
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                        {
-                            DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-
-                            roomRepeater.DataSource = dataTable;
-                            roomRepeater.DataBind();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage("An error occurred while processing your request. Please try again later.");
-                }
-            }
-        }
+       
         private void PopulateSubjectsDropDown()
         {
             string teacheremail = Session["LoggedInUserEmail"] as string;

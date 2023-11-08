@@ -22,12 +22,11 @@ namespace lms.Professor
 
 
                     BindRoomData();
-                    //PopulateSubjectsDropDown();
 
                 }
                 catch (Exception ex)
                 {
-                    //lblMessage.Text = "An error occurred while processing your request. Please try again later.";
+                    ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                 }
             }
         }
@@ -62,10 +61,15 @@ namespace lms.Professor
                 }
             }
         }
-        //protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
-        //{
-        //    int index = Int32.Parse(e.Item.Value);
-        //    MultiView1.ActiveViewIndex = index;
-        //}
+        private void ShowErrorMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
+        private void ShowSuccessMessage(string message)
+        {
+            string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
+        }
     }
 }
