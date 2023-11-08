@@ -157,8 +157,7 @@
                       window.location.href = 'ProfessorAcc.aspx';
                   } else {
                       window.location.href = 'AddTeacher.aspx';
-                      window.location.href = 'AddTeacher.aspx';
-                      window.location.href = 'AddTeacher.aspx';
+                   
                   }
               });
           }

@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,10 +51,10 @@ namespace lms.Account
                             DisplayTeacherProfileInfo(userEmail);
                         }
                     }
-                    }
                 }
             }
-        
+        }
+
 
         private byte[] GetUserProfileImage(string userEmail)
         {
@@ -90,7 +91,7 @@ namespace lms.Account
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT teacherid, firstname, lastname, age, birthday, email, profileimage FROM teacher_info WHERE email = @userEmail";
+                string query = "SELECT teacherid, firstname, lastname, age, birthday, email, profileimage, username FROM teacher_info WHERE email = @userEmail";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -107,6 +108,7 @@ namespace lms.Account
                             TextBox4.Text = reader["age"].ToString();
                             TextBox8.Text = reader["birthday"].ToString();
                             TextBox9.Text = reader["email"].ToString();
+                            txtusername.Text = reader["username"].ToString();
 
                             byte[] imageBytes = reader["profileimage"] as byte[];
                             if (imageBytes != null && imageBytes.Length > 0)
@@ -145,7 +147,7 @@ namespace lms.Account
         }
         private void ChangePassword(string userEmail, string newPassword)
         {
-           
+
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
@@ -185,14 +187,14 @@ namespace lms.Account
 
                             if (currentPassword == storedPassword)
                             {
-                                return true; 
+                                return true;
                             }
                         }
                     }
                 }
             }
 
-            return false; 
+            return false;
         }
         private void ShowErrorMessage(string message)
         {
@@ -204,6 +206,81 @@ namespace lms.Account
             string script = $"Swal.fire({{ icon: 'success', text: '{message}' }})";
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
-    }
 
+
+
+        protected void btnchangeimage_Click(object sender, EventArgs e)
+        {
+            string username = txtusername.Text;
+            try
+            {
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    byte[] fileBytes = null;
+
+                    if (FileUpload1.HasFile)
+                    {
+                        fileBytes = new byte[FileUpload1.PostedFile.InputStream.Length];
+                        FileUpload1.PostedFile.InputStream.Read(fileBytes, 0, fileBytes.Length);
+                    }
+
+
+                    string userQuery = "UPDATE users SET profileimage = @ProfileImage WHERE username = @Username";
+                    using (MySqlCommand userCmd = new MySqlCommand(userQuery, con))
+                    {
+                        userCmd.Parameters.AddWithValue("@Username", username);
+                        userCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
+
+                        int userRowsAffected = userCmd.ExecuteNonQuery();
+
+                        string teacherQuery = "UPDATE teacher_info SET  profileimage = @ProfileImage WHERE username = @Username";
+                        using (MySqlCommand teacherCmd = new MySqlCommand(teacherQuery, con))
+                        {
+                            teacherCmd.Parameters.AddWithValue("@Username", username);
+                            teacherCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
+
+                            int teacherRowsAffected = teacherCmd.ExecuteNonQuery();
+
+                            if (userRowsAffected > 0 && teacherRowsAffected > 0)
+                            {
+                                ShowSuccessMessage("The Teacher Profile Picture has been updated successfully.");
+                                ClearInputFields();
+                                ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+
+                            }
+                            else
+                            {
+                                ShowErrorMessage("Error updating Teacher Profile Picture");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("Error processing: " + ex.Message);
+            } 
+        }
+        private void ClearInputFields()
+        {
+            Image2.ImageUrl = "";
+
+        }
+
+        private byte[] GetExistingProfileImage(string username, MySqlConnection con)
+        {
+            string query = "SELECT profileimage FROM users WHERE username = @Username";
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                var result = cmd.ExecuteScalar();
+                return result as byte[];
+            }
+        }
+    }
 }
+

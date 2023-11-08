@@ -65,10 +65,14 @@
                  <div class="account-img">   
                      <div class="profile">
                          <h2>Profile Picture</h2>
-                          <asp:Image ID="Image2" runat="server" CssClass="img-preview" />
-                          <asp:FileUpload ID="FileUpload1" runat="server"  CssClass="upload"    />
-                     </div>
+                          <asp:Image ID="Image2" runat="server" CssClass="img-preview" EnableViewState="false" Visible="true"  />
+                          <asp:FileUpload ID="FileUpload1" runat="server"  onchange="showImagePreview()"  CssClass="upload"    />
+                         <asp:Button ID="btnchangeimage" runat="server" Text="Button" CssClass="changge-image" OnClick="btnchangeimage_Click" />
+                         <asp:TextBox ID="txtusername" runat="server" CssClass="username" Enabled="False"></asp:TextBox>
+
+                         </div>
                      <div class="password">
+
                          <h2> Change Password</h2>
                            <div class="info-pass">
                                  <asp:TextBox ID="TextBox5" runat="server" CssClass="info-text" placeholder="Type Current Password" ></asp:TextBox>
@@ -213,7 +217,40 @@
        });
        </script>
 
+           <script type="text/javascript">
+               function showImagePreview() {
+                   var imgPreview = document.getElementById('<%= Image2.ClientID %>');
+           var fileUpload = document.getElementById('<%= FileUpload1.ClientID %>');
 
+                   if (fileUpload.files && fileUpload.files[0]) {
+                       var reader = new FileReader();
+                       reader.onload = function (e) {
+                           imgPreview.src = e.target.result;
+                           imgPreview.style.display = 'block';
+                       };
+                       reader.readAsDataURL(fileUpload.files[0]);
+                   } else {
+                       imgPreview.style.display = 'none';
+                   }
+               }
+           </script>
+          <script>
+              function showSuccessMessage() {
+                  Swal.fire({
+                      icon: 'success',
+                      text: 'The Teacher Profile Picture has been updated successfully.  ',
+                      ShowConfitmButton: true,
+                      comfirmButtonText: 'Confirm',
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                  }).then((result) => {
+                      if (result.isConfirmed) {
+                          window.location.href = 'MyAccountProf.aspx';
+                   
+                      }
+                  });
+              }
+          </script>
     </form>
 </body>
 </html>

@@ -429,4 +429,24 @@ color:#000;
      background-color: #f57f7f;
      outline:1px solid black;
 }
+
+
+
+.profile .changge-image {
+    padding: 15px 30px;
+    margin: 0 10px;
+    border-radius: 15px;
+    border-color: transparent;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    background-color: #eb4d4d;
+    color: #fff;
+}
+
+.profile .pass-btn .changge-image:hover {
+    background-color: #f57f7f;
+    outline: 1px solid black;
+}
+.profile .username{
+    display: none;
 }
