@@ -3,10 +3,8 @@
     background-color: white;
     height: 100%;
     width: 100%;  
-    padding: 20px;
-  
-    overflow-y: scroll;
-    border: 1px solid red;
+    padding:0 30px 0 0;
+   
 }
 
 .archived-head {

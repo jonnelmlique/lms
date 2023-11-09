@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyAccountProf.aspx.cs" Inherits="lms.Account.MyAccount" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyAccountStudent.aspx.cs" Inherits="lms.Account.MyAccountStudent" %>
 
 <!DOCTYPE html>
 
@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
+       <form id="form1" runat="server">
               <header>
         <div class="header-content">
             <a href="/Professor/DashBoard.aspx"><img src="../Resources/Novaliches Senior High School.png" alt="LOGO" /></a>
@@ -149,7 +149,7 @@
                             </div>
                             <div class="info-btn">
                                 <asp:Button ID="Button3" runat="server" Text="Submit" CssClass="smtp-btn" />
-                               
+                                 <asp:Button ID="Button4" runat="server" Text="Submit" CssClass="smtp-btn" />
                             </div>
                       </div>
                  </div>

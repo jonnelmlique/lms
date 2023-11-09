@@ -265,7 +265,7 @@ color:#000;
       height:40px;
 }
 .profile .img-preview {
-    height: 200px;
+    height: 220px;
     width: 300px;
    margin:10px auto;
     border-color:transparent;
@@ -298,7 +298,7 @@ color:#000;
 }
 
 .password{
-   
+  
     height:calc(100% - 50%);
 }
 .password h2 {
@@ -309,13 +309,13 @@ color:#000;
     height: 40px;
 }
 .password .info-pass{
-    height:60px;
+    height:70px;
  
     display:flex;
     align-items:center;
     justify-content:center;
     padding:5px 10px;
-   
+    
 }
 
 .password .info-pass .info-text{
@@ -330,7 +330,7 @@ color:#000;
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    height:calc(100% - 225px);
+    height:calc(100% - 255px);
   
 }
 .password .pass-btn .pass-button{
@@ -365,7 +365,7 @@ color:#000;
 .information {
     display: flex;
     width: 100%;
-    height: 60px;
+    height: 70px;
    
 }
 
@@ -392,6 +392,7 @@ color:#000;
       align-items:center;
       justify-content:center;
      padding:5px 10px;
+
 }
 .information .info-txt .info-text{
      height:100%;
@@ -405,14 +406,14 @@ color:#000;
 .app-pass {
   
     width: 100%;
-    height: calc(100% - 410px);
+    height: calc(100% - 470px);
     margin-top: 10px;
 }
 .app-pass .info-txt{
-    height:60px;
+    height:70px;
   
     padding:5px 10px;
-  margin:10px 0;
+  margin:5px 0;
  
 }
 .app-pass .info-txt .info-text{

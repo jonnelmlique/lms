@@ -13,7 +13,6 @@
         <div class="room-filter">
             <div class="filters">
                 <p>Select Room</p>
-
                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                     <asp:ListItem Text="All Rooms" Value="1" />
                 </asp:DropDownList>

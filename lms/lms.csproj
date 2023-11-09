@@ -125,6 +125,7 @@
     <Content Include="Account\Forgot_Password.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\MyAccountProf.aspx" />
+    <Content Include="Account\MyAccountStudent.aspx" />
     <Content Include="Account\Reset_Password.aspx" />
     <Content Include="Admin\AddStudent.aspx" />
     <Content Include="Admin\AddTeacher.aspx" />
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="Account\MyAccountProf.aspx.designer.cs">
       <DependentUpon>MyAccountProf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\MyAccountStudent.aspx.cs">
+      <DependentUpon>MyAccountStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\MyAccountStudent.aspx.designer.cs">
+      <DependentUpon>MyAccountStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Reset_Password.aspx.cs">
       <DependentUpon>Reset_Password.aspx</DependentUpon>
