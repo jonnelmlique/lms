@@ -250,11 +250,12 @@ color:#000;
     height:100%;
     width:100%;
   
-}
-.profile{
-    width:100%;
-    height:calc(100%-50%);
   
+}
+.profile {
+    width: 100%;
+    height: calc(100%-50%);
+ 
 }
 .profile h2{
     
@@ -264,7 +265,7 @@ color:#000;
       height:40px;
 }
 .profile .img-preview {
-    height: 220px;
+    height: 200px;
     width: 300px;
    margin:10px auto;
     border-color:transparent;
@@ -274,33 +275,47 @@ color:#000;
  align-items:center;
  justify-content:center;
 }
-.profile .upload{
+.profile .img-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+   
+    width:50%;
     margin:10px auto;
+}
+.profile .img-btn .changge-image{
+    padding:15px 30px;
+    border-radius:15px;
+      background-color: #eb4d4d;
+    transition:0.3s all ease;
     color:#fff;
-     font-size:15px;
- display:flex;
- align-items:center;
- justify-content:center;
- cursor:pointer;
- 
- padding:10px;
+    border-color:transparent;
+     cursor:pointer;
+}
+.profile .img-btn .changge-image:hover{
+    background-color:transparent;
+    outline:1px solid black;
 }
 
+.password{
+   
+    height:calc(100% - 50%);
+}
 .password h2 {
     background-color: #eb4d4d;
     padding: 5px 10px;
     color: #fff;
-    margin-bottom: 5px;
+   margin-bottom:5px;
     height: 40px;
 }
 .password .info-pass{
-    height:70px;
+    height:60px;
  
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:10px 15px;
-  
+    padding:5px 10px;
+   
 }
 
 .password .info-pass .info-text{
@@ -315,6 +330,8 @@ color:#000;
     display:flex;
     align-items:center;
     justify-content:flex-end;
+    height:calc(100% - 225px);
+  
 }
 .password .pass-btn .pass-button{
     padding:15px 30px;
@@ -336,7 +353,7 @@ color:#000;
   
     height: 100%;
     width: 100%;
-   
+  
 }
 .account-info h2{
     color:#fff;
@@ -345,11 +362,10 @@ color:#000;
       background-color:#eb4d4d;
    
 }
-.information{
-    display:flex;
-    width:100%;
-    height:70px;
- 
+.information {
+    display: flex;
+    width: 100%;
+    height: 60px;
    
 }
 
@@ -386,17 +402,18 @@ color:#000;
       background-color:#fff;
      cursor: not-allowed;
 }
-.app-pass{
+.app-pass {
   
-    width:100%;
-    height:calc(100% -  460px);
-    margin-top:10px;
+    width: 100%;
+    height: calc(100% - 410px);
+    margin-top: 10px;
 }
 .app-pass .info-txt{
-    height:70px;
+    height:60px;
   
     padding:5px 10px;
-  margin-top:10px;
+  margin:10px 0;
+ 
 }
 .app-pass .info-txt .info-text{
     width:100%;
@@ -405,9 +422,10 @@ color:#000;
     border-color:transparent;
     background-color:#fff;
     padding:10px 20px;
+   
 }
 .app-pass .info-btn{
-    height:calc(100% - 130px);
+    height:calc(100% - 120px);
   
       display:flex;
       align-items:center;
@@ -431,17 +449,6 @@ color:#000;
 }
 
 
-
-.profile .changge-image {
-    padding: 15px 30px;
-    margin: 0 10px;
-    border-radius: 15px;
-    border-color: transparent;
-    cursor: pointer;
-    transition: 0.3s all ease;
-    background-color: #eb4d4d;
-    color: #fff;
-}
 
 .profile .pass-btn .changge-image:hover {
     background-color: #f57f7f;

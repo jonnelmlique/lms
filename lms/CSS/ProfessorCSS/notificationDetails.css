@@ -45,6 +45,7 @@
 .message-content{
     height:calc(100% - 300px);
   width:100%;
+ 
 }
 .message-content .from{
     width:100%;
@@ -60,6 +61,7 @@
     padding:15px;
  
     height:calc(100% - 40px);
+   
 }
 .message-content .from-label .lbl-from{
     width:100%;

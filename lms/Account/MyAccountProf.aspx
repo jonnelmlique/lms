@@ -66,9 +66,11 @@
                      <div class="profile">
                          <h2>Profile Picture</h2>
                           <asp:Image ID="Image2" runat="server" CssClass="img-preview" EnableViewState="true" Visible="true"  />
-                          <asp:FileUpload ID="FileUpload1" runat="server"  onchange="showImagePreview()"  CssClass="upload"    />
-                         <asp:Button ID="btnchangeimage" runat="server" Text="Button" CssClass="changge-image" OnClick="btnchangeimage_Click" />
-                         <asp:TextBox ID="txtusername" runat="server" CssClass="username" Enabled="False"></asp:TextBox>
+                         <div class="img-btn">                      
+                         <asp:FileUpload ID="FileUpload1" runat="server"  onchange="showImagePreview()"  CssClass="upload"    />
+                          <asp:Button ID="btnchangeimage" runat="server" Text="Update Image" CssClass="changge-image" OnClick="btnchangeimage_Click" />
+                               </div>
+                          <asp:TextBox ID="txtusername" runat="server" CssClass="username" Enabled="False"></asp:TextBox>
 
                          </div>
                      <div class="password">

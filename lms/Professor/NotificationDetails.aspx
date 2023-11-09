@@ -28,7 +28,7 @@
                 <h3>MESSAGE : </h3>
             </div>
                <div class="from-label">
-                 <asp:TextBox ID="TextBox3" runat="server" CssClass="text-area" Enabled="False" TextMode="MultiLine" Rows="16"></asp:TextBox>
+                 <asp:TextBox ID="TextBox3" runat="server" CssClass="text-area" Enabled="False" TextMode="MultiLine" Rows="14"></asp:TextBox>
               </div>
         </div>
        <div class="message-button">
