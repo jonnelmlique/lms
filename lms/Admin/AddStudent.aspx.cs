@@ -94,7 +94,7 @@ namespace lms.Admin
                                     if (userRowsAffected > 0)
 
                                     {
-                                        SendEmail(email, toEmail, password);
+                                        SendEmail(toEmail, email, password);
 
                                         string studentQuery = "INSERT INTO student_info (username, firstname, lastname, email, age, gender, birthday, contact, status, profileimage) VALUES (@Username, @FirstName, @LastName, @Email, @Age, @Gender, @Birthday, @Contact, 'Activated', @ProfileImage)";
                                         using (MySqlCommand studentCmd = new MySqlCommand(studentQuery, con))
@@ -180,10 +180,6 @@ namespace lms.Admin
         {
             string subject = "Your Account Details";
             string body = $"Your account has been created.\n\nEmail: {fromEmail}\nPassword: {password}";
-            string gmailSignature = "Novaliches Senior High School Learning Management System";
-
-
-            body += "\n\n" + gmailSignature;
 
             MailMessage mail = new MailMessage("novalichesseniorhighschool@gmail.com", toEmail, subject, body);
 
@@ -194,6 +190,16 @@ namespace lms.Admin
             smtpClient.Credentials = new NetworkCredential("novalichesseniorhighschool@gmail.com", "jpscuyqtbmgpkcqw");
             smtpClient.EnableSsl = true;
 
+            try
+            {
+                smtpClient.Send(mail);
+                ShowSuccessMessage("Email sent with account details.");
+
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("Error sending email: " + ex.Message);
+            }
         }
 
         protected void TextBox3_TextChanged(object sender, EventArgs e)
