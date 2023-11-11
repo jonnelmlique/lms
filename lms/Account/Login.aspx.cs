@@ -72,11 +72,11 @@ namespace lms.LOGIN
                         }
                         else if (!emailValid)
                         {
-                            ShowErrorMessage("Invalid Email");
+                            ShowErrorMessage("Incorrect Email");
                         }
                         else
                         {
-                            ShowErrorMessage("Invalid Password");
+                            ShowErrorMessage("Incorrect Password");
                         }
                     }
                 }

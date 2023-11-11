@@ -47,7 +47,7 @@
                                     PostBackUrl='<%# "editDetails.aspx?roomid=" + Eval("roomid") %>'
                                     Text="Edit Details" />
 
-                                <a href="#" class="room-btn">Archive Room</a>
+                                <a href="#" class="room-btn createRoomLink">Archive Room</a>
                             </div>
                         </div>
                     </div>
@@ -62,6 +62,44 @@
 
     </div>
 
+ <div class="link" id="assignmentContainer">
+    <div class="assignment">
+        <div class="message">
+            <p>Are you sure you want to Archive this room?</p>
+        </div>
+        <div class="message-button">
+            <asp:Button ID="Button1" runat="server" Text="Yes" CssClass="msg yes" />
+            <asp:Button ID="Button2" runat="server" Text="No" CssClass="msg no" />
+        </div>
+    </div>
+  
+    </div>
+   
+      <div id="bg-blur"></div>
 
+    <script>
+        // Use querySelectorAll to select all elements with the class 'createRoomLink'
+        var createRoomLinks = document.querySelectorAll('.createRoomLink');
 
+        // Loop through each element with the class 'createRoomLink'
+        createRoomLinks.forEach(function (link) {
+            // Add a click event listener to each element
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent the link from navigating
+
+                var assignmentContainer = document.getElementById('assignmentContainer');
+                var backgroundBlur = document.getElementById('bg-blur');
+
+                if (assignmentContainer.style.display === 'none' || assignmentContainer.style.display === '') {
+                    // Show the background blur and the assignment container
+                    backgroundBlur.style.display = 'block';
+                    assignmentContainer.style.display = 'block';
+                } else {
+                    // Hide the background blur and the assignment container
+                    backgroundBlur.style.display = 'none';
+                    assignmentContainer.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </asp:Content>

@@ -166,7 +166,7 @@
           
         </main>
     </div>
-          <div class="link" id="assignmentContainer">
+  <div class="link" id="assignmentContainer">
      <div class="assignment">
             <div class="assign-title">
                 <div class="title">             
