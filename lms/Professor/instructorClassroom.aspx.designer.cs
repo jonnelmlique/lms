@@ -24,22 +24,22 @@ namespace lms.Professor
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Label1 control.
+        /// lblsubjectname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblsubjectname;
 
         /// <summary>
-        /// Label2 control.
+        /// lblschedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblschedule;
 
         /// <summary>
         /// Menu1 control.
@@ -123,13 +123,13 @@ namespace lms.Professor
         protected global::System.Web.UI.WebControls.View View3;
 
         /// <summary>
-        /// Label9 control.
+        /// lblinstructormain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lblinstructormain;
 
         /// <summary>
         /// Label10 control.
@@ -139,6 +139,15 @@ namespace lms.Professor
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// studentlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView studentlist;
 
         /// <summary>
         /// View4 control.

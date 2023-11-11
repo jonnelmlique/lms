@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="../CSS/ProfessorCSS/instructorClassroom.css" />
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"/>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+             <link rel="stylesheet" href="../CSS/ProfessorCSS/pedingInvite.css" />
+
 </head>
 <body>
    <form id="form1" runat="server">  
@@ -22,8 +24,8 @@
                 </div>
             <i class="fas fa-angle-right dropdown"></i>
             <div class="sched-subj">
-                    <asp:Label ID="Label1" runat="server" Text="SIA - System Integration and Organization" CssClass="sub"></asp:Label>             
-                      <asp:Label ID="Label2" runat="server" Text="MONDAY | 7:00 am - 9:00 am , 10:00 am - 1:00 pm" CssClass="sched-room"></asp:Label>
+                    <asp:Label ID="lblsubjectname" runat="server" Text="" CssClass="sub"></asp:Label>             
+                      <asp:Label ID="lblschedule" runat="server" Text="" CssClass="sched-room"></asp:Label>
                 </div>
          </div>
      <div class="header-login">
@@ -47,7 +49,7 @@
                
                  <div class="item">
                      
-                      <a href="#" class="sub-btn-active"><i class="fas fa-book"></i>Exit</a>               
+                      <a href="CreateRoom.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Exit</a>               
                     </div>
          </div>
         </div>
@@ -132,7 +134,7 @@
                                                        <i class="fas fa-user"></i>
                                                     </div>
                                                      <div class="lbl-name">
-                                                      <asp:Label ID="Label9" runat="server" Text="Label" CssClass="instructor-name"></asp:Label>
+                                                      <asp:Label ID="lblinstructormain" runat="server" Text="Label" CssClass="instructor-name"></asp:Label>
                                                       </div>     
                                                  </div>
                                              
@@ -149,7 +151,12 @@
                                          <div class="student-list">
                                              <h2> Student Lists</h2>
                                              <div class="student-table">
-
+                                                  <asp:GridView ID="studentlist" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
+                                                 <columns>
+                                                 <asp:BoundField DataField="StudentEmail" HeaderText="Email" HeaderStyle-CssClass="subj" />         
+                                               
+     </columns>
+ </asp:GridView>
                                              </div>
                                          </div>
                                    </div>

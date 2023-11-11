@@ -87,7 +87,7 @@
                           </div>
                           <div class="info-pass pass-btn">
                               <asp:Button ID="Button1" runat="server" Text="Change Password" CssClass="pass-button" OnClick="Button1_Click" />
-                                 <asp:Button ID="Button2" runat="server" Text="Cancel" CssClass="pass-button" />
+                                 <asp:Button ID="Button2" runat="server" Text="Cancel" CssClass="pass-button" OnClick="Button2_Click" />
                           </div>
                      </div>                   
                  </div>
@@ -148,8 +148,8 @@
                                <asp:TextBox ID="TextBox10" runat="server" CssClass="info-text" Placeholder="Enter your SMTP pass from Email"></asp:TextBox>
                             </div>
                             <div class="info-btn">
-                                <asp:Button ID="Button3" runat="server" Text="Submit" CssClass="smtp-btn" />
-                                 <asp:Button ID="Button4" runat="server" Text="Submit" CssClass="smtp-btn" />
+                                <asp:Button ID="Button3" runat="server" Text="Submit" CssClass="smtp-btn" OnClick="Button3_Click" />
+                                 <asp:Button ID="Button4" runat="server" Text="Submit" CssClass="smtp-btn" OnClick="Button4_Click" />
                             </div>
                       </div>
                  </div>

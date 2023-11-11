@@ -19,12 +19,9 @@ namespace lms.Professor
             {
                 try
                 {
-
-
                     BindRoomData();
-
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     ShowErrorMessage("An error occurred while processing your request. Please try again later.");
                 }

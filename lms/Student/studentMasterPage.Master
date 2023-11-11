@@ -55,7 +55,7 @@
                     <a href="classSubjects.aspx" class="sub-btn"><i class="fas fa-book"></i>Class Subjects</a>
                 </div>
                 <div class="item">
-                    <a href="#"><i class="fas fa-users"></i>Invitations</a>
+                    <a href="Invitations.aspx"><i class="fas fa-users"></i>Invitations</a>
                 </div>
                 <div class="item">
                     <a href="#"><i class="fa fa-archive" aria-hidden="true"></i>Archived Classes</a>

@@ -159,6 +159,7 @@
     <Content Include="CSS\ProfessorCSS\classAssignment.css" />
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
+    <Content Include="CSS\ProfessorCSS\enterroompeople.css" />
     <Content Include="CSS\ProfessorCSS\instructorClassroom.css" />
     <Content Include="CSS\ProfessorCSS\inviteStudents.css" />
     <Content Include="CSS\ProfessorCSS\notificationDetails.css" />
@@ -171,6 +172,7 @@
     <Content Include="CSS\Student\DashBoard.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="CSS\Student\subject.css" />
     <Content Include="Global.asax" />
     <Content Include="Professor\ArchiveConfirmation.aspx" />
     <Content Include="Professor\instructorClassroom.aspx" />
@@ -478,6 +480,9 @@
       <DependentUpon>AdminLayout.Master</DependentUpon>
     </Compile>
     <Compile Include="RouteConfig.cs" />
+    <Compile Include="Student\ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Student\studentMasterPage.Master.cs">
       <DependentUpon>studentMasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -511,6 +516,7 @@
     <None Include="packages.config" />
     <Content Include="Admin\AdminLayout.Master" />
     <Content Include="Student\studentMasterPage.Master" />
+    <Content Include="Student\ImageHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

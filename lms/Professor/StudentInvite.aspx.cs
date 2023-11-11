@@ -126,7 +126,7 @@ namespace lms.Professor
             {
                 con.Open();
 
-                string checkQuery = "SELECT COUNT(*) FROM invitation WHERE roomid = @roomid AND studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname AND status = 'Pending' ";
+                string checkQuery = "SELECT COUNT(*) FROM invitation WHERE roomid = @roomid AND studentid = @studentid AND teacherid = @teacherid AND subjectname = @subjectname AND (status = 'Pending' OR status = 'Accepted')";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, con))
 
                 {

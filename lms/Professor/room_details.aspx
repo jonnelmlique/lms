@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/ProfessorCSS/room_details.css" />
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
 
 
@@ -23,7 +23,7 @@
         <div class="room-details">
             <div class="room-info">
                 <div class="room-head">
-                      <a href="CreateRoom.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
+                    <a href="CreateRoom.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
                     <h2>Create Room</h2>
                 </div>
                 <div class="room-setup">
@@ -44,26 +44,25 @@
                                         <asp:TextBox ID="teachername" runat="server" CssClass="tab-text"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* Required" ForeColor="Red" ControlToValidate="teachername"></asp:RequiredFieldValidator>
                                     </div>
-                              
-                                      <div class="tab-setup rdb">
-                                             <label for="rname" class="label l2"><b>Choose Grade Level :</b></label>
-                                            <div class="txt rdb">
-                                                  <asp:RadioButton ID="g11" runat="server" Text="Grade 11"  CssClass="radio-btn" GroupName="GradeGroup" AutoPostBack="true" OnCheckedChanged="GradeRadioButton_CheckedChanged" />
-                                                   <asp:RadioButton ID="g12" runat="server" Text="Grade 12"  CssClass="radio-btn" GroupName="GradeGroup" AutoPostBack="true" OnCheckedChanged="GradeRadioButton_CheckedChanged" />
-            
-                                            </div>
-                                       </div>
+
+                                    <div class="tab-setup rdb">
+                                        <label for="rname" class="label l2"><b>Choose Grade Level :</b></label>
+                                        <div class="txt rdb">
+                                            <asp:RadioButton ID="g11" runat="server" Text="Grade 11" CssClass="radio-btn" GroupName="GradeGroup" AutoPostBack="true" OnCheckedChanged="GradeRadioButton_CheckedChanged" />
+                                            <asp:RadioButton ID="g12" runat="server" Text="Grade 12" CssClass="radio-btn" GroupName="GradeGroup" AutoPostBack="true" OnCheckedChanged="GradeRadioButton_CheckedChanged" />
+
+                                        </div>
+                                    </div>
                                     <div class="tab-setup">
                                         <label for="rname" class="label l2"><b>Choose Strand :</b></label>
-<%--                                             <asp:DropDownList ID="ddlstrand" runat="server" CssClass="tab-text">--%>
-                                                      <asp:DropDownList ID="ddlStrand" runat="server" AutoPostBack="true"  CssClass="tab-text" OnSelectedIndexChanged="StrandDropdown_SelectedIndexChanged">
-
-                                             </asp:DropDownList><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* Required" ControlToValidate="ddlStrand" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <%--                                             <asp:DropDownList ID="ddlstrand" runat="server" CssClass="tab-text">--%>
+                                        <asp:DropDownList ID="ddlStrand" runat="server" AutoPostBack="true" CssClass="tab-text" OnSelectedIndexChanged="StrandDropdown_SelectedIndexChanged">
+                                        </asp:DropDownList><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* Required" ControlToValidate="ddlStrand" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                     <div class="tab-setup">
                                         <label for="sname" class="label l3"><b>Choose Subject :</b></label>
-                                           <asp:DropDownList ID="ddlSubject" runat="server" CssClass="tab-text">
-                                           </asp:DropDownList><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="* Required" ControlToValidate="ddlSubject" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:DropDownList ID="ddlSubject" runat="server" CssClass="tab-text">
+                                        </asp:DropDownList><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="* Required" ControlToValidate="ddlSubject" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -88,7 +87,7 @@
                                         <div class="info">
                                             <label for="sched" class="info-details sched">Schedule : </label>
                                             <asp:TextBox ID="schedule" runat="server" CssClass="info-txt" placeholder="MONDAY| 8:00am - 10:00am , 11:00am - 2:00pm"> </asp:TextBox>
-                                             <br />
+                                            <br />
                                             <asp:RequiredFieldValidator ID="ScheduleValidator" runat="server" ErrorMessage="* Required" ControlToValidate="schedule" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                         <div class="info">
@@ -128,7 +127,7 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     imgPreview.src = e.target.result;
-                    imgPreview.style.display = 'block'; 
+                    imgPreview.style.display = 'block';
                 };
                 reader.readAsDataURL(fileUpload.files[0]);
             } else {
@@ -149,9 +148,9 @@
                 cancelButtonColor: '#d33',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'room_details.aspx'; 
+                    window.location.href = 'room_details.aspx';
                 } else {
-                    window.location.href = 'CreateRoom.aspx'; 
+                    window.location.href = 'CreateRoom.aspx';
                 }
             });
         }
