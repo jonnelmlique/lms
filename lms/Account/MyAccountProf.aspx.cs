@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -147,8 +148,6 @@ namespace lms.Account
         }
         private void ChangePassword(string userEmail, string newPassword)
         {
-
-
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -263,7 +262,7 @@ namespace lms.Account
             catch (Exception ex)
             {
                 ShowErrorMessage("Error processing: " + ex.Message);
-            } 
+            }
         }
         private void ClearInputFields()
         {
@@ -281,6 +280,142 @@ namespace lms.Account
                 return result as byte[];
             }
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string teacherid = TextBox3.Text;
+                string email = TextBox9.Text;
+                string smtppassword = TextBox10.Text;
+
+                if (!string.IsNullOrEmpty(teacherid) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(smtppassword))
+                {
+                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        if (!IsEmailExists(email, connection))
+                        {
+                            string query = "INSERT INTO smtp_credentials (teacherid, smtp_email, smtp_password) VALUES (@teacherid, @smtp_email, @smtp_password)";
+
+                            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                            {
+                                cmd.Parameters.AddWithValue("@teacherid", teacherid);
+                                cmd.Parameters.AddWithValue("@smtp_email", email);
+                                cmd.Parameters.AddWithValue("@smtp_password", smtppassword);
+
+                                connection.Open();
+                                cmd.ExecuteNonQuery();
+                                ShowSuccessMessage("SMTP Password has been Inserted");
+                                TextBox10.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            ShowErrorMessage("SMTP already exists.");
+                        }
+                    }
+                }
+                else
+                {
+                    ShowErrorMessage("Please provide SMTP password.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("An error occurred: " + ex.Message);
+            }
+        }
+
+        private bool IsEmailExists(string email, MySqlConnection connection)
+        {
+            using (MySqlConnection checkConnection = new MySqlConnection(connection.ConnectionString))
+            {
+                string query = "SELECT COUNT(*) FROM smtp_credentials WHERE smtp_email = @smtp_email";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, checkConnection))
+                {
+                    cmd.Parameters.AddWithValue("@smtp_email", email);
+
+                    checkConnection.Open();
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    return count > 0;
+                }
+            }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+
+        {
+            try
+            {
+                string email = TextBox9.Text;
+                string newSmtppassword = TextBox10.Text;
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string getCurrentPasswordQuery = "SELECT smtp_password FROM smtp_credentials WHERE smtp_email = @smtp_email";
+                    using (MySqlCommand getCurrentPasswordCmd = new MySqlCommand(getCurrentPasswordQuery, connection))
+                    {
+                        getCurrentPasswordCmd.Parameters.AddWithValue("@smtp_email", email);
+
+                        connection.Open();
+                        object currentPasswordObj = getCurrentPasswordCmd.ExecuteScalar();
+
+                        if (currentPasswordObj != null)
+                        {
+                            string currentPassword = currentPasswordObj.ToString();
+
+                            if (!string.Equals(currentPassword, newSmtppassword))
+                            {
+                                if (!string.IsNullOrEmpty(newSmtppassword))
+                                {
+                                    string updateQuery = "UPDATE smtp_credentials SET smtp_password = @smtp_password WHERE smtp_email = @smtp_email";
+
+                                    using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection))
+                                    {
+                                        updateCmd.Parameters.AddWithValue("@smtp_email", email);
+                                        updateCmd.Parameters.AddWithValue("@smtp_password", newSmtppassword);
+
+                                        int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                                        if (rowsAffected > 0)
+                                        {
+                                            ShowSuccessMessage("SMTP Password has been updated.");
+                                        }
+                                        else
+                                        {
+                                            ShowErrorMessage("Failed to update SMTP Password.");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    ShowErrorMessage("New SMTP Password cannot be null or empty. No update performed.");
+                                }
+                            }
+                            else
+                            {
+                                ShowErrorMessage("The new password is the same as the current password. No update performed.");
+                            }
+                        }
+                        else
+                        {
+                            ShowErrorMessage("Email not found in the database.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("An error occurred: " + ex.Message);
+            }
+        }
     }
 }
+
+
 

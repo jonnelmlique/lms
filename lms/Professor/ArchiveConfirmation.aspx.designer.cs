@@ -11,34 +11,25 @@ namespace lms.Professor
 {
 
 
-    public partial class WebForm2
+    public partial class ArchiveConfirmation
     {
 
         /// <summary>
-        /// DropDownList1 control.
+        /// btnarchiveyes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Button btnarchiveyes;
 
         /// <summary>
-        /// lblMessage control.
+        /// btnarchiveno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
-
-        /// <summary>
-        /// roomRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater roomRepeater;
+        protected global::System.Web.UI.WebControls.Button btnarchiveno;
     }
 }

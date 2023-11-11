@@ -37,31 +37,7 @@ Text="Invite Students" />
      </asp:GridView>
 
 
-                    <%-- <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticMenuItemStyle-CssClass="tab"
-                          StaticSelectedStyle-CssClass="selected-tab" StaticMenuItemStyle-HorizontalPadding="50px" StaticMenuItemStyle-VerticalPadding="15px"
-                           StaticSelectedStyle-BackColor="#eb4d4d" CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick" >
-                     <Items>
-                          <asp:MenuItem Text="Created Room List" Value="0" Selected="true"></asp:MenuItem>
-                           <asp:MenuItem Text="List of Student" Value="1"></asp:MenuItem>
-                    </Items>
-                    </asp:Menu>
-                    <div class="class-list">
-                          <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
-                                <asp:View ID="View1" runat="server">
-                                    ROOM LIST
-                                    </asp:View>
-                               <asp:View ID="View2" runat="server">
-                                        <div class="search-student">
-                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="text-search" placeholder="Search student"></asp:TextBox>
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                   <div class="student-tbl">
-
-                                   </div>
-                                     </asp:View>
-                         </asp:MultiView>
-
-                    </div>--%>
+                   
               
                 </div>
             </div>

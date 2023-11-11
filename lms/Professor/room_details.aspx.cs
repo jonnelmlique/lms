@@ -152,14 +152,12 @@ namespace lms.Professor
             }
             try
             {
-
-
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "INSERT INTO rooms (teacherid, teachername, teacheremail, gradeyear, subjectname, strand, section, schedule, description, roombanner) " +
-                                              "VALUES (@teacherid, @teachername, @teacheremail, @gradeyear, @subjectname, @strand, @section, @schedule, @description, @roombanner)";
+                    string query = "INSERT INTO rooms (teacherid, teachername, teacheremail, gradeyear, subjectname, strand, section, schedule, description, roombanner, status) " +
+                                              "VALUES (@teacherid, @teachername, @teacheremail, @gradeyear, @subjectname, @strand, @section, @schedule, @description, @roombanner, 'Active')";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@teacherid", teacherId);

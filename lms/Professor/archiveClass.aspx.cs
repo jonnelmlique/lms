@@ -45,7 +45,7 @@ namespace lms.Professor
             {
                 con.Open();
 
-                string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
+                string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail AND status = 'Archived'";
 
                 if (!string.IsNullOrEmpty(subjectFilter))
                 {

@@ -75,11 +75,11 @@ namespace lms.Professor
 
                 if (string.IsNullOrEmpty(searchTerm))
                 {
-                    query = "SELECT invitationid, studentid, teacherid, teacheremail, studentemail, subjectname, status FROM invitation WHERE teacheremail = @loggedInProfessorEmail AND status = 'Pending'";
+                    query = "SELECT invitationid, roomid,  studentid, teacherid, teacheremail, studentemail, subjectname, status FROM invitation WHERE teacheremail = @loggedInProfessorEmail AND status = 'Pending'";
                 }
                 else
                 {
-                    query = "SELECT invitationid, studentid, teacherid, teacheremail, studentemail, subjectname, status FROM invitation WHERE teacheremail = @loggedInProfessorEmail AND status = 'Pending' AND (studentid LIKE @searchTerm OR teacheremail LIKE @searchTerm OR studentemail LIKE @searchTerm OR subjectname LIKE @searchTerm OR status LIKE @searchTerm)";
+                    query = "SELECT invitationid, roomid, studentid, teacherid, teacheremail, studentemail, subjectname, status FROM invitation WHERE teacheremail = @loggedInProfessorEmail AND status = 'Pending' AND (studentid LIKE @searchTerm OR teacheremail LIKE @searchTerm OR studentemail LIKE @searchTerm OR subjectname LIKE @searchTerm OR status LIKE @searchTerm)";
                 }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))

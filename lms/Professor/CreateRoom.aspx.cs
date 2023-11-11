@@ -34,45 +34,45 @@ namespace lms.Professor
         protected void BindRoomData(string subjectFilter = "")
         {
             string teacheremail = Session["LoggedInUserEmail"] as string;
-            
+
             if (string.IsNullOrEmpty(teacheremail))
-    {
-        return;
-    }
-
-    string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-    using (MySqlConnection con = new MySqlConnection(connectionString))
-    {
-        con.Open();
-
-        string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail";
-
-        if (!string.IsNullOrEmpty(subjectFilter))
-        {
-            query += " AND subjectname = @subjectFilter";
-        }
-
-        using (MySqlCommand cmd = new MySqlCommand(query, con))
-        {
-            cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
-
-            if (!string.IsNullOrEmpty(subjectFilter))
             {
-                cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
+                return;
             }
 
-            using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(connectionString))
             {
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
+                con.Open();
 
-                roomRepeater.DataSource = dt;
-                roomRepeater.DataBind();
+                string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail  AND status = 'Active'";
+
+                if (!string.IsNullOrEmpty(subjectFilter))
+                {
+                    query += " AND subjectname = @subjectFilter";
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
+
+                    if (!string.IsNullOrEmpty(subjectFilter))
+                    {
+                        cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
+                    }
+
+                    using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+
+                        roomRepeater.DataSource = dt;
+                        roomRepeater.DataBind();
+                    }
+                }
             }
         }
-    }
-}
-       
+
         private void PopulateSubjectsDropDown()
         {
             string teacheremail = Session["LoggedInUserEmail"] as string;
@@ -87,7 +87,7 @@ namespace lms.Professor
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = "SELECT DISTINCT subjectname FROM rooms WHERE teacheremail = @teacheremail";
+                string query = "SELECT DISTINCT subjectname FROM rooms WHERE teacheremail = @teacheremail AND status = 'Active'";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
@@ -101,7 +101,10 @@ namespace lms.Professor
                             string subjectName = reader["subjectname"].ToString();
                             uniqueSubjectNames.Add(subjectName);
                         }
-                        foreach (string subjectName in uniqueSubjectNames)
+
+                        var sortedSubjects = uniqueSubjectNames.OrderBy(subject => subject);
+
+                        foreach (string subjectName in sortedSubjects)
                         {
                             DropDownList1.Items.Add(new ListItem(subjectName, subjectName));
                         }
@@ -128,7 +131,7 @@ namespace lms.Professor
             {
                 Response.Redirect("CreateRoom.aspx");
             }
-                BindRoomData(DropDownList1.SelectedValue);
+            BindRoomData(DropDownList1.SelectedValue);
         }
     }
 }

@@ -47,7 +47,13 @@
                                     PostBackUrl='<%# "editDetails.aspx?roomid=" + Eval("roomid") %>'
                                     Text="Edit Details" />
 
-                                <a href="#" class="room-btn createRoomLink">Archive Room</a>
+<%--                                <a href="#" class="room-btn createRoomLink">Archive Room</a>--%>
+
+                                     <asp:LinkButton ID="archiveroom" runat="server" CssClass="room-btn"
+                                       PostBackUrl='<%# "ArchiveConfirmation.aspx?roomid=" + Eval("roomid") %>'
+                                          Text="Archive Room" />
+
+
                             </div>
                         </div>
                     </div>
@@ -62,7 +68,7 @@
 
     </div>
 
- <div class="link" id="assignmentContainer">
+<%-- <div class="link" id="assignmentContainer">
     <div class="assignment">
         <div class="message">
             <p>Are you sure you want to Archive this room?</p>
@@ -101,5 +107,5 @@
                 }
             });
         });
-    </script>
+    </script>--%>
 </asp:Content>

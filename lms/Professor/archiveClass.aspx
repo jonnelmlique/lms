@@ -33,10 +33,10 @@
 
                             <div class="room-buttons">                                                            
                                 <asp:LinkButton ID="roomLink" runat="server" CssClass="room-btn"
-                                    PostBackUrl='<%# "editDetails.aspx?roomid=" + Eval("roomid") %>'
-                                    Text="Edit Details" />
+                                    PostBackUrl='<%# "UnachiveConfirmation.aspx?roomid=" + Eval("roomid") %>'
+                                    Text="Unarchive" />
 
-                                <a href="#" class="room-btn">Archive Room</a>
+                           
                             </div>
                         </div>
                     </div>

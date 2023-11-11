@@ -172,6 +172,7 @@
     <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Professor\ArchiveConfirmation.aspx" />
     <Content Include="Professor\instructorClassroom.aspx" />
     <Content Include="Professor\NotificationDetails.aspx" />
     <Content Include="Professor\professorMasterPage.Master" />
@@ -198,6 +199,7 @@
     <Content Include="Professor\StudentInvite.aspx" />
     <Content Include="Professor\editDetails.aspx" />
     <None Include="Resources\default.png" />
+    <Content Include="Professor\UnachiveConfirmation.aspx" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
     <Content Include="Student\Invitations.aspx" />
@@ -354,6 +356,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Professor\ArchiveConfirmation.aspx.cs">
+      <DependentUpon>ArchiveConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\ArchiveConfirmation.aspx.designer.cs">
+      <DependentUpon>ArchiveConfirmation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Professor\ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
@@ -447,6 +456,13 @@
     </Compile>
     <Compile Include="Professor\editDetails.aspx.designer.cs">
       <DependentUpon>editDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\UnachiveConfirmation.aspx.cs">
+      <DependentUpon>UnachiveConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\UnachiveConfirmation.aspx.designer.cs">
+      <DependentUpon>UnachiveConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

@@ -44,7 +44,7 @@ namespace lms.Professor
             {
                 con.Open();
 
-                string query = "SELECT roomid, subjectname, section FROM rooms WHERE teacheremail = @teacheremail";
+                string query = "SELECT roomid, subjectname, section FROM rooms WHERE teacheremail = @teacheremail AND status = 'Active'";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
