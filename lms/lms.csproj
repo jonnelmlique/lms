@@ -156,6 +156,7 @@
     <Content Include="CSS\login.css" />
     <Content Include="CSS\myAccountProf.css" />
     <Content Include="CSS\ProfessorCSS\archivedClass.css" />
+    <Content Include="CSS\ProfessorCSS\archivedConfirmation.css" />
     <Content Include="CSS\ProfessorCSS\classAssignment.css" />
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
@@ -168,6 +169,7 @@
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
     <Content Include="CSS\ProfessorCSS\room_details.css" />
     <Content Include="CSS\ProfessorCSS\studentInvite.css" />
+    <Content Include="CSS\Student\classInvitation.css" />
     <Content Include="CSS\Student\classSubjects.css" />
     <Content Include="CSS\Student\DashBoard.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
@@ -205,6 +207,7 @@
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
     <Content Include="Student\Invitations.aspx" />
+    <Content Include="Student\studentClassroom.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -482,6 +485,13 @@
     <Compile Include="RouteConfig.cs" />
     <Compile Include="Student\ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\studentClassroom.aspx.cs">
+      <DependentUpon>studentClassroom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\studentClassroom.aspx.designer.cs">
+      <DependentUpon>studentClassroom.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\studentMasterPage.Master.cs">
       <DependentUpon>studentMasterPage.Master</DependentUpon>

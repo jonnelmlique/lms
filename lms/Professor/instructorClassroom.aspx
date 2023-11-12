@@ -138,15 +138,7 @@
                                                       </div>     
                                                  </div>
                                              
-                                                <div class="instruc-creator">
-                                                     
-                                                      <div class="icon">                                                   
-                                                            <i class="fas fa-user"></i>
-                                                       </div>
-                                                    <div class="lbl-name">
-                                                       <asp:Label ID="Label10" runat="server" Text="Label" CssClass="instructor-name"></asp:Label>
-                                                     </div>
-                                            </div>
+                                              
                                           </div>
                                          <div class="student-list">
                                              <h2> Student Lists</h2>

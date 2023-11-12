@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/studentMasterPage.Master" AutoEventWireup="true" CodeBehind="Invitations.aspx.cs" Inherits="lms.Student.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-         <link rel="stylesheet" href="../CSS/ProfessorCSS/pedingInvite.css" />
-D
+         <link rel="stylesheet" href="../CSS/Student/classInvitation.css" />
+
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
@@ -26,7 +26,7 @@ D
 
                 <div class="studentlist">
 
-    <asp:GridView ID="subjectinvite" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
+    <asp:GridView ID="subjectinvite" runat="server" AutoGenerateColumns="false" EmptyDataText="No Invitations  Found">
         <columns>
             <asp:BoundField DataField="Invitationid" HeaderText="Invitation ID" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column" />
             <asp:BoundField DataField="roomid" HeaderText="Room ID" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column" />
@@ -42,7 +42,7 @@ D
                         <asp:ListItem Text="Accepted" Value="Accepted" ></asp:ListItem>
                     </asp:DropDownList>
                     <asp:HiddenField ID="hfTnIdPkId" runat="server" Value='<%# Eval("invitationid") %>'  />
-                    <asp:Button ID="btnUpdateStatus" runat="server" Text="Accpet" CssClass="action-btn" OnClick="btnUpdateStatus_Click"   />
+                    <asp:Button ID="btnUpdateStatus" runat="server" Text="Accept" CssClass="action-btn" OnClick="btnUpdateStatus_Click"   />
                 </itemtemplate>
             </asp:TemplateField>
         </columns>

@@ -254,8 +254,8 @@ color:#000;
 }
 .profile {
     width: 100%;
-    height: calc(100%-50%);
- 
+    height:50%;
+
 }
 .profile h2{
     
@@ -267,7 +267,7 @@ color:#000;
 .profile .img-preview {
     height: 220px;
     width: 300px;
-   margin:10px auto;
+   margin:5px auto;
     border-color:transparent;
     border-radius:15px;
  background-color:#fff;
@@ -281,7 +281,7 @@ color:#000;
     justify-content:center;
    
     width:50%;
-    margin:10px auto;
+    margin: auto;
 }
 .profile .img-btn .changge-image{
     padding:15px 30px;
@@ -298,7 +298,7 @@ color:#000;
 }
 
 .password{
-  
+
     height:calc(100% - 50%);
 }
 .password h2 {
@@ -435,7 +435,7 @@ color:#000;
 }
 .app-pass .info-btn .smtp-btn{
       padding:15px 30px;
- 
+    margin:0 15px;
     border-radius:15px;
     border-color:transparent;  
     cursor:pointer;
