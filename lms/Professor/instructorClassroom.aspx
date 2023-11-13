@@ -109,20 +109,20 @@
 
 
                                         </div>
-                        <asp:GridView ID="postGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Announcements Found" CssClass="announcement-grid">
-    <Columns>
-        <asp:TemplateField>
-            <ItemTemplate>
-                <div class="announcement-box">
-                    <div class="announcement-title">Announcement:</div>
-                    <div class="announcement-teacher"><%# Eval("teacheremail") %></div>
-                    <div class="announcement-date"><%# Eval("date") %></div>
-                    <div class="announcement-content"><%# Eval("postcontent") %></div>
-                </div>
-            </ItemTemplate>
-        </asp:TemplateField>
-    </Columns>
-</asp:GridView>
+                                        <asp:GridView ID="postGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Announcements Found" CssClass="announcement-grid">
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <div class="announcement-box">
+                                                            <div class="announcement-title">Announcement:</div>
+                                                            <div class="announcement-teacher"><%# Eval("teacheremail") %></div>
+                                                            <div class="announcement-date"><%# Eval("date") %></div>
+                                                            <div class="announcement-content"><%# Eval("postcontent") %></div>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
 
 
                                     </div>

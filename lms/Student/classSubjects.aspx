@@ -29,12 +29,12 @@
                         </div>
 
                         <div class="room-sched">
-                            <a href='<%# "kknkn.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("invitation_subjectname") %></a>
+                            <a href='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("invitation_subjectname") %></a>
                             <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
                             <div class="room-buttons">
                                   <asp:LinkButton ID="enterroom" runat="server" CssClass="room-btn"
-                                 PostBackUrl='<%# "fddxhx.aspx?roomid=" + Eval("roomid") %>'
+                                 PostBackUrl='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>'
                                  Text="Enter Room" />
 
 
