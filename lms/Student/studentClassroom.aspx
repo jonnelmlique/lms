@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
     <link rel="stylesheet" href="../CSS/ProfessorCSS/pedingInvite.css" />
-        <link href="../CSS/ProfessorCSS/announcement.css" rel="stylesheet" />
+    <link href="../CSS/ProfessorCSS/announcement.css" rel="stylesheet" />
 
 </head>
 <body>
