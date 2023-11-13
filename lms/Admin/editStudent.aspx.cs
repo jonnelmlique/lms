@@ -106,7 +106,7 @@ namespace lms.Admin
             }
         }
 
-protected void TextBox3_TextChanged(object sender, EventArgs e)
+        protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -156,7 +156,7 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
 
-     
+
         protected void btnedit_Click(object sender, EventArgs e)
         {
             string firstName = TextBox1.Text;
@@ -216,7 +216,7 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
                                 studentCmd.Parameters.AddWithValue("@Birthday", birthday);
                                 studentCmd.Parameters.AddWithValue("@Contact", contact);
                                 studentCmd.Parameters.AddWithValue("@ProfileImage", fileBytes ?? GetExistingProfileImage(username, con));
-                                studentCmd.Parameters.AddWithValue("@Status", status); 
+                                studentCmd.Parameters.AddWithValue("@Status", status);
 
                                 int studentRowsAffected = studentCmd.ExecuteNonQuery();
 
@@ -254,7 +254,7 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
             RadioButton2.Checked = false;
             ImagePreview.ImageUrl = "";
         }
-       
+
         private byte[] GetExistingProfileImage(string username, MySqlConnection con)
         {
             string query = "SELECT profileimage FROM users WHERE username = @Username";
@@ -297,7 +297,7 @@ protected void TextBox3_TextChanged(object sender, EventArgs e)
                 }
             }
         }
-      
+
         protected void CheckBox1_CheckedChanged1(object sender, EventArgs e)
         {
             if (CheckBox1.Checked)

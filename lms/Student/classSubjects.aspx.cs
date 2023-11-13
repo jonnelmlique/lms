@@ -31,35 +31,26 @@ namespace lms.Student
 
             }
         }
-        protected void BindRoomData(string subjectFilter = "")
+        protected void BindRoomData()
         {
-            string teacheremail = Session["LoggedInUserEmail"] as string;
+            string studentemail = Session["LoggedInUserEmail"] as string;
 
-            if (string.IsNullOrEmpty(teacheremail))
+            if (string.IsNullOrEmpty(studentemail))
             {
                 return;
             }
 
             string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
 
-                string query = "SELECT roomid, subjectname, description, schedule, section FROM rooms WHERE teacheremail = @teacheremail  AND status = 'Active'";
-
-                if (!string.IsNullOrEmpty(subjectFilter))
-                {
-                    query += " AND subjectname = @subjectFilter";
-                }
+                string query = "SELECT roomid, invitation_subjectname, description, schedule, section, roomstatus FROM invitation_and_rooms_view WHERE studentemail = @studentemail AND status = 'Accepted' AND roomstatus = 'Active'";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@teacheremail", teacheremail);
-
-                    if (!string.IsNullOrEmpty(subjectFilter))
-                    {
-                        cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
-                    }
+                    cmd.Parameters.AddWithValue("@studentemail", studentemail);
 
                     using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                     {
@@ -73,7 +64,6 @@ namespace lms.Student
             }
         }
 
-       
         private void ShowErrorMessage(string message)
         {
             string script = $"Swal.fire({{ icon: 'error', text: '{message}' }})";

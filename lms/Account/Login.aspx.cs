@@ -25,6 +25,7 @@ namespace lms.LOGIN
                 bool emailValid = false;
                 bool passwordValid = false;
                 string userStatus = "";
+                int userID = 0;
 
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
@@ -36,6 +37,7 @@ namespace lms.LOGIN
                     {
                         passwordValid = CheckPassword(con, email, password);
                         userStatus = GetUserStatus(con, email);
+                        userID = GetUserID(con, email);
                     }
 
                     if (emailValid && passwordValid && userStatus == "Activated")
@@ -44,7 +46,9 @@ namespace lms.LOGIN
                         if (!string.IsNullOrEmpty(usertype))
                         {
                             Session["LoggedInUserEmail"] = email;
+
                             Session["LoggedInUserType"] = usertype;
+                            Session["LoggedInUserID"] = userID;
 
                             if (usertype == "admin")
                             {
@@ -87,6 +91,39 @@ namespace lms.LOGIN
             }
         
     }
+        private int GetUserID(MySqlConnection con, string email)
+        {
+            int userID = 0;
+
+            string teacherQuery = "SELECT teacherid FROM teacher_info WHERE email = @Email";
+            using (MySqlCommand teacherCmd = new MySqlCommand(teacherQuery, con))
+            {
+                teacherCmd.Parameters.AddWithValue("@Email", email);
+                object teacherResult = teacherCmd.ExecuteScalar();
+
+                if (teacherResult != null)
+                {
+                    userID = Convert.ToInt32(teacherResult);
+                    return userID;
+                }
+            }
+
+            string studentQuery = "SELECT studentid FROM student_Info WHERE email = @Email";
+            using (MySqlCommand studentCmd = new MySqlCommand(studentQuery, con))
+            {
+                studentCmd.Parameters.AddWithValue("@Email", email);
+                object studentResult = studentCmd.ExecuteScalar();
+
+                if (studentResult != null)
+                {
+                    userID = Convert.ToInt32(studentResult);
+                    return userID;
+                }
+            }
+
+            return userID;
+        }
+
         private string GetUserStatus(MySqlConnection con, string email)
         {
             string query = "SELECT Status FROM users WHERE Email = @Email";

@@ -155,6 +155,7 @@
     <Content Include="CSS\AdminCSS\userReports.css" />
     <Content Include="CSS\login.css" />
     <Content Include="CSS\myAccountProf.css" />
+    <Content Include="CSS\ProfessorCSS\announcement.css" />
     <Content Include="CSS\ProfessorCSS\archivedClass.css" />
     <Content Include="CSS\ProfessorCSS\archivedConfirmation.css" />
     <Content Include="CSS\ProfessorCSS\classAssignment.css" />

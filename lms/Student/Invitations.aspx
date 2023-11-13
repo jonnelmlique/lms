@@ -32,7 +32,7 @@
             <asp:BoundField DataField="roomid" HeaderText="Room ID" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column" />
             <asp:BoundField DataField="studentid" HeaderText="Student ID" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column" />
             <asp:BoundField DataField="StudentEmail" HeaderText="Email" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column" />
-            <asp:BoundField DataField="teacherid" HeaderText="Teacher ID" HeaderStyle-CssClass="subj id" />
+            <asp:BoundField DataField="teacherid" HeaderText="Teacher ID" HeaderStyle-CssClass="subj hide-column" ItemStyle-CssClass="hide-column"  />
             <asp:BoundField DataField="TeacherEmail" HeaderText="Teacher Email" HeaderStyle-CssClass="subj" />
              <asp:BoundField DataField="subjectname" HeaderText="Subject Name" HeaderStyle-CssClass="subj" />
             <asp:TemplateField HeaderText="" ItemStyle-Width="140px">

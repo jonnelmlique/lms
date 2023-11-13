@@ -16,7 +16,7 @@ namespace lms.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          TextBox3.TextChanged += new EventHandler(TextBox3_TextChanged);
+            TextBox3.TextChanged += new EventHandler(TextBox3_TextChanged);
             TextBox4.Enabled = false;
 
             string firstname = txtfirstname.Text;
@@ -39,7 +39,7 @@ namespace lms.Admin
             int age;
 
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username) ||
-                string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text) || string.IsNullOrWhiteSpace(TextBox7.Text) )
+                string.IsNullOrWhiteSpace(TextBox4.Text) || string.IsNullOrWhiteSpace(TextBox3.Text) || string.IsNullOrWhiteSpace(TextBox5.Text) || string.IsNullOrWhiteSpace(TextBox7.Text))
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "Swal.fire({icon: 'error', text: 'Please fill out all the textboxes and select a file'})", true);
                 return;
