@@ -164,6 +164,7 @@
     <Content Include="CSS\ProfessorCSS\enterroompeople.css" />
     <Content Include="CSS\ProfessorCSS\instructorClassroom.css" />
     <Content Include="CSS\ProfessorCSS\inviteStudents.css" />
+    <Content Include="CSS\ProfessorCSS\materials.css" />
     <Content Include="CSS\ProfessorCSS\notificationDetails.css" />
     <Content Include="CSS\ProfessorCSS\notifications.css" />
     <Content Include="CSS\ProfessorCSS\pedingInvite.css" />
