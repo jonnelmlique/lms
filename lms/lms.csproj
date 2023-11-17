@@ -159,8 +159,11 @@
     <Content Include="CSS\ProfessorCSS\archivedClass.css" />
     <Content Include="CSS\ProfessorCSS\archivedConfirmation.css" />
     <Content Include="CSS\ProfessorCSS\classAssignment.css" />
+    <Content Include="CSS\ProfessorCSS\classroomMasterPage.css" />
+    <Content Include="CSS\ProfessorCSS\classwork.css" />
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
+    <Content Include="CSS\ProfessorCSS\editClasswork.css" />
     <Content Include="CSS\ProfessorCSS\enterroompeople.css" />
     <Content Include="CSS\ProfessorCSS\instructorClassroom.css" />
     <Content Include="CSS\ProfessorCSS\inviteStudents.css" />
@@ -170,6 +173,7 @@
     <Content Include="CSS\ProfessorCSS\pedingInvite.css" />
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
     <Content Include="CSS\ProfessorCSS\room_details.css" />
+    <Content Include="CSS\ProfessorCSS\stream.css" />
     <Content Include="CSS\ProfessorCSS\studentInvite.css" />
     <Content Include="CSS\Student\classInvitation.css" />
     <Content Include="CSS\Student\classSubjects.css" />
@@ -183,6 +187,7 @@
     <Content Include="Professor\NotificationDetails.aspx" />
     <Content Include="Professor\professorMasterPage.Master" />
     <Content Include="Professor\ImageHandler.ashx" />
+    <Content Include="Professor\instructorClassRoom.Master" />
     <None Include="Resources\Novaliches High School Cover Picture.jpg" />
     <None Include="Resources\Novaliches Senior High School.png" />
     <Content Include="Professor\DashBoard.aspx" />
@@ -206,6 +211,10 @@
     <Content Include="Professor\editDetails.aspx" />
     <None Include="Resources\default.png" />
     <Content Include="Professor\UnachiveConfirmation.aspx" />
+    <Content Include="Professor\StreamClassroom.aspx" />
+    <Content Include="Professor\editClasswork.aspx" />
+    <Content Include="Professor\WebForm12.aspx" />
+    <Content Include="Professor\Classwork.aspx" />
     <Content Include="Student\ArchivedClasses.aspx" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
@@ -381,6 +390,13 @@
     <Compile Include="Professor\instructorClassroom.aspx.designer.cs">
       <DependentUpon>instructorClassroom.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Professor\instructorClassRoom.Master.cs">
+      <DependentUpon>instructorClassRoom.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\instructorClassRoom.Master.designer.cs">
+      <DependentUpon>instructorClassRoom.Master</DependentUpon>
+    </Compile>
     <Compile Include="Professor\NotificationDetails.aspx.cs">
       <DependentUpon>NotificationDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -471,6 +487,34 @@
     </Compile>
     <Compile Include="Professor\UnachiveConfirmation.aspx.designer.cs">
       <DependentUpon>UnachiveConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\StreamClassroom.aspx.cs">
+      <DependentUpon>StreamClassroom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\StreamClassroom.aspx.designer.cs">
+      <DependentUpon>StreamClassroom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\editClasswork.aspx.cs">
+      <DependentUpon>editClasswork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\editClasswork.aspx.designer.cs">
+      <DependentUpon>editClasswork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\WebForm12.aspx.cs">
+      <DependentUpon>WebForm12.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\WebForm12.aspx.designer.cs">
+      <DependentUpon>WebForm12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\Classwork.aspx.cs">
+      <DependentUpon>Classwork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\Classwork.aspx.designer.cs">
+      <DependentUpon>Classwork.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

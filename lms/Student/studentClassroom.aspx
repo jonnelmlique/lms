@@ -50,7 +50,7 @@
 
                     <div class="item">
 
-                        <a href="classSubjects.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Exit</a>
+                        <a href="classSubjects.aspx" class="sub-btn-active"><i class="fas fa-sign-out-alt"></i>Exit</a>
                     </div>
                 </div>
             </div>

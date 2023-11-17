@@ -105,8 +105,8 @@ namespace lms.Professor
                 {
                     con.Open();
 
-                    string insertQuery = "INSERT INTO announcements (roomid, teacherid, teacheremail, postcontent, date) " +
-                                         "VALUES (@roomid, @teacherid, @teacheremail, @postcontent, @date)";
+                    string insertQuery = "INSERT INTO announcements (roomid, teacherid, teacheremail, postcontent, datepost) " +
+                                         "VALUES (@roomid, @teacherid, @teacheremail, @postcontent, @datepost)";
 
                     using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
                     {
@@ -114,10 +114,10 @@ namespace lms.Professor
                         commandInsert.Parameters.AddWithValue("@teacherid", teacherId);
                         commandInsert.Parameters.AddWithValue("@teacheremail", teacherEmail);
                         commandInsert.Parameters.AddWithValue("@postcontent", postContent);
-                        commandInsert.Parameters.AddWithValue("@date", currentDate);
+                        commandInsert.Parameters.AddWithValue("@datepost", currentDate);
 
                         commandInsert.ExecuteNonQuery();
-
+                        TextBox1.Text = "";
                         ShowSuccessMessage("Your post has been successfully posted");
 
 
@@ -127,7 +127,7 @@ namespace lms.Professor
 
                 ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
                 DisplayAnnouncements();
-    
+
             }
         }
         private void DisplayAnnouncements()
@@ -142,10 +142,10 @@ namespace lms.Professor
                     {
                         con.Open();
 
-                        string query = "SELECT teacheremail, postcontent, date FROM announcements " +
+                        string query = "SELECT teacheremail, postcontent, datepost FROM announcements " +
                            "WHERE roomid = @roomid AND teacherid = @teacherid " +
-                            "ORDER BY date DESC ";
-                  
+                            "ORDER BY datepost DESC ";
+
 
 
                         int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
@@ -172,6 +172,7 @@ namespace lms.Professor
                 }
             }
         }
+
 
 
         protected void btncreate_Click(object sender, EventArgs e)

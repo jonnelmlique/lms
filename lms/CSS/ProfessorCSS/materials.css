@@ -1,51 +1,55 @@
-﻿.custom-materials-grid {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-    .custom-materials-grid td, .custom-materials-grid th {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    .custom-materials-grid tr {
-        background-color: #f8f8f8;
-    }
-
-        .custom-materials-grid tr:nth-child(even) {
-            background-color: #f0f0f0;
-        }
-
-    .custom-materials-grid td:last-child {
-        text-align: center;
-    }
+﻿
 
 .materials-box {
     border: 1px solid #e0e0e0;
     border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
     background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     transition: box-shadow 0.3s ease;
+    
 }
 
-    .materials-box:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-.materials-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #333;
+.materials-box .title{
+    height:40px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    text-transform:capitalize;
+   background-color: #f57f7f;
+    
+}
+.materials-box .title h2{
+    font-family:'Times New Roman';
+    font-size:25px;
+     color:#fff;
+}
+.materials-box .date-points{
+    height:30px;
+    display:flex;
+    border-bottom:1px solid #ddd;
+}
+.materials-box .date-points .points{
+    flex:1;
+    height:100%;
+    display:flex;   
+    align-items:center;
+    padding:0 25px;
+}
+.materials-box .date-points .date{
+     flex:1;
+    height:100%;
+    display:flex;   
+    align-items:center;
+    justify-content:flex-end;
+    padding:0 25px;
 }
 
-.materials-teacher, .materials-date, .materials-content {
-    margin-bottom: 10px;
-    color: #555;
+.materials-box .instruction{
+    min-height:100px;
+    width:100%;
+    max-height:auto;
+    padding:20px;
 }
 
 .file-link {
@@ -62,3 +66,8 @@
     .file-link:hover {
         background-color: #0056b3;
     }
+
+class-body {
+    height: calc(100% - 60px);
+    border:1px solid red;
+}
