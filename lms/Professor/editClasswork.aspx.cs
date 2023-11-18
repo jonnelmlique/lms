@@ -19,7 +19,7 @@ namespace lms.Professor
                 }
             }
         }
-                protected void Button4_Click(object sender, EventArgs e)
+        protected void Button4_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Professor/Classwork.aspx");
         }
