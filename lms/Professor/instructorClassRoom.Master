@@ -48,11 +48,10 @@
             <div class="menu">
 
                  <div class="item">
-                      <a href="StreamClassroom.aspx" class="sub-btn-active"><i class="fas fa-bars"></i>Stream</a>
+                         <a href='StreamClassroom.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><i class="fas fa-bars"></i>Stream</a>
                 </div>
-
                 <div class="item">
-                    <a href="Classwork.aspx" class="sub-btn-active"><i class="fas fa-book"></i>Classworks</a>
+                    <a href='Classwork.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><i class="fas fa-book"></i>Classworks</a>
                 </div>
                  <div class="item">
                       <a href="#" class="sub-btn-active"><i class="fas fa-users"></i>People</a>
@@ -187,7 +186,7 @@
         }
     });
 </script>
-<script>
+<%--<script>
     function showSuccessMessage() {
         Swal.fire({
             icon: 'success',
@@ -201,7 +200,7 @@
 
             });
     }
-</script>
+</script>--%>
  <%-- <script>
 
       function handleLinkClick(link) {

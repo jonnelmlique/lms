@@ -11,10 +11,15 @@ namespace lms.Professor
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request.QueryString["roomid"]))
+            {
+                if (int.TryParse(Request.QueryString["roomid"], out int roomId))
+                {
 
+                }
+            }
         }
-
-        protected void Button4_Click(object sender, EventArgs e)
+                protected void Button4_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Professor/Classwork.aspx");
         }

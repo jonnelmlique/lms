@@ -16,7 +16,6 @@ namespace lms.Professor
             if (!IsPostBack)
             {
 
-
                 if (!string.IsNullOrEmpty(Request.QueryString["roomid"]))
                 {
 
@@ -24,7 +23,7 @@ namespace lms.Professor
 
                     {
                         try
-                        {
+                        {   
                             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
                             using (MySqlConnection con = new MySqlConnection(connectionString))
