@@ -20,20 +20,14 @@ namespace lms.Student
                 {
                     //ViewState["RoomId"] = roomId;
                     Session["RoomId"] = roomId;
-
                     //DisplayUserProfileImage();
-
-
                 }
                 else
                 {
                     ShowErrorMessage("Invalid roomid");
                 }
-
             }
             DisplayAnnouncements();
-
-
         }
         private void DisplayAnnouncements()
         {
@@ -104,7 +98,6 @@ namespace lms.Student
             }
             else
             {
-                // Provide a default image URL if the profile image is null
                 return "path/to/default/image.jpg";
             }
         }

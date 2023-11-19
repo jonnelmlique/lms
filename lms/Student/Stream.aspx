@@ -18,12 +18,11 @@
                         <div class="announcement-box">
                             <div class="announcement-head">
                                 <div class="profile">
-                              <%-- <asp:Image ID="Image1" runat="server" CssClass="img-profile" ImageUrl='<%# GetProfileImageUrl(Eval("profileimage")) %>' />--%>
+                               <asp:Image ID="Image1" runat="server" CssClass="img-profile" ImageUrl='<%# GetProfileImageUrl(Eval("profileimage")) %>' />
                                 </div>
                                 <div class="info">
                                     <div class="name">
                                         <h3><%# Eval("teachername") %></h3>
-                                        <a href="#"><i class="fas fa-edit"></i></a>
                                     </div>
                                     <div class="date">
                                         <span><%# Eval("datepost") %></span>

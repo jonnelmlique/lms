@@ -149,7 +149,7 @@
                             </div>
                             <div class="info-btn">
                                  <asp:Button ID="Button4" runat="server" Text="Submit SMTP" CssClass="smtp-btn" OnClick="Button3_Click" />
-                                <asp:Button ID="Button3" runat="server" Text="Update SMTP" CssClass="smtp-btn" OnClick="Button3_Click" />
+                                <asp:Button ID="Button3" runat="server" Text="Update SMTP" CssClass="smtp-btn" OnClick="Button4_Click" />
                               
                             </div>
                       </div>

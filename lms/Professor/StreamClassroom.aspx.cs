@@ -1,8 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -153,6 +156,9 @@ namespace lms.Professor
 
                                         commandInsert.ExecuteNonQuery();
 
+                                        SendAnnouncementEmail(postContent, teacherEmail, roomIdFromQueryString);
+
+
                                         TextBox1.Text = "";
                                         ShowSuccessMessage("Your post has been successfully posted");
                                     }
@@ -161,12 +167,100 @@ namespace lms.Professor
                         }
                     }
                 }
-
-                // Refresh the announcements grid after a new post
                 DisplayAnnouncements();
             }
         }
+        private void SendAnnouncementEmail(string postContent, string teacherEmail, int roomIdFromQueryString)
+        {
+            try
+            {
+                // Retrieve logged-in user's email from session
+                string loggedInUserEmail = Session["LoggedInUserEmail"] as string;
 
+                if (string.IsNullOrEmpty(loggedInUserEmail))
+                {
+                    ShowErrorMessage("Unable to retrieve the logged-in user's email.");
+                    return;
+                }
+
+                // Retrieve SMTP credentials from the database
+                string smtpConnectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                using (MySqlConnection smtpConnection = new MySqlConnection(smtpConnectionString))
+                {
+                    smtpConnection.Open();
+
+                    string smtpQuery = "SELECT smtp_email, smtp_password FROM smtp_credentials WHERE smtp_email = @smtp_email";
+
+                    using (MySqlCommand smtpCmd = new MySqlCommand(smtpQuery, smtpConnection))
+                    {
+                        smtpCmd.Parameters.AddWithValue("@smtp_email", loggedInUserEmail);
+
+                        using (MySqlDataReader reader = smtpCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string smtpEmail = reader["smtp_email"].ToString();
+                                string smtpPassword = reader["smtp_password"].ToString();
+
+                                string smtpServer = "smtp.gmail.com";
+                                int smtpPort = 587;
+
+                                reader.Close();
+
+                                List<string> studentEmails = new List<string>();
+
+                                string queryStudents = "SELECT studentemail FROM invitation WHERE roomid = @roomid AND status = 'Accepted'";
+
+                                using (MySqlCommand commandStudents = new MySqlCommand(queryStudents, smtpConnection))
+                                {
+                                    commandStudents.Parameters.AddWithValue("@roomid", roomIdFromQueryString);
+
+                                    using (MySqlDataReader readerStudents = commandStudents.ExecuteReader())
+                                    {
+                                        while (readerStudents.Read())
+                                        {
+                                            string studentEmail = readerStudents["studentemail"].ToString();
+                                            studentEmails.Add(studentEmail);
+                                        }
+                                    }
+                                }
+
+                                foreach (string studentEmail in studentEmails)
+                                {
+                                    using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
+                                    {
+                                        smtpClient.EnableSsl = true;
+                                        smtpClient.Credentials = new NetworkCredential(smtpEmail, smtpPassword);
+
+                                        string roomLink = "https://localhost:44304/Account/Login.aspx";
+
+                                        string subject = $"Novaliches High School: Announcements";
+                                        string body = $"Dear Student, <br/><br/>You have a room Announcements from {teacherEmail}. " +
+                                                      $"<br/>{postContent}. Click <a href=\"{roomLink}\">here</a> to view in the room." +
+                                                      $"<br/><br/>Best regards, <br/>{teacherEmail}";
+
+                                        MailMessage mailMessage = new MailMessage(smtpEmail, studentEmail, subject, body);
+                                        mailMessage.IsBodyHtml = true;
+
+                                        smtpClient.Send(mailMessage);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ShowErrorMessage("SMTP credentials not found for the logged-in user's email.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"Error sending email: {ex.Message}");
+                throw;
+            }
+        }
         private void DisplayAnnouncements()
         {
             if (Session["RoomId"] != null && int.TryParse(Session["RoomId"].ToString(), out int roomId))
