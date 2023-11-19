@@ -220,6 +220,7 @@ button:hover {
 .side-bar .menu .item{
  position: relative;
  cursor: pointer;
+ height:70px;
 
  
 }
@@ -230,7 +231,13 @@ button:hover {
  text-decoration: none;
  display: block;
  padding: 5px 30px;
- line-height: 60px;
+  display:flex;
+ align-items:center;
+ justify-content:center;
+ height:100%;
+ width:100%;
+
+
 }
 
 .side-bar .menu .item a:hover{
@@ -244,17 +251,27 @@ border-top-left-radius:50px;
 color:#000;
  }
 
-.side-bar .menu .item i{
- margin-right: 25px;
- color:#fff;
- font-size:20px;
+.side-bar .menu i {
+    color: #fff;
+    font-size: 25px;
+ 
+    width:60px;
+   
 }
 
-.side-bar .menu .item a .dropdown{
- position: absolute;
- right: 0;
- margin: 20px;
- transition: 0.3s ease;
+.side-bar .menu .item a span{
+ 
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+   
+}
+.side-bar .menu .item a .dropdown {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    transition: 0.3s ease;
 }
 
 .side-bar .menu .item .sub-menu{
@@ -275,7 +292,7 @@ color:#000;
     flex: 1;
      width:100%;
      padding:10px;
-     border:1px solid black;
+   
     
   
    

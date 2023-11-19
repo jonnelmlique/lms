@@ -46,22 +46,22 @@
         <div class="side-bar">
             <div class="menu">
 
-                 <div class="item">
-                         <a href='Stream.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><i class="fas fa-bars"></i>Stream</a>
-                </div>
-                <div class="item">
-                    <a href='Classworks.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><i class='bx bx-book-reader'></i>Classworks</a>
-                </div>
-                 <div class="item">
-                      <a href='People.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><i class="fas fa-users"></i>People</a>
-                </div>
-                 <div class="item">
-                    <a href="#" class="sub-btn-active"><i class='bx bxs-dashboard'></i>Grades</a>
-               </div>
+                  <div class="item">
+          <a href='Stream.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
+ </div>
+ <div class="item">
+     <a href='Classworks.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class='bx bxs-book-reader'></i>Classworks</span></a>
+ </div>
+  <div class="item">
+       <a href='People.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-users"></i>People</span></a>
+ </div>
+  <div class="item">
+     <a href="#" class="sub-btn-active"><span><i class="fas fa-star"></i>Grades</span></a>
+</div>
 
-                <div class="item">
-                    <a href="classSubjects.aspx" class="sub-btn-active"><i class="fas fa-sign-out-alt"></i>Exit</a>
-                 </div>
+ <div class="item">
+     <a href="classSubjects.aspx" class="sub-btn-active"><span><i class="fas fa-sign-out-alt"></i>Exit</span></a>
+  </div>
             </div>
         </div>
         <main class="content">

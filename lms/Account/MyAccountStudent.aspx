@@ -49,7 +49,7 @@
             </div>
      
             <div class="item">
-                <a href="../Professor/DashBoard.aspx" class="sub-btn" ><i class='bx bxs-dashboard'></i>Go to DashBoard</a>
+                <a href="../Professor/DashBoard.aspx" class="sub-btn" ><i class="fas fa-sign-out-alt"></i>Go to DashBoard</a>
                 
             </div>
            
@@ -148,7 +148,8 @@
                                <asp:TextBox ID="TextBox10" runat="server" CssClass="info-text" Placeholder="Enter your SMTP pass from Email"></asp:TextBox>
                             </div>
                             <div class="info-btn">
-                                <asp:Button ID="Button3" runat="server" Text="Update" CssClass="smtp-btn" OnClick="Button3_Click" />
+                                 <asp:Button ID="Button4" runat="server" Text="Submit SMTP" CssClass="smtp-btn" OnClick="Button3_Click" />
+                                <asp:Button ID="Button3" runat="server" Text="Update SMTP" CssClass="smtp-btn" OnClick="Button3_Click" />
                               
                             </div>
                       </div>

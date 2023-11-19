@@ -62,9 +62,8 @@
                <asp:FileUpload ID="file" runat="server" />
         </div>
         <div class="assign-btn">
-            <asp:Button ID="btncreate" runat="server" Text="Create Assignment" CssClass="buttons"  />
-            <asp:Button ID="Button4" runat="server" Text="Cancel" CssClass="buttons" OnClick="Button4_Click" />
-<a href='<%= "Classwork.aspx?roomid=" + Request.QueryString["roomid"] %>'><i class="fas fa-arrow-left"></i> Back to Classwork</a>
+            <asp:Button ID="btncreate" runat="server" Text="Create Assignment" CssClass="buttons"  /> 
+            <a href='<%= "Classwork.aspx?roomid=" + Request.QueryString["roomid"] %>'><i class="fas fa-arrow-left"></i> Back to Classwork</a>
 
         </div>
     </div>

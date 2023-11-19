@@ -49,7 +49,7 @@
                      <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label> 
                  </div>
                 <div class="item">
-                    <a href="DashBoard.aspx"><i class="fas fa-desktop"></i>Home</a>
+                    <a href="DashBoard.aspx"><i class='bx bxs-dashboard'></i>DashBoard</a>
                 </div>
                 <div class="item">
                     <a href="classSubjects.aspx" class="sub-btn"><i class="fas fa-book"></i>Class Subjects</a>

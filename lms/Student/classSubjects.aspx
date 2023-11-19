@@ -7,8 +7,20 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+  <div class="room-page">
+     <div class="room-filter">
+         <div class="filters">
+             <p>Select Room</p>
+             <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list" AutoPostBack="True">
+                 <asp:ListItem Text="All Rooms" Value="1" />
+             </asp:DropDownList>
+         </div>
 
+         <div class="btn-room">
+           
 
+         </div>
+     </div>
     <div class="room-lists">
         <asp:Repeater ID="roomRepeater" runat="server">
             <HeaderTemplate>
@@ -21,12 +33,12 @@
                     </div>
 
                     <div class="room-sched">
-                        <a href='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("invitation_subjectname") %></a>
+                        <a href='<%# "Stream.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("invitation_subjectname") %></a>
                         <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
                         <div class="room-buttons">
                             <asp:LinkButton ID="enterroom" runat="server" CssClass="room-btn"
-                                PostBackUrl='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>'
+                                PostBackUrl='<%# "Stream.aspx?roomid=" + Eval("roomid") %>'
                                 Text="Enter Room" />
 
 
@@ -42,6 +54,6 @@
         </asp:Repeater>
 
     </div>
-
+</div>
 
 </asp:Content>

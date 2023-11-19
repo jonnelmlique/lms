@@ -1,19 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/instructorClassRoom.Master" AutoEventWireup="true" CodeBehind="StreamClassroom.aspx.cs" Inherits="lms.Professor.WebForm10" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/ProfessorCSS/stream.css" />
-    <style>
-       .img-profile{
-     display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:auto;
-    margin-bottom:10px;
-    color:#000;
-     width:50px;
-     height:50px;
-    border-radius:50%;
-}
-    </style>
+   
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Classroom" runat="server">

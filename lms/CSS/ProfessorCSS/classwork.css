@@ -237,8 +237,13 @@
      color:#fff;
 }
 .materials-box .title a{
-   color:#000;
+   color:#fff;
    background-color:transparent;
+   transition:0.3s all ease;
+   font-size:20px;
+}
+.materials-box .title a:hover{
+    color:#000;
 }
 .materials-box .date-points{
     height:30px;
@@ -312,7 +317,7 @@ table {
     }
 
     table th {
-       
+       display:none;
     }
 
 tbody tr td a {
@@ -325,3 +330,172 @@ tbody tr td a {
     border-color: transparent;
     border-radius: 10px;
 }
+
+
+#assignmentContainer {
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-60%, -50%);
+    background-color: #fff;
+    z-index: 1000;
+    width: 70%;
+    height: 550px;
+   display:none;
+  
+}
+
+#bg-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+  
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    z-index: 999;
+    display: none;
+}
+.post-materials {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    background-color: #f57f7f;
+}
+.assignment {
+    display: flex;
+    height:calc(100% - 50px);
+  
+    width: 100%;
+  
+  
+}
+.assignment .assign-title{
+    flex:1;
+    
+}
+.assign-title .title{
+  
+    height:150px;
+    display:flex;
+    align-items:center;
+    padding:20px;
+  
+}
+.assign-title .title .lbl-title{
+    font-size:20px;
+     margin-right:20px;
+     font-family:Arial;
+     color:#000;
+     font-weight:bold;
+}
+.assign-title .title .txt-title{
+    width:100%;
+     height:50px;
+     padding:15px;
+     border-radius:15px;
+     font-size:18px;
+     font-family:Arial;
+}
+
+
+.instructions {
+  
+    height:calc(100% - 150px);
+    display:flex;
+    padding:20px;
+
+}
+.instructions .lbl-instruc{
+   font-size:20px;
+     margin-right:20px;
+     font-family:Arial;
+   color:#000;
+      font-weight:bold;
+}
+.instructions .txt-instruc{
+    resize:none;
+    height:200px;
+    width:100%;
+    border-radius:15px;
+    padding:20px;
+}
+
+
+.assignment .assign-description {
+    flex: 1;
+   
+    padding: 20px;
+}
+.assign-description .assign {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+
+}
+.assign .lbl-assign{
+    font-size:20px;
+    font-family:Arial;
+  
+  color:#000;
+  font-weight:bold;
+  height:100%;
+  display:flex; 
+  align-items:center;
+    width:30%;
+}
+.rdb-post{
+    font-size:18px;
+    margin:10px;
+      color:#000;
+}
+.rdb-post input[type="radio"] {
+    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+}
+.assign .txt{
+   flex:2;
+   height:100%;
+   padding:10px;
+   font-size:18px;
+   font-family:Arial;
+   width:calc(100% - 30%);
+}
+.assign .list {
+    flex: 2;
+    height: 100%;
+    font-size: 18px;
+    font-family: Arial;
+}
+
+.assign-btn{
+    height:calc(100% - 350px);
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+   
+}
+.assign-btn .buttons{
+    padding:15px 30px;
+    margin:15px;
+    border-color:transparent;
+      background-color: #eb4d4d;
+      color:#fff;
+      font-size:15px;
+      font-family:Arial;
+      border-radius:15px;
+      transition:0.3s all ease;
+      cursor:pointer;
+}
+.assign-btn .buttons:hover{
+     background-color: #f57f7f;
+     outline:1px solid black;
+}
+

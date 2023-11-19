@@ -209,7 +209,22 @@
      background-color: #f57f7f;
      outline:1px solid black;
 }
-
+.assign-btn a{
+    padding:15px 30px;
+    margin:15px;
+    border-color:transparent;
+      background-color: #eb4d4d;
+      color:#fff;
+      font-size:15px;
+      font-family:Arial;
+      border-radius:15px;
+      transition:0.3s all ease;
+      cursor:pointer;
+}
+.assign-btn a:hover{
+     background-color: #f57f7f;
+     outline:1px solid black;
+}
 
 .materials-box {
     border: 1px solid #e0e0e0;

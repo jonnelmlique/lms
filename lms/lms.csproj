@@ -171,6 +171,7 @@
     <Content Include="CSS\ProfessorCSS\notificationDetails.css" />
     <Content Include="CSS\ProfessorCSS\notifications.css" />
     <Content Include="CSS\ProfessorCSS\pedingInvite.css" />
+    <Content Include="CSS\ProfessorCSS\People1.css" />
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
     <Content Include="CSS\ProfessorCSS\room_details.css" />
     <Content Include="CSS\ProfessorCSS\stream.css" />
@@ -215,10 +216,14 @@
     <Content Include="Professor\editClasswork.aspx" />
     <Content Include="Professor\WebForm12.aspx" />
     <Content Include="Professor\Classwork.aspx" />
+    <Content Include="Professor\People1.aspx" />
     <Content Include="Student\ArchivedClasses.aspx" />
+    <Content Include="Student\Classworks.aspx" />
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
     <Content Include="Student\Invitations.aspx" />
+    <Content Include="Student\People.aspx" />
+    <Content Include="Student\Stream.aspx" />
     <Content Include="Student\studentClassroom.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -516,6 +521,13 @@
     <Compile Include="Professor\Classwork.aspx.designer.cs">
       <DependentUpon>Classwork.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Professor\People1.aspx.cs">
+      <DependentUpon>People1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\People1.aspx.designer.cs">
+      <DependentUpon>People1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -537,8 +549,36 @@
     <Compile Include="Student\ArchivedClasses.aspx.designer.cs">
       <DependentUpon>ArchivedClasses.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Student\classroomMasterPage.Master.cs">
+      <DependentUpon>classroomMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\classroomMasterPage.Master.designer.cs">
+      <DependentUpon>classroomMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Classworks.aspx.cs">
+      <DependentUpon>Classworks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Classworks.aspx.designer.cs">
+      <DependentUpon>Classworks.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\People.aspx.cs">
+      <DependentUpon>People.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\People.aspx.designer.cs">
+      <DependentUpon>People.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Stream.aspx.cs">
+      <DependentUpon>Stream.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Stream.aspx.designer.cs">
+      <DependentUpon>Stream.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\studentClassroom.aspx.cs">
       <DependentUpon>studentClassroom.aspx</DependentUpon>
@@ -581,6 +621,7 @@
     <Content Include="Admin\AdminLayout.Master" />
     <Content Include="Student\studentMasterPage.Master" />
     <Content Include="Student\ImageHandler.ashx" />
+    <Content Include="Student\classroomMasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

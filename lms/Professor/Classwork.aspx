@@ -57,4 +57,82 @@
         </div>
     </div>
 
+      <div class="link" id="assignmentContainer">
+          <div class="post-materials">
+              <h2>CREATE MATERIALS</h2>
+          </div>
+      <div class="assignment">
+          <div class="assign-title">
+              <div class="title">
+                  <asp:Label ID="lbltitle" runat="server" Text="Title:" CssClass="lbl-title"></asp:Label>
+                  <asp:TextBox ID="txtmaterialsname" runat="server" CssClass="txt-title" placeholder="Enter Title"></asp:TextBox>
+              </div>
+              <div class="instructions">
+                  <asp:Label ID="Label4" runat="server" Text="Instructions:" CssClass="lbl-instruc"></asp:Label>
+                  <asp:TextBox ID="txtinstructions" runat="server" TextMode="MultiLine" Rows="5" CssClass="txt-instruc" placeholder="Write instructions about the post"></asp:TextBox>
+              </div>
+          </div>
+          <div class="assign-description">
+              <div class="assign">
+                  <asp:Label ID="lblposttype" runat="server" Text="Create Post: " CssClass="lbl-assign"></asp:Label>
+                  <asp:RadioButton ID="rbassignment" runat="server" Text="Assignment" CssClass="rdb-post" GroupName="MaterialsGroup" />
+                  <asp:RadioButton ID="rbquiz" runat="server" Text="Quiz" CssClass="rdb-post" GroupName="MaterialsGroup" />
+                  <asp:RadioButton ID="rbmaterials" runat="server" Text="Materials" CssClass="rdb-post" GroupName="MaterialsGroup" />
+
+              </div>
+              <div class="assign">
+                  <asp:Label ID="lblpoints" runat="server" Text="Points:" CssClass="lbl-assign"></asp:Label>
+                  <asp:DropDownList ID="drdpoints" runat="server" CssClass="txt-assign list">
+                      <asp:ListItem Text="0" Value="1" />
+                      <asp:ListItem Text="100" Value="2" />
+                      <asp:ListItem Text="50" Value="3" />
+                      <asp:ListItem Text="40" Value="4" />
+                      <asp:ListItem Text="30" Value="5" />
+                  </asp:DropDownList>
+              </div>
+              <div class="assign">
+                  <asp:Label ID="Label7" runat="server" Text="Due Date:" CssClass="lbl-assign"></asp:Label>
+                  <asp:TextBox ID="txtduedate" runat="server" CssClass="txt-assign txt"></asp:TextBox>
+
+              </div>
+              <div class="assign">
+                  <asp:Label ID="Label8" runat="server" Text="Topic:" CssClass="lbl-assign"></asp:Label>
+                  <asp:TextBox ID="txttopic" runat="server" CssClass="txt-assign txt"></asp:TextBox>
+                
+              </div>
+                 <div class="assign">
+                       <asp:FileUpload ID="file" runat="server" />
+              
+                 </div>
+              <div class="assign-btn">
+                  <asp:Button ID="btncreate" runat="server" Text="Create Assignment" CssClass="buttons"  />
+                  <asp:Button ID="Button4" runat="server" Text="Cancel" CssClass="buttons" />
+              </div>
+          </div>
+      </div>
+
+
+
+
+  </div>
+
+  <div id="bg-blur"></div>
+
+     <script>
+     document.getElementById('createRoomLink').addEventListener('click', function (e) {
+         e.preventDefault();
+
+         var assignmentContainer = document.getElementById('assignmentContainer');
+         var backgroundBlur = document.getElementById('bg-blur');
+
+         if (assignmentContainer.style.display === 'none' || assignmentContainer.style.display === '') {
+             backgroundBlur.style.display = 'block !important';
+             assignmentContainer.style.display = 'block !impotant';
+         } else {
+             backgroundBlur.style.display = 'none';
+             assignmentContainer.style.display = 'none';
+         }
+     });
+     </script>
+
 </asp:Content>
