@@ -187,7 +187,7 @@ namespace lms.Professor
                 string smtpConnectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
                 using (MySqlConnection smtpConnection = new MySqlConnection(smtpConnectionString))
-                {
+                {   
                     smtpConnection.Open();
 
                     string smtpQuery = "SELECT smtp_email, smtp_password FROM smtp_credentials WHERE smtp_email = @smtp_email";

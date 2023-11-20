@@ -2,6 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/ProfessorCSS/classwork.css" />
+    <style>
+        .random{
+          display:none;
+
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Classroom" runat="server">
 
@@ -20,7 +26,7 @@
             </div>
         </div>
 
-
+           <asp:Label ID="lblsubjectname" runat="server" Text="" CssClass="random"></asp:Label>
         <div class="class-body">
 
             <asp:GridView ID="materialsGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Learning Materials Found" CssClass="custom-materials-grid">
@@ -83,11 +89,11 @@
               <div class="assign">
                   <asp:Label ID="lblpoints" runat="server" Text="Points:" CssClass="lbl-assign"></asp:Label>
                   <asp:DropDownList ID="drdpoints" runat="server" CssClass="txt-assign list">
-                      <asp:ListItem Text="0" Value="1" />
-                      <asp:ListItem Text="100" Value="2" />
-                      <asp:ListItem Text="50" Value="3" />
-                      <asp:ListItem Text="40" Value="4" />
-                      <asp:ListItem Text="30" Value="5" />
+                      <asp:ListItem Text="0" Value="0" />
+                      <asp:ListItem Text="100" Value="100" />
+                      <asp:ListItem Text="50" Value="50" />
+                      <asp:ListItem Text="40" Value="40" />
+                      <asp:ListItem Text="30" Value="30" />
                   </asp:DropDownList>
               </div>
               <div class="assign">
@@ -105,7 +111,7 @@
               
                  </div>
               <div class="assign-btn">
-                  <asp:Button ID="btncreate" runat="server" Text="Create Assignment" CssClass="buttons"  />
+                  <asp:Button ID="btncreate" runat="server" Text="Create Assignment" OnClick="btncreate_Click" CssClass="buttons"  />
                   <asp:Button ID="Button4" runat="server" Text="Cancel" CssClass="buttons" />
               </div>
           </div>

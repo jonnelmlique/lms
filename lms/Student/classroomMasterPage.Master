@@ -45,7 +45,11 @@
     <div class="container">
         <div class="side-bar">
             <div class="menu">
-
+                 <div class="item-logo">
+     <asp:Image ID="Image1" runat="server" CssClass="img-profile" />                 
+     <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
+  
+ </div>
                   <div class="item">
           <a href='Stream.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
  </div>

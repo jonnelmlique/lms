@@ -34,7 +34,7 @@
                             <div class="room-buttons">                                                            
                                 <asp:LinkButton ID="roomLink" runat="server" CssClass="room-btn"
                                     PostBackUrl='<%# "UnachiveConfirmation.aspx?roomid=" + Eval("roomid") %>'
-                                    Text="Unarchive" />
+                                    Text="Restore" />
 
                            
                             </div>

@@ -13,7 +13,7 @@
         </div>
         <div class="post-details">
             <div id="postDetailsLink" class="post-details-link">
-                <div class="post-div i">
+                              <div class="post-div i">
                <asp:Image ID="Image1" runat="server"  CssClass="img-profile"  />                 
 <%--                    <i class="fas fa-user"></i>--%>
 

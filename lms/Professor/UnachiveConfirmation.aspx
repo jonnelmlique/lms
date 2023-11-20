@@ -19,7 +19,7 @@
       <div class="link" >
         <div class="assignment">
           <div class="message">
-               <p>Are you sure you want to Unarchive this room?</p>
+               <p>Are you sure you want to Restore this room?</p>
             </div>
           <div class="message-button">
                <asp:Button ID="btnarchiveyes" runat="server" Text="Yes" CssClass="msg yes" OnClick="btnarchiveyes_Click" />
@@ -36,7 +36,7 @@
        function showSuccessMessage() {
            Swal.fire({
                icon: 'success',
-               text: 'Room Unarchived Successfully!',
+               text: 'Room Restore Successfully!',
                confirmButtonText: 'Confirm',
                confirmButtonColor: '#3085d6',
            }).then((result) => {
