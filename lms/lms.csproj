@@ -181,7 +181,10 @@
     <Content Include="CSS\Student\DashBoard.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="CSS\Student\studentStream.css" />
     <Content Include="CSS\Student\subject.css" />
+    <Content Include="CSS\Student\submitClasswork.css" />
+    <Content Include="CSS\Student\viewAnnouncement.css" />
     <Content Include="Global.asax" />
     <Content Include="Professor\ArchiveConfirmation.aspx" />
     <Content Include="Professor\instructorClassroom.aspx" />
@@ -217,6 +220,7 @@
     <Content Include="Professor\WebForm12.aspx" />
     <Content Include="Professor\Classwork.aspx" />
     <Content Include="Professor\People1.aspx" />
+    <None Include="Resources\submit.png" />
     <Content Include="Student\ArchivedClasses.aspx" />
     <Content Include="Student\Classworks.aspx" />
     <Content Include="Student\DashBoard.aspx" />
@@ -225,6 +229,8 @@
     <Content Include="Student\People.aspx" />
     <Content Include="Student\Stream.aspx" />
     <Content Include="Student\studentClassroom.aspx" />
+    <Content Include="Student\viewAnnouncement.aspx" />
+    <Content Include="Student\submitClasswork.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -614,6 +620,20 @@
     </Compile>
     <Compile Include="Student\Invitations.aspx.designer.cs">
       <DependentUpon>Invitations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\viewAnnouncement.aspx.cs">
+      <DependentUpon>viewAnnouncement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\viewAnnouncement.aspx.designer.cs">
+      <DependentUpon>viewAnnouncement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\submitClasswork.aspx.cs">
+      <DependentUpon>submitClasswork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\submitClasswork.aspx.designer.cs">
+      <DependentUpon>submitClasswork.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

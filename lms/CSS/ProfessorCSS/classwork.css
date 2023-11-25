@@ -79,136 +79,7 @@
 .edit{
     height:calc(100% - 80px);
 }
-.assignment {
-    display: flex;
-    height: 100%;
-  
-    width: 100%;
 
-}
-.assignment .assign-title{
-    flex:1;
-    
-}
-.assign-title .title{
-  
-    height:150px;
-    display:flex;
-    align-items:center;
-    padding:20px;
-  
-}
-.assign-title .title .lbl-title{
-    font-size:20px;
-     margin-right:20px;
-     font-family:Arial;
-     color:#000;
-     font-weight:bold;
-}
-.assign-title .title .txt-title{
-    width:100%;
-     height:50px;
-     padding:15px;
-     border-radius:15px;
-     font-size:18px;
-     font-family:Arial;
-}
-
-
-.instructions {
-  
-    height:calc(100% - 150px);
-    display:flex;
-    padding:20px;
-
-}
-.instructions .lbl-instruc{
-   font-size:20px;
-     margin-right:20px;
-     font-family:Arial;
-   color:#000;
-      font-weight:bold;
-}
-.instructions .txt-instruc{
-    resize:none;
-    height:200px;
-    width:100%;
-    border-radius:15px;
-    padding:20px;
-}
-
-
-.assignment .assign-description {
-    flex: 1;
-   
-    padding: 20px;
-}
-.assign-description .assign {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-
-}
-.assign .lbl-assign{
-    font-size:20px;
-    font-family:Arial;
-  
-  color:#000;
-  font-weight:bold;
-  height:100%;
-  display:flex; 
-  align-items:center;
-    width:30%;
-}
-.rdb-post{
-    font-size:18px;
-    margin:10px;
-      color:#000;
-}
-.rdb-post input[type="radio"] {
-    margin-right: 10px;
-    height: 15px;
-    width: 15px;
-}
-.assign .txt{
-   flex:2;
-   height:100%;
-   padding:10px;
-   font-size:18px;
-   font-family:Arial;
-   width:calc(100% - 30%);
-}
-.assign .list {
-    flex: 2;
-    height: 100%;
-    font-size: 18px;
-    font-family: Arial;
-}
-
-.assign-btn{
-    height:calc(100% - 350px);
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-   
-}
-.assign-btn .buttons{
-    padding:15px 30px;
-    margin:15px;
-    border-color:transparent;
-      background-color: #eb4d4d;
-      color:#fff;
-      font-size:15px;
-      font-family:Arial;
-      border-radius:15px;
-      transition:0.3s all ease;
-      cursor:pointer;
-}
-.assign-btn .buttons:hover{
-     background-color: #f57f7f;
-     outline:1px solid black;
-}
 
 
 .materials-box {
@@ -219,7 +90,9 @@
     transition: box-shadow 0.3s ease;
     
 }
-
+.materials-box:hover{
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
 .materials-box .title{
     height:40px;
     width:100%;
@@ -229,6 +102,8 @@
     text-transform:capitalize;
    background-color: #f57f7f;
     justify-content:space-between;
+    border-top-left-radius:10px;
+     border-top-right-radius:10px;
 
 }
 .materials-box .title h2{
@@ -255,7 +130,7 @@
     height:100%;
     display:flex;   
     align-items:center;
-    padding:0 25px;
+    padding:0 20px;
 }
 .materials-box .date-points .date{
      flex:1;
@@ -264,13 +139,15 @@
     align-items:center;
     justify-content:flex-end;
     padding:0 25px;
+    font-size:15px;
 }
 
 .materials-box .instruction{
-    min-height:100px;
+    min-height:80px;
     width:100%;
     max-height:auto;
     padding:20px;
+    border-bottom:1px solid #ddd;
 }
 
 .file-link {
@@ -293,9 +170,31 @@ class-body {
     border:1px solid red;
 }
 
+
+.submit-link{
+    height:30px;
+    display:flex;   
+    align-items:center;
+    justify-content:flex-end;
+    padding:0 15px;
+}
+.submit-link a{
+    background-color:transparent;
+    color:#000;
+    font-size:15px;
+    transition:0.3s all ease;
+}
+.submit-link a i{
+    margin-right:10px;
+}
+.submit-link a:hover{
+    color: #eb4d4d;
+}
+
+
 table {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #fff;
+    background-color: transparent;
     border-collapse: collapse;
     width: 100%;
 }
@@ -303,11 +202,11 @@ table {
     table td, table th {
         border: 1px solid transparent;
         padding: 10px 0;
-        background-color: #fff;
+        background-color: transparent;
     }
 
     table tr:nth-child(even) {
-        background-color:#000;
+        background-color:transparent;
         transition: 0.3s all ease;
     }
 
@@ -317,7 +216,9 @@ table {
     }
 
     table th {
-       display:none;
+        background-color: transparent;
+        padding: 0;
+        display: none;
     }
 
 tbody tr td a {

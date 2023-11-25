@@ -6,10 +6,10 @@
     list-style-type:none;
     
 }
-body{
-    height:100vh;
-      overflow:hidden;
-     background-color:#fbfdff;
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #E4E9F7;
 }
 header{
     display:flex;
@@ -115,7 +115,7 @@ button:hover{
     justify-content:flex-end;
 }
 .menu .item.active {
-    background-color: #fff;
+    background-color: #E4E9F7;
     color: #000;
     font-weight: bold;
     border-top-left-radius: 50px;
@@ -188,11 +188,11 @@ button:hover{
  display: block;
  padding: 5px 30px;
  line-height: 60px;
+ transition:0.3s all ease;
 }
 
 .side-bar .menu .item a:hover{
- background: #fff;
- transition: 0.3s ease;
+   background-color: #E4E9F7;
 color:#000;
 border-bottom-left-radius:50px;
 border-top-left-radius:50px;

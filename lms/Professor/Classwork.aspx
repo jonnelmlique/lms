@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="date-points">
                                     <div class="points">
-                                        <span><%# Eval("points") %></span>
+                                        <span><%# Eval("points") %>  points</span>
                                     </div>
                                     <div class="date">
                                         <span>

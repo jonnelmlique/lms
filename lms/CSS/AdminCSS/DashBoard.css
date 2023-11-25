@@ -1,13 +1,13 @@
 ﻿
 .dashboard {
-    background-color: white;
+    background-color: #E4E9F7;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     padding: 20px;
-    flex-wrap:wrap;
-    overflow-y:scroll;  
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
 .dashboard::-webkit-scrollbar {
     width: 1px;
@@ -28,9 +28,13 @@
     height: 180px;
     background-color: #f57f7f;
     margin: 10px;
-  
-}
+    border-radius:15px;
+    transition:0.3s all ease;
 
+}
+.dash-list:hover{
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
 .dash-list .text{
     flex:1;
    

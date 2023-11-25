@@ -1,15 +1,14 @@
 ﻿
 .add-account {
-    background-color: #fbfdff;
+    background-color: #E4E9F7;
     height: 100%;
     width: 100%;
     padding: 25px 40px 10px 10px;
-    
 }
 .acc-card{
     width:100%;
-    height:70vh;
-   
+    height:100%;
+   border:1px solid red;
     
 }
 .acc-card .acc-head {
@@ -49,23 +48,22 @@
     width: 100%;
     height: calc(100% - 40px);
     display: flex;
-  
-    background-color: #f57f7f;
+    background-color: #E4E9F7;
 }
 .hide{
     display:none;
 }
 .acc-info1 {
     flex: 1;
- 
+    padding: 20px;
     height: 100%;
-    padding:10px;
+  
 }
 .acc-info1 .lbl-txt{
     display:flex;   
     align-items:center;
     height:70px;
-  color:#fff;
+  color:#000;
     padding:10px;
 }
 .acc-info1 .lbl-txt .lbl{
@@ -92,7 +90,7 @@
     border-radius:15px;
     padding:15px;
     font-size:18px;
- border-color:transparent;
+ border-color:#ddd;
 }
 .acc-info1 .lbl-txt .rdb {
     
@@ -121,8 +119,8 @@
 .acc-info2 {
     flex: 1;
     height: 100%;
-  
-    padding:10px;
+    padding: 20px;
+    
 }
 
 .acc-info2 .acc-img{
@@ -155,7 +153,7 @@
     display: flex;
     align-items: center;
     height: 70px;
-    color: #fff;
+    color: #000;
     padding: 10px;
 }
 .acc-info2 .lbl-txt .lbl{
@@ -184,7 +182,7 @@
     padding:15px;
     font-size:18px;
 
-     border-color:transparent;
+     border-color:#ddd;
 }
 .acc-info2 .button-add{
     display:flex;

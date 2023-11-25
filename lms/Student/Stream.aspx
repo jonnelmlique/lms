@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/classroomMasterPage.Master" AutoEventWireup="true" CodeBehind="Stream.aspx.cs" Inherits="lms.Student.WebForm4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <link rel="stylesheet" href="../CSS/ProfessorCSS/stream.css" />
+     <link rel="stylesheet" href="../CSS/Student/studentStream.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
 
     <div class="stream">
          <div class="create-post">
         <div class="post-head">
+            <i class="fas fa-bullhorn"></i>
              <h2>Announcements</h2>
              </div>
        
@@ -15,6 +16,7 @@
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
+                      
                         <div class="announcement-box">
                             <div class="announcement-head">
                                 <div class="profile">
@@ -32,9 +34,20 @@
                             <div class="announcement-body">
                                 <p><%# Eval("postcontent") %></p>
                             </div>
+                            <div class="announcement-comment">
+                           
+                                     <div class="post-div i">                                                  
+                                          <i class="fas fa-user"></i>
 
-                          
+                                      </div>
+                                     <div class="post-div txt">
+                                          <a href="viewAnnouncement.aspx" class="post-txt">Add class comment</a>
+                                    </div>
+                              
+                            </div>
+                        
                         </div>
+                        </a>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

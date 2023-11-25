@@ -7,7 +7,7 @@
          <div class="view-details">
        <div class="details-card">
          <div class="room-head">
-                <asp:ImageButton ID="ImageButton1" ImageUrl="~/Resources/left-arrow.png" CssClass="arrow-left"  runat="server"   CausesValidation="false" OnClientClick="javascript:history.back(1); return false;"  />
+                <a href="roomDetails.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
               
              <h2> Room Created</h2>
            </div>
@@ -18,42 +18,42 @@
                           StaticSelectedStyle-CssClass="selected-tab" StaticMenuItemStyle-HorizontalPadding="50px" StaticMenuItemStyle-VerticalPadding="15px" 
                          StaticSelectedStyle-ForeColor="black" StaticSelectedStyle-BackColor="white"  CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick">
                       <Items>
-                          <asp:MenuItem Text="Description" Value="0" Selected="true"></asp:MenuItem>
-                         <asp:MenuItem Text="Peoples" Value="1"></asp:MenuItem>
+                          <asp:MenuItem Text="People" Value="0" Selected="true"></asp:MenuItem>
+                         <asp:MenuItem Text="Description" Value="1"></asp:MenuItem>
                       </Items>
                     </asp:Menu>
                  </div>
                 <div class="tabContents">
                     <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
                              <asp:View ID="View1" runat="server"> 
-<%--                                 <p> NO DETAILS </p>--%>
-                                 <asp:Label ID="lbldetails" runat="server" Text=""></asp:Label>
-                                  <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                                   <div class="members">
+      <div class="instructor">
+          <div class="owner">
+               <h2>Room Owner :</h2>
+              <asp:Label ID="lblowner" runat="server" Text="Label" CssClass="lbl-owner"></asp:Label>
+          </div>
+         <div class="co-owner">
+             <h2>Co-Room Owner :</h2>
+
+         </div>
+      </div>
+      <div class="students">
+          <div class="student-txt">
+          <span>Students Enrolled:</span>
+          <asp:TextBox ID="TextBox1" runat="server" CssClass="search-student" placeholder="Search Student"></asp:TextBox>
+              <asp:Button ID="Button1" runat="server" Text="Button" CssClass="student-btn" />
+              </div>
+          <div class="student-data">
+           <%--   gridview--%>
+          </div>
+      </div>
+  </div>   
+                                 
 
                                  </asp:View>
                            <asp:View ID="View2" runat="server" >
-                                    <div class="members">
-                                        <div class="instructor">
-                                            <div class="owner">
-                                                 <h2>Room Owner :</h2>
-                                                <asp:Label ID="lblowner" runat="server" Text="Label" CssClass="lbl-owner"></asp:Label>
-                                            </div>
-                                           <div class="co-owner">
-                                               <h2>Co-Room Owner :</h2>
-
-                                           </div>
-                                        </div>
-                                        <div class="students">
-                                            <div class="student-txt">
-                                            <span>Students Enrolled:</span>
-                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="search-student" placeholder="Search Student"></asp:TextBox>
-                                                <asp:Button ID="Button1" runat="server" Text="Button" CssClass="student-btn" />
-                                                </div>
-                                            <div class="student-data">
-                                             <%--   gridview--%>
-                                            </div>
-                                        </div>
-                                    </div>                          
+                                 <asp:Label ID="lbldetails" runat="server" Text=""></asp:Label>
+                                  <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
                                </asp:View>
                     </asp:MultiView>
                </div>

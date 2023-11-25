@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/classroomMasterPage.Master" AutoEventWireup="true" CodeBehind="People.aspx.cs" Inherits="lms.Student.WebForm6" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <link rel="stylesheet" href="../CSS/ProfessorCSS/people.css" />
+        <link rel="stylesheet" href="../CSS/ProfessorCSS/People1.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
      <div class="instructors">

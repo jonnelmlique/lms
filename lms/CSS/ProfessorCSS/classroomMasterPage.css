@@ -9,7 +9,7 @@
 body {
     height: 100vh;
     overflow: hidden;
-    background-color: white;
+    background-color: #E4E9F7;
 }
 header{
     display:flex;
@@ -175,7 +175,7 @@ button:hover {
  margin-top:20px;
 }
 .menu .item.active {
-    background-color: #fff;
+    background-color: #E4E9F7;
     color: #000;
     font-weight: bold;
     border-top-left-radius: 50px;
@@ -241,7 +241,7 @@ button:hover {
 }
 
 .side-bar .menu .item a:hover{
- background: #fff;
+  background-color: #E4E9F7;
  transition: 0.3s ease;
 color:#000;
 border-bottom-left-radius:50px;

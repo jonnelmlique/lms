@@ -33,7 +33,7 @@
                              </div>
                              <div class="date-points">
                                  <div class="points">
-                                     <span><%# Eval("points") %></span>
+                                     <span><%# Eval("points") %>  points</span>
                                  </div>
                                  <div class="date">
                                      <span>
@@ -44,7 +44,9 @@
                              <div class="instruction">
                                  <p><%# Eval("instructions") %></p>
                              </div>
-
+                             <div class="submit-link">
+                                 <a href="submitClasswork.aspx"><i class="fa fa-eye"></i>View Details</a>
+                             </div>
 
 
                          </div>
