@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -43,23 +44,53 @@ namespace lms.Admin
                                             lblowner.Text = name;
                                         }
                                     }
+
+
+                                    string queryStudents = "SELECT studentemail FROM invitation WHERE roomid = @roomid AND status = 'Accepted'";
+                                    using (MySqlCommand commandStudents = new MySqlCommand(queryStudents, con))
+                                    {
+                                        commandStudents.Parameters.AddWithValue("@roomid", roomID);
+
+                                        DataTable dt = new DataTable();
+                                        using (MySqlDataAdapter da = new MySqlDataAdapter(commandStudents))
+                                        {
+                                            da.Fill(dt);
+                                        }
+
+                                        if (dt.Rows.Count > 0)
+                                        {
+                                            studentlist.DataSource = dt;
+                                            studentlist.DataBind();
+                                        }
+                                        else
+                                        {
+                                            studentlist.EmptyDataText = "No Students Found for this Room";
+                                            studentlist.DataSource = null;
+                                            studentlist.DataBind();
+                                        }
+                                    }
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            // Handle the exception
+
                         }
+
                     }
+
+
+
+
                     else
                     {
-                 
+
                         lbldetails.Text = "Invalid roomid provided.";
                     }
                 }
-            }
-        
-    }
+            } 
+        }
+     
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {
             int index = Int32.Parse(e.Item.Value);

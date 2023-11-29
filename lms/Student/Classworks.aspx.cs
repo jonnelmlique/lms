@@ -39,7 +39,7 @@ namespace lms.Student
                     {
                         con.Open();
 
-                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, duedate, topic, file FROM learningmaterials " +
+                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, duedate, topic FROM learningmaterials " +
                                        "WHERE roomid = @roomid ";
 
                         using (MySqlCommand command = new MySqlCommand(query, con))

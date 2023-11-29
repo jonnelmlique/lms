@@ -57,8 +57,8 @@ namespace lms.Professor
 
                             }
                         }
-                    
-                }
+
+                    }
                 }
 
                 DisplayMaterials();
@@ -76,7 +76,7 @@ namespace lms.Professor
                     {
                         con.Open();
 
-                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, duedate, topic, file FROM learningmaterials " +
+                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, duedate, topic, FileName, FileType, FileData FROM learningmaterials " +
                                        "WHERE roomid = @roomid ";
 
                         using (MySqlCommand command = new MySqlCommand(query, con))
@@ -121,9 +121,8 @@ namespace lms.Professor
 
             return "#"; // Or any default URL if the data is not available
         }
-        protected void btncreate_Click (object sender, EventArgs e)
+        protected void btncreate_Click(object sender, EventArgs e)
         {
-
             int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
             string teacherEmail = Session["LoggedInUserEmail"].ToString();
 
@@ -137,75 +136,91 @@ namespace lms.Professor
                 {
                     con.Open();
 
-                    string subjectname = lblsubjectname.Text;
-                    string materialsname = txtmaterialsname.Text;
-                    string instructions = txtinstructions.Text;
-                    string posttype = "";
+                    string retrieveStudentNameQuery = "SELECT firstname, lastname FROM teacher_info WHERE email = @teacheremail";
 
-                    if (rbassignment.Checked)
+                    using (MySqlCommand retrieveNameCommand = new MySqlCommand(retrieveStudentNameQuery, con))
                     {
-                        posttype = "Assignment";
-                    }
-                    else if (rbquiz.Checked)
-                    {
-                        posttype = "Quiz";
-                    }
-                    else if (rbmaterials.Checked)
-                    {
-                        posttype = "Materials";
-                    }
+                        retrieveNameCommand.Parameters.AddWithValue("@teacheremail", teacherEmail);
 
-                    //int points = Convert.ToInt32(drdpoints.SelectedValue);
-                    string points = drdpoints.SelectedValue;
-                    string duedate = txtduedate.Text;
-                    string topic = txttopic.Text;
+                        using (MySqlDataReader nameReader = retrieveNameCommand.ExecuteReader())
+                        {
+                            if (nameReader.Read())
+                            {
+                                string teacherFirstName = nameReader["firstname"].ToString();
+                                string teacherLastName = nameReader["lastname"].ToString();
+                                string teacherFullName = $"{teacherFirstName} {teacherLastName}";
 
-                    byte[] fileData = GetFileData(file);
+                                nameReader.Close();
 
-                    string insertQuery = "INSERT INTO learningmaterials (roomid, teacherid, teacheremail, subjectname, materialsname, instructions, posttype, points, duedate, topic, file) " +
-                                         "VALUES (@roomid, @teacherid, @teacheremail, @subjectname, @materialsname, @instructions, @posttype, @points, @duedate, @topic, @file)";
 
-                    using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
-                    {
-                        commandInsert.Parameters.AddWithValue("@roomid", roomId);
-                        commandInsert.Parameters.AddWithValue("@teacherid", teacherId);
-                        commandInsert.Parameters.AddWithValue("@teacheremail", teacherEmail);
-                        commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
-                        commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
-                        commandInsert.Parameters.AddWithValue("@instructions", instructions);
-                        commandInsert.Parameters.AddWithValue("@posttype", posttype);
-                        commandInsert.Parameters.AddWithValue("@points", points);
-                        commandInsert.Parameters.AddWithValue("@duedate", duedate);
-                        commandInsert.Parameters.AddWithValue("@topic", topic);
-                        commandInsert.Parameters.AddWithValue("@file", fileData);
+                                string subjectname = lblsubjectname.Text;
+                                string materialsname = txtmaterialsname.Text;
+                                string instructions = txtinstructions.Text;
+                                string posttype = "";
 
-                        commandInsert.ExecuteNonQuery();
+                                if (rbassignment.Checked)
+                                {
+                                    posttype = "Assignment";
+                                }
+                                else if (rbquiz.Checked)
+                                {
+                                    posttype = "Quiz";
+                                }
+                                else if (rbmaterials.Checked)
+                                {
+                                    posttype = "Materials";
+                                }
 
-                        ShowSuccessMessage("Your Materials have been successfully posted");
+                                string points = drdpoints.SelectedValue;
+                                string duedate = txtduedate.Text;
+                                string topic = txttopic.Text;
+
+                                if (file.HasFile)
+                                {
+                                    try
+                                    {
+                                        string fileName = Path.GetFileName(file.FileName);
+                                        string fileType = Path.GetExtension(file.FileName);
+                                        byte[] fileData = file.FileBytes;
+
+                                        string insertQuery = "INSERT INTO learningmaterials (roomid, teacherid, teacheremail, subjectname, materialsname, instructions, posttype, points, duedate, topic, FileName, FileType, FileData, teachername) " +
+                                                             "VALUES (@roomid, @teacherid, @teacheremail, @subjectname, @materialsname, @instructions, @posttype, @points, @duedate, @topic, @fileName, @fileType, @fileData, @teachername)";
+
+                                        using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
+                                        {
+                                            commandInsert.Parameters.AddWithValue("@roomid", roomId);
+                                            commandInsert.Parameters.AddWithValue("@teacherid", teacherId);
+                                            commandInsert.Parameters.AddWithValue("@teacheremail", teacherEmail);
+                                            commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
+                                            commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
+                                            commandInsert.Parameters.AddWithValue("@instructions", instructions);
+                                            commandInsert.Parameters.AddWithValue("@posttype", posttype);
+                                            commandInsert.Parameters.AddWithValue("@points", points);
+                                            commandInsert.Parameters.AddWithValue("@duedate", duedate);
+                                            commandInsert.Parameters.AddWithValue("@topic", topic);
+                                            commandInsert.Parameters.AddWithValue("@fileName", fileName);
+                                            commandInsert.Parameters.AddWithValue("@fileType", fileType);
+                                            commandInsert.Parameters.AddWithValue("@fileData", fileData);
+                                            commandInsert.Parameters.AddWithValue("@teachername", teacherFullName);
+
+                                            commandInsert.ExecuteNonQuery();
+
+                                            ShowSuccessMessage("Your Materials have been successfully posted");
+                                        }
+
+                                        ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+                                        DisplayMaterials();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        // Handle file upload error
+                                        ShowErrorMessage("Error uploading file: " + ex.Message);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-
-                ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
-                DisplayMaterials();
-            }
-        }
-
-        private byte[] GetFileData(FileUpload fileUpload)
-        {
-            if (fileUpload.HasFile)
-            {
-                using (Stream stream = fileUpload.PostedFile.InputStream)
-                {
-                    using (MemoryStream memoryStream = new MemoryStream())
-                    {
-                        stream.CopyTo(memoryStream);
-                        return memoryStream.ToArray();
-                    }
-                }
-            }
-            else
-            {
-                return null;
             }
         }
     }

@@ -51,7 +51,7 @@
   
  </div>
                   <div class="item">
-          <a href='Stream.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
+  <a href='Stream.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
  </div>
  <div class="item">
      <a href='Classworks.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class='bx bxs-book-reader'></i>Classworks</span></a>

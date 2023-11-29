@@ -29,10 +29,13 @@
 
                    <asp:TemplateField HeaderText="" ItemStyle-Width="140px">
               <ItemTemplate>
-                   <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
+      <%--             <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
                            PostBackUrl='<%# "subDetails.aspx?roomid=" + Eval("roomid") %>'
 
-   Text="View Subjects" />
+   Text="View Subjects" />--%>
+
+
+   <a href='<%# "subDetails.aspx?teacheremail=" + Request.QueryString["teacheremail"] + "&roomid=" + Eval("roomid") %>' class="btn-list">View Subjects</a>
 
              </ItemTemplate>
              </asp:TemplateField>

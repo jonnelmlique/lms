@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/instructorClassRoom.Master" AutoEventWireup="true" CodeBehind="Classwork.aspx.cs" Inherits="lms.Professor.WebForm13" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/ProfessorCSS/classwork.css" />
@@ -98,8 +99,12 @@
               </div>
               <div class="assign">
                   <asp:Label ID="Label7" runat="server" Text="Due Date:" CssClass="lbl-assign"></asp:Label>
-                  <asp:TextBox ID="txtduedate" runat="server" CssClass="txt-assign txt"></asp:TextBox>
+            <asp:TextBox ID="txtduedate" runat="server" CssClass="txt-assign txt"></asp:TextBox>
 
+            <ajaxToolkit:CalendarExtender ID="txtduedate_CalendarExtender" runat="server" BehaviorID="txtduedate_CalendarExtender" TargetControlID="txtduedate">
+            </ajaxToolkit:CalendarExtender>
+               <asp:ScriptManager ID="ScriptManager1" runat="server">
+</asp:ScriptManager>
               </div>
               <div class="assign">
                   <asp:Label ID="Label8" runat="server" Text="Topic:" CssClass="lbl-assign"></asp:Label>

@@ -74,7 +74,7 @@
      <div class="class-content">
        <div class="details">
          <div class="title">
-             <h2>Date Posted</h2>
+<%--             <h2>Date Posted</h2>--%>
           <asp:Label ID="lbldate" runat="server" Text=""></asp:Label>
 
          </div>

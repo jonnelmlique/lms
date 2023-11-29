@@ -7,8 +7,9 @@
          <div class="view-details">
        <div class="details-card">
          <div class="room-head">
-                <a href="roomDetails.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>
-              
+<%--                <a href="roomDetails.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>--%>
+        <a href='<%= "roomDetails.aspx?teacheremail=" + Request.QueryString["teacheremail"] %>'><i class="fas fa-arrow-left arrow-left"></i></a>
+
              <h2> Room Created</h2>
            </div>
            <div class="room-prof">
@@ -44,6 +45,17 @@
               <asp:Button ID="Button1" runat="server" Text="Button" CssClass="student-btn" />
               </div>
           <div class="student-data">
+
+         <asp:GridView ID="studentlist" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
+       <Columns>
+           <asp:BoundField DataField="StudentEmail" HeaderText="Email" HeaderStyle-CssClass="subj" />
+
+       </Columns>
+   </asp:GridView>
+
+
+
+
            <%--   gridview--%>
           </div>
       </div>

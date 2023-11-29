@@ -1,6 +1,51 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/classroomMasterPage.Master" AutoEventWireup="true" CodeBehind="submitClasswork.aspx.cs" Inherits="lms.Student.WebForm8" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/Student/submitClasswork.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+       <style>
+    .custom-dropdown {
+        display: inline-block;
+        position: relative;
+        padding: 10px;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: not-allowed;
+        overflow: hidden;
+    }
+    .custom-dropdown select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        cursor: not-allowed;
+        font-size: 16px;
+        color: #333;
+    }
+    .custom-dropdown::before {
+        content: "\25BC"; 
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #555;
+    }
+    .custom-dropdown:hover {
+        background-color: #e0e0e0;
+    }
+
+    .custom-dropdown select:focus {
+        border: 1px solid #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
 
@@ -8,26 +53,42 @@
         <div class="class-content">
           <div class="details">
             <div class="title">
-                <h2>ACTIVITY</h2>
+                <asp:Label ID="lblpost" runat="server" Text=""></asp:Label>
+<%--                <h2>ACTIVITY</h2>--%>
             </div>
             <div class="name">
-                <h3>Mark Gervic Arca </h3>
-                <span> Date Posted</span>
+<%--                <h3>Mark Gervic Arca </h3>--%>
+               <asp:Label ID="lblteacher" runat="server" Text=""></asp:Label>
+
+<%--                <span> Date Posted</span>--%> 
+                <asp:Label ID="lbldateposted" runat="server" Text=""></asp:Label>
+
             </div>
             <div class="points-date">
-                <span>100 points</span>
-                <span>Due  </span>
+              <%--  <span>100 points</span>
+                <span>Due  </span>--%>
+             <asp:Label ID="lblpoints" runat="server" Text=""></asp:Label>'
+          <asp:Label ID="lbldue" runat="server" Text=""></asp:Label>
+
+
             </div>
            </div>
             <div class="modules">
                 <div class="instructions">
-                    <p>please answer and submit within the day.  do not forget to turn in.</p>
+<%--                    <p>please answer and submit within the day.  do not forget to turn in.</p>--%>
+                 <asp:Label ID="lblinstructions" runat="server" Text=""></asp:Label>
+
                 </div>
                 <div class="file">
+                         <asp:DropDownList ID="ddlFiles" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlFiles_SelectedIndexChanged">
+    </asp:DropDownList><br />
+    <asp:Button ID="btnDownload" runat="server" Text="Download File" OnClick="btnDownload_Click" />
+    <div class="assign">
+<%--                    <div class="files"></div>--%>
+                 
+                    <%--<div class="files"></div>
                     <div class="files"></div>
-                    <div class="files"></div>
-                    <div class="files"></div>
-                    <div class="files"></div>
+                    <div class="files"></div>--%>
                 </div>
             </div>
             <div class="comments">

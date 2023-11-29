@@ -35,6 +35,9 @@ namespace lms.Admin
                                 using (MySqlDataReader reader = command.ExecuteReader())
                                 {
                                     if (reader.Read())
+
+                                        Session["TeacherEmail"] = Teacheremail;
+
                                     {
                                         string teacherEmail = Request.QueryString["teacheremail"];
                                         Label2.Text = teacherEmail;
@@ -53,31 +56,37 @@ namespace lms.Admin
         }
 
         private void BindSubjectData(string teacherEmail)
+
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+            string Teacheremail = Session["TeacherEmail"] as string;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            if (!string.IsNullOrEmpty(Teacheremail))
             {
-                string query = "SELECT subjectname, roomid FROM rooms WHERE teacheremail = @teacheremail";
 
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@teacheremail", teacherEmail);
+                    string query = "SELECT subjectname, roomid FROM rooms WHERE teacheremail = @teacheremail";
 
-                    connection.Open();
-
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        DataTable subjectsDataTable = new DataTable();
-                        adapter.Fill(subjectsDataTable);
+                        command.Parameters.AddWithValue("@teacheremail", teacherEmail);
 
-                        roomdetailsGridView.DataSource = subjectsDataTable;
-                        roomdetailsGridView.DataBind();
+                        connection.Open();
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            DataTable subjectsDataTable = new DataTable();
+                            adapter.Fill(subjectsDataTable);
+
+                            roomdetailsGridView.DataSource = subjectsDataTable;
+                            roomdetailsGridView.DataBind();
+                        }
                     }
                 }
             }
-        }
 
-      
+        }
     }
 }

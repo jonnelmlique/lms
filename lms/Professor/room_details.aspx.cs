@@ -27,8 +27,6 @@ namespace lms.Professor
                 {
                     try
                     {
-
-
                         string teacherFullName = GetTeacherFullNameFromDatabase(teacherEmail);
                         if (!string.IsNullOrEmpty(teacherFullName))
                         {

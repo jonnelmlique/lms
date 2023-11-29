@@ -186,6 +186,7 @@
     <Content Include="CSS\Student\subject.css" />
     <Content Include="CSS\Student\submitClasswork.css" />
     <Content Include="CSS\Student\viewAnnouncement.css" />
+    <Content Include="file.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Professor\ArchiveConfirmation.aspx" />
     <Content Include="Professor\instructorClassroom.aspx" />
@@ -233,6 +234,7 @@
     <Content Include="Student\studentClassroom.aspx" />
     <Content Include="Student\viewAnnouncement.aspx" />
     <Content Include="Student\submitClasswork.aspx" />
+    <Content Include="Vviewfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +384,13 @@
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="file.aspx.cs">
+      <DependentUpon>file.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="file.aspx.designer.cs">
+      <DependentUpon>file.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -643,6 +652,13 @@
     </Compile>
     <Compile Include="Student\submitClasswork.aspx.designer.cs">
       <DependentUpon>submitClasswork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vviewfile.aspx.cs">
+      <DependentUpon>Vviewfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vviewfile.aspx.designer.cs">
+      <DependentUpon>Vviewfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

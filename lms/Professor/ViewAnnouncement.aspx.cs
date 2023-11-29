@@ -29,7 +29,6 @@ namespace lms.Professor
                 }
             }
         }
-
         private void DisplayAnnouncement(int roomId, int announcementId)
         {
             try

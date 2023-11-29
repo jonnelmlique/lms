@@ -51,14 +51,14 @@
          <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
  
             </div>
-                 <div class="item">
-                         <a href='StreamClassroom.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
-                </div>
-                <div class="item">
-                    <a href='Classwork.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class='bx bxs-book-reader'></i>Classworks</span></a>
-                </div>
-                 <div class="item">
-                      <a href='People1.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-users"></i>People</span></a>
+             <div class="item">
+            <a href='StreamClassroom.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
+             </div>
+            <div class="item">
+            <a href='Classwork.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class='bx bxs-book-reader'></i>Classworks</span></a>
+             </div>
+            <div class="item">
+        <a href='People1.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-users"></i>People</span></a>
                 </div>
                  <div class="item">
                     <a href="#" class="sub-btn-active"><span><i class="fas fa-star"></i>Grades</span></a>
