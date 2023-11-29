@@ -41,71 +41,7 @@ namespace lms.Professor
 
         protected void btncreatepost_Click(object sender, EventArgs e)
         {
-            //    if (ViewState["RoomId"] != null && int.TryParse(ViewState["RoomId"].ToString(), out int roomId))
-            //    {
-            //        int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
-            //        string teacherEmail = Session["LoggedInUserEmail"].ToString();
-
-            //        string postContent = TextBox1.Text;
-            //        DateTime currentDate = DateTime.Now;
-
-            //        if (int.TryParse(Request.QueryString["roomid"], out int roomIdFromQueryString))
-            //        {
-            //            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-
-            //            using (MySqlConnection con = new MySqlConnection(connectionString))
-            //            {
-            //                con.Open();
-
-            //                string retrieveTeacherNameQuery = "SELECT firstname, lastname FROM teacher_info WHERE email = @teacheremail";
-
-            //                using (MySqlCommand retrieveNameCommand = new MySqlCommand(retrieveTeacherNameQuery, con))
-            //                {
-            //                    retrieveNameCommand.Parameters.AddWithValue("@teacheremail", teacherEmail);
-
-            //                    using (MySqlDataReader nameReader = retrieveNameCommand.ExecuteReader())
-            //                    {
-            //                        if (nameReader.Read())
-            //                        {
-            //                            string teacherFirstName = nameReader["firstname"].ToString();
-            //                            string teacherLastName = nameReader["lastname"].ToString();
-            //                            string teacherFullName = $"{teacherFirstName} {teacherLastName}";
-
-            //                            nameReader.Close();
-
-            //                            string insertQuery = "INSERT INTO announcements (roomid, teacherid, teacheremail, teachername, profileimage, postcontent, datepost) " +
-            //                                                 "VALUES (@roomid, @teacherid, @teacheremail, @teachername, @profileimage, @postcontent, @datepost)";
-
-            //                            using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
-            //                            {
-            //                                commandInsert.Parameters.AddWithValue("@roomid", roomIdFromQueryString);
-            //                                commandInsert.Parameters.AddWithValue("@teacherid", teacherId);
-            //                                commandInsert.Parameters.AddWithValue("@teacheremail", teacherEmail);
-            //                                commandInsert.Parameters.AddWithValue("@teachername", teacherFullName);
-
-            //                                byte[] profileImage = GetUserProfileImage(teacherEmail);
-            //                                commandInsert.Parameters.AddWithValue("@profileimage", profileImage);
-
-            //                                commandInsert.Parameters.AddWithValue("@postcontent", postContent);
-            //                                commandInsert.Parameters.AddWithValue("@datepost", currentDate);
-
-            //                                commandInsert.ExecuteNonQuery();
-
-            //                                TextBox1.Text = "";
-            //                                ShowSuccessMessage("Your post has been successfully posted");
-
-            //                                // Refresh the announcements grid after a new post
-            //                                DisplayAnnouncements();
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //        DisplayAnnouncements();
-
-            //    }
-            //}
+            
             if (Session["RoomId"] != null && int.TryParse(Session["RoomId"].ToString(), out int roomId))
             {
                 int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
@@ -273,7 +209,7 @@ namespace lms.Professor
                     {
                         con.Open();
 
-                        string query = "SELECT teacheremail, teachername, profileimage, postcontent, datepost FROM announcements " +
+                        string query = "SELECT announcementid, teacheremail, teachername, profileimage, postcontent, datepost FROM announcements " +
                                        "WHERE roomid = @roomid AND teacherid = @teacherid " +
                                        "ORDER BY datepost DESC ";
 
@@ -301,68 +237,60 @@ namespace lms.Professor
                 }
             }
         }
+        //private void DisplayUserProfileImage()
+        //{
+        //    int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
+        //    string teacherEmail = Session["LoggedInUserEmail"].ToString();
+
+        //    byte[] profileImage = GetUserProfileImage(teacherEmail);
+
+        //    if (profileImage != null)
+        //    {
+        //        string base64String = Convert.ToBase64String(profileImage);
+        //        string imageUrl = $"data:image/png;base64,{base64String}";
+
+        //        Image1.ImageUrl = imageUrl;
+        //    }
+        //    else
+        //    {
+        //        Image1.ImageUrl = "path/to/default/image.png";
+        //    }
+        //}
         private void DisplayUserProfileImage()
         {
-            int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
-            string teacherEmail = Session["LoggedInUserEmail"].ToString();
-
-            byte[] profileImage = GetUserProfileImage(teacherEmail);
-
-            if (profileImage != null)
+            if (Session["LoggedInUserEmail"] != null)
             {
-                string base64String = Convert.ToBase64String(profileImage);
-                string imageUrl = $"data:image/png;base64,{base64String}";
+                try
+                {
+                    int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
+                    string teacherEmail = Session["LoggedInUserEmail"].ToString();
 
-                Image1.ImageUrl = imageUrl;
+                    byte[] profileImage = GetUserProfileImage(teacherEmail);
+
+                    if (profileImage != null)
+                    {
+                        string base64String = Convert.ToBase64String(profileImage);
+                        string imageUrl = $"data:image/png;base64,{base64String}";
+
+                        Image1.ImageUrl = imageUrl;
+                    }
+                    else
+                    {
+                        Image1.ImageUrl = "path/to/default/image.png";
+                    }
+                }
+                catch (Exception ex)
+                {
+               ShowErrorMessage("An error occurred while displaying the user profile image.");
+                }
             }
             else
             {
-                Image1.ImageUrl = "path/to/default/image.png";
+                Response.Redirect("~Account/Login.aspx");
             }
         }
-        //private void DisplayAnnouncements()
-        //{
 
-        //    if (roomId > 0)
-        //    {
-        //        try
-        //        {
-        //            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-        //            using (MySqlConnection con = new MySqlConnection(connectionString))
-        //            {
-        //                con.Open();
-
-        //                string query = "SELECT teacheremail, teachername, profileimage, postcontent, datepost FROM announcements " +
-        //                   "WHERE roomid = @roomid AND teacherid = @teacherid " +
-        //                    "ORDER BY datepost DESC ";
-
-        //                int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
-
-        //                using (MySqlCommand command = new MySqlCommand(query, con))
-        //                {
-        //                    command.Parameters.AddWithValue("@roomid", roomId);
-        //                    command.Parameters.AddWithValue("@teacherid", teacherId);
-
-        //                    DataTable dt = new DataTable();
-        //                    using (MySqlDataAdapter da = new MySqlDataAdapter(command))
-        //                    {
-        //                        da.Fill(dt);
-        //                    }
-
-        //                    postGridView.DataSource = dt;
-        //                    postGridView.DataBind();
-        //                }
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // Handle the exception, e.g., log it or show an error message
-        //            ShowErrorMessage("An error occurred while retrieving announcements.");
-
-        //        }
-        //    }
-        //}
         protected string GetProfileImageUrl(object profileImage)
         {
             if (profileImage != DBNull.Value)

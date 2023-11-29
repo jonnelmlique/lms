@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/classroomMasterPage.Master" AutoEventWireup="true" CodeBehind="viewAnnouncement.aspx.cs" Inherits="lms.Student.WebForm7" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/instructorClassRoom.Master" AutoEventWireup="true" CodeBehind="ViewAnnouncement.aspx.cs" Inherits="lms.Professor.ViewAnnouncement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="../CSS/Student/viewAnnouncement.css" />
-    <style>
+    <link href="../CSS/ProfessorCSS/ProfessorViewAnnouncement.css" rel="stylesheet" />
+        <style>
 .img-profile {
     margin: auto;
     color: #000;
@@ -38,7 +38,7 @@
 
     .img-profile {
         width: 50px;
-        height: 50px;
+        height: 50px; 
         border-radius: 50%;
     }
 
@@ -66,10 +66,10 @@
         display: none;
     }
 </style>
-
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
-
+<asp:Content ID="Content2" ContentPlaceHolderID="Classroom" runat="server">
+    
+ 
      <div class="submit">
      <div class="class-content">
        <div class="details">
@@ -131,8 +131,7 @@
              </div>
               <div class="announcement-comment">
                    <div class="post-div i">                                                  
-                        <asp:Image ID="Image1" runat="server"  CssClass="img-profile"  />                 
-
+                        <asp:Image ID="profileimagedis" runat="server"  CssClass="img-profile"  />                 
                   </div>
                   <div class="post-div txt">
                       <asp:TextBox ID="txtcomment" runat="server" placeholder="Add comment" CssClass="txt-comment"></asp:TextBox>
@@ -148,6 +147,5 @@
      </div>
   
      </div>
-
 
 </asp:Content>

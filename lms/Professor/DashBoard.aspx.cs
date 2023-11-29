@@ -14,28 +14,32 @@ namespace lms.Professor
         {
 
         }
-        protected int GetTotalRoomsCount()
+        protected int GetActiveRoomsCount()
         {
-            int roomscount = 0; try
+            int activeRoomsCount = 0;
+            try
             {
-
-
+                string loggedInUserEmail = Session["LoggedInUserEmail"] as string;
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "SELECT COUNT(*) FROM rooms";
+
+                    string query = "SELECT COUNT(*) FROM rooms WHERE status = 'Active' AND teacheremail = @loggedInUserEmail";
+
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        roomscount = Convert.ToInt32(cmd.ExecuteScalar());
+                        cmd.Parameters.AddWithValue("@loggedInUserEmail", loggedInUserEmail);
+
+                        activeRoomsCount = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }
             }
             catch (Exception ex)
             {
-                roomscount = 0;
+                activeRoomsCount = 0;
             }
-            return roomscount;
+            return activeRoomsCount;
         }
         protected int GetTotalNotificationCount()
         {
@@ -47,7 +51,7 @@ namespace lms.Professor
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "SELECT COUNT(*) FROM notification";
+                    string query = "SELECT COUNT(*) FROM notification WHERE DATE(date) = CURDATE()";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         notificationCount = Convert.ToInt32(cmd.ExecuteScalar());

@@ -41,7 +41,7 @@ namespace lms.Student
                     {
                         con.Open();
 
-                        string query = "SELECT teacheremail, teachername, profileimage, postcontent, datepost FROM announcements " +
+                        string query = "SELECT announcementid, teacheremail, teachername, profileimage, postcontent, datepost FROM announcements " +
                                        "WHERE roomid = @roomid AND teacherid = @teacherid " +
                                        "ORDER BY datepost DESC ";
 

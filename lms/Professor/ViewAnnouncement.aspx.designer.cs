@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace lms.Student
+namespace lms.Professor
 {
 
 
-    public partial class WebForm7
+    public partial class ViewAnnouncement
     {
 
         /// <summary>
@@ -69,13 +69,13 @@ namespace lms.Student
         protected global::System.Web.UI.WebControls.GridView commentGridView;
 
         /// <summary>
-        /// Image1 control.
+        /// profileimagedis control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Image profileimagedis;
 
         /// <summary>
         /// txtcomment control.

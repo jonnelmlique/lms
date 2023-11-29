@@ -41,11 +41,13 @@
 
                                       </div>
                                      <div class="post-div txt">
-                                          <a href="viewAnnouncement.aspx" class="post-txt">Add class comment</a>
-                                    </div>
+<%--                                          <a href='<%# "viewAnnouncement.aspx?roomid=" + Request.QueryString["roomid"]  + "&announcementid =" + Eval("announcementid")  %>' class="post-txt">Add class comment</a>--%>
+                                    <a href='<%# "viewAnnouncement.aspx?roomid=" + Request.QueryString["roomid"] + "&announcementid=" + Eval("announcementid") %>' class="post-txt">Add class comment</a>
+
+                                     </div>
                               
                             </div>
-                        
+
                         </div>
                         </a>
                     </ItemTemplate>

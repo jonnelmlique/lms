@@ -62,7 +62,16 @@
                                 <p><%# Eval("postcontent") %></p>
                             </div>
 
-                          
+                             <div class="announcement-comment">
+                                     <div class="post-div i">                                                  
+                                          <i class="fas fa-user"></i>
+
+                                      </div>
+                                     <div class="post-div txt">
+<%--                                          <a href='<%# "viewAnnouncement.aspx?roomid=" + Request.QueryString["roomid"]  + "&announcementid =" + Eval("announcementid")  %>' class="post-txt">Add class comment</a>--%>
+                                    <a href='<%# "ViewAnnouncement.aspx?roomid=" + Request.QueryString["roomid"] + "&announcementid=" + Eval("announcementid") %>' class="post-txt">Add class comment</a>
+
+                                     </div>
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>

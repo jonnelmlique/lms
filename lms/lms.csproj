@@ -173,6 +173,7 @@
     <Content Include="CSS\ProfessorCSS\pedingInvite.css" />
     <Content Include="CSS\ProfessorCSS\People1.css" />
     <Content Include="CSS\ProfessorCSS\professorMasterPage.css" />
+    <Content Include="CSS\ProfessorCSS\ProfessorViewAnnouncement.css" />
     <Content Include="CSS\ProfessorCSS\room_details.css" />
     <Content Include="CSS\ProfessorCSS\stream.css" />
     <Content Include="CSS\ProfessorCSS\studentInvite.css" />
@@ -217,6 +218,7 @@
     <Content Include="Professor\UnachiveConfirmation.aspx" />
     <Content Include="Professor\StreamClassroom.aspx" />
     <Content Include="Professor\editClasswork.aspx" />
+    <Content Include="Professor\ViewAnnouncement.aspx" />
     <Content Include="Professor\WebForm12.aspx" />
     <Content Include="Professor\Classwork.aspx" />
     <Content Include="Professor\People1.aspx" />
@@ -512,6 +514,13 @@
     </Compile>
     <Compile Include="Professor\editClasswork.aspx.designer.cs">
       <DependentUpon>editClasswork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\ViewAnnouncement.aspx.cs">
+      <DependentUpon>ViewAnnouncement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\ViewAnnouncement.aspx.designer.cs">
+      <DependentUpon>ViewAnnouncement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Professor\WebForm12.aspx.cs">
       <DependentUpon>WebForm12.aspx</DependentUpon>
