@@ -199,64 +199,78 @@
 
     height: 100%;
     padding: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
 }
 
-.class-submit .my-works{
-    height:auto;
+.class-submit .submitted, .class-submit .not-submitted{
+    height:50%;
     width:100%;
-    padding:10px;
-     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
-   
+    padding:10px;  
 }
-.my-works .works{
 
-    display:flex;
-    align-items:center;
-    height:50px;
-    padding:0 15px;
-    justify-content:space-between;
+.submitted .works, .not-submitted .works {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 15px;
+    justify-content: space-between;
 }
-.my-works .works h2{
+.submitted .works h2, .not-submitted .works h2{
     font-size:30px;
     font-family:'Times New Roman';
     font-weight:500;
+    letter-spacing:1px;
 }
-.my-works .works span{
+.submitted .works span, .not-submitted .works span{
     font-size:20px;
     font-weight:400;
     letter-spacing:1px;
 }
-.my-works .work-list {
-  
-    height: auto;
+.submitted .work-list, .not-submitted .work-list {
+    height:calc(100% - 50px);
     padding: 10px 30px;
+    border:1px solid gray;
+    overflow-y:auto;
 }
-.my-works .work-list .list{
+.work-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.work-list::-webkit-scrollbar-thumb {
+    background-color: #eb4d4d;
+    border-radius: 6px;
+}
+
+
+.work-list::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+.submitted .work-list .list, .not-submitted .work-list .list{
     border:1px solid black;
     height:50px;
     width:100%;
    margin: 10px 0;
 }
-.my-works .submit-btn{ 
-    padding:20px;
+.submitted .submit-btn {
+    padding: 20px;
 }
-.my-works .submit-btn .work-btn{
-   padding:15px;
-   margin:5px 0;
-   text-align:center;
-   border-radius:10px;
-   font-size:18px;
-   font-family:'Times New Roman';
-   font-weight:bold;
-   width:100%;
-   border-color:#ddd;
-   cursor:pointer;
+.class-submit .not-submitted{
+   
 }
-.my-works .submit-btn .work-btn:first-child{
-    background-color:#fff;
-    border:1px solid black;
-}
-.my-works .submit-btn .work-btn:last-child{
-    background-color:#000;
-    color:#fff;
-}
+
+
+
+
+
+
+
+.custom-dropdown {
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: not-allowed;
+    color: #000;
+    font-weight: bold;
+} 

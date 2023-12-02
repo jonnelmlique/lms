@@ -1,6 +1,6 @@
 ﻿
 .dashboard {
-    background-color: #E4E9F7;
+    background-color: #fff;
     height: 100%;
     width: 100%;
     display: flex;
@@ -28,12 +28,12 @@
     height: 180px;
     background-color: #f57f7f;
     margin: 10px;
-    border-radius:15px;
-    transition:0.3s all ease;
-
+    border-radius: 15px;
+    transition: 0.3s all ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 .dash-list:hover{
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
 }
 .dash-list .text{
     flex:1;

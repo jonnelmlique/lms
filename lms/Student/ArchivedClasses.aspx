@@ -5,6 +5,14 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+      <div class="room-page">
+      <div class="room-filter">
+          <div class="filters">
+              <p>Archived Rooms</p>
+           
+          </div>
+        
+      </div>
     <div class="room-lists">
         <asp:Repeater ID="roomRepeater" runat="server">
             <HeaderTemplate>
@@ -20,14 +28,14 @@
                         <a href='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("invitation_subjectname") %></a>
                         <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
-                        <div class="room-buttons">
+                      <%--  <div class="room-buttons">
                             <asp:LinkButton ID="enterroom" runat="server" CssClass="room-btn"
                                 PostBackUrl='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>'
                                 Text="Enter Room" />
 
 
 
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
 
@@ -38,4 +46,5 @@
         </asp:Repeater>
 
     </div>
+          </div>
 </asp:Content>

@@ -47,7 +47,8 @@
 .login-page {
     height: 100%;
     width: 40%;
-    background-color: #eb4d4d;
+  /*  background-color: #eb4d4d;*/
+  background-color:maroon;
     padding: 40px;
 }
 

@@ -163,6 +163,7 @@
     <Content Include="CSS\ProfessorCSS\classwork.css" />
     <Content Include="CSS\ProfessorCSS\CreateRoom.css" />
     <Content Include="CSS\ProfessorCSS\Dashboard.css" />
+    <Content Include="CSS\ProfessorCSS\editAnnouncement.css" />
     <Content Include="CSS\ProfessorCSS\editClasswork.css" />
     <Content Include="CSS\ProfessorCSS\enterroompeople.css" />
     <Content Include="CSS\ProfessorCSS\instructorClassroom.css" />
@@ -177,6 +178,7 @@
     <Content Include="CSS\ProfessorCSS\room_details.css" />
     <Content Include="CSS\ProfessorCSS\stream.css" />
     <Content Include="CSS\ProfessorCSS\studentInvite.css" />
+    <Content Include="CSS\ProfessorCSS\viewClasswork.css" />
     <Content Include="CSS\Student\classInvitation.css" />
     <Content Include="CSS\Student\classSubjects.css" />
     <Content Include="CSS\Student\DashBoard.css" />
@@ -224,6 +226,9 @@
     <Content Include="Professor\Classwork.aspx" />
     <Content Include="Professor\People1.aspx" />
     <None Include="Resources\submit.png" />
+    <None Include="Resources\submit2.png" />
+    <Content Include="Professor\editAnnouncement.aspx" />
+    <Content Include="Professor\viewClasswork.aspx" />
     <Content Include="Student\ArchivedClasses.aspx" />
     <Content Include="Student\Classworks.aspx" />
     <Content Include="Student\DashBoard.aspx" />
@@ -551,6 +556,20 @@
     </Compile>
     <Compile Include="Professor\People1.aspx.designer.cs">
       <DependentUpon>People1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\editAnnouncement.aspx.cs">
+      <DependentUpon>editAnnouncement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\editAnnouncement.aspx.designer.cs">
+      <DependentUpon>editAnnouncement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\viewClasswork.aspx.cs">
+      <DependentUpon>viewClasswork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\viewClasswork.aspx.designer.cs">
+      <DependentUpon>viewClasswork.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

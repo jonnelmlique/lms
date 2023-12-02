@@ -51,7 +51,7 @@
          <asp:Label ID="lblUserEmail" runat="server" Text="" CssClass="admin-label"></asp:Label>
  
             </div>
-             <div class="item">
+             <div class="item active">
             <a href='StreamClassroom.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-bullhorn"></i>Announcements</span></a>
              </div>
             <div class="item">
@@ -205,7 +205,7 @@
             });
     }
 </script>--%>
- <%-- <script>
+  <script>
 
       function handleLinkClick(link) {
 
@@ -242,6 +242,6 @@
               handleLinkClick(this);
           });
       });
-  </script>--%>
+  </script>
 </body>
 </html>

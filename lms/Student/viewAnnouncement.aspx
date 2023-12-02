@@ -2,66 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../CSS/Student/viewAnnouncement.css" />
     <style>
-.img-profile {
-    margin: auto;
-    color: #000;
-    width: 60px;
-    height: 50px;
-    border-radius: 50%;
-}
 
-<style type="text/css">
-    .announcement-grid {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    .announcement-box {
-        border: 1px solid #ccc;
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .announcement-head {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .profile {
-        margin-right: 10px;
-    }
-
-    .img-profile {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-    }
-
-    .info {
-        flex-grow: 1;
-    }
-
-    .name {
-        margin-bottom: 5px;
-    }
-
-    .name h3 {
-        margin: 0;
-        color: #333;
-    }
-
-    .date span {
-        color: #888;
-    }
-
-    .announcement-body {
-        line-height: 1.6;
-    }
     .emailname{
         display: none;
     }
@@ -74,12 +15,12 @@
      <div class="class-content">
        <div class="details">
          <div class="title">
-<%--             <h2>Date Posted</h2>--%>
-          <asp:Label ID="lbldate" runat="server" Text=""></asp:Label>
+
+          <asp:Label ID="lbldate" runat="server" Text="" CssClass="h2"></asp:Label>
 
          </div>
          <div class="name">
-             <asp:Label ID="lblteachername" runat="server" Text=""></asp:Label>
+             <asp:Label ID="lblteachername" runat="server" Text="" CssClass="h3"></asp:Label>
             <asp:Label ID="lblteacheremail" runat="server" CssClass="emailname" Text=""></asp:Label>
 
          </div>
@@ -88,18 +29,18 @@
          <div class="modules">
             
 <%--                 <p>please answer and submit within the day.  do not forget to turn in.</p>--%>
-                   <asp:Label ID="lblpostcontent" runat="server" Text=""></asp:Label>
+                   <asp:Label ID="lblpostcontent" runat="server" Text="" CssClass="p"></asp:Label>
 
          
          </div>
          <div class="comments">
              <div class="class-comments">
-                 <span><i class="fas fa-users"></i> Class comments</span>
-                 <asp:Label ID="classCommentCountLabel" runat="server" Text='<%# Eval("CommentCount") %>'></asp:Label>
-
+                <i class="fas fa-users"></i> 
+                 <asp:Label ID="classCommentCountLabel" runat="server" Text='<%# Eval("CommentCount") %>' CssClass="lbl-comment"></asp:Label>
+                  <span> Class comments </span>
              </div>
              <div class="comment-list">
-            <asp:GridView ID="commentGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Comment" CssClass="announcement-grid">
+            <asp:GridView ID="commentGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="" CssClass="announcement-grid">
        <Columns>
            <asp:TemplateField>
                <ItemTemplate>
@@ -110,16 +51,14 @@
                            </div>
                            <div class="info">
                                <div class="name">
-                                   <h3><%# Eval("name") %></h3>
-                               </div>
-                               <div class="date">
+                                   <h3><%# Eval("name") %></h3>                           
                                    <span><%# Eval("datepost") %></span>
                                </div>
+                                <div class="announcement-body">
+                                     <p><%# Eval("commentpost") %></p>
+                                   </div>
                            </div>
-                       </div>
-                       <div class="announcement-body">
-                           <p><%# Eval("commentpost") %></p>
-                       </div>
+                       </div>                     
                    </div>
                </ItemTemplate>
            </asp:TemplateField>
@@ -139,9 +78,10 @@
                 </div>
                   <div class="comment-button">
 <%--                     <i class="fas fa-arrow-right"></i>--%>
-                      <asp:Button ID="btncomment" runat="server" Text=">" OnClick="btncomment_Click" />
-                    <%--  it should be imagebutton(arrow image button)--%>
-                  </div>
+                   <%--   <asp:Button ID="btncomment" runat="server" Text="→" OnClick="btncomment_Click" class="btn-comment"/>--%>
+      
+                      <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Resources/submit2.png" CssClass="btn-comment"  OnClick="ImageButton1_Click" />
+                      </div>
 
               </div>
          </div>

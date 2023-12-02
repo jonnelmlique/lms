@@ -18,18 +18,37 @@
             </div>
         
             <asp:Label ID="lblRecipientEmail" runat="server" Visible="false"></asp:Label>
-            <h3>Email:</h3> 
-            <asp:TextBox ID="emailtxt" runat="server" CssClass="area1"></asp:TextBox>
+            <div class="message-details">
+                   <div class="head">  
+                      <h3>Email:</h3> 
+                           </div>
+                <div class="area">
+                     <asp:TextBox ID="emailtxt" runat="server" CssClass="area1"></asp:TextBox>
+                </div>
+            </div>
+            <div class="message-details">
+                <div class="head">            
+                  <h3>Subject:</h3>  <asp:Label ID="ErrorSub1" runat="server"  CssClass="error"></asp:Label>
+                      </div>
+                <div class="area">
+                     <asp:TextBox ID="txtsubject" runat="server" CssClass="area1" placeholder="Write email subject"></asp:TextBox>
+          
+                </div>
+             </div>
 
-            <h3>Subject:</h3>  <asp:Label ID="ErrorSub1" runat="server"  CssClass="error"></asp:Label>
-            <asp:TextBox ID="txtsubject" runat="server" CssClass="area1" placeholder="Write email subject"></asp:TextBox>
-            <h3>Message:</h3>  <asp:Label ID="ErroSub2" runat="server"  CssClass="error"></asp:Label>
-          <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Rows="5" CssClass="area2" placeholder="Write email content"></asp:TextBox>
-            <br />
-            
-           <%-- <asp:Label ID="lblMessage" runat="server" CssClass="area3" Text="">Check</asp:Label>--%>
-            <asp:Button ID="btnSendMessage" runat="server" Text="SEND MESSAGE"  OnClick="btnSendMessage_Click" CssClass="button" />
-        </div>
+            <div class="main-message">    
+                 <div class="head">   
+                      <h3>Message:</h3>  <asp:Label ID="ErroSub2" runat="server"  CssClass="error"></asp:Label>
+                        </div>
+             <div class="area">
+             <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Rows="5" CssClass="area2" placeholder="Write email content"></asp:TextBox>
+                  </div>
+                 <br />
+            </div>
+            <div class="message-btn">         
+              <asp:Button ID="btnSendMessage" runat="server" Text="SEND MESSAGE"  OnClick="btnSendMessage_Click" CssClass="button" />
+          </div>
+       </div>
     </div>
 </asp:Content>
 

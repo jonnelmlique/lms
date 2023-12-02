@@ -1,26 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student/classroomMasterPage.Master" AutoEventWireup="true" CodeBehind="submitClasswork.aspx.cs" Inherits="lms.Student.WebForm8" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Professor/instructorClassRoom.Master" AutoEventWireup="true" CodeBehind="viewClasswork.aspx.cs" Inherits="lms.Professor.WebForm16" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="../CSS/Student/submitClasswork.css" />
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-       <style>
-    .custom-dropdown {
- 
-        position: relative;
-        padding: 10px;
-    
-        background-color: #fff;
-        border-radius: 5px;
-        cursor: not-allowed;
-        color:#000;
-        font-weight:bold;
-        
-    } 
-</style>
+    <link rel="stylesheet" href="../CSS/ProfessorCSS/viewClasswork.css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Classroom" runat="server">
 
-    <div class="submit">
+        <div class="submit">
         <div class="class-content">
           <div class="details">
             <div class="title">
@@ -78,20 +62,29 @@
        
             </div>
         <div class="class-submit">
-            <div class="my-works">
+           
+            <div class="submitted">
             <div class="works">
-                <h2>Your Work</h2>
-                <span>Turned in</span>
+                <h2>Turned In</h2>
+               <span></span>
             </div>
             <div class="work-list">
               <%--  work list--%>
             </div>
-             <div class="submit-btn">
-                 <asp:Button ID="Button1" runat="server" Text="Add or Create" CssClass="work-btn" />
-                  <asp:Button ID="Button2" runat="server" Text="Mark as done" CssClass="work-btn" />
-             </div>
+           
         </div>
+                <div class="not-submitted">
+                      <div class="works">
+                            <h2>Assigned</h2>
+                           <span></span>
+                    </div>
+                  <div class="work-list">
+                     <%--  work list--%>
+                 </div>
+           
+            </div>
         </div>
     
 </div>
+
 </asp:Content>

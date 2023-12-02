@@ -1,24 +1,28 @@
 ﻿
 .add-account {
-    background-color: #E4E9F7;
+    background-color: #fff;
     height: 100%;
     width: 100%;
     padding: 25px 40px 10px 10px;
 }
-.acc-card{
-    width:100%;
-    height:100%;
-   border:1px solid red;
-    
+.acc-card {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
 }
 .acc-card .acc-head {
     display: flex;
-    height: 40px;
+    height: 50px;
     align-items:center;
     background-color: #eb4d4d;
 }
+.acc-card .acc-head h2{
+    font-family:Arial;
+    font-weight:bold;
+    font-size:23px;
+}
 .acc-head a {
-    height: 40px;
+    height: 50px;
     transition: 0.3s all ease;
     margin-right: 10px;
 }
@@ -46,9 +50,9 @@
 .acc-body {
     padding: 20px;
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - 50px);
     display: flex;
-    background-color: #E4E9F7;
+    background-color: #fff;
 }
 .hide{
     display:none;
@@ -91,6 +95,7 @@
     padding:15px;
     font-size:18px;
  border-color:#ddd;
+ background-color:#E4E9F7;
 }
 .acc-info1 .lbl-txt .rdb {
     
@@ -181,7 +186,7 @@
     border-radius:15px;
     padding:15px;
     font-size:18px;
-
+     background-color:#E4E9F7;
      border-color:#ddd;
 }
 .acc-info2 .button-add{
@@ -198,9 +203,12 @@
      color:#fff;
      font-family:Arial;
      cursor:pointer;
+     font-family:Arial;
+     font-size:15px;
+     transition:0.3s all ease;
      
 }
 .acc-info2 .button-add .btn-add:hover{
        background-color: #f57f7f;
-       outline:1px solid black;
+     
 }

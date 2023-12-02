@@ -1,6 +1,6 @@
 ﻿
 .notifications {
-    background-color: #E4E9F7;
+    background-color: #fff;
     height: 100%;
     width: 100%;
     padding: 0 30px 0 0;
@@ -9,8 +9,8 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
-    border-radius:20px;
-   
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 .message-from {
     height: 120px;
@@ -89,12 +89,11 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 50px;
-
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 .message-button .btn-msg{
-    padding:15px 30px;
+    padding:10px 30px;
     border-color:transparent;
      background-color: #eb4d4d;
      color:#fff;

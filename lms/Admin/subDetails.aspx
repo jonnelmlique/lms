@@ -20,7 +20,7 @@
                          StaticSelectedStyle-ForeColor="black" StaticSelectedStyle-BackColor="white"  CssClass="tabs" OnMenuItemClick="Menu1_MenuItemClick">
                       <Items>
                           <asp:MenuItem Text="People" Value="0" Selected="true"></asp:MenuItem>
-                         <asp:MenuItem Text="Description" Value="1"></asp:MenuItem>
+                       
                       </Items>
                     </asp:Menu>
                  </div>
@@ -31,19 +31,24 @@
       <div class="instructor">
           <div class="owner">
                <h2>Room Owner :</h2>
+                <div class="details">
               <asp:Label ID="lblowner" runat="server" Text="Label" CssClass="lbl-owner"></asp:Label>
+                     </div>
           </div>
          <div class="co-owner">
-             <h2>Co-Room Owner :</h2>
-
+             <h2>Room Description :</h2>
+             <div class="details">
+                    <asp:Label ID="lbldetails" runat="server" Text="" CssClass="lbl-owner"></asp:Label>
+             </div>
+           
          </div>
       </div>
       <div class="students">
-          <div class="student-txt">
+          <%--<div class="student-txt">
           <span>Students Enrolled:</span>
           <asp:TextBox ID="TextBox1" runat="server" CssClass="search-student" placeholder="Search Student"></asp:TextBox>
               <asp:Button ID="Button1" runat="server" Text="Button" CssClass="student-btn" />
-              </div>
+              </div>--%>
           <div class="student-data">
 
          <asp:GridView ID="studentlist" runat="server" AutoGenerateColumns="false" EmptyDataText="No Student Found">
@@ -63,10 +68,7 @@
                                  
 
                                  </asp:View>
-                           <asp:View ID="View2" runat="server" >
-                                 <asp:Label ID="lbldetails" runat="server" Text=""></asp:Label>
-                                  <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                               </asp:View>
+                         
                     </asp:MultiView>
                </div>
 

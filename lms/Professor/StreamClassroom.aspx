@@ -51,7 +51,7 @@
                                 <div class="info">
                                     <div class="name">
                                         <h3><%# Eval("teachername") %></h3>
-                                        <a href="#"><i class="fas fa-edit"></i></a>
+                                        <a href='<%# "editAnnouncement.aspx?roomid=" + Request.QueryString["roomid"] + "&announcementid=" + Eval("announcementid") %>'><i class="fas fa-edit"></i></a>
                                     </div>
                                     <div class="date">
                                         <span><%# Eval("datepost") %></span>

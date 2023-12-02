@@ -7,11 +7,12 @@
    
 }
 
-.details-card{
-    border:1px solid red;
-    width:100%;
-    height:100%;
+.details-card {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
+
 .details-card .room-head{
       display: flex;
     height:50px;
@@ -145,35 +146,3 @@ tbody tr td a {
     border-color: transparent;
     border-radius: 10px;
 }
-
-/*.subjects .sub-lbl{
-    display:flex;   
-    align-items:center;
-    height:100%;
-    border:1px solid black;
-    width:100%;
-    flex:4;
-}
-.subjects .sub-btn{
-    flex:1;
-      width:100%;
-       border:1px solid black;
-         display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100%;
-    
-}
-.subjects .room-subs{
-    margin-left:20px;
-    border:1px solid red;
-}
-.subjects .subj-btn{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;   
-    padding:10px 15px;
-   
-}
-
-*/

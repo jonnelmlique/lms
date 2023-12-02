@@ -1,6 +1,6 @@
 ﻿
 .Management {
-    background-color: #E4E9F7;
+    background-color: #fff;
     height: 100%;
     width: 100%;
     padding: 20px 30px 10px 10px;
@@ -115,8 +115,7 @@ table {
     border-collapse: collapse;
     margin-top: 5px;
     width: 100%;
-    background-color:#fff;
- 
+    background-color: #E4E9F7;
 }
 
     table td, table th {

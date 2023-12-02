@@ -2,9 +2,9 @@
 .classwork {
     width: 100%;
     height: 100%;
-    padding: 20px;
-
-    overflow-y:auto;
+    padding: 20px ;
+    overflow-y: auto;
+ 
 }
 .classwork::-webkit-scrollbar {
     width: 10px;
@@ -21,13 +21,19 @@
 }
 
 
-.class-head{
-    width:100%;
-    display:flex;   
-    align-items:center;
-    height:80px;
+.class-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #eb4d4d;
+    padding:0 20px;
 }
-
+.class-head h2{
+    color:#fff;
+    font-family:Arial;
+    letter-spacing:1px;
+}
 .class-head .drop-list1{
     flex:1;
    
@@ -76,8 +82,10 @@
 
 
 
-.edit{
-    height:calc(100% - 80px);
+.edit {
+    height: calc(100% - 50px);
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 .assignment {
     display: flex;
@@ -187,11 +195,11 @@
 }
 
 .assign-btn{
-    height:calc(100% - 350px);
+    height:calc(100% - 420px);
     display:flex;
     align-items:center;
     justify-content:flex-end;
-   
+
 }
 .assign-btn .buttons{
     padding:15px 30px;

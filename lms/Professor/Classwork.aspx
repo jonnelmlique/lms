@@ -53,7 +53,11 @@
                                 <div class="instruction">
                                     <p><%# Eval("instructions") %></p>
                                 </div>
+                            <div class="submit-link">
 
+                                  <a href='<%# "viewClasswork.aspx?roomid=" + Request.QueryString["roomid"] + "&materialsid=" + Eval("materialsid") %>'><i class="fa fa-eye"></i>View Details</a>
+
+                             </div>
 
 
                             </div>

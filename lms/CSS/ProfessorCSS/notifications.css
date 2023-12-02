@@ -1,13 +1,13 @@
 ﻿
 .notifications {
-    background-color: #E4E9F7;
+    background-color: #fff;
     height: 100%;
     width: 100%;
     padding: 0 30px 0 0;
 }
 .notif-data {
     height: 100%;
-    border: 1px solid red;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
 }
 .notif-head {
   
@@ -100,6 +100,12 @@ table {
         border: 1px solid #ddd;
         padding: 15px;
     }
+    table td, table tr {
+        border: 1px solid #ddd;
+        padding: 10px;
+        font-weight:bold;
+    }
+
 
     table tr:nth-child(even) {
         background-color: #f2f2f2;
@@ -112,8 +118,7 @@ table {
     }
 
     table th {
-        padding-top: 12px;
-        padding-bottom: 12px;
+       
         text-align: left;
         background-color: #eb4d4d;
         color: white;
