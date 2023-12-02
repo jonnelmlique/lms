@@ -55,15 +55,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Classroom" runat="server">
     <div class="classwork">
         <div class="class-head">
-            <%--     <div class="drop-list1">
-                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
-                      <asp:ListItem Text="All Topics" Value="1" />
-                
-                 </asp:DropDownList>
-            </div>
-          <div class="drop-list2">
-                  <a href="#" class="d-link" id="createRoomLink">Create Task</a>
-            </div>--%>
+           <h2>Update Classwork</h2>
         </div>
 
         <div class="edit">
@@ -110,17 +102,19 @@
                         <asp:TextBox ID="txttopic" runat="server" CssClass="txt-assign txt"></asp:TextBox>
 
                     </div>
+                     <div class="assign">
                     <asp:DropDownList ID="ddlFiles" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlFiles_SelectedIndexChanged">
                     </asp:DropDownList>
+                           </div>
 
-                    <asp:Button ID="btnDownload" runat="server" Text="Download File" OnClick="btnDownload_Click" />
+                   <%-- <asp:Button ID="btnDownload" runat="server" Text="Download File" OnClick="btnDownload_Click" />--%>
                     <div class="assign">
 
                         <asp:FileUpload ID="file" runat="server" />
                     </div>
                     <div class="assign-btn">
-                        <asp:Button ID="btnUpdate" runat="server" Text="Update Assignment" CssClass="buttons" OnClick="btnUpdate_Click" />
-                        <a href='<%= "Classwork.aspx?roomid=" + Request.QueryString["roomid"] %>'><i class="fas fa-arrow-left"></i>Back to Classwork</a>
+                        <asp:Button ID="btnUpdate" runat="server" Text="Update Classwork" CssClass="buttons" OnClick="btnUpdate_Click" />
+                        <a href='<%= "Classwork.aspx?roomid=" + Request.QueryString["roomid"] %>'>Back to Classwork</a>
                     </div>
                 </div>
             </div>
