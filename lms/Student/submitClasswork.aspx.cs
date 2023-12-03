@@ -526,12 +526,12 @@ namespace lms.Student
             //    }
             //}
         }
-                        
-                    
-                
-            
-        
-    
+
+
+
+
+
+
         private void PopulateFileGridView1(int roomId, int materialsId)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
@@ -539,7 +539,7 @@ namespace lms.Student
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT materialsId, FileName FROM studentwork WHERE roomId = @roomId AND materialsId = @materialsId";
+                string query = "SELECT studentworkid, materialsId, FileName FROM studentwork WHERE roomId = @roomId AND materialsId = @materialsId";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@roomId", roomId);
@@ -586,7 +586,7 @@ namespace lms.Student
                 Response.End();
             }
 
-            }
+        }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -672,7 +672,7 @@ namespace lms.Student
 
                                             commandInsert.ExecuteNonQuery();
 
-                                            ShowSuccessMessage("Your Work have been successfully Turned In");
+                                            ShowSuccessMessage("Your Work have been successfully Added");
 
                                             PopulateFileGridView1(roomId, materialsId);
 
@@ -694,7 +694,42 @@ namespace lms.Student
                 }
             }
         }
+        private void RemoveFileFromDatabase(int studentworkid)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-      
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM studentwork WHERE studentworkid = @studentworkid";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@studentworkid", studentworkid);
+                    command.ExecuteNonQuery();
+                }
+                ShowSuccessMessage("Your file have been successfully Removed");
+
+            }
+        }
+
+
+        protected void gvwork_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (int.TryParse(Request.QueryString["roomid"], out int roomId) && int.TryParse(Request.QueryString["materialsid"], out int materialsId))
+            {
+                if (e.CommandName == "RemoveFile" && !string.IsNullOrEmpty(e.CommandArgument.ToString()))
+                {
+                    int studentworkid = Convert.ToInt32(e.CommandArgument);
+                    RemoveFileFromDatabase(studentworkid);
+
+                    PopulateFileGridView1(roomId, materialsId);
+                }
+
+            }
+
+
+
+        }
     }
 }

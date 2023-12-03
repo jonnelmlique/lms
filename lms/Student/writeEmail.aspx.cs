@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace lms.Student
 {
@@ -29,71 +30,68 @@ namespace lms.Student
 
         protected void btnSendMessage_Click(object sender, EventArgs e)
         {
-            string recipientEmail = emailtxt.Text;
-            string subject = txtsubject.Text;
+            string subjects = txtsubject.Text;
             string messageText = txtMessage.Text;
+            string recipientEmail = emailtxt.Text;
 
+            try
+            {
+                string loggedInUserEmail = Session["LoggedInUserEmail"] as string;
 
-            if (txtMessage.Text == "")
-            {
-                ErroSub2.Text = " * Please input a message";
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
-            }
-            else
-            {
-                try
+                if (string.IsNullOrEmpty(loggedInUserEmail))
                 {
-                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-                    smtpClient.Port = 587;
-                    smtpClient.UseDefaultCredentials = false;
-                    smtpClient.Credentials = new NetworkCredential("novalichesseniorhighschool@gmail.com", "jpscuyqtbmgpkcqw");
-                    smtpClient.EnableSsl = true;
+                    ShowErrorMessage("Unable to retrieve logged-in user's email.");
+                    return;
+                }
 
-                    MailMessage mailMessage = new MailMessage();
-                    mailMessage.From = new MailAddress("novalichesseniorhighschool@gmail.com");
-                    mailMessage.To.Add(recipientEmail);
-                    mailMessage.Subject = subject;
-                    mailMessage.Body = messageText;
+                string smtpConnectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-                    smtpClient.Send(mailMessage);
+                using (MySqlConnection smtpConnection = new MySqlConnection(smtpConnectionString))
+                {
+                    smtpConnection.Open();
 
-                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                    string smtpQuery = "SELECT smtp_email, smtp_password FROM smtp_credentials WHERE smtp_email = @smtp_email";
 
-                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    using (MySqlCommand smtpCmd = new MySqlCommand(smtpQuery, smtpConnection))
                     {
-                        con.Open();
+                        smtpCmd.Parameters.AddWithValue("@smtp_email", loggedInUserEmail);
 
-                        string insertQuery = "INSERT INTO notification (sender, receiver, subject, message, date) VALUES (@sender, @Receiver, @Subject, @Message, @Date)";
-
-                        using (MySqlCommand cmd = new MySqlCommand(insertQuery, con))
+                        using (MySqlDataReader reader = smtpCmd.ExecuteReader())
                         {
-                            cmd.Parameters.AddWithValue("@sender", "novalichesseniorhighschool@gmail.com");
+                            if (reader.Read())
+                            {
+                                string smtpEmail = reader["smtp_email"].ToString();
+                                string smtpPassword = reader["smtp_password"].ToString();
 
-                            cmd.Parameters.AddWithValue("@Receiver", recipientEmail);
-                            cmd.Parameters.AddWithValue("@Subject", subject);
-                            cmd.Parameters.AddWithValue("@Message", messageText);
-                            cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                                string smtpServer = "smtp.gmail.com";
+                                int smtpPort = 587;
 
-                            cmd.ExecuteNonQuery();
+                                using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
+                                {
+                                    smtpClient.EnableSsl = true;
+                                    smtpClient.Credentials = new NetworkCredential(smtpEmail, smtpPassword);
+
+                                    string subject = subjects;
+                                    string body = messageText;
+
+
+                                    MailMessage mailMessage = new MailMessage(smtpEmail, recipientEmail, subject, body);
+                                    mailMessage.IsBodyHtml = true;
+
+                                    smtpClient.Send(mailMessage);
+                                }
+                            }
+                            else
+                            {
+                                ShowErrorMessage("SMTP credentials not found for the logged-in user's email.");
+                            }
                         }
                     }
-
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                        "Swal.fire({icon: 'success',text: 'Email sent Successfully!'})", true);
-
-                    txtsubject.Text = "";
-                    txtMessage.Text = "";
-                    ErroSub2.Text = "";
                 }
-                catch (Exception ex)
-                {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                        "Swal.fire({icon: 'error',text: 'Something went wrong!'})", true);
-                    txtsubject.Text = "";
-                    txtMessage.Text = "";
-                    ErroSub2.Text = "";
-                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("To send email you need to put SMTP password that will found in your my account page");
             }
         }
     }

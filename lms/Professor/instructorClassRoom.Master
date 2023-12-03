@@ -60,9 +60,9 @@
             <div class="item">
         <a href='People1.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-users"></i>People</span></a>
                 </div>
-                 <div class="item">
-                    <a href="#" class="sub-btn-active"><span><i class="fas fa-star"></i>Grades</span></a>
-               </div>
+              <div class="item">
+    <a href='Grades.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-star"></i>Grades</span></a>
+  </div>
 
                 <div class="item">
                     <a href="CreateRoom.aspx" class="sub-btn-active"><span><i class="fas fa-sign-out-alt"></i>Exit</span></a>

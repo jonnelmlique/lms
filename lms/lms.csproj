@@ -193,6 +193,7 @@
     <Content Include="file.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Professor\ArchiveConfirmation.aspx" />
+    <Content Include="Professor\Grades.aspx" />
     <Content Include="Professor\instructorClassroom.aspx" />
     <Content Include="Professor\NotificationDetails.aspx" />
     <Content Include="Professor\professorMasterPage.Master" />
@@ -411,6 +412,13 @@
     </Compile>
     <Compile Include="Professor\ArchiveConfirmation.aspx.designer.cs">
       <DependentUpon>ArchiveConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\Grades.aspx.cs">
+      <DependentUpon>Grades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\Grades.aspx.designer.cs">
+      <DependentUpon>Grades.aspx</DependentUpon>
     </Compile>
     <Compile Include="Professor\ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>

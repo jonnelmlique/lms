@@ -128,13 +128,20 @@
                     <%--<span>Turned in</span>--%>
                 </div>
                 <div class="work-list">
-                    <asp:GridView ID="gvwork" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnSelectedIndexChanged="gvwork_SelectedIndexChanged">
+                     <asp:GridView ID="gvwork" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnRowCommand="gvwork_RowCommand">
                         <Columns>
-                            <asp:BoundField DataField="materialsId" HeaderText="File ID" SortExpression="materialsId" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
+                            <asp:BoundField DataField="materialsId" HeaderText="File ID" SortExpression="studentworkid" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
+
+                            <asp:BoundField DataField="studentworkid" HeaderText="File ID" SortExpression="studentworkid" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
                             <asp:BoundField DataField="FileName" HeaderText="File Name" SortExpression="FileName" ReadOnly="True" HeaderStyle-CssClass="hide-column" />
-                            <asp:CommandField ShowSelectButton="True" SelectText="Download" HeaderStyle-CssClass="hide-column" />
+                            <asp:TemplateField HeaderText="Actions" HeaderStyle-CssClass="hide-column">
+                                <ItemTemplate>
+                                    <asp:Button runat="server" CommandName="RemoveFile" CommandArgument='<%# Eval("studentworkid") %>' Text="X" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
+
                 </div>
                 <div class="submit-btn">
                     <asp:FileUpload ID="file" runat="server" CssClass="work-btn" />

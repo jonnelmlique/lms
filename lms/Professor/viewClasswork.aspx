@@ -9,9 +9,10 @@
         .hide-column {
             display: none;
         }
+
         .emailname {
             display: none;
-        }     
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Classroom" runat="server">
@@ -31,13 +32,13 @@
                 </div>
                 <div class="points-date">
                     <div class="points">
-                          <asp:Label ID="lblpoints" runat="server" Text="" CssClass="span"> </asp:Label>
-                         <span>points</span>
-                    </div>     
+                        <asp:Label ID="lblpoints" runat="server" Text="" CssClass="span"> </asp:Label>
+                        <span>points</span>
+                    </div>
                     <div class="dates">
-                         <span>Due Date:</span>
-                          <asp:Label ID="lbldue" runat="server" Text="" CssClass="span"></asp:Label>
-                     </div>
+                        <span>Due Date:</span>
+                        <asp:Label ID="lbldue" runat="server" Text="" CssClass="span"></asp:Label>
+                    </div>
 
                 </div>
             </div>
@@ -49,7 +50,8 @@
                 </div>
                 <div class="file">
                     <div class="files">
-                
+
+
 
                         <asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvFiles_SelectedIndexChanged" CssClass="gridview">
                             <Columns>
@@ -65,11 +67,11 @@
                 </div>
             </div>
             <div class="comments">
-              <div class="class-comments">
-                   <i class="fas fa-users"></i> 
-  
-                     <asp:Label ID="classCommentCountLabel" runat="server" Text='<%# Eval("CommentCount") %>' CssClass="lbl-comment"></asp:Label>
-                   <span> Class comments </span>
+                <div class="class-comments">
+                    <i class="fas fa-users"></i>
+
+                    <asp:Label ID="classCommentCountLabel" runat="server" Text='<%# Eval("CommentCount") %>' CssClass="lbl-comment"></asp:Label>
+                    <span>Class comments </span>
                 </div>
                 <div class="comment-list">
 
@@ -86,16 +88,16 @@
                                             <div class="info">
                                                 <div class="name">
                                                     <h3><%# Eval("name") %></h3>
-                                               
+
                                                     <span><%# Eval("datepost") %></span>
                                                 </div>
-                                          
-                                             <div class="announcement-body">
-                                                  <p><%# Eval("commentpost") %></p>
+
+                                                <div class="announcement-body">
+                                                    <p><%# Eval("commentpost") %></p>
+                                                </div>
                                             </div>
-                                          </div>
                                         </div>
-                                       
+
                                     </div>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -109,13 +111,13 @@
                         <asp:Image ID="Image1" runat="server" CssClass="img-profile" />
 
                     </div>
-                      <div class="post-div txt">
-                         <asp:TextBox ID="txtcomment" runat="server" placeholder="Add comment" CssClass="txt-comment"></asp:TextBox>
-                       </div>
-                     <div class="comment-button">
-                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Resources/submit2.png" CssClass="btn-comment" OnClick="ImageButton1_Click"  />
-     
-                 </div>
+                    <div class="post-div txt">
+                        <asp:TextBox ID="txtcomment" runat="server" placeholder="Add comment" CssClass="txt-comment"></asp:TextBox>
+                    </div>
+                    <div class="comment-button">
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Resources/submit2.png" CssClass="btn-comment" OnClick="ImageButton1_Click" />
+
+                    </div>
 
                 </div>
             </div>
@@ -132,42 +134,49 @@
 
                     <asp:GridView ID="gvwork" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnSelectedIndexChanged="gvwork_SelectedIndexChanged">
                         <Columns>
+
                             <asp:BoundField DataField="materialsId" HeaderText="File ID" SortExpression="materialsId" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
-                           <asp:BoundField DataField="studentname" HeaderText="File ID" SortExpression="StudentName" ReadOnly="True" HeaderStyle-CssClass="hide-column"  />
                             <asp:BoundField DataField="FileName" HeaderText="File Name" SortExpression="FileName" ReadOnly="True" HeaderStyle-CssClass="hide-column" />
-       
-                            
+                            <asp:BoundField DataField="studentname" HeaderText="Student Name" SortExpression="StudentName" ReadOnly="True" HeaderStyle-CssClass="hide-column" />
+                            <asp:BoundField DataField="studentworkid" HeaderText="File ID" SortExpression="materialsId" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
+
+
                             <asp:CommandField ShowSelectButton="True" SelectText="Download" HeaderStyle-CssClass="hide-column" />
+
+                            <asp:TemplateField HeaderText="Grade" HeaderStyle-CssClass="hide-column">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtgrade" runat="server" CssClass="grade-txt"></asp:TextBox>
+                                    <asp:HiddenField ID="hfTnIdPkId" runat="server" Value='<%# Eval("studentworkid") %>' />
+                                    <asp:Button ID="btngrade" runat="server" Text="Grade" OnClick="btngrade_Click1" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                         </Columns>
                     </asp:GridView>
 
 
 
-                    <%--  work list--%>
                 </div>
+                <div class="not-submitted">
+                    <div class="works">
+                        <h2>Assigned</h2>
+                        <span></span>
+                    </div>
+                    <div class="work-list">
 
+
+                        <asp:GridView ID="gvpeople" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnSelectedIndexChanged="gvpeople_SelectedIndexChanged">
+                            <Columns>
+                                <asp:BoundField DataField="studentemail" HeaderText="Student Name" SortExpression="StudentName" ReadOnly="True" HeaderStyle-CssClass="hide-column" />
+
+                            </Columns>
+                        </asp:GridView>
+
+
+                    </div>
+
+                </div>
             </div>
-            <div class="not-submitted">
-                <div class="works">
-                    <h2>Assigned</h2>
-                    <span></span>
-                </div>
-                <div class="work-list">
 
-
-       <asp:GridView ID="gvpeople" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnSelectedIndexChanged="gvpeople_SelectedIndexChanged">
-       <Columns>
-          <asp:BoundField DataField="studentemail" HeaderText="Student Name" SortExpression="StudentName" ReadOnly="True" HeaderStyle-CssClass="hide-column"  />
-
-       </Columns>
-   </asp:GridView>
-
-
-                </div>
-
-            </div>
         </div>
-
-    </div>
-
 </asp:Content>
