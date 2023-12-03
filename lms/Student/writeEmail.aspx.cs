@@ -79,6 +79,33 @@ namespace lms.Student
                                     mailMessage.IsBodyHtml = true;
 
                                     smtpClient.Send(mailMessage);
+
+                                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+                                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                                    {
+                                        con.Open();
+
+                                        string insertQuery = "INSERT INTO notification (sender, receiver, subject, message, date) VALUES (@sender, @Receiver, @Subject, @Message, @Date)";
+
+                                        using (MySqlCommand cmd = new MySqlCommand(insertQuery, con))
+                                        {
+                                            cmd.Parameters.AddWithValue("@sender", smtpEmail);
+
+                                            cmd.Parameters.AddWithValue("@Receiver", recipientEmail);
+                                            cmd.Parameters.AddWithValue("@Subject", subject);
+                                            cmd.Parameters.AddWithValue("@Message", messageText);
+                                            cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+
+                                            cmd.ExecuteNonQuery();
+                                        }
+                                    }
+
+
+                                    ShowSuccessMessage("Your email was sent");
+                                    txtsubject.Text = "";
+                                    txtMessage.Text = "";
+                                    emailtxt.Text = "";
                                 }
                             }
                             else

@@ -130,6 +130,7 @@
     <Content Include="Admin\AddStudent.aspx" />
     <Content Include="Admin\AddTeacher.aspx" />
     <Content Include="Admin\DashBoard.aspx" />
+    <Content Include="Admin\notifications.aspx" />
     <Content Include="Admin\ProfessorAcc.aspx" />
     <Content Include="Admin\StudentAcc.aspx" />
     <Content Include="Admin\ProfessorNotif.aspx" />
@@ -306,6 +307,13 @@
     </Compile>
     <Compile Include="Admin\DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\notifications.aspx.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\notifications.aspx.designer.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProfessorAcc.aspx.cs">
       <DependentUpon>ProfessorAcc.aspx</DependentUpon>

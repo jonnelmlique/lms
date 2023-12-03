@@ -9,7 +9,7 @@
     <div class="reports">
          <div class="search-room">
            
-                <div class="search-bar">          
+<%--                <div class="search-bar">          
             <asp:TextBox ID="TextBox1" runat="server" CssClass="search" placeholder="Search Email"></asp:TextBox>
                     <i class="fas fa-search"></i>
                </div>
@@ -21,12 +21,35 @@
                  </asp:DropDownList>
                               <asp:Button ID="Button1" runat="server" Text="Search" CssClass="crud"/>
                   </div>
-          
+          --%>
          </div>
 
         <div class="report-tbl">
+            
+   
+                <div class="notif-p">
+                 
+                    <asp:GridView ID="roomdetailsGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Notification Found">
+                        <Columns>
+                            <asp:BoundField DataField="subject" HeaderText="Subject Name" HeaderStyle-CssClass="subj" />
+                              <asp:BoundField DataField="Date" HeaderText="Date" HeaderStyle-CssClass="subj" />
 
-        </div>
-        
+                            <asp:TemplateField HeaderText="" ItemStyle-Width="180px">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="roomLink" runat="server" CssClass="btn-list"
+                                        PostBackUrl='<%# "notifications.aspx?notifid=" + Eval("notifid") %>'
+                                        Text="View Message" />
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+
+                </div>
+
+
+            </div>
     </div>
+
+    
 </asp:Content>

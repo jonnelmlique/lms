@@ -82,7 +82,7 @@
                     </div>
                 </div>
                    <div class="item">
-                       <a href="userReports.aspx"><i class="fa-solid fa-flag"></i>User Reports</a>
+                       <a href="userReports.aspx"><i class="fas fa-envelope"></i>User Emails</a>
                         
                   </div>
         
