@@ -7,46 +7,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
    <style>
-    .custom-dropdown {
-        display: inline-block;
-        position: relative;
-        padding: 10px;
-        background-color: #f7f7f7;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        cursor: not-allowed;
-        overflow: hidden;
-    }
-    .custom-dropdown select {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        width: 100%;
-        height: 100%;
-        border: none;
-        outline: none;
-        background: transparent;
-        cursor: not-allowed;
-        font-size: 16px;
-        color: #333;
-    }
-    .custom-dropdown::before {
-        content: "\25BC"; 
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        font-size: 16px;
-        color: #555;
-    }
-    .custom-dropdown:hover {
-        background-color: #e0e0e0;
-    }
-
-    .custom-dropdown select:focus {
-        border: 1px solid #4CAF50;
-        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-    }
+    .hide-column {
+            display: none;
+        }
 </style>
 
 </asp:Content>
@@ -103,8 +66,18 @@
 
                     </div>
                      <div class="assign">
-                    <asp:DropDownList ID="ddlFiles" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlFiles_SelectedIndexChanged">
-                    </asp:DropDownList>
+
+                         
+<asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvFiles_SelectedIndexChanged" CssClass="gridview">
+    <Columns>
+        <asp:BoundField DataField="materialsId" HeaderText="File ID" SortExpression="materialsId" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
+        <asp:BoundField DataField="FileName" HeaderText="File Name" SortExpression="FileName" ReadOnly="True" HeaderStyle-CssClass="hide-column" />
+        <asp:CommandField ShowSelectButton="True" SelectText="Download" HeaderStyle-CssClass="hide-column" />
+    </Columns>
+</asp:GridView>
+
+                  <%--  <asp:DropDownList ID="ddlFiles" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlFiles_SelectedIndexChanged">
+                    </asp:DropDownList>--%>
                            </div>
 
                    <%-- <asp:Button ID="btnDownload" runat="server" Text="Download File" OnClick="btnDownload_Click" />--%>

@@ -41,9 +41,10 @@ namespace lms.Student
                     {
                         con.Open();
 
+
                         string query = "SELECT announcementid, teacheremail, teachername, profileimage, postcontent, datepost FROM announcements " +
-                                       "WHERE roomid = @roomid AND teacherid = @teacherid " +
-                                       "ORDER BY datepost DESC ";
+                 "WHERE roomid = @roomid " +
+                 "ORDER BY teacherid, datepost DESC";
 
                         int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
 

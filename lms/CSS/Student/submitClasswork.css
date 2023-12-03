@@ -260,3 +260,6 @@
     background-color:#000;
     color:#fff;
 }
+.name .hidelbl {
+    display: none;
+}

@@ -22,8 +22,9 @@ namespace lms.Professor
                     {
 
                         DisplayMaterials(roomId, materialsId);
-                        PopulateFileDropdown(roomId, materialsId);
-                        ddlFiles.Enabled = false;
+                        //PopulateFileDropdown(roomId, materialsId);
+                        //ddlFiles.Enabled = false;
+                        PopulateFileGridView(roomId, materialsId);
 
                         //BindFilesGrid(roomId, materialsId);
 
@@ -161,63 +162,63 @@ namespace lms.Professor
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
 
-        protected void btnDownload_Click(object sender, EventArgs e)
-        {
-            int selectedFileID = Convert.ToInt32(ddlFiles.SelectedValue);
+        //protected void btnDownload_Click(object sender, EventArgs e)
+        //{
+        //    int selectedFileID = Convert.ToInt32(ddlFiles.SelectedValue);
 
-            byte[] fileData = RetrieveFileData(selectedFileID);
+        //    byte[] fileData = RetrieveFileData(selectedFileID);
 
-            if (fileData != null)
-            {
-                Response.Clear();
-                Response.ContentType = "application/octet-stream";
-                Response.AddHeader("Content-Disposition", $"attachment; filename={ddlFiles.SelectedItem.Text}");
-                Response.BinaryWrite(fileData);
-                Response.End();
-            }
-        }
+        //    if (fileData != null)
+        //    {
+        //        Response.Clear();
+        //        Response.ContentType = "application/octet-stream";
+        //        Response.AddHeader("Content-Disposition", $"attachment; filename={ddlFiles.SelectedItem.Text}");
+        //        Response.BinaryWrite(fileData);
+        //        Response.End();
+        //    }
+        //}
 
-        protected void ddlFiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //protected void ddlFiles_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
-        private void PopulateFileDropdown(int roomId, int materialsId)
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+        //}
+        //private void PopulateFileDropdown(int roomId, int materialsId)
+        //{
+        //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT materialsid, FileName FROM learningmaterials WHERE roomid = @roomid AND materialsid = @materialsid";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@roomid", roomId);
-                   command.Parameters.AddWithValue("@materialsid", materialsId);
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        ddlFiles.DataSource = reader;
-                        ddlFiles.DataTextField = "FileName";
-                        ddlFiles.DataValueField = "materialsid";
-                        ddlFiles.DataBind();
-                    }
-                }
-            }
-        }
-        private byte[] RetrieveFileData(int materialsid)
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        string query = "SELECT materialsid, FileName FROM learningmaterials WHERE roomid = @roomid AND materialsid = @materialsid";
+        //        using (MySqlCommand command = new MySqlCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@roomid", roomId);
+        //           command.Parameters.AddWithValue("@materialsid", materialsId);
+        //            using (MySqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                ddlFiles.DataSource = reader;
+        //                ddlFiles.DataTextField = "FileName";
+        //                ddlFiles.DataValueField = "materialsid";
+        //                ddlFiles.DataBind();
+        //            }
+        //        }
+        //    }
+        //}
+        //private byte[] RetrieveFileData(int materialsid)
+        //{
+        //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT FileData FROM learningmaterials WHERE materialsid = @materialsid";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@materialsid", materialsid);
-                    return command.ExecuteScalar() as byte[];
-                }
-            }
-        }
+        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        string query = "SELECT FileData FROM learningmaterials WHERE materialsid = @materialsid";
+        //        using (MySqlCommand command = new MySqlCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@materialsid", materialsid);
+        //            return command.ExecuteScalar() as byte[];
+        //        }
+        //    }
+        //}
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -229,7 +230,7 @@ namespace lms.Professor
             int teacherId = Convert.ToInt32(Session["LoggedInUserID"]);
             string teacherEmail = Session["LoggedInUserEmail"].ToString();
 
-            if (int.TryParse(Request.QueryString["materialsid"], out int materialsId))
+            if (int.TryParse(Request.QueryString["roomid"], out int roomId) && int.TryParse(Request.QueryString["materialsid"], out int materialsId))
             {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
@@ -299,7 +300,13 @@ namespace lms.Professor
                                     commandUpdate.ExecuteNonQuery();
 
                                     ShowSuccessMessage("Your Materials have been successfully updated");
+
+
                                 }
+
+
+                                PopulateFileGridView(roomId, materialsId);
+
 
                                 ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
                             }
@@ -315,6 +322,63 @@ namespace lms.Professor
                     }
                 }
             }
-        }   
+        }
+
+
+        private void PopulateFileGridView(int roomId, int materialsId)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT materialsId, FileName FROM learningmaterials WHERE roomId = @roomId AND materialsId = @materialsId";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@roomId", roomId);
+                    command.Parameters.AddWithValue("@materialsId", materialsId);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        gvFiles.DataSource = reader;
+                        gvFiles.DataBind();
+                    }
+                }
+            }
+        }
+
+        private byte[] RetrieveFileData(int materialsId)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT FileData FROM learningmaterials WHERE materialsId = @materialsId";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@materialsId", materialsId);
+                    return command.ExecuteScalar() as byte[];
+                }
+            }
+        }
+        protected void gvFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int rowIndex = gvFiles.SelectedIndex;
+            GridViewRow row = gvFiles.Rows[rowIndex];
+
+            int selectedFileID = Convert.ToInt32(row.Cells[0].Text);
+            byte[] fileData = RetrieveFileData(selectedFileID);
+
+            if (fileData != null)
+            {
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", $"attachment; filename={row.Cells[1].Text}");
+                Response.BinaryWrite(fileData);
+                Response.End();
+            }
+        }
+
+
     }
 }

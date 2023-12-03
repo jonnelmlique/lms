@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="room-sched">
-                        <a href='<%# "studentClassroom.aspx?roomid=" + Eval("roomid") %>' class="room-subj"><%# Eval("invitation_subjectname") %></a>
+                        <span class="room-subj"><%# Eval("invitation_subjectname") %></span>
                         <span class="room-section"><%# Eval("section") + " | " + Eval("schedule") %></span>
 
                       <%--  <div class="room-buttons">

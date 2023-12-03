@@ -182,6 +182,8 @@
     <Content Include="CSS\Student\classInvitation.css" />
     <Content Include="CSS\Student\classSubjects.css" />
     <Content Include="CSS\Student\DashBoard.css" />
+    <Content Include="CSS\Student\notificationDetails.css" />
+    <Content Include="CSS\Student\notifications.css" />
     <Content Include="CSS\Student\studentMasterPage.css" />
     <Content Include="Account\Login.aspx" />
     <Content Include="CSS\Student\studentStream.css" />
@@ -234,6 +236,8 @@
     <Content Include="Student\DashBoard.aspx" />
     <Content Include="Student\classSubjects.aspx" />
     <Content Include="Student\Invitations.aspx" />
+    <Content Include="Student\NotificationDetails.aspx" />
+    <Content Include="Student\notifications.aspx" />
     <Content Include="Student\People.aspx" />
     <Content Include="Student\Stream.aspx" />
     <Content Include="Student\studentClassroom.aspx" />
@@ -608,6 +612,20 @@
     </Compile>
     <Compile Include="Student\ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\NotificationDetails.aspx.cs">
+      <DependentUpon>NotificationDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\NotificationDetails.aspx.designer.cs">
+      <DependentUpon>NotificationDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\notifications.aspx.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\notifications.aspx.designer.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\People.aspx.cs">
       <DependentUpon>People.aspx</DependentUpon>

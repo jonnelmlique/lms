@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,60 @@ namespace lms.Student
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+        protected int GetActiveRoomsCount()
+        {
+            int activeRoomsCount = 0;
+            try
+            {
+                string loggedInUserEmail = Session["LoggedInUserEmail"] as string;
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    string query = "SELECT COUNT(*) FROM invitation_and_rooms_view WHERE status = 'Accepted' AND roomstatus = 'Active' AND studentemail = @loggedInUserEmail";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@loggedInUserEmail", loggedInUserEmail);
+
+                        activeRoomsCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                activeRoomsCount = 0;
+            }
+            return activeRoomsCount;
+        }
+        protected int GetTotalNotificationCount()
+        {
+            int notificationCount = 0; try
+            {
+                string loggedInUserEmail = Session["LoggedInUserEmail"] as string;
+
+
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+                    string query = "SELECT COUNT(*) FROM notification WHERE DATE(date) = CURDATE() AND receiver = @loggedInUserEmail";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@loggedInUserEmail", loggedInUserEmail);
+
+
+                        notificationCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                notificationCount = 0;
+            }
+            return notificationCount;
         }
     }
 }

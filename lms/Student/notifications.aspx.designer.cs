@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace lms.Professor
+namespace lms.Student
 {
 
 
-    public partial class WebForm15
+    public partial class notifications
     {
 
         /// <summary>
-        /// txtannouncement control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtannouncement;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// btnedit control.
+        /// roomdetailsGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnedit;
+        protected global::System.Web.UI.WebControls.GridView roomdetailsGridView;
     }
 }

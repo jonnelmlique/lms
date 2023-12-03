@@ -76,8 +76,9 @@ namespace lms.Professor
                     {
                         con.Open();
 
-                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, duedate, topic, FileName, FileType, FileData FROM learningmaterials " +
-                                       "WHERE roomid = @roomid ";
+                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, DATE_FORMAT(duedate, '%Y-%m-%d') AS duedate, topic, FileName, FileType, FileData FROM learningmaterials " +
+                  "WHERE roomid = @roomid " + "ORDER BY dateposted DESC";
+
 
                         using (MySqlCommand command = new MySqlCommand(query, con))
                         {
@@ -183,34 +184,37 @@ namespace lms.Professor
                                         string fileType = Path.GetExtension(file.FileName);
                                         byte[] fileData = file.FileBytes;
 
+
+
                                         string insertQuery = "INSERT INTO learningmaterials (roomid, teacherid, teacheremail, subjectname, materialsname, instructions, posttype, points, duedate, topic, FileName, FileType, FileData, teachername) " +
                                                              "VALUES (@roomid, @teacherid, @teacheremail, @subjectname, @materialsname, @instructions, @posttype, @points, @duedate, @topic, @fileName, @fileType, @fileData, @teachername)";
 
-                                        using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
-                                        {
-                                            commandInsert.Parameters.AddWithValue("@roomid", roomId);
-                                            commandInsert.Parameters.AddWithValue("@teacherid", teacherId);
-                                            commandInsert.Parameters.AddWithValue("@teacheremail", teacherEmail);
-                                            commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
-                                            commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
-                                            commandInsert.Parameters.AddWithValue("@instructions", instructions);
-                                            commandInsert.Parameters.AddWithValue("@posttype", posttype);
-                                            commandInsert.Parameters.AddWithValue("@points", points);
-                                            commandInsert.Parameters.AddWithValue("@duedate", duedate);
-                                            commandInsert.Parameters.AddWithValue("@topic", topic);
-                                            commandInsert.Parameters.AddWithValue("@fileName", fileName);
-                                            commandInsert.Parameters.AddWithValue("@fileType", fileType);
-                                            commandInsert.Parameters.AddWithValue("@fileData", fileData);
-                                            commandInsert.Parameters.AddWithValue("@teachername", teacherFullName);
+                                            using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
+                                            {
+                                                commandInsert.Parameters.AddWithValue("@roomid", roomId);
+                                                commandInsert.Parameters.AddWithValue("@teacherid", teacherId);
+                                                commandInsert.Parameters.AddWithValue("@teacheremail", teacherEmail);
+                                                commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
+                                                commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
+                                                commandInsert.Parameters.AddWithValue("@instructions", instructions);
+                                                commandInsert.Parameters.AddWithValue("@posttype", posttype);
+                                                commandInsert.Parameters.AddWithValue("@points", points);
+                                                commandInsert.Parameters.AddWithValue("@duedate", duedate);
+                                                commandInsert.Parameters.AddWithValue("@topic", topic);
+                                                commandInsert.Parameters.AddWithValue("@fileName", fileName);
+                                                commandInsert.Parameters.AddWithValue("@fileType", fileType);
+                                                commandInsert.Parameters.AddWithValue("@fileData", fileData);
+                                                commandInsert.Parameters.AddWithValue("@teachername", teacherFullName);
 
-                                            commandInsert.ExecuteNonQuery();
+                                                commandInsert.ExecuteNonQuery();
 
-                                            ShowSuccessMessage("Your Materials have been successfully posted");
+                                                ShowSuccessMessage("Your Materials have been successfully posted");
+                                            }
+
+                                            ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+                                            DisplayMaterials();
                                         }
-
-                                        ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
-                                        DisplayMaterials();
-                                    }
+                                    
                                     catch (Exception ex)
                                     {
                                         // Handle file upload error

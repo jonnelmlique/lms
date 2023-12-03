@@ -39,8 +39,9 @@ namespace lms.Student
                     {
                         con.Open();
 
-                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, duedate, topic FROM learningmaterials " +
-                                       "WHERE roomid = @roomid ";
+                        string query = "SELECT materialsid, materialsname, instructions, posttype, points, DATE_FORMAT(duedate, '%Y-%m-%d') AS duedate, topic, FileName, FileType, FileData FROM learningmaterials " +
+                     "WHERE roomid = @roomid " + "ORDER BY dateposted DESC";
+
 
                         using (MySqlCommand command = new MySqlCommand(query, con))
                         {

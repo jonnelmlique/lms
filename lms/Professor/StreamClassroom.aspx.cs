@@ -48,6 +48,7 @@ namespace lms.Professor
                 string teacherEmail = Session["LoggedInUserEmail"].ToString();
 
                 string postContent = TextBox1.Text;
+
                 DateTime currentDate = DateTime.Now;
 
                 if (int.TryParse(Request.QueryString["roomid"], out int roomIdFromQueryString))

@@ -45,15 +45,19 @@ namespace lms.Professor
         {
             int notificationCount = 0; try
             {
+                string loggedInUserEmail = Session["LoggedInUserEmail"] as string;
 
 
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    string query = "SELECT COUNT(*) FROM notification WHERE DATE(date) = CURDATE()";
+                    string query = "SELECT COUNT(*) FROM notification WHERE DATE(date) = CURDATE() AND receiver = @loggedInUserEmail";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
+                        cmd.Parameters.AddWithValue("@loggedInUserEmail", loggedInUserEmail);
+
+
                         notificationCount = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }

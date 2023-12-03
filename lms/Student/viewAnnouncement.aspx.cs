@@ -139,72 +139,81 @@ namespace lms.Student
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
 
-        protected void btncomment_Click(object sender, EventArgs e)
-        {
-            if (Session["RoomId"] != null && int.TryParse(Session["RoomId"].ToString(), out int roomId))
-            {
-                int studentId = Convert.ToInt32(Session["LoggedInUserID"]);
-                string studentemail = Session["LoggedInUserEmail"].ToString();
+    //    protected void btncomment_Click(object sender, EventArgs e)
+    //    {
+    //        if (Session["RoomId"] != null && int.TryParse(Session["RoomId"].ToString(), out int roomId))
+    //        {
+    //            int studentId = Convert.ToInt32(Session["LoggedInUserID"]);
+    //            string studentemail = Session["LoggedInUserEmail"].ToString();
 
-                string commentpost = txtcomment.Text;
-                DateTime currentDate = DateTime.Now;
-                string teacheremail = lblteacheremail.Text;
+    //            string commentpost = txtcomment.Text;
+    //            // Check if txtcomment is not empty
+    //            if (!string.IsNullOrWhiteSpace(commentpost))
+    //            {
+    //                DateTime currentDate = DateTime.Now;
+    //            string teacheremail = lblteacheremail.Text;
 
-                if (int.TryParse(Request.QueryString["roomid"], out int roomIdFromQueryString) && int.TryParse(Request.QueryString["announcementid"], out int announcementId))
-                {
-                    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+    //            if (int.TryParse(Request.QueryString["roomid"], out int roomIdFromQueryString) && int.TryParse(Request.QueryString["announcementid"], out int announcementId))
+    //            {
+    //                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-                    using (MySqlConnection con = new MySqlConnection(connectionString))
-                    {
-                        con.Open();
+    //                using (MySqlConnection con = new MySqlConnection(connectionString))
+    //                {
+    //                    con.Open();
 
-                        string retrieveStudentNameQuery = "SELECT firstname, lastname FROM student_Info WHERE email = @studentemail";
+    //                    string retrieveStudentNameQuery = "SELECT firstname, lastname FROM student_Info WHERE email = @studentemail";
 
-                        using (MySqlCommand retrieveNameCommand = new MySqlCommand(retrieveStudentNameQuery, con))
-                        {
-                            retrieveNameCommand.Parameters.AddWithValue("@studentemail", studentemail);
+    //                    using (MySqlCommand retrieveNameCommand = new MySqlCommand(retrieveStudentNameQuery, con))
+    //                    {
+    //                        retrieveNameCommand.Parameters.AddWithValue("@studentemail", studentemail);
 
-                            using (MySqlDataReader nameReader = retrieveNameCommand.ExecuteReader())
-                            {
-                                if (nameReader.Read())
-                                {
-                                    string studentFirstName = nameReader["firstname"].ToString();
-                                    string studentLastName = nameReader["lastname"].ToString();
-                                    string studentFullName = $"{studentFirstName} {studentLastName}";
+    //                        using (MySqlDataReader nameReader = retrieveNameCommand.ExecuteReader())
+    //                        {
+    //                            if (nameReader.Read())
+    //                            {
+    //                                string studentFirstName = nameReader["firstname"].ToString();
+    //                                string studentLastName = nameReader["lastname"].ToString();
+    //                                string studentFullName = $"{studentFirstName} {studentLastName}";
 
-                                    nameReader.Close();
+    //                                nameReader.Close();
 
-                                    string insertQuery = "INSERT INTO comment (announcementid, roomid, teacheremail, studentemail, name, profileimage, commentpost, datepost) " +
-                                                         "VALUES (@announcementid, @roomid,  @teacheremail, @studentemail, @name, @profileimage, @commentpost, @datepost)";
+    //                                string insertQuery = "INSERT INTO comment (announcementid, roomid, teacheremail, studentemail, name, profileimage, commentpost, datepost) " +
+    //                                                     "VALUES (@announcementid, @roomid,  @teacheremail, @studentemail, @name, @profileimage, @commentpost, @datepost)";
 
-                                    using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
-                                    {
-                                        commandInsert.Parameters.AddWithValue("@announcementid", announcementId);
-                                        commandInsert.Parameters.AddWithValue("@roomid", roomIdFromQueryString);
-                                        commandInsert.Parameters.AddWithValue("@teacheremail", teacheremail);
-                                        commandInsert.Parameters.AddWithValue("@studentemail", studentemail);
-                                        commandInsert.Parameters.AddWithValue("@name", studentFullName);
+    //                                using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
+    //                                {
+    //                                    commandInsert.Parameters.AddWithValue("@announcementid", announcementId);
+    //                                    commandInsert.Parameters.AddWithValue("@roomid", roomIdFromQueryString);
+    //                                    commandInsert.Parameters.AddWithValue("@teacheremail", teacheremail);
+    //                                    commandInsert.Parameters.AddWithValue("@studentemail", studentemail);
+    //                                    commandInsert.Parameters.AddWithValue("@name", studentFullName);
 
-                                        byte[] profileImage = GetUserProfileImage(studentemail);
-                                        commandInsert.Parameters.AddWithValue("@profileimage", profileImage);
+    //                                    byte[] profileImage = GetUserProfileImage(studentemail);
+    //                                    commandInsert.Parameters.AddWithValue("@profileimage", profileImage);
 
-                                        commandInsert.Parameters.AddWithValue("@commentpost", commentpost);
-                                        commandInsert.Parameters.AddWithValue("@datepost", currentDate);
+    //                                    commandInsert.Parameters.AddWithValue("@commentpost", commentpost);
+    //                                    commandInsert.Parameters.AddWithValue("@datepost", currentDate);
 
-                                        commandInsert.ExecuteNonQuery();
+    //                                    commandInsert.ExecuteNonQuery();
 
-                                        txtcomment.Text = "";
-                                        ShowSuccessMessage("Your Comment has been successfully posted");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                DisplayComment();
-            }
-        }
-        protected string GetProfileImageUrl(object profileImage)
+    //                                    txtcomment.Text = "";
+    //                                    ShowSuccessMessage("Your Comment has been successfully posted");
+    //                                }
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //            DisplayComment();
+    //        }
+    //        else
+    //        {
+    //            // Handle the case where txtcomment is empty
+    //            ShowErrorMessage("Please enter a comment before posting.");
+    //        }
+    //    }
+    //}
+    protected string GetProfileImageUrl(object profileImage)
         {
             if (profileImage != DBNull.Value)
             {
@@ -280,7 +289,11 @@ namespace lms.Student
                 string studentemail = Session["LoggedInUserEmail"].ToString();
 
                 string commentpost = txtcomment.Text;
-                DateTime currentDate = DateTime.Now;
+
+                // Check if txtcomment is not empty
+                if (!string.IsNullOrWhiteSpace(commentpost))
+                {
+                    DateTime currentDate = DateTime.Now;
                 string teacheremail = lblteacheremail.Text;
 
                 if (int.TryParse(Request.QueryString["roomid"], out int roomIdFromQueryString) && int.TryParse(Request.QueryString["announcementid"], out int announcementId))
@@ -336,6 +349,12 @@ namespace lms.Student
                 }
                 DisplayComment();
             }
+            else
+            {
+                // Handle the case where txtcomment is empty
+                ShowErrorMessage("Please enter a comment before posting.");
+            }
         }
     }
+}
 }

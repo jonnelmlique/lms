@@ -4,36 +4,27 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
        <div class="dashboard">
-         <div class="dash-list">
-            <div class="text">
-              <p>TOTAL STUDENTS </p>
-             
-            </div>
-             <div class="icon-num">                  
-                    <span></span>
-                   <i class="fas fa-users"></i>  
-             </div>
-         </div>
-         <div class="dash-list">
-            <div class="text">
-             <p>TOTAL INSTRUCTORS </p>
-       
-           </div>
-       <div class="icon-num">                  
-              <span></span>
-             <i class="fas fa-users"></i>  
-       </div>
-   </div>
-            <div class="dash-list">
-         <div class="text">
-          <p>TOTAL ROOMS </p>
-    
-        </div>
-    <div class="icon-num">                  
-           <span></span>
-          <i class="fas fa-users"></i>  
-    </div>
-</div>
+      <div class="dash-list">
+          <div class="text">
+              <p>ROOMS </p>
+
+          </div>
+          <div class="icon-num">
+              <span><%= GetActiveRoomsCount() %></span>
+              <i class="fas fa-users"></i>
+          </div>
+      </div>
+        <div class="dash-list">
+     <div class="text">
+         <p>NOTIFICATIONS</p>
+
+     </div>
+     <div class="icon-num">
+         <span><%= GetTotalNotificationCount() %></span>
+         <i class="fas fa-users"></i>
+     </div>
+ </div>
+         
  
 </div>
 

@@ -1,15 +1,15 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MySql.Data.MySqlClient;
 
-namespace lms.Professor
+namespace lms.Student
 {
-    public partial class WebForm4 : System.Web.UI.Page
+    public partial class notifications : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,9 +37,9 @@ namespace lms.Professor
                 {
                     con.Open();
                     string query = "SELECT notifid, subject, date " +
-                     "FROM notification " +
-                     "WHERE receiver = @receiver " +
-                     "ORDER BY date DESC";
+                    "FROM notification " +
+                    "WHERE receiver = @receiver " +
+                    "ORDER BY date DESC";
 
 
 
@@ -64,6 +64,6 @@ namespace lms.Professor
             }
         }
 
-       
+
     }
 }
