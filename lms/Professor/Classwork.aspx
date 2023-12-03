@@ -36,7 +36,7 @@
                         <ItemTemplate>
                             <div class="materials-box">
                                 <div class="title">
-                                    <h2><%# Eval("materialsname") %> - <%# Eval("posttype") %></h2>
+                                    <h2><%# Eval("materialsname") %> - <%# Eval("posttype") %> - <%# Eval("topic") %></h2>
 
                                     <a href='<%# "editClasswork.aspx?roomid=" + Request.QueryString["roomid"] + "&materialsid=" + Eval("materialsid") %>'><i class="fas fa-edit"></i></a>
                                 </div>
@@ -75,8 +75,8 @@
         <div class="assignment">
             <div class="assign-title">
                 <div class="title">
-                    <asp:Label ID="lbltitle" runat="server" Text="Title:" CssClass="lbl-title"></asp:Label>
-                    <asp:TextBox ID="txtmaterialsname" runat="server" CssClass="txt-title" placeholder="Enter Title"></asp:TextBox>
+                    <asp:Label ID="lbltitle" runat="server" Text="Module:" CssClass="lbl-title"></asp:Label>
+                    <asp:TextBox ID="txtmaterialsname" runat="server" CssClass="txt-title" placeholder="Enter Module Name"></asp:TextBox>
                 </div>
                 <div class="instructions">
                     <asp:Label ID="Label4" runat="server" Text="Instructions:" CssClass="lbl-instruc"></asp:Label>
