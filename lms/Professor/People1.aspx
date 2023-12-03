@@ -4,7 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Classroom" runat="server">
 
-     <div class="instructors">
+ <div class="instructors">
+     <div class="people1">
     <div class="people-view">
         <h2>ROOM INSTRUCTORS </h2>
 
@@ -32,5 +33,6 @@
         </div>
     </div>
 </div>
+     </div>
 
 </asp:Content>

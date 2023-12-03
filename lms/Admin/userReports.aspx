@@ -10,14 +10,14 @@
          <div class="search-room">
            
                 <div class="search-bar">          
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="search" placeholder="Search Room"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="search" placeholder="Search Email"></asp:TextBox>
                     <i class="fas fa-search"></i>
                </div>
             <div class="search-buttons">
                  <asp:DropDownList ID="DropDownList1" runat="server" CssClass="d-list">
-                      <asp:ListItem Text="Filter Reports" Value="1" />
-                      <asp:ListItem Text="Professor Reports" Value="2" />
-                        <asp:ListItem Text="Student Reports" Value="23" />
+                      <asp:ListItem Text="Filter Emails" Value="1" />
+                      <asp:ListItem Text="Professor Emails" Value="2" />
+                        <asp:ListItem Text="Student Emails" Value="23" />
                  </asp:DropDownList>
                               <asp:Button ID="Button1" runat="server" Text="Search" CssClass="crud"/>
                   </div>

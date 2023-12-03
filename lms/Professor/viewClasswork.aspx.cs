@@ -463,7 +463,7 @@ namespace lms.Professor
 
                     GridViewRow selectedRow = (GridViewRow)((Button)sender).NamingContainer;
 
-                    string studentworkid = selectedRow.Cells[0].Text;
+                    string studentworkid = selectedRow.Cells[3].Text;
                     TextBox txtgrade = (TextBox)selectedRow.FindControl("txtgrade");
 
                     if (string.IsNullOrWhiteSpace(txtgrade.Text))

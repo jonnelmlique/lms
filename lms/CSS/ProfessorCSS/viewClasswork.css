@@ -330,6 +330,7 @@ transition:0.3s all ease;
     height:50%;
     width:100%;
     padding:10px;  
+
 }
 
 .submitted .works, .not-submitted .works {
@@ -354,7 +355,6 @@ transition:0.3s all ease;
     height: calc(100% - 50px);
     border: 1px solid gray;
     overflow-y: auto;
-    border:1px solid red;
     
    
 }
@@ -449,6 +449,19 @@ table {
     padding: 5px 10px;
     text-align: center;
 }
+.grade-btn {
+    padding: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition:0.3s all ease;
+    margin-top:5px;
+    background-color:#ddd;
+    border-radius:10px;
+}
+.grade-btn:hover{
+    background-color: #eb4d4d;
+    color:#fff;
+}
 
 .gridview1 {
     width: 100%;
@@ -462,7 +475,7 @@ table {
         text-align: left;
         border: 1px solid #ddd;
         color: #000;
-        padding: 5px;
+        padding:10px;
     }
 
     .gridview1 th {

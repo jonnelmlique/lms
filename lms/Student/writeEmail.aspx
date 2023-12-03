@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
-       <div class="message">
+       <div class="message1">
        <div class="message-content">
            <div class="message-head">
                   <a href="ProfessorNotif.aspx"><i class="fas fa-arrow-left arrow-left"></i></a>

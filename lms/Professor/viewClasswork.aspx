@@ -132,7 +132,7 @@
                 </div>
                 <div class="work-list">
 
-                    <asp:GridView ID="gvwork" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnSelectedIndexChanged="gvwork_SelectedIndexChanged">
+                    <asp:GridView ID="gvwork" runat="server" AutoGenerateColumns="False" CssClass="gridview1" OnSelectedIndexChanged="gvwork_SelectedIndexChanged">
                         <Columns>
 
                             <asp:BoundField DataField="materialsId" HeaderText="File ID" SortExpression="materialsId" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />
@@ -145,16 +145,16 @@
 
                             <asp:TemplateField HeaderText="Grade" HeaderStyle-CssClass="hide-column">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtgrade" runat="server" CssClass="grade-txt"></asp:TextBox>
+                                    <asp:TextBox ID="txtgrade" runat="server" CssClass="grade-txt" placeholder="Input Score"></asp:TextBox>
                                     <asp:HiddenField ID="hfTnIdPkId" runat="server" Value='<%# Eval("studentworkid") %>' />
-                                    <asp:Button ID="btngrade" runat="server" Text="Grade" OnClick="btngrade_Click1" />
+                                    <asp:Button ID="btngrade" runat="server" Text="Submit Grade" OnClick="btngrade_Click1" CssClass="grade-btn" />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
                         </Columns>
                     </asp:GridView>
 
-
+                      </div>
 
                 </div>
                 <div class="not-submitted">
@@ -176,7 +176,7 @@
                     </div>
 
                 </div>
+          
             </div>
-
         </div>
 </asp:Content>

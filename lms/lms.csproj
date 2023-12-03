@@ -166,6 +166,7 @@
     <Content Include="CSS\ProfessorCSS\editAnnouncement.css" />
     <Content Include="CSS\ProfessorCSS\editClasswork.css" />
     <Content Include="CSS\ProfessorCSS\enterroompeople.css" />
+    <Content Include="CSS\ProfessorCSS\grades.css" />
     <Content Include="CSS\ProfessorCSS\instructorClassroom.css" />
     <Content Include="CSS\ProfessorCSS\inviteStudents.css" />
     <Content Include="CSS\ProfessorCSS\materials.css" />
@@ -232,6 +233,7 @@
     <None Include="Resources\submit2.png" />
     <Content Include="Professor\editAnnouncement.aspx" />
     <Content Include="Professor\viewClasswork.aspx" />
+    <Content Include="Professor\WriteEmail.aspx" />
     <Content Include="Student\ArchivedClasses.aspx" />
     <Content Include="Student\Classworks.aspx" />
     <Content Include="Student\DashBoard.aspx" />
@@ -583,6 +585,13 @@
     </Compile>
     <Compile Include="Professor\viewClasswork.aspx.designer.cs">
       <DependentUpon>viewClasswork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professor\WriteEmail.aspx.cs">
+      <DependentUpon>WriteEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professor\WriteEmail.aspx.designer.cs">
+      <DependentUpon>WriteEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
