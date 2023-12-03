@@ -3,7 +3,8 @@
         <link rel="stylesheet" href="../CSS/ProfessorCSS/People1.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Student" runat="server">
-     <div class="instructors">
+  <div class="instructors">
+      <div class="people">
     <div class="people-view">
         <h2>ROOM INSTRUCTORS </h2>
 
@@ -30,6 +31,7 @@
             </asp:GridView>
         </div>
     </div>
+          </div>
 </div>
 
 </asp:Content>

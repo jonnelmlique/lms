@@ -422,6 +422,174 @@ namespace lms.Student
 
         protected void btnmarkasdone_Click(object sender, EventArgs e)
         {
+            //int studentid = Convert.ToInt32(Session["LoggedInUserID"]);
+            //string studentEmail = Session["LoggedInUserEmail"].ToString();
+            //string teacherid = lblteacherid.Text;
+            //string teacheremail = lblteacheremail.Text;
+            //string subjectname = lblsubjectname.Text;
+            //string materialsname = lblmaterialsname.Text;
+            //string materialsid = lblmaterialsid.Text;
+            ////int roomId;
+
+            ////if (int.TryParse(Request.QueryString["roomid"], out roomId))
+            //if (int.TryParse(Request.QueryString["roomid"], out int roomId) && int.TryParse(Request.QueryString["materialsid"], out int materialsId))
+
+            //{
+            //    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            //    using (MySqlConnection con = new MySqlConnection(connectionString))
+            //    {
+            //        con.Open();
+
+            //        string retrieveStudentNameQuery = "SELECT firstname, lastname FROM student_info WHERE email = @studentEmail";
+
+            //        using (MySqlCommand retrieveNameCommand = new MySqlCommand(retrieveStudentNameQuery, con))
+            //        {
+            //            retrieveNameCommand.Parameters.AddWithValue("@studentemail", studentEmail);
+
+            //            using (MySqlDataReader nameReader = retrieveNameCommand.ExecuteReader())
+            //            {
+            //                if (nameReader.Read())
+            //                {
+            //                    string studentFirstName = nameReader["firstname"].ToString();
+            //                    string studentLastName = nameReader["lastname"].ToString();
+            //                    string studentFullName = $"{studentFirstName} {studentLastName}";
+
+            //                    nameReader.Close();
+
+
+            //                    if (file.HasFile)
+            //                    {
+            //                        try
+            //                        {
+            //                            string fileName = Path.GetFileName(file.FileName);
+            //                            string fileType = Path.GetExtension(file.FileName);
+            //                            byte[] fileData = file.FileBytes;
+            //                            //if (Request.Files.Count > 0)
+            //                            //{
+            //                            //    try
+            //                            //    {
+            //                            //        for (int i = 0; i < Request.Files.Count; i++)
+            //                            //        {
+            //                            //            HttpPostedFile uploadedFile = Request.Files[i];
+
+            //                            //            // Extract information about the uploaded file
+            //                            //            string fileName = Path.GetFileName(uploadedFile.FileName);
+            //                            //            string fileType = Path.GetExtension(fileName);
+            //                            //            byte[] fileData;
+
+            //                            //            // Read the file data into a byte array
+            //                            //            using (BinaryReader binaryReader = new BinaryReader(uploadedFile.InputStream))
+            //                            //            {
+            //                            //                fileData = binaryReader.ReadBytes(uploadedFile.ContentLength);
+            //                            //            }
+
+            //                            string insertQuery = "INSERT INTO studentwork (materialsid, teacherid, studentid, roomid, teacheremail, studentemail, studentname, FileName, FileType, FileData, subjectname, materialsname, workstatus) " +
+            //                                                 "VALUES (@materialsid, @teacherid, @studentid, @roomid, @teacheremail, @studentemail, @studentname, @FileName, @FileType, @FileData, @subjectname, @materialsname, 'turnedin')";
+
+            //                            using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
+            //                            {
+            //                                commandInsert.Parameters.AddWithValue("@materialsid", materialsid);
+            //                                commandInsert.Parameters.AddWithValue("@teacherid", teacherid);
+            //                                commandInsert.Parameters.AddWithValue("@studentid", studentid);
+            //                                commandInsert.Parameters.AddWithValue("@roomid", roomId);
+            //                                commandInsert.Parameters.AddWithValue("@teacheremail", teacheremail);
+            //                                commandInsert.Parameters.AddWithValue("@studentEmail", studentEmail);
+            //                                commandInsert.Parameters.AddWithValue("@studentname", studentFullName);
+            //                                commandInsert.Parameters.AddWithValue("@fileName", fileName);
+            //                                commandInsert.Parameters.AddWithValue("@fileType", fileType);
+            //                                commandInsert.Parameters.AddWithValue("@fileData", fileData);
+            //                                commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
+            //                                commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
+
+            //                                commandInsert.ExecuteNonQuery();
+
+            //                                ShowSuccessMessage("Your Work have been successfully Turned In");
+
+            //                                PopulateFileGridView1(roomId, materialsId);
+
+            //                            }
+
+            //                            ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+            //                            //DisplayMaterials();
+            //                        }
+
+            //                        catch (Exception ex)
+            //                        {
+            //                            // Handle file upload error
+            //                            ShowErrorMessage("Error uploading file: " + ex.Message);
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+        }
+                        
+                    
+                
+            
+        
+    
+        private void PopulateFileGridView1(int roomId, int materialsId)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT materialsId, FileName FROM studentwork WHERE roomId = @roomId AND materialsId = @materialsId";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@roomId", roomId);
+                    command.Parameters.AddWithValue("@materialsId", materialsId);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        gvwork.DataSource = reader;
+                        gvwork.DataBind();
+                    }
+                }
+            }
+        }
+
+        private byte[] RetrieveFileData1(int materialsId)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT FileData FROM studentwork WHERE materialsId = @materialsId";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@materialsId", materialsId);
+                    return command.ExecuteScalar() as byte[];
+                }
+            }
+        }
+
+        protected void gvwork_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int rowIndex = gvwork.SelectedIndex;
+            GridViewRow row = gvwork.Rows[rowIndex];
+
+            int selectedFileID = Convert.ToInt32(row.Cells[0].Text);
+            byte[] fileData = RetrieveFileData1(selectedFileID);
+
+            if (fileData != null)
+            {
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", $"attachment; filename={row.Cells[1].Text}");
+                Response.BinaryWrite(fileData);
+                Response.End();
+            }
+
+            }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
             int studentid = Convert.ToInt32(Session["LoggedInUserID"]);
             string studentEmail = Session["LoggedInUserEmail"].ToString();
             string teacherid = lblteacherid.Text;
@@ -526,72 +694,7 @@ namespace lms.Student
                 }
             }
         }
-                        
-                    
-                
-            
-        
-    
-        private void PopulateFileGridView1(int roomId, int materialsId)
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT materialsId, FileName FROM studentwork WHERE roomId = @roomId AND materialsId = @materialsId";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@roomId", roomId);
-                    command.Parameters.AddWithValue("@materialsId", materialsId);
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        gvwork.DataSource = reader;
-                        gvwork.DataBind();
-                    }
-                }
-            }
-        }
-
-        private byte[] RetrieveFileData1(int materialsId)
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT FileData FROM studentwork WHERE materialsId = @materialsId";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@materialsId", materialsId);
-                    return command.ExecuteScalar() as byte[];
-                }
-            }
-        }
-
-        protected void gvwork_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int rowIndex = gvwork.SelectedIndex;
-            GridViewRow row = gvwork.Rows[rowIndex];
-
-            int selectedFileID = Convert.ToInt32(row.Cells[0].Text);
-            byte[] fileData = RetrieveFileData1(selectedFileID);
-
-            if (fileData != null)
-            {
-                Response.Clear();
-                Response.ContentType = "application/octet-stream";
-                Response.AddHeader("Content-Disposition", $"attachment; filename={row.Cells[1].Text}");
-                Response.BinaryWrite(fileData);
-                Response.End();
-            }
-
-            }
-
-
-
-
-
-
+      
     }
 }

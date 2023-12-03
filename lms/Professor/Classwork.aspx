@@ -119,7 +119,7 @@
 
                 </div>
                 <div class="assign-btn">
-                    <asp:Button ID="btncreate" runat="server" Text="Create Assignment" OnClick="btncreate_Click" CssClass="buttons" />
+                    <asp:Button ID="btncreate" runat="server" Text="Create Task" OnClick="btncreate_Click" CssClass="buttons" />
                     <asp:Button ID="Button4" runat="server" Text="Cancel" CssClass="buttons" />
                 </div>
             </div>

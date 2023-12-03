@@ -60,7 +60,7 @@
        <a href='People.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-users"></i>People</span></a>
  </div>
   <div class="item">
-     <a href="#" class="sub-btn-active"><span><i class="fas fa-star"></i>Grades</span></a>
+     <a href='writeEmail.aspx?roomid=<%= Request.QueryString["roomid"] %>' class="sub-btn-active"><span><i class="fas fa-envelope"></i>Write Email</span></a>
 </div>
 
  <div class="item">
@@ -204,7 +204,7 @@
             });
     }
 </script>--%>
- <%-- <script>
+  <script>
 
       function handleLinkClick(link) {
 
@@ -241,6 +241,7 @@
               handleLinkClick(this);
           });
       });
-  </script>--%>
+  </script>
+
 </body>
 </html>

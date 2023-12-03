@@ -1,5 +1,4 @@
 ﻿
-
 .submit {
     width: 100%;
     background-color: #fff;  
@@ -8,7 +7,7 @@
     display:flex;
 }
 .class-content {
-    flex: 2.5;
+    width:60%;
     height: 100%;
     padding: 10px;
   
@@ -17,6 +16,7 @@
     border-bottom:1px solid black;
     height:140px;
     width:100%;
+
 }
 .class-content .title{
     height:55px;
@@ -66,21 +66,71 @@
     justify-content:space-between;
     height:35px;
     padding:0 20px;
+    
+}
+.points-date .points {
+    flex: 1;
+
+    height: 100%;
+    display:flex;
+    align-items:center;
+   
+}
+.points-date .dates {
+    flex: 1;
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 0 10px;
+}
+.points-date .dates span{
+      font-size:15px;
+    font-weight:bold;
+    color:#414141;
+    font-family:Arial;
+    margin:10px;
+}
+.points-date .points span {
+    font-size: 15px;
+    font-weight: bold;
+    color: #414141;
+    font-family: Arial;
+    margin-left: 0;
+
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 .class-content .points-date .span{
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
     color:#414141;
     font-family:Arial;
     width:auto;
+    margin:5px;
 }
 
 .class-content .modules {
     border-bottom: 1px solid black;
-    height: auto;
+    height: 200px;
     width: 100%;
     padding: 20px;
- 
+    overflow-y:auto;
+}
+.modules::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modules::-webkit-scrollbar-thumb {
+    background-color: #eb4d4d;
+    border-radius: 6px;
+}
+
+
+.modules::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 .class-content .modules .instructions{
     min-height:40px;
@@ -112,34 +162,97 @@
     align-items:center;
 }
 .class-content .comments{
-    height:calc(100% - 380px);
+    height:calc(100% - 340px);
 }
 .class-content .comments .class-comments {
 
     height: 40px;
-    margin-bottom:10px;
     display: flex;
     align-items: center;
     padding: 0 20px;
+
 }
 .class-content .comments .class-comments span{
     font-size:20px;
     letter-spacing:1px;
     font-family:Arial;
+      margin-right:10px;
+      font-weight:bold;
 }
-.class-content .comments .class-comments span i{
+.class-content .comments .class-comments i{
     margin-right:10px;
+    font-size:25px;
 }
 .class-content .comments .comment-list{
-
     min-height:auto;
-     max-height:200px;
+     max-height:260px;
     overflow-y:auto;
+    border-bottom:1px solid #ddd;
+}
+.comment-list::-webkit-scrollbar {
+    width: 10px;
 }
 
-.class-content .comments .announcement-comment{
-    height:calc(100% - 250px);
-     display: flex;
+.comment-list::-webkit-scrollbar-thumb {
+    background-color: #eb4d4d;
+    border-radius: 6px;
+}
+
+
+.comment-list::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.class-content .comments .comment-list .announcement-head{
+    display:flex;
+    align-items:center;
+    width:100%;
+    min-height:80px;
+    max-height:auto;
+ 
+}
+.class-content .comments .comment-list .announcement-head .profile{
+    width:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+ 
+}
+.img-profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.class-content .comments .comment-list .announcement-head .info{
+
+    height:100%;
+    width: calc(100% - 90px);
+}
+.class-content .comments .comment-list .announcement-head .info .name{
+   height:30px;
+   display:flex;
+   align-items:center;
+}
+.class-content .comments .comment-list .announcement-head .info .name h3{
+    margin-right:20px;
+    
+}
+.class-content .comments .comment-list .announcement-head .info .announcement-body{
+   padding:10px 20px;
+   font-family:Arial;
+
+}
+.class-content .comments .comment-list .announcement-head .info .announcement-body p{
+    letter-spacing:1px;
+    max-width:1200px;
+    word-wrap:break-word;
+}
+
+
+.class-content .comments .announcement-comment {
+    height: calc(100% - 300px);
+    display: flex;
     align-items: center;
 }
 .class-content .comments .announcement-comment .i{
@@ -174,32 +287,43 @@
     width:100%;
     height:100%;
     padding:15px 30px;
-    
     border-radius:25px;
     font-size:15px;
 }
 
+
 .class-content .comments .announcement-comment .comment-button{
     flex:.3;
 
-    height:100%;
+
     display:flex;
     align-items:center;
-    justify-content:center;
     width:100%;
+    padding:0 10px;
+   
 }
-.class-content .comments .announcement-comment .comment-button i{
-    font-size:30px;
+.class-content .comments .announcement-comment .comment-button .btn-comment{
+    height:60px;
     cursor:pointer;
-    padding:15px 25px;
+   width:60px;
+border-color:transparent;
+transition:0.3s all ease;
+
+    padding: 10px;
+   
 }
+.class-content .comments .announcement-comment .comment-button .btn-comment:hover{
+    opacity:0.5;
+   color:#fff;
+}
+
 
 .class-submit {
-    flex: 1;
-
+   width:40%;
     height: 100%;
     padding: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+   
 }
 
 .class-submit .submitted, .class-submit .not-submitted{
@@ -227,10 +351,11 @@
     letter-spacing:1px;
 }
 .submitted .work-list, .not-submitted .work-list {
-    height:calc(100% - 50px);
-    padding: 10px 30px;
-    border:1px solid gray;
-    overflow-y:auto;
+    height: calc(100% - 50px);
+    border: 1px solid gray;
+    overflow-y: auto;
+    
+   
 }
 .work-list::-webkit-scrollbar {
     width: 10px;
@@ -243,7 +368,7 @@
 
 
 .work-list::-webkit-scrollbar-track {
-    background-color: black;
+    background-color: transparent;
 }
 
 .submitted .work-list .list, .not-submitted .work-list .list{
@@ -259,18 +384,60 @@
    
 }
 
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: transparent;
+    border-collapse: collapse;
+    width: 100%;
+    border-color: transparent;
+    margin-top:0;
+    padding:0;
+}
 
+  
 
+.gridview {
+    width: 100%;
+    border-collapse: collapse;
+    
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color:#ddd;
+}
 
+    .gridview th, .gridview td {
+        text-align: left;
+        border: 1px solid #ddd;
+        color: #000;
+        padding:15px;
+    }
 
+    .gridview th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
 
+    .gridview tr {
+        transition: background-color 0.3s;
+    }
 
-.custom-dropdown {
-    position: relative;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    cursor: not-allowed;
-    color: #000;
-    font-weight: bold;
-} 
+        .gridview tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    .gridview a {
+        display: inline-block;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #3498db;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+     
+    }
+
+        .gridview a:hover {
+            background-color: #2980b9;
+        }

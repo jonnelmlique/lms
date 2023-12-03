@@ -36,7 +36,7 @@
                     <label for="psw"><b>Password</b></label>
                     <asp:TextBox ID="txtpassword" placeholder="Enter Password" runat="server" TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="passwordValidator" runat="server" ErrorMessage="* Password is Required" ControlToValidate="txtpassword" CssClass="required"></asp:RequiredFieldValidator>
-                    <br />
+                    <br />  
                     <div class="show-pass">
                         <span>
                             <input type="checkbox" onclick="myFunction()" />

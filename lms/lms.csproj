@@ -243,6 +243,7 @@
     <Content Include="Student\studentClassroom.aspx" />
     <Content Include="Student\viewAnnouncement.aspx" />
     <Content Include="Student\submitClasswork.aspx" />
+    <Content Include="Student\writeEmail.aspx" />
     <Content Include="Vviewfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -689,6 +690,13 @@
     </Compile>
     <Compile Include="Student\submitClasswork.aspx.designer.cs">
       <DependentUpon>submitClasswork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\writeEmail.aspx.cs">
+      <DependentUpon>writeEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\writeEmail.aspx.designer.cs">
+      <DependentUpon>writeEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vviewfile.aspx.cs">
       <DependentUpon>Vviewfile.aspx</DependentUpon>
