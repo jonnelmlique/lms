@@ -487,33 +487,33 @@ namespace lms.Student
                                         string insertQuery = "INSERT INTO studentwork (materialsid, teacherid, studentid, roomid, teacheremail, studentemail, studentname, FileName, FileType, FileData, subjectname, materialsname) " +
                                                              "VALUES (@materialsid, @teacherid, @studentid, @roomid, @teacheremail, @studentemail, @studentname, @FileName, @FileType, @FileData, @subjectname, @materialsname)";
 
-                                            using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
-                                            {
-                                                commandInsert.Parameters.AddWithValue("@materialsid", materialsid);
-                                                commandInsert.Parameters.AddWithValue("@teacherid", teacherid);
-                                                commandInsert.Parameters.AddWithValue("@studentid", studentid);
-                                                commandInsert.Parameters.AddWithValue("@roomid", roomId);
-                                                commandInsert.Parameters.AddWithValue("@teacheremail", teacheremail);
-                                                commandInsert.Parameters.AddWithValue("@studentEmail", studentEmail);
-                                                commandInsert.Parameters.AddWithValue("@studentname", studentFullName);
-                                                commandInsert.Parameters.AddWithValue("@fileName", fileName);
-                                                commandInsert.Parameters.AddWithValue("@fileType", fileType);
-                                                commandInsert.Parameters.AddWithValue("@fileData", fileData);
-                                                commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
-                                                commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
+                                        using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
+                                        {
+                                            commandInsert.Parameters.AddWithValue("@materialsid", materialsid);
+                                            commandInsert.Parameters.AddWithValue("@teacherid", teacherid);
+                                            commandInsert.Parameters.AddWithValue("@studentid", studentid);
+                                            commandInsert.Parameters.AddWithValue("@roomid", roomId);
+                                            commandInsert.Parameters.AddWithValue("@teacheremail", teacheremail);
+                                            commandInsert.Parameters.AddWithValue("@studentEmail", studentEmail);
+                                            commandInsert.Parameters.AddWithValue("@studentname", studentFullName);
+                                            commandInsert.Parameters.AddWithValue("@fileName", fileName);
+                                            commandInsert.Parameters.AddWithValue("@fileType", fileType);
+                                            commandInsert.Parameters.AddWithValue("@fileData", fileData);
+                                            commandInsert.Parameters.AddWithValue("@subjectname", subjectname);
+                                            commandInsert.Parameters.AddWithValue("@materialsname", materialsname);
 
-                                                commandInsert.ExecuteNonQuery();
+                                            commandInsert.ExecuteNonQuery();
 
-                                                ShowSuccessMessage("Your Work have been successfully Turned In");
+                                            ShowSuccessMessage("Your Work have been successfully Turned In");
 
-                                                PopulateFileGridView1(roomId, materialsId);
+                                            PopulateFileGridView1(roomId, materialsId);
 
-                                            }
-
-                                            ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
-                                            //DisplayMaterials();
                                         }
+
+                                        ClientScript.RegisterStartupScript(this.GetType(), "successMessage", "showSuccessMessage();", true);
+                                        //DisplayMaterials();
                                     }
+
                                     catch (Exception ex)
                                     {
                                         // Handle file upload error
@@ -526,6 +526,11 @@ namespace lms.Student
                 }
             }
         }
+                        
+                    
+                
+            
+        
     
         private void PopulateFileGridView1(int roomId, int materialsId)
         {
