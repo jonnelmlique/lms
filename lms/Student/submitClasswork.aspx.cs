@@ -484,8 +484,8 @@ namespace lms.Student
                                         //                fileData = binaryReader.ReadBytes(uploadedFile.ContentLength);
                                         //            }
 
-                                        string insertQuery = "INSERT INTO studentwork (materialsid, teacherid, studentid, roomid, teacheremail, studentemail, studentname, FileName, FileType, FileData, subjectname, materialsname) " +
-                                                             "VALUES (@materialsid, @teacherid, @studentid, @roomid, @teacheremail, @studentemail, @studentname, @FileName, @FileType, @FileData, @subjectname, @materialsname)";
+                                        string insertQuery = "INSERT INTO studentwork (materialsid, teacherid, studentid, roomid, teacheremail, studentemail, studentname, FileName, FileType, FileData, subjectname, materialsname, workstatus) " +
+                                                             "VALUES (@materialsid, @teacherid, @studentid, @roomid, @teacheremail, @studentemail, @studentname, @FileName, @FileType, @FileData, @subjectname, @materialsname, 'turnedin')";
 
                                         using (MySqlCommand commandInsert = new MySqlCommand(insertQuery, con))
                                         {

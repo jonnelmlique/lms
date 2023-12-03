@@ -23,7 +23,7 @@ namespace lms.Professor
                         DisplayMaterials(roomId, materialsId);
                         PopulateFileGridView(roomId, materialsId);
                         PopulateFileGridView1(roomId, materialsId);
-
+                        PopulateStudent(roomId, materialsId);
                         DisplayUserProfileImage();
                         DisplayComment();
                         //PopulateFileDropdown(roomId, materialsId);
@@ -474,6 +474,32 @@ namespace lms.Professor
                 Response.End();
             }
 
+        }
+
+        protected void gvpeople_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void PopulateStudent(int roomId, int materialsId)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT studentemail FROM invitation WHERE roomid = @roomid AND status = 'Accepted'";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@roomid", roomId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        gvpeople.DataSource = reader;
+                        gvpeople.DataBind();
+                    }
+                }
+            }
         }
 
     }

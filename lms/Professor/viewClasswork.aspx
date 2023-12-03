@@ -270,6 +270,20 @@
                     <span></span>
                 </div>
                 <div class="work-list">
+
+
+                       <asp:GridView ID="gvpeople" runat="server" AutoGenerateColumns="False" CssClass="gridview" OnSelectedIndexChanged="gvpeople_SelectedIndexChanged">
+       <Columns>
+<%--           <asp:BoundField DataField="materialsId" HeaderText="File ID" SortExpression="materialsId" ReadOnly="True" HeaderStyle-CssClass="hide-column" ItemStyle-CssClass="hide-column" />--%>
+          <asp:BoundField DataField="studentemail" HeaderText="Student Name" SortExpression="StudentName" ReadOnly="True" HeaderStyle-CssClass="hide-column"  />
+<%--           <asp:BoundField DataField="FileName" HeaderText="File Name" SortExpression="FileName" ReadOnly="True" HeaderStyle-CssClass="hide-column" />--%>
+       
+           
+<%--           <asp:CommandField ShowSelectButton="True" SelectText="Download" HeaderStyle-CssClass="hide-column" />--%>
+       </Columns>
+   </asp:GridView>
+
+
                     <%--  work list--%>
                 </div>
 
