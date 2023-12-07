@@ -47,10 +47,6 @@ namespace lms.Student
                 {
                     con.Open();
 
-
-
-
-
                     string query = "SELECT materialsid, subjectname, teacherid, teacheremail, materialsname, instructions, duedate, topic, posttype, points, dateposted, teachername FROM learningmaterials " +
                                    "WHERE roomid = @roomid AND materialsid = @materialsid";
 

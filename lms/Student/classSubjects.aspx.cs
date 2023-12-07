@@ -21,7 +21,8 @@ namespace lms.Student
 
 
                     BindRoomData();
-                 
+                    PopulateSubjectsDropDown();
+
 
                 }
                 catch (Exception ex)
@@ -31,7 +32,7 @@ namespace lms.Student
 
             }
         }
-        protected void BindRoomData()
+        protected void BindRoomData(string subjectFilter = "")
         {
             string studentemail = Session["LoggedInUserEmail"] as string;
 
@@ -48,9 +49,21 @@ namespace lms.Student
 
                 string query = "SELECT roomid, invitation_subjectname, description, schedule, section, roomstatus FROM invitation_and_rooms_view WHERE studentemail = @studentemail AND status = 'Accepted' AND roomstatus = 'Active'";
 
+
+                if (!string.IsNullOrEmpty(subjectFilter))
+                {
+                    query += " AND invitation_subjectname = @subjectFilter";
+                }
+
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@studentemail", studentemail);
+
+                    if (!string.IsNullOrEmpty(subjectFilter))
+                    {
+                        cmd.Parameters.AddWithValue("@subjectFilter", subjectFilter);
+                    }
+
 
                     using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                     {
@@ -59,6 +72,45 @@ namespace lms.Student
 
                         roomRepeater.DataSource = dt;
                         roomRepeater.DataBind();
+                    }
+                }
+            }
+        }
+        private void PopulateSubjectsDropDown()
+        {
+            string studentemail = Session["LoggedInUserEmail"] as string;
+
+            if (string.IsNullOrEmpty(studentemail))
+            {
+                return;
+            }
+
+            string connectionString = ConfigurationManager.ConnectionStrings["MySqlConnection"].ConnectionString;
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT DISTINCT invitation_subjectname FROM invitation_and_rooms_view WHERE studentemail = @studentemail AND status = 'Accepted' AND roomstatus = 'Active'";
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@studentemail", studentemail);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        HashSet<string> uniqueSubjectNames = new HashSet<string>();
+
+                        while (reader.Read())
+                        {
+                            string subjectName = reader["invitation_subjectname"].ToString();
+                            uniqueSubjectNames.Add(subjectName);
+                        }
+
+                        var sortedSubjects = uniqueSubjectNames.OrderBy(subject => subject);
+
+                        foreach (string subjectName in sortedSubjects)
+                        {
+                            DropDownList1.Items.Add(new ListItem(subjectName, subjectName));
+                        }
                     }
                 }
             }
@@ -75,6 +127,15 @@ namespace lms.Student
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true);
         }
 
-      
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValue = DropDownList1.SelectedValue;
+
+            if (selectedValue == "1")
+            {
+                Response.Redirect("classSubjects.aspx");
+            }
+            BindRoomData(DropDownList1.SelectedValue);
+        }
     }
 }

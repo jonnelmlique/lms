@@ -33,10 +33,22 @@
         </div>
     <div class="icon-num">                  
            <span><%= GetTotalRoomsCount() %></span>
-          <i class="fas fa-users"></i>  
+          <i class="fa-solid fa-users-rectangle"></i>  
     </div>
 </div>
  
+
+       <div class="dash-list">
+     <div class="text">
+         <p>NOTIFICATIONS</p>
+
+     </div>
+     <div class="icon-num">
+         <span><%= GetTotalNotificationCount() %></span>
+         <i class="fas fa-bell"></i>
+     </div>
+ </div>
+
 </div>
 
             

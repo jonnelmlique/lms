@@ -76,7 +76,7 @@
                 <div class="comment-list">
 
 
-                    <asp:GridView ID="commentGridView" runat="server" AutoGenerateColumns="false" EmptyDataText="No Comment" CssClass="announcement-grid">
+                    <asp:GridView ID="commentGridView" runat="server" AutoGenerateColumns="false" CssClass="announcement-grid">
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
